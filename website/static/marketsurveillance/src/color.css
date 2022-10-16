@@ -1,0 +1,28 @@
+.title {
+  background-color: rgba(70, 130, 180, 0.8)!important;
+}
+
+.cat2 .title {
+  background-color: rgba(0, 200, 180, 0.8)!important;
+}
+
+.group {
+  background-color: rgba(70, 130, 180, 0.5)!important;
+}
+
+table tr.even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+#PageTitle {
+  background-color: rgba(70, 130, 180, 1);
+  color: white;
+}
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+.area.speed-est, .sym-area rect {
+  opacity: 0.3;
+}

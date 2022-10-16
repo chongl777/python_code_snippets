@@ -1,0 +1,172 @@
+div.wfi-plot-chart {
+  font: 10px sans-serif;
+}
+
+div.wfi-plot-chart p.title {
+  font-weight: bold;
+  padding: 5px 0px 5px 0px;
+}
+
+div.wfi-plot-chart td.zoom-scale {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+div.wfi-plot-chart div.legend-text {
+  line-height: 20px;
+}
+
+div.wfi-plot-chart div.top-zoom-bar #zoom-bar-holder{
+  justify-content: space-between;
+  border: solid 1px #bbb;
+  background-color: rgba(236, 236, 236, 0.95);
+}
+
+div.wfi-plot-chart text, div.legend-text {
+  font-size: 9px;
+  cursor: default;
+}
+
+div.wfi-plot-chart div.time-frame td {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+div.wfi-plot-chart div.time-frame input {
+  box-sizing: border-box;
+  border: solid 1px #bbb;
+  height: 100%;
+  text-align: center;
+  type: date;
+  background-color: white;
+}
+
+div.wfi-plot-chart div.time-frame input::placeholder {
+  color: grey;
+}
+
+div.wfi-plot-chart div.top-bar div.rtype{
+  border: none;
+}
+
+div.wfi-plot-chart div.top-bar div.rtype select{
+  background-color: white;
+}
+
+div.wfi-plot-chart div.top-bar div.legend-bar{
+  justify-content: flex;
+}
+
+div.wfi-plot-chart svg {
+  pointer-events: all;
+}
+
+div.wfi-plot-chart .axis path,
+div.wfi-plot-chart .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+div.wfi-plot-chart .axis .tick text {
+  white-space: pre;
+}
+
+div.wfi-plot-chart .x.axis path {
+  /* display: none;*/
+}
+
+div.wfi-plot-chart .area {
+  fill: steelblue;
+  fill-opacity: 0.5;
+  z-index: -10;
+}
+
+div.wfi-plot-chart .tick line {
+  opacity: 0.2;
+}
+
+div.wfi-plot-chart svg.chart-main,
+div.wfi-plot-chart svg.chart-navigator {
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+}
+
+div.wfi-plot-chart svg.chart-navigator g.area-wrap {
+  strok-opacity: 1;
+  stroke-width: 1.0px;
+  stroke: black;
+}
+
+div.wfi-plot-chart svg.chart-navigator{
+  opacity: 1;
+}
+
+div.wfi-plot-chart svg.chart-navigator:hover{
+  opacity: 1;
+}
+
+div.wfi-plot-chart .chart-navigator .brush {
+  stroke: steelblue;
+  fill: steelblue;
+  fill-opacity: 0.2;
+}
+
+div.wfi-plot-chart .chart-navigator .brush .overlay {
+  stroke: transparent;
+  fill: transparent;
+  fill-opacity: 0.0;
+}
+
+div.wfi-plot-chart rect.plot-area {
+  pointer-events: all;
+  display: inline;
+  z-index: 10;
+}
+
+div.wfi-plot-chart line.guideline {
+  fill: none;
+  stroke: black;
+  opacity: 0.5;
+  stroke-width: 1.5px;
+}
+
+
+div.wfi-plot-chart svg.chart-navigator .area-wrap line.upper-line {
+  stroke-width: 2.0px;
+  stroke: black;
+}
+
+div.wfi-plot-chart g.y1.axis path.domain,
+div.wfi-plot-chart g.y2.axis path.domain{
+  stroke: none;
+}
+
+div.wfi-plot-chart div.tooltip {
+  background-color: rgba(70, 130, 180, 0.3);
+  position: fixed;
+  display: flex;
+  padding-left: 2px;
+  flex-direction: column;
+  float: left;
+  width: auto;
+  height: auto;
+  padding-left: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  z-index: 100;
+}
+
+div.wfi-plot-chart div.tooltip .val {
+  padding-left: 10px;
+}
+
+div.wfi-plot-chart text.right-yaxis-text {
+  text-anchor: end!important;
+}
+
+div.wfi-plot-chart text.left-yaxis-text {
+  text-anchor: start!important;
+}

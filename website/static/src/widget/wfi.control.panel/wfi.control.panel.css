@@ -1,0 +1,100 @@
+table.wfi-control-panel-table div#drop-down-parms {
+  background-color: #dee7f2;
+  border-top: 1px solid #a4b7d8;
+  border-bottom: 1px solid #a4b7d8;
+}
+
+table.wfi-control-panel-table td.SplitterNormal {
+  background-color: #a4b7d8;
+}
+
+table.wfi-control-panel-table td {
+  padding: 0px;
+}
+
+table.wfi-control-panel-table div#site-settings:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+table.wfi-control-panel-table svg#arrow_button:hover {
+  cursor: pointer;
+}
+
+table.wfi-control-panel-table div#site-settings {
+  margin: 2px;
+}
+
+table.wfi-control-panel-table #setting-bar {
+  background-color: #EBF3FF;
+}
+
+table.wfi-control-panel-table td.ParamLabelCell {
+  padding: 5px;
+  padding-right: 0px;
+}
+
+table.wfi-control-panel-table td.ParamEntryCell {
+  padding: 5px;
+  padding-right: 0px;
+  width: 200px;
+}
+
+table.wfi-control-panel-table td.ParamEntryCell
+:first-child {
+  width: 100%;
+}
+
+table.wfi-control-panel-table td.ParamEntryCell .btn-group>button,
+table.wfi-control-panel-table td.ParamEntryCell .btn-group>.multiselect-container {
+  padding: 0px;
+  width: 200px;
+  border-radius: 0px;
+  border-color: #808080;
+}
+
+table.wfi-control-panel-table td.SubmitButtonCell {
+  border-left: 1px solid #a4b7d8;
+  vertical-align: top;
+  padding: 10px;
+}
+
+table.wfi-control-panel-table td.SubmitButtonCell table {
+  width: 100%;
+  width: 109px;
+}
+
+table.wfi-control-panel-table td.SubmitButtonCell input {
+  padding: 4px;
+  width: 100%;
+  margin: 0px;
+}
+
+table#table_params {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+table.wfi-control-panel-table #setting-bar {
+
+}
+
+#OVER div.wfi-control-panel-table.args-dlg {
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  background-color: #ECECEC;
+  position: fixed;
+  display: block;
+  overflow: auto;
+}
+
+#OVER div.wfi-control-panel-table.args-dlg div.dlgTitle {
+  color: #000;
+  overflow: hidden;
+  padding: 12px 21px 15px 13px;
+}
+
+#OVER div.wfi-control-panel-table.args-dlg div.dlgTitle h1 {
+  font-size: 15px;
+}

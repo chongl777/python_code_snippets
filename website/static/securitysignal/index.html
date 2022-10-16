@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+{{super()}}
+<script>
+ var data = JSON.parse(
+   '{{data}}'.replace(/]&#34;/g,"]")
+             .replace(/&#34;\[/g,"[")
+             .replace(/&#34;/g,"\"")
+             .replace(/&#39;/g, "'")
+             .replace(/NaN/g, "null"));
+ $(document).ready(() => ready_func(data));
+ //var data = 2;
+</script>
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<meta charset="utf-8">
+<script src="./static/src/jquery/jquery.js"></script>
+
+<link href="./static/src/jquery/stylesheets/jquery-ui.css" rel="stylesheet">
+<script src="./static/src/jquery/jquery-ui.js" type="text/javascript"></script>
+
+<script src="./static/src/numeral/numeral.js" type="text/javascript"></script>
+
+<script src="./static/src/knockout-3.4.2/knockout.debug.js" type="text/javascript"></script>
+
+<script src="./static/src/widget/svg.icons/svg.icons.js" type="text/javascript"></script>
+
+<link href="./static/src/datatable/datatables.css" rel="stylesheet">
+<script src="./static/src/datatable/datatables.js" type="text/javascript"></script>
+
+<link href="./static/src/chosen/chosen.css" rel="stylesheet">
+<script src="./static/src/chosen/chosen.jquery.js" type="text/javascript"></script>
+
+<link href="./static/src/vis-4.21.0/vis.css" rel="stylesheet">
+<script src="./static/src/vis-4.21.0/vis.js", type="text/javascript"></script>
+<script src="./static/src/jsPDF/jspdf.min.js", type="text/javascript"></script>
+<script src="./static/src/html2canvas/html2canvas.js", type="text/javascript"></script>
+
+<link href="./static/src/widget/seclist/seclist.css" rel="stylesheet">
+<script src="./static/src/widget/seclist/seclist.js" type="text/javascript"></script>
+
+<script src="./static/src/handlebars/handlebars-v4.0.11.js" type="text/javascript"></script>
+
+<script src="./static/src/d3/d3.js" type="text/javascript"></script>
+
+<script src="./static/src/loadingIcon/loadingIcon.js" type="text/javascript"></script>
+
+<link href="./static/src/bootstrap.multiselect/css/bootstrap-multiselect.css" rel="stylesheet">
+<script src="./static/src/bootstrap.multiselect/js/bootstrap-multiselect.js" type="text/javascript"></script>
+<link href="./static/src/widget/wfi.control.panel/wfi.control.panel.css" rel="stylesheet">
+<script src="./static/src/widget/wfi.control.panel/wfi.control.panel.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/interactive.plot/interactive.plot.css" rel="stylesheet">
+<script src="./static/src/widget/interactive.plot/interactive.plot.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/title.bar/title.bar.css" rel="stylesheet">
+<script src="./static/src/widget/title.bar/title.bar.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/common_style.css" rel="stylesheet">
+<link href="./static/securitysignal/css/color.css" rel="stylesheet">
+<link href="./static/securitysignal/css/style.css" rel="stylesheet">
+<link href="./static/securitysignal/css/securities_list.css" rel="stylesheet">
+
+<script src="./static/securitysignal/src/initialize.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/wfi.search.bar/searchbar.css" rel="stylesheet">
+<script src="./static/src/widget/wfi.search.bar/searchbar.js" type="text/javascript"></script>
+
+<link href="./static/securitysignal/css/emc.css" rel="stylesheet">
+<script src="./static/securitysignal/src/emc.js", type="text/javascript"></script>
+
+<link href="./static/securitysignal/css/rvs.css" rel="stylesheet">
+<script src="./static/securitysignal/src/rvs.js", type="text/javascript"></script>
+
+<script src="./static/securitysignal/src/securities_list.js", type="text/javascript"></script>
+<script src="./static/securitysignal/src/script.js" type="text/javascript"></script>
+
+
+{% endblock %}
+
+{% block app_content %}
+
+<div style="display: block; height: 100%; position: relative; width: 100%;">
+  <table style="width:100%; height:100%; position: relative; table-layout:fixed">
+    <tbody>
+      <tr style="height: 40px">
+        <td>
+          <header id="PageTitle">
+            {{ title }}
+          </header>
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          <div id="control-panel">
+            <table >
+              <tbody>
+                <tr>
+                  <td class="ParamEntryCell" colspan="3">
+                    <ul id="search-bar" class="search-bar nav">
+                      <li>
+                        <div class="search" id="search">
+                        </div>
+                      </li>
+                    </ul>
+                  </td>
+                  <td class="ParamLabelCell">
+                    <label><span>Other Links: </span></label>
+                  </td>
+                  <td class="ParamEntryCell">
+                    <label><a data-bind="attr: {href: sec_profile}" target="_blank"> &nbsp Security Profile</a></label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td id="content-panel" style="height: 100%; width: 100%;">
+          <div style="width:100%; height:100%; display: block; overflow:auto;"> <!-- inline-size:fit-content;  -->
+            <div style="display: flex; height: 100%;">
+              <div style="width:400px; height: 100%;" id="content-holder" class="flex-container">
+                <div class="items" id="securities-list" style="width: 398px; height: 100%; display: table"></div>
+              </div>
+
+              <div style="display:block; width: 100%; height: 100%; overflow: auto;"
+                   id="content-holder" class="flex-container">
+                <div class="items" id="signal-details"
+                     style="width: 100%; height: 100%; overflow: auto; display: table; table-layout: fixed; position: relative">
+                  <div id="signal-title" style="display: table-row; position: relative">Signal Details</div>
+                  <div style="display:block; height: 100%; overflow:auto;  position: relative">
+                  <div id="signal-detail-area" style="height: 100%; overflow:auto;  position: relative">
+                    <div class="grid-item i1"><div id="emc-hy" class="signal-widget"></div> </div>
+                    <div class="grid-item i2"><div id="emc-ig" class="signal-widget"></div></div>
+                    <div class="grid-item i3"><div id="rvs-hy" class="signal-widget"></div></div>
+                    <div class="grid-item i4"><div id="rvs-ig" class="signal-widget"></div></div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div id="wait-overlay" class="wait"
+     style="position:absolute; height:100%; width: 100%; top: 0px; left: 0px; justify-content: center; align-items: center">
+  <img src="./static/src/images/loadingAnimation.gif" style="height: 50px; width: 50px; position: absolute;">
+</div>
+{% endblock %}

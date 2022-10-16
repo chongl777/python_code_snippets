@@ -1,0 +1,118 @@
+/* dialog */
+
+#OVER-file-attrs {
+  width:100%;
+  height:100%;
+  left:0;/*IE*/
+  top:0;
+  z-index: 100;
+  position:fixed;
+  background-color: rgba(153, 153, 153, 0.4);
+}
+
+#OVER-file-attrs h1#title {
+  margin: 0px;
+}
+
+#OVER-file-attrs div.tgt-px-dlg {
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  background-color: #ECECEC;
+  position: fixed;
+  display: block;
+  overflow: auto;
+}
+
+#OVER-file-attrs div.tgt-px-dlg h1{
+  font-size: 1.46em;
+  color: #000;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgTitle {
+  font-size: 13px;
+  color: #000;
+  overflow: hidden;
+  padding: 7px 37px 3px 8px;
+  background-color: steelblue;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgTitle  h1 {
+  color: white;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgTitle #TitleBtns {
+  margin-top: -10px;
+  margin-right: -18px;
+  height:30px;
+  float:right;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer {
+  padding: 6px 21px 15px 21px;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table {
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer td input {
+  width: 90%;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#content td:first-child {
+  padding: 2px 2px 10px 2px;
+  width: 30%;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer td h3 {
+  font-size: 1em;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#content td:nth-child(2),
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#content td:nth-child(3){
+  vertical-align: middle;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#submit-button td {
+  display: flex;
+  padding-left: 150px
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#submit-button td input {
+  width: 115px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+/* #OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#submit-button td:nth-child(1) { */
+/*   width:70% */
+/* } */
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#submit-button td:nth-child(2) {
+  display: flex;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#content td textarea {
+  width: 90%;
+  min-height: 70px;
+  resize: vertical;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#content td input.sid {
+  text-decoration: underline;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#submit-button td {
+  vertical-align: middle;
+}
+
+#OVER-file-attrs div.tgt-px-dlg div.dlgFrameContainer table#submit-button td #ImageProgress {
+  height: 20px;
+  margin-top: 5px;
+}
+
+#OVER-file-attrs div.tgt-px-dlg input {
+  background: transparent;
+}

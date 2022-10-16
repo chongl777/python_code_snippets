@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <!-- <script src="./jsscript.js", type="text/javascript"> </script> -->
+    <script src="./static/src/jquery/jquery.js"></script>
+
+    <link href="./static/src/jquery/stylesheets/jquery-ui.css" rel="stylesheet">
+    <script src="./static/src/jquery/jquery-ui.js" type="text/javascript"></script>
+
+    <link href="./static/src/jquery.gridster/jquery.gridster.css" rel="stylesheet">
+    <script src="./static/src/jquery.gridster/jquery.gridster.js" type="text/javascript"></script>
+
+    <script src="./static/src/numeral/numeral.js" type="text/javascript"></script>
+
+    <script src="./static/src/knockout-3.4.2/knockout.debug.js" type="text/javascript"></script>
+
+    <link href="./static/src/datatable/dataTables.css" rel="stylesheet">
+    <script src="./static/src/datatable/dataTables.js" type="text/javascript"></script>
+
+    <link href="./static/src/chosen/chosen.css" rel="stylesheet">
+    <script src="./static/src/chosen/chosen.jquery.js" type="text/javascript"></script>
+
+    <link href="./static/src/vis-4.21.0/vis.css" rel="stylesheet">
+    <script src="./static/src/vis-4.21.0/vis.js", type="text/javascript"></script>
+
+    <script src="./static/src/handlebars/handlebars-v4.0.11.js" type="text/javascript"></script>
+
+    <script src="./static/src/spjs_utility/spjs-utility.js", type="text/javascript"></script>
+    <script src="./static/src/d3/d3.js" type="text/javascript"></script>
+
+    <script src="./static/src/loadingIcon/loadingIcon.js" type="text/javascript"></script>
+
+    <script src="./static/src/widget/drag_drop/drag_drop.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/secselect/secselect.css" rel="stylesheet">
+    <script src="./static/src/widget/secselect/secselect.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/plotchart/plotchart.css" rel="stylesheet">
+    <script src="./static/src/widget/plotchart/plotchart.js" type="text/javascript"></script>
+
+    <script src="./static/src/widget/finraiframe/finra_iframe.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/sectimeline/sectimeline.css" rel="stylesheet">
+    <script src="./static/src/widget/sectimeline/sectimeline.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/secinfo/secinfo.css" rel="stylesheet">
+    <script src="./static/src/widget/secinfo/secinfo.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/pfccyrisk/pfccyrisk.css" rel="stylesheet">
+    <script src="./static/src/widget/pfccyrisk/pfccyrisk.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/pfmonitor/pfmonitor.css" rel="stylesheet">
+    <script src="./static/src/widget/pfmonitor/pfmonitor.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/wfiplotchart/wfiplot.css" rel="stylesheet">
+    <script src="./static/src/widget/wfiplotchart/wfiplot.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/wfitable/wfitable.css" rel="stylesheet">
+    <script src="./static/src/widget/wfitable/wfitable.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/wfi.table/wfi.table.css" rel="stylesheet">
+    <script src="./static/src/widget/wfi.table/wfi.table.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/wfi.expandable.table/wfi.expandable.table.css" rel="stylesheet">
+    <script src="./static/src/widget/wfi.expandable.table/wfi.expandable.table.js" type="text/javascript"></script>
+
+    <link href="./static/src/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./static/src/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="./static/src/bootstrap.multiselect/css/bootstrap-multiselect.css" rel="stylesheet">
+    <script src="./static/src/bootstrap.multiselect/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/wfi.control.panel/wfi.control.panel.css" rel="stylesheet">
+    <script src="./static/src/widget/wfi.control.panel/wfi.control.panel.js" type="text/javascript"></script>
+
+    <script src="./static/src/cookie/cookie.js" type="text/javascript"></script>
+
+    <script src="./static/marketsurveillance/src/initialize.js" type="text/javascript"></script>
+    <script src="./static/marketsurveillance/src/initialize_crude_total.js" type="text/javascript"></script>
+    <script src="./static/marketsurveillance/src/initialize_crude_art.js" type="text/javascript"></script>
+
+    <script src="./static/marketsurveillance/src/script.js" type="text/javascript"></script>
+    <link href="./static/marketsurveillance/src/style.css" rel="stylesheet">
+    <link href="./static/marketsurveillance/src/color.css" rel="stylesheet">
+
+  </head>
+  <body style="display: block; height: 100%; position: relative; width: 100%;">
+
+    <table style="width:100%; height:100%; position: relative; table-layout:fixed">
+      <tbody>
+        <tr>
+          <td>
+            <div id="control-panel">
+              <table>
+                <tbody>
+                  <tr>
+                    <td class="ParamLabelCell"><label><span>As Of Date</span></label></td>
+                    <td class="ParamEntryCell">
+                      <input type="datetime-local" data-bind="textInput: t_date, attr: {value: t_date}"/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ParamLabelCell"><label><span>Look Back</span></label></td>
+                    <td class="ParamEntryCell">
+                      <input type="text" data-bind="textInput: lookback, attr: {value: lookback}"/>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+          </td>
+          </td>
+
+        </tr>
+
+        <tr>
+          <td id="pagetitle">
+            <header id="PageTitle">Market Surveillance Dashboard</header>
+          </td>
+        </tr>
+
+        <tr>
+          <td id="content" style="width:100%; height:100%">
+            <div style="overflow:auto; width:100%; height:100%; position: relative">
+              <div style="min-width:1400px">
+                <div id="tabs" class="child-diav" style="width:100%; height:100%;">
+                  <ul>
+                    <li><a class="widget-title" href="#tabs-11"  method="/api_oil_surveillance_art">Crude Oil Art's</a></li>
+                    <li><a class="widget-title" href="#tabs-12"  method="/api_oil_surveillance_big3">Crude Oil Big 3</a></li>
+                    <li><a class="widget-title" href="#tabs-13"  method="/api_oil_surveillance_with_spr">Crude Oil Total + SPR</a></li>
+                    <li><a class="widget-title" href="#tabs-14"  method="/api_oil_surveillance_total">Crude Oil Total + SPR + Products</a></li>
+                    <li><a class="widget-title" href="#tabs-2" method="/api_gas_surveillance">Natural Gas</a></li>
+		                <li><a class="widget-title" href="#tabs-3"  method="/api_derivatives">Derivatives</a></li>
+                  </ul>
+
+                  <div id="tabs-11" style="float:left; width:100%">
+                    <div class="gridster">
+                      <ul class="task-card-list">
+
+                        <li data-row="1" data-col="1" data-sizex="4" data-sizey="10" class="task-card cat2">
+                          <div id="wow-summary-art" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+
+                        <li data-row="9" data-col="1" data-sizex="4" data-sizey="8" class="task-card cat2">
+                          <div id="oil-wow-details-art" class="widget"
+                               style="width:100%; display:inline-block; height:auto;">
+                          </div>
+                        </li>
+
+                        <li data-row="1" data-col="5" data-sizex="3" data-sizey="16" class="task-card cat2">
+                          <div id="ci-avg-art" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+
+                        <li data-row="1" data-col="7" data-sizex="3" data-sizey="16" class="task-card">
+                          <div id="rig-prod-art" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="17" data-col="7" data-sizex="4" data-sizey="15" class="task-card">
+                          <div id="wow-ci-change-art" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="32" data-col="7" data-sizex="4" data-sizey="15" class="task-card">
+                          <div id="rig-employ-art" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="47" data-col="7" data-sizex="4" data-sizey="15" class="task-card">
+                          <div id="mm-long-art" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="17" data-col="1" data-sizex="6" data-sizey="45" class="task-card cat2">
+                          <div id="oil-ci-art" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+			                </ul>
+                    </div>
+                  </div>
+
+                  <div id="tabs-12" style="float:left; width:100%">
+                    <div class="gridster">
+                      <ul class="task-card-list">
+                        <li data-row="1" data-col="1" data-sizex="3" data-sizey="7" class="task-card">
+                          <div id="wow-summary-big3" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="8" data-col="1" data-sizex="3" data-sizey="7" class="task-card">
+                          <div id="oil-wow-details-big3" class="widget"
+                               style="width:100%; display:inline-block; height:auto;">
+                          </div>
+                        </li>
+
+                        <li data-row="1" data-col="4" data-sizex="3" data-sizey="14" class="task-card">
+                          <div id="ci-avg-big3" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="1" data-col="7" data-sizex="3" data-sizey="14" class="task-card">
+                          <div id="wow-ci-change-big3" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="15" data-col="1" data-sizex="6" data-sizey="30" class="task-card">
+                          <div id="oil-ci-big3" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+			                </ul>
+                    </div>
+                  </div>
+
+                  <div id="tabs-13" style="float:left">
+                    <div class="gridster">
+                    <ul class="task-card-list">
+
+                    <li data-row="1" data-col="1" data-sizex="4" data-sizey="9" class="task-card cat2">
+                    <div id="wow-summary-spr" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+
+                    <li data-row="10" data-col="1" data-sizex="4" data-sizey="7" class="task-card cat2">
+                    <div id="oil-wow-details-spr" class="widget"
+                           style="width:100%; display:inline-block; height:auto;">
+                      </div>
+                    </li>
+
+                    <li data-row="1" data-col="5" data-sizex="3" data-sizey="16" class="task-card cat2">
+                    <div id="ci-avg-spr" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+
+                    <li data-row="17" data-col="7" data-sizex="4" data-sizey="15" class="task-card">
+                    <div id="wow-ci-change-spr" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+                    <li data-row="17" data-col="1" data-sizex="6" data-sizey="45" class="task-card cat2">
+                    <div id="oil-ci-spr" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+			            </ul>
+                </div>
+                  </div>
+
+                  <div id="tabs-14" style="float:left">
+                    <div class="gridster">
+                    <ul class="task-card-list">
+
+                    <li data-row="1" data-col="1" data-sizex="4" data-sizey="11" class="task-card cat2">
+                    <div id="wow-summary-total" class="widget"
+                           style="width:100%; display:inline-block; height:auto;">
+                      </div>
+                    </li>
+
+                    <li data-row="12" data-col="1" data-sizex="4" data-sizey="8" class="task-card cat2">
+                    <div id="oil-wow-details-total" class="widget"
+                           style="width:100%; display:inline-block; height:auto;">
+                      </div>
+                    </li>
+
+                    <li data-row="21" data-col="1" data-sizex="4" data-sizey="8" class="task-card cat2">
+                    <div id="wow-supply-demand-total" class="widget"
+                           style="width:100%; display:inline-block; height:auto;">
+                      </div>
+                    </li>
+
+                    <li data-row="1" data-col="9" data-sizex="4" data-sizey="14" class="task-card cat2">
+                    <div id="ci-avg-total" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+                    <li data-row="1" data-col="5" data-sizex="4" data-sizey="14" class="task-card cat2">
+                    <div id="supply-avg-band-total" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+                    <li data-row="15" data-col="5" data-sizex="4" data-sizey="14" class="task-card cat2">
+                    <div id="consumption-avg-band-total" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+                    <li data-row="29" data-col="1" data-sizex="8" data-sizey="45" class="task-card cat2">
+                    <div id="oil-ci-total" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+                    <li data-row="15" data-col="9" data-sizex="4" data-sizey="14" class="task-card cat2">
+                    <div id="cushing-avg-band-total" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+			            </ul>
+                </div>
+                  </div>
+
+                  <div id="tabs-2" style="float:left">
+                    <div class="gridster">
+                      <ul class="task-card-list">
+
+                        <li data-row="1" data-col="1" data-sizex="4" data-sizey="10" class="task-card">
+                          <div id="gas-wow-summary" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="10" data-col="1" data-sizex="4" data-sizey="20" class="task-card">
+                          <div id="gas-ci" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="1" data-col="5" data-sizex="4" data-sizey="20" class="task-card">
+                          <div id="gas-rig-prod" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+                        <li data-row="1" data-col="5" data-sizex="4" data-sizey="20" class="task-card">
+                          <div id="gas-ci-avg" class="widget"
+                               style="width:100%; display:inline-block; height:100%;">
+                          </div>
+                        </li>
+
+		                  </ul>
+                    </div>
+                  </div>
+
+	                <div id="tabs-3" style="float:left">
+                    <div class="gridster">
+                    <ul class="task-card-list">
+
+                    <li data-row="1" data-col="1" data-sizex="4" data-sizey="20" class="task-card">
+                    <div id="basis-monitor" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+					                    <li data-row="1" data-col="5" data-sizex="4" data-sizey="20" class="task-card">
+                    <div id="basis-sprd" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+					</li>
+
+			                    <li data-row="1" data-col="9" data-sizex="4" data-sizey="20" class="task-card">
+                    <div id="bbb-minus-sprd" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+		                    <li data-row="21" data-col="1" data-sizex="4" data-sizey="20" class="task-card">
+                    <div id="ig-sprd" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+		                    <li data-row="21" data-col="5" data-sizex="4" data-sizey="20" class="task-card">
+                    <div id="hy-sprd" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+					                    <li data-row="21" data-col="9" data-sizex="4" data-sizey="20" class="task-card">
+                    <div id="aaa-sprd" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+		                    <li data-row="41" data-col="1" data-sizex="4" data-sizey="20" class="task-card">
+                    <div id="rate-vol" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+                    <li data-row="41" data-col="5" data-sizex="4" data-sizey="20" class="task-card">
+                    <div id="hy-spx" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+                    <li data-row="41" data-col="9" data-sizex="4" data-sizey="20" class="task-card">
+                    <div id="aa-sprd" class="widget"
+                           style="width:100%; display:inline-block; height:100%;">
+                      </div>
+                    </li>
+
+		              </ul>
+                </div>
+                  </div>
+
+	              </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

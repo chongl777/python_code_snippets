@@ -1,0 +1,199 @@
+#sideNavBox, #titleAreaBox {
+  display: none;
+}
+
+#s4-titlerow
+{
+    display: none !important;
+}
+
+#s4-workspace.ms-core-overlay {
+  overflow: visible;
+}
+
+* {
+  font-size: 11px;
+  font-family: "Segoe UI", "Segoe", "Tahoma", "Helvetica", "Arial", "sans-serif";
+}
+
+div#pf-position-pnl table.depth-1>tbody>tr[role="row"] * {
+  font-style: normal!important;
+  font-weight: bold!important;
+}
+
+div table.depth-1 * {
+  font-style: normal!important;
+  font-weight: 400!important;
+}
+
+div table.depth-3 * {
+  font-style: italic!important;
+}
+
+div.ms-wikicontent.ms-rtestate-field {
+  padding-right: 0px!important;
+}
+
+div.ms-rte-layoutszone-inner {
+  padding: 0px!important;
+  margin: 0px!important;
+  border: 0px!important;
+}
+
+div.wfi-data-table .child-table.depth-4 td * {
+  font-size: 8px !important;
+}
+
+#contentBox {
+  margin: 0px;
+}
+
+#contentRow {
+  padding: 0px;
+}
+
+#child {
+    font-size: 16px;
+}
+
+.child-div {
+  box-sizing: border-box;}
+
+.widget {
+  background-color: white;
+  box-shadow: 2px 2px 2px grey;
+}
+
+.gridster li {
+  list-style-type: none;
+}
+
+.gridster li header,
+div.widget header {
+  background: #999;
+  font-size: 15px;
+  line-height: normal;
+  margin-bottom: 0px;
+  cursor: move;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px 0px 2px 0px;
+}
+
+.gridster li header h,
+div.widget header h
+{
+  font-weight: bold;
+  color: white;
+}
+
+div.gridster li header *,
+div.widget header h {
+  margin: 2px 5px 2px 5px;
+  line-height: 14px;
+  height: 15px;
+}
+
+.gridster li .widget > div {
+  height: calc(100% - 23px);
+}
+
+div.gridster li header .config {
+  cursor: pointer;
+}
+
+#PageTitle {
+  font-size: 27px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+div.gridster {
+  /*background-color: #dddddd; */
+}
+
+div.wfi-data-table .value {
+  white-space: nowrap;
+  word-spacing: 3px;
+}
+
+#sign-off h3 {
+  font-size: 11px;
+}
+
+#sign-off-tbl {
+  display: flex;
+}
+
+#submit-button {
+  float: right;
+}
+
+textarea#comments {
+  resize: vertical;
+}
+
+div#sign-off, div#sign-off-frame-div {
+  width: 1800px;
+}
+
+input#email-input {
+  height: 40px;
+}
+
+#sign-off-div {
+  padding: 10px;
+}
+
+#submit-button {
+  margin: 10px;
+}
+
+#submit-button td {
+  padding: 5px;
+}
+
+.widget {
+  margin-bottom: 30px;
+}
+
+#sign-off-frame {
+  border-style: hidden;
+}
+
+div#sign-off-frame-div {
+  height: 1200px;
+}
+
+input[type=button] {
+  border: 1px solid #0066cc;
+  background-color: #0099cc;
+  color: #ffffff;
+}
+
+input[type=button]:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+div.success {
+  white-space: nowrap;
+  color: green;
+  margin-right: 10px;
+}
+
+div.failed {
+  white-space: nowrap;
+  color: red;
+  margin-right: 10px;
+}
+
+.first-column {
+  text-align: left;
+}
+
+div#sign-off-hist.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] * {
+  font-weight: 500;
+}

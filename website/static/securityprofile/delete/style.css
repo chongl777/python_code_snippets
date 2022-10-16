@@ -1,0 +1,185 @@
+#sideNavBox, #titleAreaBox {
+  display: none;
+}
+
+#s4-titlerow
+{
+    display: none !important;
+}
+
+div.ms-wikicontent.ms-rtestate-field {
+  padding-right: 0px!important;
+}
+
+div.ms-rte-layoutszone-inner {
+  padding: 0px!important;
+  margin: 0px!important;
+  border: 0px!important;
+}
+
+#contentBox {
+  margin: 0px;
+}
+
+#contentRow {
+  padding: 0px;
+}
+
+#company-name {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+
+#child {
+    font-size: 16px;
+}
+
+.child-div {
+  box-sizing: border-box;}
+
+div#company-name, div#body-panel, div#folder-panel {
+  padding-left: 30px;
+}
+
+/* security info */
+
+/* div#tabs .ui-tabs, */
+/* div#tabs .ui-tabs-nav { */
+/*   width: 950px; */
+/* } */
+
+#body-panel {
+  height: calc(100% - 86px);
+  position: absolute;
+  display: block;
+  width: 100%;
+  justify-content: left;
+  flex-direction: column;
+  overflow: auto;
+}
+
+#content-panel {
+  /* overflow: scroll; */
+  /* width: 100%; */
+  /* height: calc(100% - 40px); */
+  /* display: block; */
+  /* position: absolute; */
+}
+
+.wfi-widget {
+  border: solid 1px;
+  display: flex;
+  margin: 0px;
+  box-shadow: 10px 10px 5px grey;
+  background-color: rgb(254,254,254);
+}
+
+/* security panel */
+#security_list {
+  background-color: rgba(236, 236, 236, 0.95);
+}
+
+
+div#security_list, div#tabs {
+  display: inline-block;
+}
+
+/* tabs */
+div#tabs {
+  background: transparent;
+  padding: 0px;
+  border: none;
+  border-radius: 0;
+}
+
+div#tabs ul, div#tabs ul li {
+  border: none;
+  padding: 0px;
+  background: #13CBAC;
+  border-radius: 0;
+}
+
+
+/* research buttom */
+div.research_link {
+  width: 100px;
+  height: 90px;
+}
+
+.research_link a, .research_create a{
+  float: left;
+  align:center;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+  background-position-x: right;
+  background-position-y: bottom;
+  background-size: initial;
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  background-size: 70px 70px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.research_link div{
+  display: block;
+  float: left;
+}
+
+.research_link div {
+  width: 120px;
+}
+
+.research_link a{
+  background-image: url("./images/folder-icon-close.png");
+}
+
+.research_link a:hover{
+  background-image: url("./images/folder-icon-open.png");
+}
+
+.research_create a{
+  background-image: url("./images/folder-icon-new-inactive.png");
+}
+
+.research_create a:hover{
+  background-image: url("./images/folder-icon-new.png");
+}
+
+.widget-title, #tabs .widget-title {
+  font-size: 13px;
+  font-weight: bold;
+  color: white;
+}
+
+#tabs .ui-tabs-active a {
+  color: black;
+  background-color: rgba(236, 236, 236, 0.95);
+}
+
+#tabs li a {
+  outline-color: transparent;
+}
+
+#tabs .ui-tabs-active {
+  border: none;
+}
+
+#tabs .ui-state-focus {
+  border: none;
+  outline-color: transparent;
+}
+
+#company-cast-title {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  background-color: #2BA9E0;
+}

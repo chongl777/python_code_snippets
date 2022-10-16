@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block head %}
+<meta http-equiv="Cache-control" content="1">
+{{super()}}
+{% endblock %}
+
+{% block styles %}
+<link href="{{ url_for('static', filename='css/auth/style.css') }}" rel="stylesheet">
+{{super()}}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  var input = document.querySelector('#uploader');
+  var form = document.querySelector('#loader_form');
+  var sig = document.querySelector('#request-signature');
+  var file;
+  input.onchange = e => {
+      // getting a hold of the file reference
+      file = e.target.files[0];
+  }
+
+  function upload_signature(e) {
+      var reader = new FileReader();
+      reader.readAsArrayBuffer(file); // this is reading as data url
+
+      // here we tell the reader what to do when it's done reading...
+      reader.onload = readerEvent => {
+          var content = readerEvent.target.result; // this is the content!
+          var form = new FormData()
+          var xhttp =  new XMLHttpRequest();
+          xhttp.responseType = 'arraybuffer';
+          form.append("signature", new Blob([content], {type: 'octet/stream'}), 'signature.png');
+
+          xhttp.open("POST", "./upload_sig", true);
+          xhttp.onload = function(e) {
+              sig.src = "./signature/{{ current_user.id }}.png?"+(new Date().getTime()).toString();
+          }
+          xhttp.send(form)
+      }
+  }
+</script>
+{% endblock %}
+
+{% block app_content %}
+<h1 style="padding-left: 20px">Profile</h1>
+<table style="padding-left: 20px; display: block">
+  <tbody>
+    <tr>
+      <td>User Name: </td>
+      <td>{{ current_user.username }}</td>
+    </tr>
+    <tr>
+      <td>User ID: </td>
+      <td>{{ current_user.id }}</td>
+    </tr>
+
+    <tr>
+      <td>Email: </td>
+      <td>{{ current_user.email }}</td>
+    </tr>
+
+    <tr>
+      <td>Signature: </td>
+      <td>
+        <img id="request-signature"
+             class="signature" height="80" width="200" src="./signature/{{ current_user.id }}.png ">
+      </td>
+    </tr>
+
+    <tr>
+      <td>Upload Signature: </td>
+      <td>
+        <div id="loader_form" style="display:inline-flex">
+          <button onclick="upload_signature()"
+                  style="background-image: url({{ url_for('static', filename='images/upload_icon.png', _external=True) }});
+                         background-repeat: no-repeat;
+                         background-size: 23px auto; height: 23px; width: 27px">
+          </button>
+          <input id="uploader" type="file"/>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+{% endblock %}

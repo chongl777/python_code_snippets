@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+<script>
+  var DATA = '{{ data }}'.replace(/&#34;/g, '"');
+  $(document).ready(() => ready_func(JSON.parse(DATA.replace(/NaN/g, "0"))));
+  $('#wait-olverlay').toggleClass('wait ready');
+  //var data = 2;
+</script>
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+<meta charset="utf-8">
+<!-- <meta http-equiv="Content-Security-Policy"
+     charset="utf-8"
+     content="default-src 'self' data:gap: http://www.visitsingapore.com 
+     https://ssl.gstatic.com 'unsafe-eval';
+     style-src 'self' 'unsafe-inline';
+     media-src *;
+     script-src 'sha256-V+/U3qbjHKP0SaNQhMwYNm62gfWX4QHwPJ7We1PXokI='
+     "> -->
+<script src="./static/src/jquery/jquery.js"></script>
+
+<link href="./static/src/jquery/stylesheets/jquery-ui.css" rel="stylesheet">
+<script src="./static/src/jquery/jquery-ui.js" type="text/javascript"></script>
+
+<script src="./static/src/numeral/numeral.js" type="text/javascript"></script>
+
+<script src="./static/src/knockout-3.4.2/knockout.debug.js" type="text/javascript"></script>
+
+<link href="./static/src/datatable/datatables.css" rel="stylesheet">
+<script src="./static/src/datatable/datatables.js" type="text/javascript"></script>
+
+<link href="./static/src/chosen/chosen.css" rel="stylesheet">
+<script src="./static/src/chosen/chosen.jquery.js" type="text/javascript"></script>
+
+<link href="./static/src/vis-4.21.0/vis.css" rel="stylesheet">
+<script src="./static/src/vis-4.21.0/vis.js", type="text/javascript"></script>
+<script src="./static/src/jsPDF/jspdf.min.js", type="text/javascript"></script>
+<script src="./static/src/html2canvas/html2canvas.js", type="text/javascript"></script>
+
+<script src="./static/src/handlebars/handlebars-v4.0.11.js" type="text/javascript"></script>
+
+<script src="./static/src/d3/d3.js" type="text/javascript"></script>
+
+<script src="./static/src/loadingIcon/loadingIcon.js" type="text/javascript"></script>
+
+<link href="./static/personaltrading/css/color.css" rel="stylesheet">
+<link href="./static/personaltrading/css/style.css" rel="stylesheet">
+
+<link href="./static/src/widget/wfi.search.bar/searchbar.css" rel="stylesheet">
+<script src="./static/src/widget/wfi.search.bar/searchbar.js" type="text/javascript"></script>
+
+<link href="./static/personaltrading/css/restrictedlist.css" rel="stylesheet">
+<script src="./static/personaltrading/src/restrictedlist.js", type="text/javascript"></script>
+<script src="./static/personaltrading/src/script.js" type="text/javascript"></script>
+
+
+{% endblock %}
+
+{% block app_content %}
+
+<div style="display: block; height: 100%; position: relative; width: 100%;">
+  <table style="width:100%; height:100%; position: relative; table-layout:fixed">
+    <tbody>
+      <tr style="height: 40px">
+        <td>
+          <header id="PageTitle">
+            {{ title }}
+          </header>
+        </td>
+
+      </tr>
+      <tr style="height: 40px">
+        <td>
+          <div style="display:inline-flex" id="security-search">
+            <div id="security-input"></div>
+            <div id="control-unit" style="display: inline-flex">
+              <input id="submit-button" type="button" data-bind="value: buttonText, click: submit, enable: canSubmit" value="send request" disabled="">
+              <div id="messageBox" data-bind="text: message, attr: { class: MessageClass }" style="margin-left: 10px; line-height:30px"></div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr style="height: 40px">
+        <td>
+          <div style="display:inline-flex" style="margin: 0px">
+            <div id="statusBox" data-bind="text: status_message, attr: { class: StatusClass }"
+                 style="margin-left: 10px; line-height:30px"></div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="content-panel" style="height: 100%; width: 100%;">
+          <div style="width:100%; height:100%; display: bloack; overflow:auto;"> <!-- inline-size:fit-content;  -->
+            <div style="display: flex; height: 100%;">
+              <div style="width:400px; height: 100%;" id="content-holder" class="flex-container">
+                <div class="items" id="restricted-list" style="width: 400px; height: 100%; overflow: auto; display: relative"></div>
+              </div>
+
+              <div style="display:block; width: 100%; height: 100%; overflow: auto;" id="content-holder" class="flex-container">
+                <div class="items" id="trading-request-form" style="width: 100%; height: 100%; overflow: auto">
+                  <div id="request-form-title">Request Form</div>
+                  <div id="submit-form-area" style="height: calc(100% - 30px); overflow:auto">
+                    <div id="submit-form" class="trading-submit" style="width:7in; height: 10in">
+                      <div id="request-form">
+                        <div id="title"><h>Employee must complete Section A in its entirety and return the form to the Chief Compliance Officer </h></div>
+                        <div>
+                          <div class="row" style="height:auto">
+                            <h>Employee's Name:&nbsp </h><input data-bind="textInput: requester, attr: {value: requester}" style="width:300px;border-bottom: solid 1px black;border-top: none;border-left: none;border-right: none;"/>
+                            <h>&nbsp&nbsp&nbsp Date: </h><input data-bind="textInput: request_date, attr: {value: request_date}" style="width:200px">
+                            <br/>
+                            <br/>
+                            A.&nbsp<u>Transaction Information</u>
+                          </div>
+
+                          <div id="request-table"  style="margin-left:20px; display:block;">
+                            <div class="row"><h>I hereby request authorization to enter the following securities transaction:</h></div>
+                            <div class="row"><h>1.Name of Security:&nbsp </h><input data-bind="textInput: security_name, attr: {value: security_name}" style="width:300px"/></div>
+                            <div class="row"><h>2.Ticker Symbol:&nbsp </h><input data-bind="textInput: security_ticker, attr: {value: security_ticker}" style="width:300px"/></div>
+                            <div class="row" style="height:70px">
+                              <div>3.Type of Trade:&nbsp </div><div colspan="4">
+                                <div class="radio">
+                                  <label><input type="radio" name="opttrade" value="Buy" data-bind="checked: orderDirection, attr: {checked: orderDirection1}"/>Buy</label>
+                                </div>
+                                <div class="radio">
+                                  <label><input type="radio" name="opttrade" value="Sell" data-bind="checked: orderDirection, attr: {checked: orderDirection2}"/>Sell</label>
+                                </div>
+                                <div class="radio">
+                                  <label><input type="radio" name="opttrade" value="Other" data-bind="checked: orderDirection, attr: {checked: orderDirection3}"/>
+                                    Other (Explain) <input data-bind="value: otherOrderTypeExplain, enable: enableOtherOrderTypeExplain, attr: {value: otherOrderTypeExplain}" style="width:200px"/></label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row"><h>4.Number of Shares/Principal Amount (approximate): </h><input data-bind="textInput: shares, attr: {value: shares}" style="width:300px"></div>
+                            <div class="row" style="height:70px">
+                              <div>5.Order Type:&nbsp </div>
+                              <div colspan="4">
+                                <div class="radio">
+
+                                  <label><input type="radio" name="optradio" value="Market" data-bind="checked: orderType, attr: {checked: orderType1}"/>Market</label>
+                                </div>
+                                <div class="radio">
+                                  <label><input type="radio" name="optradio" value="Limit" data-bind="checked: orderType, attr: {checked: orderType2}"/>Limit</label>
+                                </div>
+                                <div class="radio">
+                                  <label><input type="radio" name="optradio" value="Stop" data-bind="checked: orderType, attr: {checked: orderType3}"/>Stop</label>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row"><h>6.Brokerage Firm:&nbsp </h><input data-bind="textInput: broker, attr: {value: broker}" style="width:300px"></div>
+                            <div class="row"><h>7.Account Name and Number:&nbsp </h><input data-bind="textInput: account, attr: {value: account}" style="width:300px"></div>
+                            <div class="row"  style="height:70px">
+                              <div>8.Type of Account:&nbsp </div>
+                              <div>
+                                <div class="radio">
+                                  <label><input type="radio" name="optaccttype" value="Individual" data-bind="checked: acctType, attr: {checked: acctType1}"/>Individual</label>
+                                </div>
+                                <div class="radio">
+                                  <label><input type="radio" name="optaccttype" value="Joint" data-bind="checked: acctType, attr: {checked: acctType2}"/>Joint</label>
+                                </div>
+                                <div class="radio">
+                                  <label><input type="radio" name="optaccttype" value="Other" data-bind="checked: acctType, attr: {checked: acctType3}"/>Other (Explain) <input data-bind="value: otherAcctTypeExplain, enable: enableOtherAcctTypeExplain, attr: {value: otherAcctTypeExplain}" style="width:200px"/></label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <br/>
+                          <div>
+                            <h>This transaction is for investment purposes and to the best of my knowledge will comply with all of the applicable personal trading provisions contained in the Compliance Manual, including Section 6, Code of Ethics.</h>
+                          </div>
+                        </div>
+
+                        <div class="signature">
+                          <img id="request-signature" data-bind="attr: {src: requester_signature_url}" class="signature" height="80" width="200"></img>
+                          <div>Signature of Employee</div>
+                        </div>
+
+                      </div>
+
+                      <div id="approve-form">
+                        <div class="row">
+                          B.&nbsp <u>Evaluation by Authorized Personnel:&nbsp </u>
+                        </div>
+
+                        <div id="approve-table"  style="margin-left:20px; display:block;">
+                          <div class="paragraph" style="padding-top:10px">
+                            By signing below, the Chief Compliance Officer confirms that an internal compliance review (i.e. comparison against the Firm's Restricted List, Watch List, open orders and recent trading activity) of the personal trade request has been completed and the trade is either approved or denied in accordance with the Firm's Personal Trading Policy.   Documentation relating to the internal compliance review will be maintained by the Legal/Compliance Department as an attachment to each personal trade request.
+                          </div>
+                          <div>
+                            <div class="radio"  style="padding-top: 10px">
+                              <label><input type="radio" name="optapprove" value="Approved"
+                                            data-bind="checked: approve, attr: {checked: approve1}"/>
+                                <b>Approval.</b>
+                                The above transaction is approved based on information provided above and must be completed on the date of approval or within
+                                <input id="dt-frame" data-bind="textInput: approveDays, attr: {value: approveDays}"/>
+                                additional business days from the date of approval.  </label>
+                            </div>
+                            <div class="radio"  style="padding-top: 10px">
+                              <label><input type="radio" name="optapprove" value="Denied"
+                                            data-bind="checked: approve, attr: {checked: approve2}"/>
+                                <b>Denial.</b> The above transaction is disapproved for the following reasons (if any):</label>
+                            </div>
+                          </div>
+                          <span id="denial_text" style="display:inline-block; min-width:100px; padding:10px"
+                                data-bind="text: denialExplain, attr: {contenteditable: enableDenialExplain}">
+                          </span>
+                        </div>
+                        <div class="sign">
+                          <div class="signature">
+                            <img id="approve-signature" data-bind="attr: {src: approver_signature_url}" class="signature" height="80" width="200"></img>
+                            <div>Signature of Chief Compliance Officer</div>
+                          </div>
+                          <div class="signature">
+                            <input id="approve-date" data-bind="textInput: approve_date, attr: {value: approve_date}" style="height:80px" class="signature"/>
+                            <div>Date</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

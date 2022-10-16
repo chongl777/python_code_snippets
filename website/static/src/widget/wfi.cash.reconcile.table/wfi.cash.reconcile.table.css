@@ -1,0 +1,132 @@
+
+div.wfi-cash-reconcile-table table.dataTable .clickable,
+div.wfi-cash-reconcile-table-details table.dataTable .clickable {
+  cursor: pointer;
+}
+
+div.wfi-cash-reconcile-table table.dataTable .clickable:hover,
+div.wfi-cash-reconcile-table-details table.dataTable .clickable:hover {
+  text-decoration: underline;
+}
+
+div.wfi-cash-reconcile-table table.dataTable .clickable.details,
+div.wfi-cash-reconcile-table-details table.dataTable .clickable.add {
+  text-decoration: underline;
+}
+
+div.wfi-cash-reconcile-table table.dataTable .clickable.details:hover,
+div.wfi-cash-reconcile-table-details table.dataTable .clickable.add: hover {
+  color: blue;
+}
+
+div.wfi-cash-reconcile-table>div>table.dataTable>tbody>tr[role="row"],
+div.wfi-cash-reconcile-table>div>table.dataTable>tbody>tr.child-tbl>td>table.child-table>tbody>tr[role="row"]{
+  font-weight: bold;
+  color: black;
+}
+
+div.wfi-cash-reconcile-table table.dataTable .number {
+  text-align: right;
+}
+
+div.wfi-cash-reconcile-table table.dataTable tbody th,
+div.wfi-cash-reconcile-table table.dataTable tbody td {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+div.wfi-cash-reconcile-table .value {
+  text-align: right;
+}
+
+div.wfi-cash-reconcile-table table thead tr th{
+  text-align: right;
+}
+
+div.wfi-cash-reconcile-table table {
+  table-layout: fixed;
+}
+
+div.wfi-cash-reconcile-table table td {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+div.wfi-cash-reconcile-table table tr th {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 0px;
+}
+
+div.wfi-cash-reconcile-table tr.child-tbl.hidden {
+  display: none;
+}
+
+div.wfi-cash-reconcile-table table.child-table thead {
+  /* display: hidden; */
+}
+
+div.wfi-cash-reconcile-table tr.child-tbl.shown {
+  display: table-row;
+  font-style: italic;
+  color: black;
+}
+
+div.wfi-cash-reconcile-table tr.child-tbl > td {
+  padding-right: 0px;
+}
+
+div#wfi-cash-reconcile-table table thead tr th {
+  text-align: center;
+  padding: 0px;
+}
+
+
+#OVER div.wfi-cash-reconcile-table.args-dlg {
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  background-color: #ECECEC;
+  position: fixed;
+  display: block;
+}
+
+#OVER div.wfi-cash-reconcile-table.args-dlg #holder {
+  overflow: auto;
+}
+
+#OVER div.wfi-cash-reconcile-table.args-dlg div.dlgTitle {
+  font-size: 13px;
+  color: #000;
+  overflow: hidden;
+  padding: 12px 21px 15px 13px;
+}
+
+#OVER div.wfi-cash-reconcile-table.args-dlg div.dlgTitle h1 {
+  font-size: 18px;
+}
+
+#OVER.wfi-cash-reconcile-table-details div.dlgTitle,
+#OVER.data-upload div.dlgTitle {
+  height: 35px;
+}
+
+#OVER.wfi-cash-reconcile-table-details div#report-holder * {
+  font-size: 9px!important;
+}
+
+#OVER.wfi-cash-reconcile-table-details div#report-holder thead tr * {
+  padding: 6px;
+}
+
+#OVER.wfi-cash-reconcile-table-details table {
+  table-layout: fixed;
+  margin-left: 0px;
+}
+
+#OVER.wfi-cash-reconcile-table-details div#report-holder td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: right;
+}

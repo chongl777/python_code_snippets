@@ -1,0 +1,81 @@
+/* rolling stats plots*/
+div.wfi-sec-info {
+  font: 10px sans-serif;
+}
+
+div.wfi-sec-info table.dataTable tbody{
+  table-layout: fixed;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: transparent;
+}
+
+div.wfi-sec-info table.dataTable tbody td{
+  padding: 5px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+div.wfi-sec-info table.dataTable tbody tr{
+  background-color: transparent;
+}
+
+div.wfi-sec-info table.dataTable thead th{
+  text-align: left;
+  padding: 5px 10px;
+}
+
+div.wfi-sec-info table.dataTable thead{
+  display: none;
+}
+
+div.wfi-sec-info table.dataTable tbody tr.group td{
+  padding: 5px 2px 5px;
+  cursor: default;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+div.wfi-sec-info table.dataTable tbody tr{
+  border-bottom: 1px solid #111;
+  margin: 0px;
+}
+
+div.wfi-sec-info table.dataTable {
+  border-collapse: separate;
+  border-bottom: none;
+  table-layout: fixed;
+}
+
+div.wfi-sec-info table.dataTable .value{
+  font-weight: bold;
+  text-align: right;
+}
+
+/* div.wfi-sec-info table.dataTable td{ */
+/*   text-align: right; */
+/* } */
+
+/*
+  background-color: rgba(0, 0, 0, 0.70);
+  color: white;
+*/
+
+/* div.wfi-sec-info table.dataTable tbody tr.odd { */
+/*   background-color: rgba(182, 182, 182, 0.5); */
+/*}
+
+.horizontal {
+    margin: 0;
+    padding: 0;
+}
+
+.horizontal table {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #000;
+}

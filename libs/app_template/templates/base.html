@@ -1,0 +1,75 @@
+{% extends 'template.html' %}
+
+{% block title %}
+    {% if title %}{{ title }} {% else %}Welcome to Westfield{% endif %}
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link href="{{ url_for('static', filename='css/style.css', _external=True) }}" rel="stylesheet">
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-default" style="display: table-row; position: relative; width: 100%;">
+        <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                      data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+                <!-- <a class="navbar-brand" href="{{ url_for('index') }}">Microblog</a> -->
+              <img class="navbar-brand" href="{{ url_for('index', _external=True) }}"
+                   src="{{ url_for('static', filename='images/westfield_log.png', _external=True) }}"/>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('index', _external=True) }}">Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if current_user.is_anonymous %}
+                    <li><a href="{{  url_for('auth.login', _external=True) }}">Login</a></li>
+                    {% else %}
+                    <!-- <li><a href="{{ url_for('auth.user', username=current_user.username) }}">Profile</a></li> -->
+                    <li><a id="current-user-name"
+                           href="{{ url_for('auth.user', _external=True) }}"
+					                 username="{{ current_user.username }}"
+                           style="border-radius: 50%; background-color: steelblue;
+                                  margin: 5px; height: 30px; width: 30px;
+                                  padding-left: 7px; padding-top: 5px;
+                                  font-weight: bold; font-family: initial;
+                                  font-size: 12px; color: white;">
+                        {{ current_user.initial }}</a></li>
+                    <li><a href="{{ url_for('auth.logout', _external=True) }}">Logout</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container" style="display: table-row; position: relative;">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {# application content needs to be provided in the app_content block #}
+        {% block app_content %}{% endblock %}
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    {{super()}}
+<script>
+  var CURRENT_USER = JSON.parse(
+      '{{ json.dumps(current_user.to_dict()) }}'.replace(/&#34;/g,"\"").replace('/&#39;/g', "'"));
+</script>
+{% endblock %}

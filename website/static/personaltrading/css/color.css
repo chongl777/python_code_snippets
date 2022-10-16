@@ -1,0 +1,37 @@
+
+#PageTitle {
+  background-color: rgba(0, 178, 109, 1);
+  color: white;
+}
+
+.title {
+  background-color: rgba(70, 130, 180, 0.8)!important;
+}
+
+.group {
+  background-color: rgba(70, 130, 180, 0.5)!important;
+}
+
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+#security-input * {
+  background-color: rgba(109, 178, 109, 0.7)!important;
+  color: white;
+}
+
+::placeholder {
+  color: white;
+}
+
+.wfi-restricted-list #title {
+  background: darkorange;
+}
+
+#request-form-title {
+  background-color: skyblue!important;
+}
+
+}

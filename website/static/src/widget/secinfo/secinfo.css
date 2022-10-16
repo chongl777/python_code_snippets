@@ -1,0 +1,159 @@
+/* rolling stats plots*/
+div.wfi-sec-info {
+  font: 10px sans-serif;
+}
+
+div.wfi-sec-info table tbody{
+  table-layout: fixed;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: transparent;
+}
+
+div.wfi-sec-info table tbody td {
+  padding: 3px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+div.wfi-sec-info table tbody tr td:nth-child(2) {
+  text-align: right;
+}
+
+div.wfi-sec-info table thead th {
+  text-align: left;
+  padding: 5px 10px;
+}
+
+div.wfi-sec-info table thead {
+  display: none;
+}
+
+div.wfi-sec-info td#short_status.GOOD {
+  color: green;
+  font-weight: bold;
+}
+
+div.wfi-sec-info td#short_status:not(.GOOD) {
+  color: red;
+  font-weight: bold;
+}
+
+div.wfi-sec-info table tbody tr.group td {
+  padding: 4px 2px 4.5px;
+  cursor: default;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: bold;
+  color: black;
+}
+
+div.wfi-sec-info table tbody tr.group {
+  background-color: #e0e0e0;
+}
+
+div.wfi-sec-info table tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+  margin: 0px;
+  background-color: transparent;
+}
+
+div.wfi-sec-info table {
+  border-collapse: collapse;
+  border-bottom: none;
+  table-layout: fixed;
+}
+
+div.wfi-sec-info table .value{
+  font-weight: bold;
+  text-align: right;
+}
+
+div.wfi-sec-info td.positive {
+  color: green;
+}
+
+div.wfi-sec-info td.negative {
+  color: red;
+}
+
+div.cash-flow-table *,
+div.analyst-rating * {
+  font-weight: 400;
+  font-size: 9.5px;
+}
+
+div.cash-flow-table header,
+div.analyst-rating header {
+    background: #999;
+    font-size: 15px;
+    line-height: normal;
+    margin-bottom: 0px;
+    cursor: default;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2px 0px 2px 0px;
+}
+
+div.cash-flow-table .dataTables_paginate .paginate_button,
+div.analyst-rating .dataTables_paginate .paginate_button{
+  padding: 0px !important;
+}
+
+div.cash-flow-table .dataTables_length,
+div.analyst-rating .dataTables_length {
+  display: none;
+}
+
+div.cash-flow-table tr td div,
+div.cash-flow-table thead tr th,
+div.analyst-rating tr td div,
+div.analyst-rating thead tr th {
+  text-align: center!important;
+}
+
+div.cash-flow-table tr td .right-aligned {
+  text-align: right!important;
+}
+
+div.cash-flow-table header.title h,
+div.analyst-rating header.title h {
+  color: white;
+  font-weight: bold;
+  padding-left: 2px;
+}
+
+div.analyst-rating tr[role="row"]:hover {
+  background-color: rgb(230, 230, 230);
+  cursor: default;
+}
+
+div.analyst-rating tr[role="row"].selected {
+  background-color: rgb(240, 240, 240);
+}
+
+
+header.title span#add {
+    background-image: url(../../images/plus-button.svg);
+    background-position-x: 0px;
+    background-position-y: 0px;
+    background-size: 15px 10px;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    height: 10px;
+    display: block;
+    width: 16px;
+    cursor: pointer;
+}
+
+a.trade-history-link {
+  cursor: pointer;
+  color: blue;
+}

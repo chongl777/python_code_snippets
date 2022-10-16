@@ -1,0 +1,143 @@
+
+div.wfi-data-table table.dataTable .clickable {
+  cursor: pointer;
+}
+
+div.wfi-data-table table.dataTable .clickable:hover {
+  text-decoration: underline;
+}
+
+div.wfi-data-table>div>table.dataTable>tbody>tr[role="row"],
+div.wfi-data-table>div>table.dataTable>tbody>tr.child-tbl>td>table.child-table>tbody>tr[role="row"]{
+  font-weight: bold;
+  color: black;
+}
+
+div.wfi-data-table table.dataTable .number {
+  text-align: right;
+}
+
+div.wfi-data-table table.dataTable tbody th,
+div.wfi-data-table table.dataTable tbody td {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+}
+
+div.wfi-data-table .value {
+  text-align: right;
+}
+
+div.wfi-data-table table thead tr th{
+  text-align: right;
+}
+
+div.wfi-data-table table {
+  table-layout: fixed;
+}
+
+div.wfi-data-table table td {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+div.wfi-data-table table tr th {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 0px;
+}
+
+div.wfi-data-table tr.child-tbl.hidden {
+  display: none;
+}
+
+div.wfi-data-table table.child-table thead {
+  /* display: hidden; */
+}
+
+div.wfi-data-table tr.child-tbl.shown {
+  display: table-row;
+  font-style: italic;
+  color: black;
+}
+
+div.wfi-data-table tr.child-tbl > td {
+  padding-right: 0px;
+}
+
+div#wfi-data-table table thead tr th {
+  text-align: center;
+  padding: 0px;
+}
+
+div.wfidatatable.args-dlg table tr td select {
+  width: 100%;
+}
+
+div.wfi-data-table table.child-table>thead {
+  /* display: none; */
+}
+
+#OVER div.wfidatatable.args-dlg {
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 0px;
+  background-color: white;
+  position: fixed;
+  display: block;
+  overflow: auto;
+}
+
+#OVER div.wfidatatable.args-dlg div.dlgTitle {
+  font-size: 13px;
+  color: #000;
+  overflow: hidden;
+  padding: 12px 21px 15px 13px;
+}
+
+#OVER div.wfidatatable.args-dlg table#content span.multiselect-native-select .btn-group>button,
+#OVER div.wfidatatable.args-dlg table#content span.multiselect-native-select .btn-group>.multiselect-container {
+  padding: 0px;
+  width: 100%;
+  border-radius: 0px;
+  border: 1px solid #99B0C1
+}
+
+#OVER div.wfidatatable.args-dlg table#content span.multiselect-native-select,
+#OVER div.wfidatatable.args-dlg table#content span.multiselect-native-select .btn-group {
+  width: 100%;
+}
+
+#OVER div.wfidatatable input[type=button][disabled] {
+  color: grey;
+  cursor: wait;
+}
+
+#OVER div.wfidatatable div.dlgTitle div#title {
+  /* background-color: rgb(245, 245, 245); */
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  padding: 3px 18px;
+}
+
+#OVER div.wfidatatable div#title h1 {
+  margin: 4px 0px 4px 0px;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+#OVER div.wfidatatable table#content tr {
+  margin: 20px;
+  height: 30px;
+}
+
+div.wfi-data-table td pre {
+  all: initial;
+  padding: 0px;
+  overflow: hidden;
+  margin: 0px;
+  font-size: 11px;
+  border: none;
+  white-space: nowrap;
+}

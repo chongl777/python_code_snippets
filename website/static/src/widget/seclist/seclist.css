@@ -1,0 +1,138 @@
+/* rolling stats plots*/
+div#body_panel {
+  display: flex;
+  justify-content: center;
+}
+
+div#sec_panel {
+  box-shadow: 10px 10px 5px #888888;
+}
+
+div.wfi-sec-list {
+  font: 10px sans-serif;
+  width: 250px;
+  overflow: hidden;
+}
+
+div.wfi-sec-list #title {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  background-color: #2BA9E0;
+}
+
+div.wfi-sec-list table.dataTable caption{
+  font: 20px sans-serif;
+  text-align: left;
+}
+
+div.wfi-sec-list table.dataTable tbody{
+  table-layout: fixed;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: transparent;
+  width: 100%;
+  display: block;
+}
+
+div.wfi-sec-list table.dataTable tbody tr{
+  height: 30px;
+  display: block;
+  padding: 0px;
+  width: 100%;
+}
+
+div.wfi-sec-list table.dataTable {
+  border-bottom: none;
+  display: block;
+}
+
+div.wfi-sec-list table.dataTable tr[role="row"] td font {
+  padding-left: 10px;
+}
+
+div.wfi-sec-list table.dataTable tr :first-child{
+  display: inline-block;
+  width: 20%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+div.wfi-sec-list table.dataTable tr :nth-child(2) {
+  display: inline-block;
+  width: 50%;
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+}
+
+div.wfi-sec-list table.dataTable tr :nth-child(3) {
+  display: inline-block;
+  width: 20%;
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+}
+
+div.wfi-sec-list table.dataTable tr :nth-child(4) {
+  display: inline-block;
+  width: 10%;
+  padding-left: 0px!important;
+  padding-right: 0px!important;
+}
+
+div.wfi-sec-list table.dataTable tbody td{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+div.wfi-sec-list table.dataTable tbody tr[role="row"]:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+div.wfi-sec-list table.dataTable tbody tr{
+  background-color: transparent;
+}
+
+div.wfi-sec-list table.dataTable thead{
+  display: none;
+}
+
+div.wfi-sec-list table.dataTable tbody tr.group {
+  display: table;
+}
+
+div.wfi-sec-list table.dataTable tbody tr.group td{
+  padding: 8px 2px;
+  cursor: default;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: rgba(0, 0, 0, 0.50);
+  color: white;
+  width: 100%;
+  height: 100%;
+  display: table-cell;
+}
+
+/* div.wfi-sec-list table.dataTable tbody tr.odd { */
+/*   background-color: rgba(182, 182, 182, 0.5); */
+/* } */
+
+div.wfi-sec-list table.dataTable tbody tr.selected {
+    background-color: #B0BED9;
+}
+
+div.wfi-sec-list table.dataTable thead {
+  visibility: hidden;
+}
+
+div.wfi-sec-list  .dataTables_scrollHead {
+  display:none;
+}
+
+div.wfi-sec-list  .dataTables_scrollBody {
+  border-bottom: none!important;
+}

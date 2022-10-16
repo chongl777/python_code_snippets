@@ -1,0 +1,63 @@
+(defun unwrap-line ()
+"Remove all newlines until we get to two consecutive ones.
+Or until we reach the end of the buffer.
+Great for unwrapping quotes before sending them on IRC."
+(interactive)
+(let ((start (point))
+(end (copy-marker (or (search-forward "\n\n" nil t)
+(point-max))))
+(fill-column (point-max)))
+(fill-region start end)
+(goto-char end)
+(newline)
+(goto-char start)))
+
+(define-key erc-mode-map (kbd "M-q") 'unwrap-line)
+
+<div class="dlgTitle" style="cursor: move; position:relative;clear:both">
+  <h1 style="float: left;">Update price target</h1>
+  <span id="TitleBtns" class="dlgTitleBtns" style="float: right">
+    <a class="dlgCloseBtn" title="Close dialog" href="javascript:;" accesskey="C">
+      <span style="padding:8px;height:16px;width:16px;display:inline-block">
+        <span style="height:16px;width:16px;position:relative;display:inline-block;overflow:hidden;" class="s4-clust">
+          <img src="/_layouts/15/images/fgimg.png?rev=23" alt="Close dialog"
+               style="left:-0px !important;top:-645px !important;position:absolute;"
+               class="ms-dlgCloseBtnImg">
+        </span>
+      </span>
+    </a>
+  </span>
+</div>
+<div class ="dlgFrameContainer">
+  <table>
+    <tbody>
+      <tr>
+        <td><h3>Security ID</h3></td><td><input type="Text"/></td>
+      </tr>
+      <tr>
+        <td><h3>Target Price</h3></td><td><input type="Text"/></td>
+      </tr>
+      <tr>
+        <td><h3>Best Price</h3></td><td></td>
+      </tr>
+      <tr>
+        <td><h3>Worst Price</h3></td><td></td>
+      </tr>
+      <tr>
+        <td><h3>Effective Date</h3></td><td></td>
+      </tr>
+      <tr>
+        <td><h3>Good Til Date</h3></td><td></td>
+      </tr>
+      <tr>
+        <td><h3>Title</h3></td><td></td>
+      </tr>
+      <tr>
+        <td>Comments</td><td></td>
+      </tr>
+    </tbody>
+  </table>
+  <table id="submit-button">
+    <tr><td></td><td><input type="button" value="okay"/><input type="button" value="Cancel"/></tr>
+  </table>
+</div>

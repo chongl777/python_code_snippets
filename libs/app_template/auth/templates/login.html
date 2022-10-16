@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<h1 style="padding-left: 20px">Sign In</h1>
+<div style="display:inline-flex">
+  <form action="" method="post" style="padding-left: 20px" novalidate>
+    {{ form.hidden_tag() }}
+    <p>
+      {{ form.username.label }}<br>
+      {{ form.username(size=32) }}
+      {% for error in form.username.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>
+      {{ form.password.label }}<br>
+      {{ form.password(size=32) }}
+      {% for error in form.password.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}
+    </p>
+    <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+    <p>{{ form.submit() }}</p>
+  </form>
+  <div style="border-left: black solid; margin-left: 100px">
+    <form style="padding-left: 100px; position:relative; top: 25%"
+          action="{{ url_for('.authenticate', _external=True, provider='azuread') }}">
+      <button type="submit" name="next" value="{{ next }}" style="width:140px; height:100px">Sign in With MSAD</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

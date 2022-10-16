@@ -1,0 +1,50 @@
+.title {
+  background-color: rgba(70, 130, 180, 0.8)!important;
+}
+
+.group {
+  background-color: rgba(70, 130, 180, 0.5)!important;
+}
+
+#pf-position-pnl table.depth-2>tbody>tr.odd {
+  background-color: rgba(70, 130, 180, 0.1)!important;
+}
+
+table tr.even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+/* div.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] { */
+/*   background-color: rgba(70, 130, 180, 0.5)!important; */
+/* } */
+#PageTitle {
+  background-color: rgba(70, 130, 180, 1);
+  color: white;
+}
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+div.wfi-data-table .positive {
+  color: green;
+}
+
+div.wfi-data-table .negative {
+  color: red;
+}
+
+div.wfi-data-table .child-table.depth-3 {
+  color: blue;
+}
+
+div.wfi-data-table .child-table.depth-4 td * {
+  font-size: 8px !important;
+}
+
+
+#search-bar #search_text,
+#search-bar #search_text:focus,
+#search-bar #search_button {
+  background-color: rgba(136,136,136,0.6);
+}

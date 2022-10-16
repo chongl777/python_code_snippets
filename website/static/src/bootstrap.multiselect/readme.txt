@@ -1,0 +1,1 @@
+http://davidstutz.de/bootstrap-multiselect/

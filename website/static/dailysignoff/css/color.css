@@ -1,0 +1,57 @@
+#PageTitle {
+  background-color: rgba(48, 5, 76, 0.8)!important;
+}
+
+.group {
+  background-color: rgba(48, 5, 76, 0.5)!important;
+}
+
+#pf-position-pnl table.depth-2>tbody>tr.odd {
+  background-color: rgba(48, 5, 76, 0.1)!important;
+}
+
+table tr.even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+div.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] {
+  /* background-color: rgba(48, 5, 76, 0.5)!important; */
+}
+
+#PageTitle {
+  background-color: rgba(48, 5, 76, 1);
+  color: white;
+}
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+div.wfi-data-table .positive {
+  color: green;
+}
+
+div.wfi-data-table .negative {
+  color: red;
+}
+
+div.wfi-data-table .child-table.depth-3 {
+  color: blue;
+}
+
+
+.wfi-pf-beta table.child-table.depth-1>tbody>tr[role="row"] {
+  background-color: rgba(48, 5, 76, 0.3)!important;
+}
+
+.widget>header.title {
+ background-color: rgba(48, 5, 76, 0.7)!important;
+}
+
+div#sign-off-hist.wfi-data-table>div>table.dataTable>tbody>tr[role="row"].even {
+    background-color: rgba(240, 240, 240, 1)!important;
+}
+
+div#sign-off-hist.wfi-data-table>div>table.dataTable>tbody>tr[role="row"].odd {
+    background-color: rgba(255, 255, 255, 1)!important;
+}

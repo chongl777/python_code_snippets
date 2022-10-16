@@ -1,0 +1,27 @@
+svg.tree-chart g.links line.link {
+  stroke: black;
+}
+
+
+svg.tree-chart g.node rect {
+  fill: rgba(186, 220, 248, 1);
+  opacity: 1;
+  stroke-width: 1px;
+  stroke: black;
+}
+
+
+svg.tree-chart g.nodes text {
+  pointer-events: none;
+}
+
+
+div.tree-chart-div div.tooltip {
+  background-color: rgba(70, 130, 180, 0.5);
+  border-radius: 6px;
+  padding: 5px;
+}
+
+div.tree-chart-div div.tooltip * {
+  pointer-events: none;
+}

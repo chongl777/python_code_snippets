@@ -1,0 +1,10 @@
+/* rolling stats plots*/
+
+div.wfi-restricted-list div.container {
+  width: 80%;
+}
+
+div.wfi-restricted-list #title {
+  font-weight: bold;
+  font-size: 15px;
+}

@@ -1,0 +1,255 @@
+/* rolling stats plots*/
+div.wfi-time-line {
+  font: 10px sans-serif;
+  width: 250px;
+}
+
+div.wfi-time-line #title {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  background-color: #2BA9E0;
+}
+
+div.wfi-time-line .axis path,
+div.wfi-time-line .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+div.wfi-time-line .tick line {
+  opacity: 0.2;
+}
+
+div.wfi-time-line .chart-navigator .brush {
+  stroke: steelblue;
+  fill: steelblue;
+  fill-opacity: 0.2;
+}
+
+div.wfi-time-line .bg.subgrp {
+  opacity: 1;
+}
+
+div.wfi-time-line div.vis-item.Negative.vis-box {
+  background-color: rgba(200, 0, 0, 0.3);
+}
+
+div.wfi-time-line div.vis-item.Positive.vis-box {
+  background-color: rgba(0, 200, 0, 0.3);
+}
+
+div.wfi-time-line div.wfi-tooltip {
+  background-color: rgba(250, 250, 250, 0.9);
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  float: left;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  z-index: 100;
+}
+
+div.wfi-time-line div.wfi-tooltip table td {
+  padding: 5px;
+}
+
+div.wfi-time-line div.wfi-tooltip a#edit {
+  position: absolute;
+  margin-left: calc(100% - 40px);
+  cursor: pointer;
+}
+
+div.wfi-time-line div.wfi-tooltip table td textarea{
+  width: 100%;
+  min-height: 70px;
+  min-width: 200px;
+}
+
+div.wfi-time-line div.hldg-bkgrd div {
+  display: table;
+}
+
+div.wfi-time-line div.hldg-bkgrd div div.vis-item-content {
+  display: table-cell;
+  text-align: center;
+  position: relative;
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 20px;
+  color: rgba(100, 100, 100, 0.5);
+}
+
+div.wfi-time-line div.hldg-bkgrd.long {
+  background-color: rgba(255, 127, 14, 0.3);
+}
+
+div.wfi-time-line div.hldg-bkgrd.short {
+  background-color: rgba(214, 39, 40, 0.3);
+}
+
+div.wfi-time-line div.vis-item.px-tgt {
+  background-color: rgba(148, 103, 189, 0.6);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 0px;
+}
+
+div.wfi-time-line div.vis-item.vis-box {
+  background-color: rgba(31, 119, 180, 0.3);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 0px;
+}
+
+div.wfi-time-line div.vis-item.px-tgt text {
+  padding: 3px;
+}
+
+div.wfi-time-line div.vis-item.px-tgt text.best {
+  color: green;
+}
+
+div.wfi-time-line div.vis-item.px-tgt text.worst {
+  color: red;
+}
+
+div.wfi-time-line div.vis-labelset div.grp1.Security:hover{
+  cursor: pointer;
+  background-color: gray;
+}
+
+div.wfi-time-line div.vis-item.vis-box {
+  width: auto;
+  overflow: hidden;
+}
+
+/* dialog */
+
+#OVER {
+  width:100%;
+  height:100%;
+  left:0;/*IE*/
+  top:0;
+  z-index: 100;
+  position:fixed;
+  background-color: rgba(153, 153, 153, 0.4);
+}
+
+#OVER div.tgt-px-dlg {
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  background-color: aliceblue;
+  position: fixed;
+  display: block;
+  overflow: auto;
+}
+
+#OVER div.tgt-px-dlg h1{
+  font-size: 1.46em;
+  color: #000;
+  margin: 0px;
+  color: white;
+}
+
+#OVER div.tgt-px-dlg div.dlgTitle {
+  font-size: 13px;
+  color: #000;
+  overflow: hidden;
+  padding: 7px 21px 7px 13px;
+  background-color: steelblue;
+}
+
+#OVER div.tgt-px-dlg div.dlgTitle #TitleBtns {
+  margin-top: 0px;
+  margin-right: -18px;
+  height:18px;
+  float:right;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer {
+  padding: 6px 21px 15px 21px;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table {
+  width: 100%;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer td input {
+  width: 90%;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#content {
+  height: 400px;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#content td:first-child {
+  padding: 2px 2px 10px 2px;
+  width: 30%;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer td h3 {
+  font-size: 1em;
+  font-family: Segoe UI Semilight,Segoe UI,Segoe,Tahoma,Helvetica,Arial,sans-serif;
+  font-weight: 300;
+  margin: 0px;
+  color: #10263C;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#content td:nth-child(2),
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#content td:nth-child(3){
+  vertical-align: top;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#submit-button td:nth-child(1) {
+  width:70%
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#submit-button td:nth-child(2) {
+  display: flex;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#submit-button input {
+  padding: 4px;
+  margin: 4px;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#content td textarea {
+  width: 90%;
+  min-height: 70px;
+  resize: vertical;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#content td input.sid {
+  text-decoration: underline;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#submit-button td {
+  vertical-align: middle;
+}
+
+#OVER div.tgt-px-dlg div.dlgFrameContainer table#submit-button td #ImageProgress {
+  height: 20px;
+  margin-top: 5px;
+}
+
+#OVER div.tgt-px-dlg input {
+  background: transparent;
+  border:1px solid #99B0C1;
+  background-color: transparent;
+  color:#1C4269;
+}
+
+input[type=password],
+input[type=text],
+input[type=file],
+select,
+textarea,
+.sp-peoplepicker-topLevel,
+.sp-peoplepicker-topLevelDisabled,
+.sp-peoplepicker-autoFillContainer,
+.ms-inputBox
+{
+}

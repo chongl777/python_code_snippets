@@ -1,0 +1,104 @@
+/* rolling stats plots*/
+div.wfi-sec-select {
+  font: 10px sans-serif;
+  width: 250px;
+}
+
+div.wfi-sec-select #title {
+  display: flex;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  background-color: #2BA9E0;
+}
+
+div.wfi-sec-select option {
+  box-sizing: border-box;
+  height: 20px;
+  font-size: 10px;
+  border-top: solid gray 0.5px;
+  background-color: rgb(254, 254, 254);
+  margin: 0px;
+  padding-top: 5px;
+  padding-bottom: 0px;
+  color: black;
+  white-space: pre-wrap;
+}
+
+div.wfi-sec-select select {
+  background-color: rgb(254, 254, 254);
+}
+
+div.wfi-sec-select optgroup[label] {
+  font-size: 10px;
+  padding-top: 6px;
+  padding-bottom: 0px;
+  box-sizing: border-box;
+  border-bottom: solid gray 1px;
+  background-color: gray;
+  color: white;
+}
+
+div.wfi-sec-select table.dataTable caption{
+  font: 20px sans-serif;
+  text-align: left;
+}
+
+div.wfi-sec-select table.dataTable tbody{
+  table-layout: fixed;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: transparent;
+}
+
+div.wfi-sec-select table.dataTable {
+  border-bottom: none;
+}
+
+div.wfi-sec-select table.dataTable tbody td{
+  padding: 8px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+div.wfi-sec-select table.dataTable tbody tr:hover,
+div.wfi-sec-select table.dataTable tbody tr.odd:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+div.wfi-sec-select table.dataTable tbody tr{
+  background-color: transparent;
+}
+
+div.wfi-sec-select table.dataTable thead th{
+  text-align: left;
+  padding: 5px 10px;
+}
+
+div.wfi-sec-select table.dataTable tbody tr.group td{
+  padding: 8px 2px;
+  cursor: default;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: rgba(0, 0, 0, 0.50);
+  color: white;
+}
+
+/* div.wfi-sec-select table.dataTable tbody tr.odd { */
+/*   background-color: rgba(182, 182, 182, 0.5); */
+/* } */
+
+div.wfi-sec-select table.dataTable tbody tr.selected {
+    background-color: #B0BED9;
+}
+
+div.wfi-sec-select table.dataTable thead {
+  visibility: hidden;
+}
+
+div.wfi-sec-select  .dataTables_scrollHead {
+  display:none;
+}

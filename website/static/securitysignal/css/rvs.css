@@ -1,0 +1,206 @@
+.signal-rvs {
+  display: inline-block;
+}
+
+
+.signal-rvs #content .content-table table.subtable>thead * {
+  color: white;
+  font-size: 0px;
+  font-weight: 400;
+}
+
+.signal-rvs #content .content-table thead.group>tr {
+  height: 0px;
+}
+
+.signal-rvs td#outlier {
+  font-weight: bold;
+}
+
+.signal-rvs td#outlier.true {
+  color: red;
+}
+
+.signal-rvs td#outlier.false {
+  color: green;
+}
+
+.signal-rvs #content .content-table {
+  height: 0px;
+  /* display: inline-block!important; */
+  /* border-collapse: collapse; */
+}
+
+.signal-rvs table td {
+  padding-left: 0px!important;
+}
+
+.signal-rvs #content .content-table>tbody>tr>td.tbl-element {
+  padding: 2px 2px 2px 2px!important;
+}
+
+.signal-rvs #content .content-table>tbody>tr>td.tbl-element-slim {
+  padding: 0px 0px 0px 0px!important;
+}
+
+.signal-rvs table tr.group td {
+  padding-left: 1px!important;
+}
+
+.signal-rvs table td.field,
+.signal-rvs table th.field{
+  padding-left: 10px!important;
+}
+
+.signal-rvs table .left {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.signal-rvs table .left>div {
+  width: 100%;
+  text-align: right;
+  padding-right: 20%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.signal-rvs table tr.group {
+  height: 24px!important;
+}
+
+.signal-rvs tr.scalable>td {
+  width:100%;
+}
+
+.signal-rvs tr.scalable {
+  /* height:0px; */
+}
+
+/* .signal-rvs table.content-table>tbody>tr { */
+/*   display:grid; */
+/* } */
+
+.signal-rvs tr.scalable tbody tr {
+  max-height: 30px;
+  /* display: grid; */
+}
+
+.signal-rvs tr.with-border-bottom {
+  border-bottom: black;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+
+}
+
+.signal-rvs tr.with-border-bottom * {
+  font-weight: bold;
+}
+
+.signal-rvs .inputs {
+  height: 80%;
+  width: 100%;
+  border: none;
+  color: blue;
+}
+
+.signal-rvs .inputs {
+  font-style: italic;
+}
+
+.signal-rvs input#val-date {
+  width: 105px;
+}
+
+.signal-rvs div.interactive-plot div.tooltip,
+.signal-rvs div.interactive-plot div.tooltip-tag {
+  background-color: rgb(21, 49, 64, 0.8);
+}
+
+.signal-rvs div.interactive-plot div.tooltip table thead a,
+.signal-rvs div.interactive-plot div.tooltip table .val {
+  color: white;
+  padding: 0px 10px 0px 10px;
+}
+
+.signal-rvs div.interactive-plot div.tooltip table th.val {
+  text-align: left;
+}
+
+.signal-rvs div#regression_plot div.tooltip>table>thead {
+  display:none!important;
+}
+
+.signal-rvs div#regression_plot div.tooltip #reg-tooltip {
+  margin: 5px;
+}
+
+.signal-rvs div#regression_plot circle.same-parent-point {
+  stroke: black!important;
+  stroke-width: 1px!important;
+}
+
+.signal-rvs div#regression_plot circle.same-parent-point:hover {
+  stroke: black!important;
+  stroke-width: 3px!important;
+}
+
+.signal-rvs div#regression_plot circle.same-parent-point.priority-2 {
+  stroke: black!important;
+  stroke-width: 4px!important;
+}
+
+.signal-rvs div#regression_plot circle.same-parent-point.priority-2:hover {
+  stroke: black!important;
+  stroke-width: 7px!important;
+}
+
+.signal-rvs div#regression_plot circle.general-point {
+  opacity: 0.7;
+}
+
+td.status-tag>div.status-div.calculating,
+td.status-tag>div.status-div.waiting {
+  animation: rvs-blinkingText 0.9s infinite;
+}
+
+@keyframes rvs-blinkingText{
+    0%  { color: rgba(255, 0, 0, 1); }
+    25% { color: rgba(255, 0, 0, 0.65); }
+    50% { color: rgba(255, 0, 0, 0.25); }
+    75% { color: rgba(255, 0, 0, 0.65); }
+    100%{ color: rgba(255, 0, 0, 1); }
+}
+
+td.status-tag>div.status-div.ready {
+  color: green
+}
+
+td.status-tag>div.status-div {
+  font-weight: bold;
+}
+
+.signal-rvs table {
+  table-layout: fixed;
+}
+
+.signal-rvs table#rvs-coefs td.subcategory {
+  transform: rotate(90deg);
+}
+
+table#rvs-coefs {
+  table-layout: fixed;
+}
+table#rvs-coefs td {
+  border-style: solid;
+  border-width: 0.5px;
+
+}
+table#rvs-coefs td.field,
+table#rvs-coefs td * {
+  font-size: 9px!important;
+}
+
+table#rvs-coefs td.field {
+  padding-left: 2px!important;
+}

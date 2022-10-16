@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+<script>
+</script>
+{% endblock %}
+
+{% block styles %}
+    {{super()}}
+
+    <meta charset="utf-8">
+    <!-- <script src="./jsscript.js", type="text/javascript"> </script> -->
+    <script src="./static/src/jquery/jquery.js"></script>
+
+    <link href="./static/src/jquery/stylesheets/jquery-ui.css" rel="stylesheet">
+    <script src="./static/src/jquery/jquery-ui.js" type="text/javascript"></script>
+
+    <script src="./static/src/numeral/numeral.js" type="text/javascript"></script>
+
+    <script src="./static/src/knockout-3.4.2/knockout.debug.js" type="text/javascript"></script>
+
+    <link href="./static/src/datatable/datatables.css" rel="stylesheet">
+    <script src="./static/src/datatable/datatables.js" type="text/javascript"></script>
+
+    <link href="./static/src/chosen/chosen.css" rel="stylesheet">
+    <script src="./static/src/chosen/chosen.jquery.js" type="text/javascript"></script>
+
+    <link href="./static/src/vis-4.21.0/vis.css" rel="stylesheet">
+    <script src="./static/src/vis-4.21.0/vis.js", type="text/javascript"></script>
+
+    <script src="./static/src/handlebars/handlebars-v4.0.11.js" type="text/javascript"></script>
+
+    <script src="./static/src/spjs_utility/spjs-utility.js", type="text/javascript"></script>
+    <script src="./static/src/d3/d3.js" type="text/javascript"></script>
+
+    <script src="./static/src/loadingIcon/loadingIcon.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/drag.drop/drag.drop.css" rel="stylesheet">
+    <script src="./static/src/widget/drag.drop/drag.drop.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/wfi.price.plotchart/price.plotchart.css" rel="stylesheet">
+    <script src="./static/src/widget/wfi.price.plotchart/price.plotchart.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/wfi.table/wfi.table.css" rel="stylesheet">
+    <script src="./static/src/widget/wfi.table/wfi.table.js" type="text/javascript"></script>
+
+    <script src="./static/src/widget/finraiframe/finra_iframe.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/seclist/seclist.css" rel="stylesheet">
+    <script src="./static/src/widget/seclist/seclist.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/research.timeline/research.timeline.css" rel="stylesheet">
+     <script src="./static/src/widget/research.timeline/research.timeline.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/secinfo/secinfo.css" rel="stylesheet">
+    <script src="./static/src/widget/secinfo/secinfo.js" type="text/javascript"></script>
+
+    <!-- <script src="./static/src/widget/wfi.search.bar/searchbar.js" type="text/javascript"></script> -->
+    <!-- <link href="./static/src/widget/wfi.search.bar/searchbar.css" rel="stylesheet"> -->
+    <!-- <script src="./static/securityprofile/src/searchbar.js" type="text/javascript"></script> -->
+    <!-- <link href="./static/securityprofile/src/searchbar.css" rel="stylesheet"> -->
+
+    <script src="./static/securityprofile/src/test.js" type="text/javascript"></script>
+    <link href="./static/securityprofile/css/test.css" rel="stylesheet"/>
+    <style>
+      rect.node {
+      fill: rgba(186, 220, 248, 1);
+      opacity: 1;
+      stroke-width: 2px;
+      stroke: black;
+      }
+    </style>
+
+{% endblock %}
+
+    {% block app_content %}
+    <label for="search">Search: </label>
+    <input id="search">
+
+    <svg style="width: 500px; height: 700px;">
+      <g transform="translate(50,50)">
+        <g id="group">
+          <g class="links"/>
+          <g class="nodes"/>
+        </g>
+      </g>
+    </svg>
+
+{% endblock %}

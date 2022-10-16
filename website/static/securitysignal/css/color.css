@@ -1,0 +1,55 @@
+
+#PageTitle {
+  background-color: rgba(0, 178, 109, 1);
+  /* background-color: darkblue; */
+  color: white;
+}
+
+.title {
+  background-color: rgba(70, 130, 180, 0.8)!important;
+}
+
+.group {
+  /* background-color: rgba(70, 130, 180, 0.5)!important; */
+  background-color: rgba(0, 0, 0, 0.70)!important;
+}
+
+.group font {
+  color: white;
+}
+
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+#security-input * {
+  background-color: rgba(109, 178, 109, 0.7)!important;
+  color: white;
+}
+
+::placeholder {
+  color: white;
+}
+
+.wfi-securities-list #title {
+  /* background: darkorange; */
+  background: #2BA9E0;
+}
+
+#signal-title {
+  background: darkorange;
+  /* background-color: skyblue!important; */
+}
+
+div.interactive-plot g.tag polygon.tag-1 {
+  fill: rgba(34, 139, 34, 0.8);
+}
+
+div.interactive-plot g.tag polygon.tag--1 {
+  fill: rgba(220, 20, 60, 0.8);
+}
+
+div.interactive-plot g.tag polygon: hover {
+  stroke: black;
+}

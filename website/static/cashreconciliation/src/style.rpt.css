@@ -1,0 +1,166 @@
+#sideNavBox, #titleAreaBox {
+  display: none;
+}
+
+#s4-titlerow
+{
+    display: none !important;
+}
+
+#s4-workspace.ms-core-overlay {
+  overflow: visible;
+}
+
+* {
+  font-size: 12px;
+  font-family: "Segoe UI", "Segoe", "Tahoma", "Helvetica", "Arial", "sans-serif";
+}
+
+div.ms-wikicontent.ms-rtestate-field {
+  padding-right: 0px!important;
+}
+
+div.ms-rte-layoutszone-inner {
+  padding: 0px!important;
+  margin: 0px!important;
+  border: 0px!important;
+}
+
+#contentBox {
+  margin: 0px;
+}
+
+#contentRow {
+  padding: 0px;
+}
+
+#child {
+    font-size: 16px;
+}
+
+div table.depth-1 * {
+  font-weight: 400;
+  font-style: normal;
+}
+
+table.depth-2 * {
+  font-style: italic!important;
+  font-size: 10px;
+  font-weight: 200;
+}
+
+.child-div {
+  box-sizing: border-box;}
+
+.widget {
+  background-color: white;
+  box-shadow: 2px 2px 2px grey;
+}
+
+.gridster li {
+  list-style-type: none;
+}
+
+.gridster li header {
+  background: #999;
+  font-size: 15px;
+  line-height: normal;
+  margin-bottom: 0px;
+  cursor: move;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px 0px 2px 0px;
+}
+
+.gridster li header h {
+  font-weight: bold;
+  color: white;
+}
+
+div.gridster li header * {
+  margin: 2px 5px 2px 5px;
+  line-height: 14px;
+  height: 15px;
+}
+
+.gridster li .widget > div {
+  height: calc(100% - 23px);
+}
+
+div.gridster li header .config {
+  cursor: pointer;
+}
+
+#PageTitle {
+  font-size: 27px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+div.gridster {
+  /*background-color: #dddddd; */
+}
+
+div.gridster ul li.preview-holder {
+  background: steelblue!important;
+}
+
+div#pf-position-pnl.wfi-data-table>div>table>thead>tr>th {
+  text-align: center;
+  padding: 1px;
+}
+
+div.wfi-data-table .value {
+  white-space: pre-wrap;
+  word-spacing: 3px;
+}
+
+div#pos-reconcile-gs.wfi-data-table thead tr th {
+  text-align: right;
+}
+
+div#pos-reconcile-gs.wfi-data-table thead tr th:nth-child(1),
+div#pos-reconcile-gs.wfi-data-table thead tr th:nth-child(2) {
+  text-align: center;
+}
+
+nav.navbar {
+  display: none!important;
+}
+
+#wait-olverlay.wait {
+  display: block;
+  background-color: white;
+}
+
+#wait-olverlay.ready {
+  display: none;
+}
+
+.sid-clickable {
+  cursor: pointer;
+}
+
+.wfi-control-panel-table td.ParamEntryCell .multiselect-container input {
+  width: 20px!important;
+}
+
+.multiselect-container>li>a>label {
+  padding-left: 30px;
+}
+
+ul.task-card-list.bb-reconcile {
+  width: 100%!important;
+  position: relative;
+  display: inline-block;
+  padding: 0px;
+}
+
+ul.task-card-list.bb-reconcile>li {
+  display: inline-block;
+  width: 100%!important;
+  position: relative;
+  left: 0px;
+  padding: 0px;
+}

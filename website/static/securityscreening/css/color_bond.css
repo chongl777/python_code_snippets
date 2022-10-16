@@ -1,0 +1,71 @@
+.title {
+  background-color: rgba(139, 0, 23, 0.8)!important;
+}
+
+.group {
+  background-color: rgba(139, 0, 23, 0.5)!important;
+}
+
+#pf-position-pnl table.depth-2>tbody>tr.odd {
+  background-color: rgba(139, 0, 23, 0.1)!important;
+}
+
+table tr.even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+div#processed-file-gs table.dataTable>thead>tr>th {
+  text-align: center;
+}
+
+div#pf-position-pnl.wfi-data-table table.child-table.depth-1>tbody>tr[role="row"] {
+  background-color: rgba(139, 0, 23, 0.3)!important;
+}
+
+#PageTitle {
+  background-color: rgba(139, 0, 23, 1);
+  color: white;
+}
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+div.wfi-data-table .positive {
+  color: green;
+}
+
+div.wfi-data-table .negative {
+  color: red;
+}
+
+div.wfi-data-table .child-table.depth-3 {
+  color: blue;
+}
+
+div.wfi-data-table .child-table.depth-4 td * {
+  font-size: 8px !important;
+}
+
+div.wfi-data-table tbody tr[role="row"].rlevel-0.odd {
+  background-color: rgba(139, 0, 23, 0.1)!important;
+}
+
+div.wfi-data-table tbody tr[role="row"].rlevel-0.even {
+  background-color: rgba(254, 254, 254, 0.1)!important;
+}
+
+div.wfi-data-table tbody tr[role="row"].rlevel-1 {
+  background-color: rgba(139, 0, 23, 0.4)!important;
+  color: white!important;
+}
+
+div.wfi-data-table tbody tr[role="row"].rlevel-2 {
+  background-color: rgba(139, 0, 23, 0.6)!important;
+  color: white!important;
+}
+
+div.wfi-data-table div.value.signal {
+  color: steelblue!important;
+  font-weight: bold;
+}

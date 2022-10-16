@@ -1,0 +1,45 @@
+/* rolling stats plots*/
+
+div.wfi-securities-list div.container {
+  width: 80%;
+}
+
+div.wfi-securities-list #title {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+div.wfi-securities-list td {
+  height: 25px;
+  padding: 0px 0px !important;
+}
+
+div.wfi-securities-list caption {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+div.wfi-securities-list thead>tr {
+  height: 40px;
+}
+
+
+div.wfi-securities-list table.dataTable tbody tr[role="row"]:hover {
+  background-color: gray;
+  cursor: pointer;
+}
+
+div.wfi-securities-list table td {
+  padding-left: 10px!important;
+}
+
+div.wfi-securities-list .dataTables_wrapper {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: block;
+}
+
+div.wfi-securities-list #title {
+  display: table-row;
+}

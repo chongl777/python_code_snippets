@@ -1,0 +1,109 @@
+.title {
+  background-color: rgba(191, 99, 2, 0.8)!important;
+}
+
+.group {
+  background-color: rgba(191, 99, 2, 0.5)!important;
+}
+
+div.dlgTitle {
+  background-color: rgba(191, 99, 2, 0.8)!important;
+}
+
+div table.depth-0>tbody>tr[role='row'],
+div#pos-reconcile-gs.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] {
+  background-color: rgba(191, 99, 2, 0.5)!important;
+}
+
+div.widget.file-download table.depth-0>tbody>tr[role='row'].even {
+  background-color: #ffffff!important;
+}
+
+div.widget.file-download table.depth-0>tbody>tr[role='row'].odd {
+  background-color: rgba(240, 240, 240, 0.9)!important;
+}
+
+div.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] {
+  font-weight: bold;
+}
+
+div table.depth-1>tbody>tr.odd[role='row'] {
+  background-color: rgba(191, 99, 2, 0.3)!important;
+}
+
+div table.depth-1>tbody>tr.even[role='row'] {
+  background-color: rgba(191, 99, 2, 0.3)!important;
+  /* background-color: rgba(200, 200, 200, 0.2)!important; */
+}
+
+div table.depth-2>tbody>tr.odd[role='row'] {
+  background-color: rgba(191, 99, 2, 0.1)!important;
+}
+
+div table.depth-2>tbody>tr.even[role='row'] {
+  background-color: rgba(200, 200, 200, 0.1)!important;
+}
+
+div.dlgTitle h1 {
+  color: white!important;
+}
+
+#PageTitle {
+  background-color: rgba(191, 99, 2, 1);
+  color: white;
+}
+
+table.depth-3 * {
+  color: DarkBlue;
+}
+
+table tr.even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+div.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] {
+  background-color: white;
+}
+
+div.wfi-data-table>div>table.dataTable>tbody>tr[role="row"],
+div.wfi-data-table>div>table.dataTable>tbody>tr.child-tbl>td>table.child-table>tbody>tr[role="row"] {
+  font-weight: 300;
+}
+
+div.wfi-data-table table thead tr th {
+    text-align: right;
+}
+
+div#pf-ccy-risk.wfi-data-table>div>table.dataTable>tbody>tr[role="row"],
+div#pf-summary.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] {
+  background-color: white!important;
+}
+
+div#pf-ccy-risk.wfi-data-table>div>table.dataTable>tbody>tr[role="row"].even,
+div#pf-summary.wfi-data-table>div>table.dataTable>tbody>tr[role="row"].even{
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+div#pf-position-pnl.wfi-data-table table.child-table.depth-1>tbody>tr[role="row"] {
+  background-color: rgba(70, 130, 180, 0.3)!important;
+}
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+div.wfi-data-table .positive {
+  color: green;
+}
+
+div.wfi-data-table .negative {
+  color: red;
+}
+
+div.wfi-data-table .child-table.depth-3 {
+  color: blue;
+}
+
+div.wfi-data-table .child-table.depth-4 td * {
+  font-size: 8px !important;
+}

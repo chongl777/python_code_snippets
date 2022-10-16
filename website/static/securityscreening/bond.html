@@ -1,0 +1,178 @@
+
+{% extends "base.html" %}
+
+{% block scripts %}
+ <script>
+    var DATA = '{{ data }}'.replace(/&#34;/g, '"');
+     $(document).ready(function() {
+         main(JSON.parse(DATA.replace(/NaN/g, "0")));
+         $('#wait-overlay').toggleClass('wait ready');
+     });
+ </script>
+{% endblock %}
+
+{% block styles %}
+ {{super()}}
+ <style>
+ #wait-overlay.wait {
+   display:flex;
+   background-color: white;
+ }
+
+ #wait-overlay.ready {
+   display: none;
+ }
+ </style>
+
+<meta charset="utf-8">
+<!-- <script src="../SiteAssets/jsscript.js", type="text/javascript"> </script> -->
+<script src="./static/src/jquery/jquery.js"></script>
+
+<link href="./static/src/jquery/stylesheets/jquery-ui.css" rel="stylesheet">
+<script src="./static/src/jquery/jquery-ui.js" type="text/javascript"></script>
+
+<script src="./static/src/widget/svg.icons/svg.icons.js" type="text/javascript"></script>
+<link href="./static/src/jquery.gridster/jquery.gridster.css" rel="stylesheet">
+<script src="./static/src/jquery.gridster/jquery.gridster.js" type="text/javascript"></script>
+
+<script src="./static/src/numeral/numeral.js" type="text/javascript"></script>
+<script src="./static/src/jquery.cookie/jquery.cookie.js" type="text/javascript"></script>
+
+<script src="./static/src/knockout-3.4.2/knockout.debug.js" type="text/javascript"></script>
+<script src="./static/src/widget/cachedparams/cachedparams.js" type="text/javascript"></script>
+
+<link href="./static/src/datatable/datatables.css" rel="stylesheet">
+<script src="./static/src/datatable/datatables.js" type="text/javascript"></script>
+
+<link href="./static/src/chosen/chosen.css" rel="stylesheet">
+<script src="./static/src/chosen/chosen.jquery.js" type="text/javascript"></script>
+
+<link href="./static/src/vis-4.21.0/vis.css" rel="stylesheet">
+<script src="./static/src/vis-4.21.0/vis.js", type="text/javascript"></script>
+
+<script src="./static/src/handlebars/handlebars-v4.0.11.js" type="text/javascript"></script>
+
+<script src="./static/src/spjs_utility/spjs-utility.js", type="text/javascript"></script>
+<script src="./static/src/d3/d3.js" type="text/javascript"></script>
+
+<script src="./static/src/loadingIcon/loadingIcon.js" type="text/javascript"></script>
+
+<script src="./static/src/widget/drag_drop/drag_drop.js" type="text/javascript"></script>
+
+<script src="./static/src/widget/finraiframe/finra_iframe.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/sectimeline/sectimeline.css" rel="stylesheet">
+<script src="./static/src/widget/sectimeline/sectimeline.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/secinfo/secinfo.css" rel="stylesheet">
+<script src="./static/src/widget/secinfo/secinfo.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/pfccyrisk/pfccyrisk.css" rel="stylesheet">
+<script src="./static/src/widget/pfccyrisk/pfccyrisk.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/pfmonitor/pfmonitor.css" rel="stylesheet">
+<script src="./static/src/widget/pfmonitor/pfmonitor.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/wfi.table/wfi.table.css" rel="stylesheet">
+<script src="./static/src/widget/wfi.table/wfi.table.js" type="text/javascript"></script>
+
+<link href="./static/src/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<script src="./static/src/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<link href="./static/src/bootstrap.multiselect/css/bootstrap-multiselect.css" rel="stylesheet">
+<script src="./static/src/bootstrap.multiselect/js/bootstrap-multiselect.js" type="text/javascript"></script>
+
+<link href="./static/src/widget/wfi.control.panel/wfi.control.panel.css" rel="stylesheet">
+<script src="./static/src/widget/wfi.control.panel/wfi.control.panel.js" type="text/javascript"></script>
+
+<script src="./static/src/cookie/cookie.js" type="text/javascript"></script>
+
+<script src="./static/securityscreening/src/common_func.js" type="text/javascript"></script>
+<script src="./static/securityscreening/src/script_bond.js" type="text/javascript"></script>
+<link href="./static/securityscreening/css/style_bond.css" rel="stylesheet">
+<link href="./static/securityscreening/css/color_bond.css" rel="stylesheet">
+<link href="./static/src/widget/common_style.css" rel="stylesheet">
+<!-- <link href="../SiteAssets/static/portfolioanalytics/controlpanel.css" rel="stylesheet"> -->
+{% endblock %}
+
+{% block app_content %}
+
+<div id="main-frame" style="display: block; height: 100%; position: relative; width: 100%;">
+  <table style="width:100%; height:100%; position: relative; table-layout:fixed">
+    <tbody>
+      <tr>
+        <td>
+          <div id="control-panel">
+            <form>
+              <table >
+                <tbody>
+                  <tr>
+                    <td class="ParamLabelCell"><label><span>As Of Date</span></label></td>
+                    <td class="ParamEntryCell">
+                      <input type="date" data-bind="textInput: t_date, attr: {value: t_date}"/>
+                    </td>
+
+                    <td class="ParamLabelCell"><label><span>Start Date</span></label></td>
+                    <td class="ParamEntryCell">
+                      <input type="date" data-bind="textInput: s_date, attr: {value: s_date}"/>
+                    </td>
+
+                    <td class="ParamLabelCell"><label><span>Saved Query:</span></label></td>
+                    <td class="ParamEntryCell">
+                      <select id="saved-queries" name="strategy-tag" class="boost1-multiselect"
+                              data-bind="options: available_queries,
+                                         optionsText: function(item) {
+                                         return item.query_name;},
+                                         optionsValue: 'query_name',
+                                         selectedOptions: selected_query">
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="ParamLabelCell"><label><span>Filter</span></label></td>
+                    <td class="ParamEntryCell" colspan="5">
+                      <input name="filter-filed" type="text" autocomplete="on"
+                             placeholder="example: where score_eh >=8 and score_rh > 5 and crr_px is not null order by score_eh desc, signal_rh desc"
+                             data-bind="textInput: filter"/>
+                    </td>
+                    <td class="ParamLabelCell" style="width: 20px">
+                      <svg id="save" width="20" height="17" data-bind="click: save_query"
+                           viewBox="0 0 640 640" clip-rule="evenodd" fill-rule="evenodd" style="margin-top: 3px">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <header id="PageTitle" data-bind="text: title"></header>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:100%; height:100%;">
+          <div style="overflow:auto; width:100%; height:100%; position: relative">
+            <div style="width:100%; min-width:2000px"> <!-- inline-size:fit-content;  -->
+
+              <div id="security-screening" class="widget"
+                   style="width:2000px; display:inline-block; height:auto;">
+              </div>
+
+              <div id="rating-rank" class="widget"
+                   style="width:100px; display:inline-block; height:auto;">
+              </div>
+
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div id="wait-overlay" class="wait"
+     style="position:absolute; height:100%; width: 100%; top: 0px; left: 0px; justify-content: center; align-items: center">
+  <img src="./static/src/images/loadingAnimation.gif" style="height: 50px; width: 50px; position: absolute;">
+</div>
+{% endblock %}

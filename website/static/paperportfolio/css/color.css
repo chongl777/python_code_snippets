@@ -1,0 +1,119 @@
+.title, #pf-position-pnl table.depth-0>tbody>tr[role="row"] {
+  background-color: rgba(111, 55, 45, 0.8)!important;
+  color: white;
+}
+
+.group {
+  background-color: rgba(111, 55, 45, 0.5)!important;
+}
+
+#pf-txns .child-table.depth-1>tbody>tr.even[role="row"] {
+  background-color: rgba(240, 240, 240, 0.2)!important;
+}
+
+div.wfi-data-table .child-table.rlevel-1 {
+  color: blue;
+}
+
+#pf-position-pnl table.rlevel-3>tbody>tr.odd,
+#pf-position-pnl table.rlevel-3>tbody>tr.even {
+  background-color: rgba(111, 55, 45, 0.1)!important;
+}
+
+#pf-position-pnl table.rlevel-4>tbody>tr.odd,
+#pf-position-pnl table.rlevel-4>tbody>tr.even {
+  background-color: rgba(111, 55, 45, 0.3)!important;
+}
+
+#pf-position-pnl table.rlevel-5>tbody>tr.odd,
+#pf-position-pnl table.rlevel-5>tbody>tr.even {
+  background-color: rgba(111, 55, 45, 0.4)!important;
+}
+
+#pf-position-pnl table.rlevel-6>tbody>tr.odd,
+#pf-position-pnl table.rlevel-6>tbody>tr.even {
+  background-color: rgba(111, 55, 45, 0.5)!important;
+}
+
+#pf-position-pnl>div>table.depth-0>tbody>tr[role="row"] {
+  background-color: rgba(111, 55, 45, 0.7)!important;
+  color: white;
+}
+
+#pf-txns .child-table.rlevel-4>tbody>tr.odd[role="row"] {
+  background-color: rgba(111, 55, 45, 0.2)!important;
+}
+
+table tr.even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+
+div#processed-file-gs table.dataTable>thead>tr>th {
+  text-align: center;
+}
+
+div#pf-summary table.dataTable>tbody>tr[role="row"].odd {
+    background-color: white!important;
+}
+
+div#pf-summary table.dataTable>tbody>tr[role="row"].even {
+    background-color: rgba(245,245,245, 1)!important;
+}
+
+div#pf-ccy-risk.wfi-data-table>div>table.dataTable>tbody>tr[role="row"].even,
+div#pf-summary.wfi-data-table>div>table.dataTable>tbody>tr[role="row"].even{
+  background-color: rgba(245, 245, 245, 1)!important;
+}
+
+#PageTitle {
+  background-color: rgba(111, 55, 45, 1);
+  color: white;
+}
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+div.wfi-data-table .positive {
+  color: green;
+}
+
+div.wfi-data-table .negative {
+  color: red;
+}
+
+div.wfi-data-table .strategy {
+  color: steelblue;
+}
+
+/* div.wfi-data-table .child-table.depth-3 { */
+/*   color: blue; */
+/* } */
+
+#pf-txns>div>table.dataTable>tbody>tr.odd[role="row"] {
+  background-color: rgba(111, 55, 45, 0.5)!important;
+}
+
+#pf-txns>div>table.dataTable>tbody>tr.even[role="row"] {
+  background-color: rgba(240, 240, 240, 1)!important;
+}
+
+.ui-state-active {
+  background-color: rgba(111, 55, 45, 0.7)!important;
+  border-color: rgba(111, 55, 45, 0.7)!important;
+}
+
+table.wfi-control-panel-table div#drop-down-parms {
+    background-color: rgba(111, 55, 45, 0.1)!important;
+    border-top-color: rgba(111, 55, 45, 0.2)!important;
+    border-bottom-color: rgba(111, 55, 45, 0.2)!important;
+}
+
+table.wfi-control-panel-table td.SubmitButtonCell {
+  border-left-color: rgba(111, 55, 45, 0.2)!important;
+}
+
+table.wfi-control-panel-table td.SplitterNormal {
+  background-color: rgba(111, 55, 45, 0.5)!important;
+}

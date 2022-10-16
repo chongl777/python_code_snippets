@@ -1,0 +1,235 @@
+* {
+  font-size: 11px;
+  font-family: "Segoe UI", "Segoe", "Tahoma", "Helvetica", "Arial", "sans-serif";
+}
+
+#sideNavBox, #titleAreaBox {
+  display: none;
+}
+
+#s4-titlerow
+{
+    display: none !important;
+}
+
+#s4-workspace.ms-core-overlay {
+  overflow: visible;
+}
+
+#PageTitle {
+  font-size: 27px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+
+div.ms-wikicontent.ms-rtestate-field {
+  padding-right: 0px!important;
+}
+
+div.ms-rte-layoutszone-inner {
+  padding: 0px!important;
+  margin: 0px!important;
+  border: 0px!important;
+}
+
+#contentBox {
+  margin: 0px;
+}
+
+#contentRow {
+  padding: 0px;
+}
+
+#child {
+    font-size: 16px;
+}
+
+.child-div {
+  box-sizing: border-box;}
+
+.widget {
+  background-color: white;
+  box-shadow: 2px 2px 2px grey;
+}
+
+div#oil-wow-details tbody tr {
+  height: 15px;
+}
+
+div#oil-wow-details-art tbody tr,
+div#oil-wow-details-big3 tbody tr,
+div#oil-wow-details-all tbody tr {
+  height: 15px;
+}
+
+div#wow-summary-all tbody tr {
+  height: 22px;
+}
+
+div#wow-summary tbody tr {
+  height: 18px;
+}
+
+/* div#wow-supply-demand-total tbody tr { */
+/*   height: 20px; */
+/* } */
+
+/* div#wow-supply-demand-total tr.group { */
+/*   display: none; */
+/* } */
+
+div#wow-supply-demand-total>div>table>tbody>tr.row:last-of-type {
+  font-weight: bold;
+}
+
+/* div table.child-table thead { */
+/*   display: none; */
+/* } */
+
+
+.gridster ul > li {
+  list-style-type: none;
+  z-index: 1!important;
+}
+
+.gridster li header {
+  background: #999;
+  font-size: 15px;
+  line-height: normal;
+  margin-bottom: 0px;
+  cursor: move;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px 0px 2px 0px;
+}
+
+.gridster li header h {
+  font-weight: bold;
+  color: white;
+}
+
+div.gridster li header * {
+  margin: 2px 5px 2px 5px;
+  line-height: 14px;
+  height: 15px;
+}
+
+div .wfi-pf-delta-expo tr.group {
+	display: none;
+}
+
+.gridster li .widget > div {
+  height: calc(100% - 23px);
+}
+
+.gridster li .bold {
+  font-weight: bold;
+}
+
+div.gridster li header .config {
+  cursor: pointer;
+}
+
+div.gridster {
+  /*background-color: #dddddd; */
+}
+
+div.gridster ul li.preview-holder {
+  background: steelblue!important;
+}
+
+div#oil-wow-details-total tbody tr {
+  height: 18px;
+}
+
+div#wow-summary-total tbody tr {
+  height: 17px;
+}
+
+div#wow-summary-total table.depth-0 td {
+  font-weight: 200!important;
+  font-size: 7px;
+}
+
+div#wow-summary-total table.depth-0 thead,
+div#wow-summary-total table.depth-0 thead tr {
+  height: 1px;
+}
+
+#wow-supply-demand-total table.depth-0 td {
+  font-weight: 500!important;
+}
+
+#wow-supply-demand-total table.depth-1 td {
+  font-weight: 200!important;
+  font-size: 7px;
+}
+
+#wow-supply-demand-total table.depth-1 td * {
+  font-weight: 200!important;
+  font-size: 10px;
+}
+
+#wow-supply-demand-total table.depth-2 td * {
+  font-weight: 200!important;
+  font-size: 9px;
+}
+
+/* #wow-supply-demand-total * { */
+/*   font-weight: 300!important; */
+/* } */
+
+#wow-supply-demand-total .clickable-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.clickable-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#wow-supply-demand-total-ver2 .clickable-button:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#OVER div.wfidatatable.child-view {
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  background-color: #ECECEC;
+  position: fixed;
+  display: block;
+  overflow: auto;
+}
+
+#OVER div.wfidatatable.child-view div.dlgTitle {
+  font-size: 13px;
+  color: #000;
+  overflow: hidden;
+  padding: 12px 21px 15px 13px;
+}
+
+#OVER div.wfidatatable.child-view div.dlgTitle h1 {
+  font-size: 18px;
+}
+
+#OVER div.wfidatatable.child-view table#content span.multiselect-native-select .btn-group>button,
+#OVER div.wfidatatable.child-view table#content span.multiselect-native-select .btn-group>.multiselect-container {
+  padding: 0px;
+  width: 100%;
+  border-radius: 0px;
+  border: 1px solid #99B0C1
+}
+
+#OVER div.wfidatatable.child-view table#content>tbody>tr>td>div>div {
+  height: calc(100% - 23px);
+}
+
+#OVER div.wfidatatable table#content tr .wfi-plot-chart tr {
+    margin: 20px;
+    height: 15px;
+}

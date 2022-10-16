@@ -1,0 +1,209 @@
+/* rolling stats plots*/
+div.wfi-plot {
+  font: 10px sans-serif;
+}
+
+div.wfi-plot p.title {
+  font-weight: bold;
+  padding: 5px 0px 5px 0px;
+}
+
+div.wfi-plot div.tooltip {
+  position: fixed;
+}
+
+div.wfi-plot td.zoom-scale {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+div.wfi-plot div.legend-text {
+  line-height: 20px;
+}
+
+div.wfi-plot div.legend-text a.positive{
+  color: green;
+}
+
+div.wfi-plot div.legend-text a.negative{
+  color: red;
+}
+
+div.wfi-plot div.top-bar-1 {
+  justify-content: space-between;
+  border: solid 1px #bbb;
+  background-color: rgba(236, 236, 236, 0.95);
+}
+
+div.wfi-plot div.time-frame td {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+div.wfi-plot div.time-frame input {
+  box-sizing: border-box;
+  border: solid 1px #bbb;
+  height: 100%;
+  text-align: center;
+  type: date;
+  background-color: white;
+}
+
+div.wfi-plot div.time-frame input::placeholder {
+  color: grey;
+}
+
+div.wfi-plot div.top-bar div.rtype{
+  border: none;
+}
+
+div.wfi-plot div.top-bar div.rtype select{
+  background-color: white;
+}
+
+div.wfi-plot div.top-bar div.legend-bar{
+  justify-content: flex;
+}
+
+div.wfi-plot svg {
+  pointer-events: all;
+}
+
+div.wfi-plot .axis path,
+div.wfi-plot .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+div.wfi-plot .axis .tick text {
+  white-space: pre;
+}
+
+div.wfi-plot .x.axis path {
+  /* display: none;*/
+}
+
+
+div.wfi-plot .line {
+  fill: none;
+  stroke: green;
+  stroke-width: 1.5px;
+}
+
+div.wfi-plot .line.port-u {
+  fill: none;
+  stroke: green;
+  stroke-width: 1.5px;
+}
+
+div.wfi-plot .area {
+  fill: steelblue;
+  fill-opacity: 0.5;
+  z-index: -10;
+}
+
+div.wfi-plot .line.port-d {
+  fill: none;
+  stroke: green;
+  strok-opacity: 0.5;
+  stroke-width: 1.0px;
+}
+
+div.wfi-plot circle {
+  fill: green;
+}
+
+/* .line.bmk { */
+/*     fill: none; */
+/*     stroke: steelblue; */
+/*     stroke-width: 1.5px; */
+/* } */
+
+/* circle.bmk { */
+/*     fill: steelblue; */
+/*     stroke: none; */
+/* } */
+
+/* .line.bmk-p { */
+/*     fill: none; */
+/*     stroke: red; */
+/*     stroke-width: 1.5px; */
+/* } */
+
+/* circle.bmk-port { */
+/*     fill: red; */
+/*     stroke: red; */
+/* } */
+
+div.wfi-plot .tick line {
+  opacity: 0.2;
+}
+
+div.wfi-plot svg.chart-main,
+div.wfi-plot svg.chart-navigator {
+  display: inline-block;
+  margin: 0px;
+  position: relative;
+}
+
+div.wfi-plot svg.chart-navigator g.area-wrap {
+  strok-opacity: 1;
+  stroke-width: 1.0px;
+  stroke: black;
+}
+
+div.wfi-plot svg.chart-navigator{
+  opacity: 1;
+}
+
+div.wfi-plot svg.chart-navigator:hover{
+  opacity: 1;
+}
+
+div.wfi-plot .chart-navigator .brush {
+  stroke: steelblue;
+  fill: steelblue;
+  fill-opacity: 0.2;
+}
+
+div.wfi-plot .chart-navigator .brush .overlay {
+  stroke: transparent;
+  fill: transparent;
+  fill-opacity: 0.0;
+}
+
+div.wfi-plot rect.plot-area {
+  pointer-events: all;
+  display: inline;
+  z-index: 10;
+}
+
+div.wfi-plot line.guideline {
+  fill: none;
+  stroke: black;
+  opacity: 0.5;
+  stroke-width: 1.5px;
+}
+
+
+div.wfi-plot svg.chart-navigator .area-wrap line.upper-line {
+  stroke-width: 2.0px;
+  stroke: black;
+}
+
+div.wfi-plot g.y.axis path.domain {
+  stroke: none;
+}
+
+div.wfi-plot div.tooltip {
+  background-color: rgba(70, 130, 180, 0.3);
+  display: flex;
+  padding-left: 2px;
+  flex-direction: column;
+  float: left;
+  padding-left: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px
+}

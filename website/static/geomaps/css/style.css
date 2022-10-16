@@ -1,0 +1,93 @@
+#sideNavBox, #titleAreaBox {
+  display: none;
+}
+
+#s4-titlerow
+{
+    display: none !important;
+}
+
+#s4-workspace.ms-core-overlay {
+  overflow: visible;
+}
+
+* {
+  font-size: 11px;
+  font-family: "Segoe UI", "Segoe", "Tahoma", "Helvetica", "Arial", "sans-serif";
+}
+#contentBox {
+  margin: 0px;
+}
+
+#contentRow {
+  padding: 0px;
+}
+
+#child {
+    font-size: 16px;
+}
+
+.child-div {
+  box-sizing: border-box;}
+
+.widget {
+  background-color: white;
+  box-shadow: 2px 2px 2px grey;
+}
+
+#PageTitle {
+  font-size: 27px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+#ship-side-bar td {
+  font-size: 15px;
+  color: white;
+}
+
+#ship-side-bar td a {
+  font-size: 15px;
+  color: gold;
+  padding: 0px;
+}
+
+.side-bar-content .button {
+    background-color: inherit;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.side-bar-content .button:hover {
+  background-color: #FFFFFF!important;
+  color: #000000;
+}
+
+.zoom-button-collection {
+  position: absolute;
+  //top: calc(100% - 200px);
+  bottom: 170px;
+}
+
+#search-bar {
+  position: absolute;
+  top: 40px;
+  left: 5px;
+  width: 250px;
+}
+
+/* #search-bar #search_text { */
+/*   width: 210px; */
+/* } */
+
+/* #search-bar #search_button { */
+/*   position: inherit; */
+/*   width: 40px; */
+/* } */

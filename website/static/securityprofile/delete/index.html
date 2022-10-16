@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta charset="utf-8">
+    <!-- <script src="./jsscript.js", type="text/javascript"> </script> -->
+    <script src="./static/src/jquery/jquery.js"></script>
+
+    <link href="./static/src/jquery/stylesheets/jquery-ui.css" rel="stylesheet">
+    <script src="./static/src/jquery/jquery-ui.js" type="text/javascript"></script>
+
+    <script src="./static/src/numeral/numeral.js" type="text/javascript"></script>
+
+    <script src="./static/src/knockout-3.4.2/knockout.debug.js" type="text/javascript"></script>
+
+    <link href="./static/src/datatable/dataTables.css" rel="stylesheet">
+    <script src="./static/src/datatable/dataTables.js" type="text/javascript"></script>
+
+    <link href="./static/src/chosen/chosen.css" rel="stylesheet">
+    <script src="./static/src/chosen/chosen.jquery.js" type="text/javascript"></script>
+
+    <link href="./static/src/vis-4.21.0/vis.css" rel="stylesheet">
+    <script src="./static/src/vis-4.21.0/vis.js", type="text/javascript"></script>
+
+    <script src="./static/src/handlebars/handlebars-v4.0.11.js" type="text/javascript"></script>
+
+    <script src="./static/src/spjs_utility/spjs-utility.js", type="text/javascript"></script>
+    <script src="./static/src/d3/d3.js" type="text/javascript"></script>
+
+    <script src="./static/src/loadingIcon/loadingIcon.js" type="text/javascript"></script>
+
+    <script src="./static/src/widget/drag.drop/drag.drop.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/secselect/secselect.css" rel="stylesheet">
+    <script src="./static/src/widget/secselect/secselect.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/plotchart/plotchart.css" rel="stylesheet">
+    <script src="./static/src/widget/plotchart/plotchart.js" type="text/javascript"></script>
+
+    <script src="./static/src/widget/finraiframe/finra_iframe.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/seclist/seclist.css" rel="stylesheet">
+    <script src="./static/src/widget/seclist/seclist.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/research.timeline/research.timeline.css" rel="stylesheet">
+     <script src="./static/src/widget/research.timeline/research.timeline.js" type="text/javascript"></script>
+
+    <link href="./static/src/widget/secinfo/secinfo.css" rel="stylesheet">
+    <script src="./static/src/widget/secinfo/secinfo.js" type="text/javascript"></script>
+
+    <script src="./static/securityprofile/src/searchbar.js" type="text/javascript"></script>
+    <link href="./static/securityprofile/src/searchbar.css" rel="stylesheet">
+
+    <script src="./static/securityprofile/src/script.js" type="text/javascript"></script>
+    <link href="./static/securityprofile/src/style.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <ul id="search-bar" class="nav">
+      <li id="setting">
+        <a href="#">
+          <img src="./static/src/images/settings.png">
+        </a>
+      </li>
+      <li>
+        <div class="search" id="search">
+          <input id="search_text" type="text" placeholder="Search company..."/>
+          <button id="search_button" type="button" style=""/>
+        </div>
+      </li>
+    </ul>
+
+    <div id="body-panel" display="flex">
+      <div id="sec-panel" class="wfi-widget" display="flex" style="width:1360px; height:420px">
+        <div id="security-select" style="width:260px; display:inline-block; height:100%;">
+        </div>
+
+        <div id="tabs" class="child-diav"
+             style="width:1100px; height:100%;">
+          <ul>
+            <li><a class="widget-title" href="#tabs-1">Overview</a></li>
+            <li><a class="widget-title" href="#tabs-2">Trading</a></li>
+            <li><a class="widget-title" href="#tabs-3">CashFlows</a></li>
+          </ul>
+          <div id="tabs-1" style="float:left">
+            <div id="sec-info"
+                 style="width:520px; height:250px; left:0px; position: absolute;">
+            </div>
+            <div id="plot" risk_type="cumulative-px" sid="5"
+                 style="width:530px; height:340px; left:550px; position: absolute;"
+                 navH="50" zoombarH="40">
+            </div>
+          </div>
+          <div id="tabs-2" style="padding:0px">
+            <div id="finra-trace" style="width:100%; height:390px"></div>
+          </div>
+          <div id="tabs-3">
+          </div>
+        </div>
+      </div>
+
+      <br/>
+      <br/>
+
+      <div id="sec-time-line" class="wfi-widget" style="width:1360px;"></div>
+
+      <br/>
+      <br/>
+
+    </div>
+    <br/>
+    <br/>
+
+
+    <div id="folder-panel" display="inline-block">
+      <span class="ms-rteFontSize-2">Research Folder</span><br/>
+      <br/>
+      <div class="research_link">
+        <a></a>
+        <br/>
+        <div>
+          <em id="folder-name"></em> </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+
+div.wfi-pf-ccy-risk table.dataTable .clickable {
+  cursor: pointer;
+}
+
+div.wfi-pf-ccy-risk table.dataTable .clickable:hover {
+  text-decoration: underline;
+}
+
+div.wfi-pf-ccy-risk table.dataTable .number {
+  text-align: right;
+}
+
+div.wfi-pf-ccy-risk table.dataTable tbody th,
+div.wfi-pf-ccy-risk table.dataTable tbody td {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+div.wfi-pf-ccy-risk #value {
+  text-align: right;
+}
+
+div.wfi-pf-ccy-risk table {
+  table-layout: fixed;
+}
+
+div.wfi-pf-ccy-risk table td {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+div.wfi-pf-ccy-risk table tr th {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}

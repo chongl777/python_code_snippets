@@ -1,0 +1,111 @@
+.title {
+  background-color: rgba(70, 130, 180, 0.8)!important;
+}
+
+#PageTitle {
+  background-color: rgba(70, 130, 180, 1)!important;
+  color: white;
+}
+
+.group {
+  background-color: rgba(70, 130, 180, 0.5)!important;
+}
+
+#pf-position-pnl table.depth-2>tbody>tr.odd {
+  background-color: rgba(70, 130, 180, 0.1)!important;
+}
+
+table tr.even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+div.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] {
+  background-color: rgba(70, 130, 180, 0.5)!important;
+}
+
+div#pf-summary table.dataTable>tbody>tr[role="row"].odd,
+div#processed-file-gs table.dataTable>tbody>tr[role="row"].odd,
+div#pf-margin table.dataTable>tbody>tr[role="row"].odd {
+  background-color: white!important;
+}
+
+div#pf-summary table.dataTable>tbody>tr[role="row"].even,
+div#processed-file-gs table.dataTable>tbody>tr[role="row"].even,
+div#pf-margin table.dataTable>tbody>tr[role="row"].even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+div#processed-file-gs table.dataTable>thead>tr>th {
+  text-align: center;
+}
+
+div#pf-ccy-risk .wfi-data-table>div>table.dataTable>tbody>tr[role="row"],
+div#pf-summary .wfi-data-table>div>table.dataTable>tbody>tr[role="row"] {
+  background-color: white!important;
+}
+
+div#pf-ccy-risk .wfi-data-table>div>table.dataTable>tbody>tr[role="row"].even,
+div#pf-summary .wfi-data-table>div>table.dataTable>tbody>tr[role="row"].even{
+  background-color: rgba(245, 245, 245, 1)!important;
+}
+
+#pf-position-pnl table.rlevel-3>tbody>tr.odd {
+  background-color: rgba(85, 135, 162, 0.1)!important;
+}
+
+#pf-position-pnl table.rlevel-3>tbody>tr.even {
+  background-color: rgba(85, 135, 162, 0.15)!important;
+}
+
+#pf-position-pnl table.rlevel-4>tbody>tr.odd,
+#pf-position-pnl table.rlevel-4>tbody>tr.even {
+  background-color: rgba(85, 135, 162, 0.3)!important;
+}
+
+#pf-position-pnl table.rlevel-5>tbody>tr.odd,
+#pf-position-pnl table.rlevel-5>tbody>tr.even {
+  background-color: rgba(85, 135, 162, 0.5)!important;
+}
+
+#pf-position-pnl table.rlevel-6>tbody>tr.odd,
+#pf-position-pnl table.rlevel-6>tbody>tr.even {
+  background-color: rgba(85, 135, 162, 0.75)!important;
+}
+
+#pf-position-pnl table.rlevel-7>tbody>tr.odd,
+#pf-position-pnl table.rlevel-7>tbody>tr.even {
+  background-color: rgba(85, 135, 162, 0.9)!important;
+}
+
+
+div#pf-txns .wfi-data-table>div>table.dataTable>tbody>tr[role="row"][class="even"] {
+  background-color: rgb(255, 255, 255)!important;
+}
+
+div#pf-txns .wfi-data-table>div>table.dataTable>tbody>tr[role="row"][class="odd"] {
+  background-color: rgba(70, 130, 180, 0.1)!important;
+}
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+div.wfi-data-table .positive {
+  color: green;
+}
+
+div.wfi-data-table .negative {
+  color: red;
+}
+
+/* div.wfi-data-table .child-table.depth-3 { */
+/*   color: blue; */
+/* } */
+
+div.wfi-data-table .child-table.depth-4 td * {
+  font-size: 8px !important;
+}
+
+.wfi-pf-beta table.child-table.depth-1>tbody>tr[role="row"] {
+  background-color: rgba(70, 130, 180, 0.3)!important;
+}

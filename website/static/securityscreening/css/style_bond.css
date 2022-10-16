@@ -1,0 +1,155 @@
+#sideNavBox, #titleAreaBox {
+  display: none;
+}
+
+#s4-titlerow
+{
+    display: none !important;
+}
+
+#s4-workspace.ms-core-overlay {
+  overflow: visible;
+}
+
+* {
+  font-size: 11px;
+  font-family: "Segoe UI", "Segoe", "Tahoma", "Helvetica", "Arial", "sans-serif";
+}
+
+div.ms-wikicontent.ms-rtestate-field {
+  padding-right: 0px!important;
+}
+
+div.ms-rte-layoutszone-inner {
+  padding: 0px!important;
+  margin: 0px!important;
+  border: 0px!important;
+}
+
+#contentBox {
+  margin: 0px;
+}
+
+#contentRow {
+  padding: 0px;
+}
+
+#child {
+    font-size: 16px;
+}
+
+.child-div {
+  box-sizing: border-box;}
+
+.widget {
+  background-color: white;
+  box-shadow: 2px 2px 2px grey;
+}
+
+.gridster li {
+  list-style-type: none;
+}
+
+div.widget header {
+  background: #999;
+  font-size: 15px;
+  line-height: normal;
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px 0px 2px 0px;
+}
+
+div.widget header h
+{
+  font-weight: bold;
+  color: white;
+}
+
+div.widget header *,
+div.widget header h {
+  margin: 2px 5px 2px 5px;
+  line-height: 14px;
+  height: 15px;
+}
+
+.gridster li .widget > div {
+  height: calc(100% - 23px);
+}
+
+div.widget>header .config {
+  cursor: pointer;
+}
+
+#PageTitle {
+  font-size: 27px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+div#pf-position-pnl.wfi-data-table>div>table>thead>tr>th {
+  text-align: center;
+  padding: 1px;
+}
+
+div.wfi-data-table .value {
+  white-space: nowrap;
+  word-spacing: 3px;
+}
+div.widget {
+  margin: 20px;
+}
+
+.widget tbody tr.rlevel-0 * {
+  font-weight: 300!important;
+}
+
+div.wfi-data-table div.tooltip {
+    background-color: rgba(70, 130, 180, 0.9);
+    position: fixed;
+    display: flex;
+    padding-left: 2px;
+    flex-direction: column;
+    float: left;
+    width: auto;
+    height: auto;
+    padding-left: 2px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    z-index: 100;
+    color: white;
+}
+
+div.wfi-data-table div.tooltip td {
+  padding: 8px;
+}
+
+div.wfi-data-table th div.hover {
+  cursor: help;
+}
+
+td svg#save:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+table.wfi-control-panel-table ul.multiselect-container li label {
+  padding: 0px 0px 0px 6px;
+  display: inline-block!important;
+  width: 90%!important;
+  vertical-align: super;
+}
+
+table.wfi-control-panel-table ul.multiselect-container li label input {
+  display: none;
+}
+
+svg.delete-query:hover {
+  cursor: pointer;
+}
+
+.sid-clickable {
+  cursor: pointer;
+}

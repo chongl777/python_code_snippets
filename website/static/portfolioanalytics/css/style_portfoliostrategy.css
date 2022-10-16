@@ -1,0 +1,205 @@
+#wait-overlay.wait {
+  display:flex;
+  background-color: white;
+  /* filter: blur(160px); */
+}
+
+#wait-overlay.ready {
+  display: none;
+}
+
+#contentBox {
+  margin: 0px;
+}
+
+#contentRow {
+  padding: 0px;
+}
+
+div.gridster ul.task-card-list {
+  padding: 0px;
+}
+
+li.task-card {
+  margin: 30px;
+}
+
+#sideNavBox, #titleAreaBox {
+  display: none;
+}
+
+#s4-titlerow
+{
+    display: none !important;
+}
+
+#s4-workspace.ms-core-overlay {
+  overflow: visible;
+}
+
+* {
+  font-size: 11px;
+  font-family: "Segoe UI", "Segoe", "Tahoma", "Helvetica", "Arial", "sans-serif";
+}
+
+div#pf-position-pnl table.depth-1>tbody>tr[role="row"] *,
+div#pf-position-pnl table.depth-2>tbody>tr[role="row"] * {
+  font-style: normal!important;
+  font-weight: bold!important;
+}
+
+div#pf-position-pnl table.dataTable.no-footer {
+  border-bottom: 0.5px solid #111;
+}
+
+div table.depth-1 * {
+  font-style: normal!important;
+  font-weight: 400!important;
+}
+
+div table.depth-4 * {
+  font-style: italic!important;
+}
+
+div.ms-wikicontent.ms-rtestate-field {
+  padding-right: 0px!important;
+}
+
+div.ms-rte-layoutszone-inner {
+  padding: 0px!important;
+  margin: 0px!important;
+  border: 0px!important;
+}
+
+div#pf-position-pnl table.dataTable .sid-clickable:hover {
+  text-decoration: underline!important;
+}
+
+div#pf-position-pnl table.dataTable .sid-clickable {
+  cursor: pointer;
+}
+#child {
+    font-size: 16px;
+}
+
+.child-div {
+  box-sizing: border-box;}
+
+.widget {
+  background-color: white;
+  box-shadow: 2px 2px 2px grey;
+}
+
+.gridster li {
+  list-style-type: none;
+}
+
+.gridster li header,
+div.widget header {
+  background: #999;
+  font-size: 15px;
+  line-height: normal;
+  margin-bottom: 0px;
+  cursor: move;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 2px 0px 2px 0px;
+}
+
+.gridster li header h,
+div.widget header h
+{
+  font-weight: bold;
+  color: white;
+}
+
+div.gridster li header *,
+div.widget header h {
+  margin: 2px 5px 2px 5px;
+  line-height: 14px;
+  height: 15px;
+}
+
+.gridster li .widget > div {
+  height: calc(100% - 23px);
+}
+
+div.gridster li header .config {
+  cursor: pointer;
+}
+
+#PageTitle {
+  font-size: 27px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+div.gridster ul li.preview-holder {
+  background: steelblue!important;
+}
+
+div#pf-position-pnl.wfi-data-table>div>table>thead>tr>th {
+  text-align: center;
+  padding: 1px;
+}
+
+div.wfi-data-table .value {
+  white-space: nowrap;
+  word-spacing: 3px;
+}
+
+div.wfi-data-table .child-table.rlevel-1 td * {
+  font-size: 8px !important;
+}
+
+#pf-txns .child-table.depth-1>tbody * {
+  font-size: 10px !important;
+  font-weight: 900;
+}
+
+#pf-txns table.child-table.depth-1>tbody>tr.child-tbl>td>table.depth-2 * {
+  font-size: 8px !important;
+}
+
+#OVER div.wfidatatable #content thead>tr>th {
+  text-align: center;
+}
+
+#OVER div.wfidatatable #content input {
+  width: 100%;
+}
+
+#OVER div.wfidatatable.args-dlg table#content tr>td>select,
+#OVER div.wfidatatable.args-dlg table#content tr>td>input {
+  width: 95%;
+}
+
+
+#OVER {
+  width:100%;
+  height:100%;
+  left:0;/*IE*/
+  top:0;
+  z-index: 100;
+  position:fixed;
+  background-color: rgba(153, 153, 153, 0.4);
+}
+
+
+div#pf-position-pnl tt{
+  font-family: monospace;
+}
+
+div#pf-position-pnl div.strategy {
+  text-align: center;
+  letter-spacing: 1.5px;
+}
+
+.wfi-control-panel-table td.ParamEntryCell .multiselect-container input {
+  width: 20px!important;
+}
+
+.multiselect-container>li>a>label {
+  padding-left: 30px;
+}

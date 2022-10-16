@@ -1,0 +1,26 @@
+
+.signal-emc {
+  display: inline-block;
+}
+
+
+.signal-emc #content .content-table>thead * {
+  /* display: none; */
+  font-size: 0px;
+}
+
+.signal-emc table td {
+  padding-left: 0px!important;
+}
+
+.signal-emc table tr.group td {
+  padding-left: 1px!important;
+}
+
+.signal-emc table td.field {
+  padding-left: 10px!important;
+}
+
+.signal-emc table tr.group {
+    height: 24px!important;
+}

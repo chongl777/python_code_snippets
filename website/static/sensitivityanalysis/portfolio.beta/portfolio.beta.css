@@ -1,0 +1,160 @@
+.wfi-pf-beta #content-table>tbody>tr>td {
+  padding: 10px;
+}
+
+.wfi-pf-beta>header * {
+  font-size: 11px;
+}
+
+.wfi-pf-beta #content-table>tbody>tr>td div {
+  display: inline-block;
+}
+
+.wfi-pf-beta #search-bar {
+  border-style: solid;
+  border-color: steelblue;
+  border-width: 2px;
+  height: 24px;
+  width: 160px;
+}
+
+.wfi-pf-beta #search-bar button {
+  display: none;
+}
+
+.wfi-pf-beta #search-bar input {
+  width: 100%;
+}
+
+.wfi-pf-beta input {
+  width: 160px;
+}
+
+.wfi-pf-beta #content-table>tbody>tr>td {
+  vertical-align: top;
+}
+
+.wfi-pf-beta #content-table>tbody>tr>td header {
+  height: 24px;
+}
+
+.wfi-pf-beta #content-table>tbody>tr>td header img {
+  width: 20px;
+}
+
+.wfi-pf-beta .sub-unit {
+  width: 100%;
+  //height: 100%;
+  height: 600px;
+}
+
+.wfi-pf-beta * {
+  font-size: 9px;
+}
+
+.wfi-pf-beta #search-bar input {
+  color: black;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.wfi-pf-beta .dataTables_wrapper {
+  //width: 100%
+}
+
+.wfi-pf-beta div.dataTables_scroll {
+  //position: relative;
+  //width: 100%; !important
+}
+
+.wfi-pf-beta .dataTables_scrollHead {
+  display: table-caption !important;
+}
+
+.wfi-pf-beta .dataTables_scrollBody {
+  //display: table-caption !important;
+}
+
+
+.wfi-pf-beta table.dataTable tbody th,
+.wfi-pf-beta table.dataTable tbody td {
+   // white-space: nowrap;
+}
+
+.wfi-pf-beta table.dataTable thead th {
+  text-align: center; !important
+}
+
+.wfi-pf-beta table.dataTable div.value {
+  text-align: right;
+  width: 100%;
+  padding-right: 20px;
+}
+
+.wfi-pf-beta .dataTables_scrollBody>table>thead * {
+  height: 0px;
+  font-size: 0px;
+}
+
+.wfi-pf-beta .beta.value {
+  border-left: solid;
+  border-width: 1px;
+}
+
+.wfi-pf-beta .first-column {
+  width: 80%;
+  overflow: hidden;
+}
+
+.wfi-pf-beta .row-clickable:hover {
+  background-color: gray !important;
+}
+
+.wfi-pf-beta .row-clickable {
+  cursor: pointer;
+}
+
+.wfi-pf-beta .row-clicked {
+  background-color: #ccc !important;
+}
+
+.wfi-pf-beta #table1 table.simpletable {
+  width: 100%;
+  height: 200px;
+}
+
+.wfi-pf-beta #table2 table.simpletable {
+  width: 100%;
+  height: 100px;
+}
+
+.wfi-pf-beta div.regress-table {
+  display: inline-block;
+  position: relative;
+}
+
+.wfi-pf-beta div.wfi-plot-chart {
+  height: 90%;
+}
+
+.wfi-pf-beta div.pf-alloc table {
+  table-layout: fixed;
+}
+
+.wfi-pf-beta div#pf-alloc>.dataTables_wrapper {
+  overflow-y: scroll;
+  height: calc(100% - 60px);
+}
+
+.wfi-pf-beta table.dataTable tbody th, table.dataTable tbody td {
+  padding: 0px 0px;
+}
+
+.wfi-pf-beta #input-params * {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.wfi-pf-beta #input-params td {
+  padding-right: 10px;
+}

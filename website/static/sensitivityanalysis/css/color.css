@@ -1,0 +1,101 @@
+/* 251, 96, 66 */
+/* 0, 140, 186 */
+
+.title {
+  background-color: rgba(0, 140, 186, 0.8)!important;
+}
+
+.group {
+  background-color: rgba(0, 140, 186, 0.5)!important;
+}
+
+#pf-position-pnl table.depth-2>tbody>tr.odd {
+  background-color: rgba(0, 140, 186, 0.1)!important;
+}
+
+a.widget-title {
+  background-color: rgba(0, 140, 186, 0.8);
+}
+
+table tr.even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+div.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] {
+  background-color: rgba(0, 140, 186, 0.5)!important;
+}
+
+div#processed-file-gs table.dataTable>tbody>tr[role="row"].odd,
+div#pf-margin table.dataTable>tbody>tr[role="row"].odd {
+  background-color: white!important;
+}
+
+div#processed-file-gs table.dataTable>tbody>tr[role="row"].even,
+div#pf-margin table.dataTable>tbody>tr[role="row"].even {
+  background-color: rgba(245,245,245, 1)!important;
+}
+
+div#processed-file-gs table.dataTable>thead>tr>th {
+  text-align: center;
+}
+
+div#pf-ccy-risk.wfi-data-table>div>table.dataTable>tbody>tr[role="row"],
+div#pf-summary.wfi-data-table>div>table.dataTable>tbody>tr[role="row"] {
+  background-color: white!important;
+}
+
+div#pf-ccy-risk.wfi-data-table>div>table.dataTable>tbody>tr[role="row"].even,
+div#pf-summary.wfi-data-table>div>table.dataTable>tbody>tr[role="row"].even{
+  background-color: rgba(245, 245, 245, 1)!important;
+}
+
+div#pf-position-pnl.wfi-data-table table.child-table.depth-1>tbody>tr[role="row"] {
+  background-color: rgba(0, 140, 186, 0.3)!important;
+}
+
+#PageTitle {
+  background-color: rgba(0, 140, 186, 1);
+  color: white;
+}
+
+table.dataTable tr.group td {
+  background-color: transparent!important;
+}
+
+div.wfi-data-table .positive {
+  color: green;
+}
+
+div.wfi-data-table .negative {
+  color: red;
+}
+
+div.wfi-data-table .child-table.depth-3 {
+  color: blue;
+}
+
+div.wfi-data-table .child-table.depth-4 td * {
+  font-size: 8px !important;
+}
+
+.wfi-pf-beta table.child-table.depth-1>tbody>tr[role="row"] {
+  background-color: rgba(0, 140, 186, 0.3)!important;
+}
+
+.wfi-pf-beta button#calculate-button {
+  color: #0099CC;
+  background: transparent;
+  border: 2px solid #0099CC;
+  border-radius: 6px;
+
+  -webkit-transition-duration: 0.1s; /* Safari */
+  transition-duration: 0.1s;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.wfi-pf-beta button#calculate-button:hover {
+      background-color: #008CBA;
+      color: white;
+ }

@@ -1,0 +1,110 @@
+#sideNavBox, #titleAreaBox {
+  display: none;
+}
+
+#s4-titlerow
+{
+    display: none !important;
+}
+
+#s4-workspace.ms-core-overlay {
+  overflow: visible;
+}
+
+* {
+  font-size: 11px;
+  font-family: "Segoe UI", "Segoe", "Tahoma", "Helvetica", "Arial", "sans-serif";
+}
+#contentBox {
+  margin: 0px;
+}
+
+#contentRow {
+  padding: 0px;
+}
+
+#child {
+    font-size: 16px;
+}
+
+.child-div {
+  box-sizing: border-box;}
+
+.widget {
+  background-color: white;
+  box-shadow: 2px 2px 2px grey;
+}
+
+#PageTitle {
+  font-size: 27px;
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+#ship-side-bar td {
+  font-size: 15px;
+  color: white;
+}
+
+#ship-side-bar td a {
+  font-size: 15px;
+  color: gold;
+  padding: 0px;
+}
+
+.side-bar-content .button {
+    background-color: inherit;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.side-bar-content .button:hover {
+  background-color: #FFFFFF!important;
+  color: #000000;
+}
+
+#pages #sortable li {
+  float: left;
+  height: 400px;
+  width: 300px;
+  margin: 10px;
+}
+
+#pages ul#sortable {
+  width: 1000px;
+  list-style-type: none;
+}
+
+#pages ul#sortable li span {
+  display: none;
+}
+
+#pages ul#sortable li.ui-selected .handle {
+  width: 298px;
+  // height: 398px;
+  height: 20px;
+  background-color: #232242;
+  opacity: 0.7;
+  position: absolute;
+}
+
+#pages ul#sortable div.tile {
+  background-color: rgba(168,168,168, 0.5);
+  font-size: 30px;
+  padding-top: 160px;
+}
+
+.wfi-control-panel-table td.ParamEntryCell .multiselect-container input {
+  width: 20px!important;
+}
+
+.multiselect-container>li>a>label {
+  padding-left: 30px;
+}

@@ -1,0 +1,177 @@
+div.interactive-plot {
+  font: 10px sans-serif;
+}
+
+div.interactive-plot p.title {
+  font-weight: bold;
+  padding: 5px 0px 5px 0px;
+}
+
+div.interactive-plot td.zoom-scale {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+div.interactive-plot div.legend-text {
+  line-height: 20px;
+}
+
+div.interactive-plot div.top-zoom-bar #zoom-bar-holder{
+  justify-content: space-between;
+  border: solid 1px #bbb;
+  background-color: rgba(236, 236, 236, 0.95);
+}
+
+div.interactive-plot text, div.legend-text {
+  font-size: 9px;
+  cursor: default;
+}
+
+div.interactive-plot div.time-frame td {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+div.interactive-plot div.time-frame input {
+  box-sizing: border-box;
+  border: solid 1px #bbb;
+  height: 80%;
+  text-align: center;
+  background-color: white;
+  vertical-align: top;
+  font-size: 10px;
+}
+
+div.interactive-plot div.time-frame input::placeholder {
+  color: grey;
+}
+
+div.interactive-plot div.top-bar div.rtype{
+  border: none;
+}
+
+div.interactive-plot {
+  height: 100%;
+}
+
+div.interactive-plot div.top-bar div.rtype select{
+  background-color: white;
+}
+
+div.interactive-plot div.top-bar div.legend-bar{
+  justify-content: flex;
+}
+
+div.interactive-plot svg {
+  pointer-events: all;
+}
+
+div.interactive-plot .axis path,
+div.interactive-plot .axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+div.interactive-plot .axis .tick text {
+  white-space: pre;
+}
+
+div.interactive-plot .x.axis path {
+  /* display: none;*/
+}
+
+div.interactive-plot .area {
+  fill: steelblue;
+  fill-opacity: 0.5;
+  z-index: -10;
+}
+
+div.interactive-plot .tick line {
+  opacity: 0.2;
+}
+
+div.interactive-plot svg.chart-main,
+div.interactive-plot svg.chart-navigator {
+  display: table-row;
+  margin: 0px;
+  position: relative;
+}
+
+div.interactive-plot svg.chart-navigator g.area-wrap {
+  strok-opacity: 1;
+  stroke-width: 1.0px;
+  stroke: black;
+}
+
+div.interactive-plot svg.chart-navigator{
+  opacity: 1;
+}
+
+div.interactive-plot svg.chart-navigator:hover{
+  opacity: 1;
+}
+
+div.interactive-plot .chart-navigator .brush {
+  stroke: steelblue;
+  fill: steelblue;
+  fill-opacity: 0.2;
+}
+
+div.interactive-plot .chart-navigator .brush .overlay {
+  stroke: transparent;
+  fill: transparent;
+  fill-opacity: 0.0;
+}
+
+div.interactive-plot rect.plot-area {
+  pointer-events: all;
+  display: inline;
+  z-index: 10;
+}
+
+div.interactive-plot line.guideline {
+  fill: none;
+  stroke: black;
+  opacity: 0.5;
+  stroke-width: 1.5px;
+}
+
+
+div.interactive-plot svg.chart-navigator .area-wrap line.upper-line {
+  stroke-width: 2.0px;
+  stroke: black;
+}
+
+div.interactive-plot g.yaxis path.domain {
+  stroke: none;
+}
+
+div.interactive-plot div.tooltip,
+div.interactive-plot div.tooltip-tag {
+  background-color: rgba(70, 130, 180, 0.3);
+  position: fixed;
+  display: flex;
+  padding-left: 2px;
+  flex-direction: column;
+  float: left;
+  width: auto;
+  height: auto;
+  padding-left: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .2);
+  border-radius: 6px;
+  z-index: 100;
+}
+
+div.interactive-plot div.tooltip .val {
+  padding-left: 10px;
+}
+
+div.interactive-plot text.right-yaxis-text {
+  text-anchor: end!important;
+}
+
+div.interactive-plot text.left-yaxis-text {
+  text-anchor: start!important;
+}

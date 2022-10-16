@@ -1,0 +1,33 @@
+.search-bar div.wfi-autocomplete {
+  width: 500px !important;
+}
+
+ul.ui-autocomplete {
+  width: 360px !important;
+}
+
+ul.ui-autocomplete * {
+  font-size: 9;
+}
+
+ul.ui-autocomplete tr.ui-menu-item {
+  display: table-row;
+}
+
+ul.ui-autocomplete td {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+ul.ui-autocomplete td div {
+  overflow: hidden;
+}
+
+ul.ui-autocomplete li.ui-autocomplete-category {
+  font-weight: bold;
+}
+
+ul.ui-autocomplete td {
+  padding-top: 2px!important;
+  padding-bottom: 2px!important;
+}

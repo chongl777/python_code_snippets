@@ -1,0 +1,41 @@
+
+div.wfi-pf-expo-monitor table.dataTable .clickable {
+  cursor: pointer;
+}
+
+div.wfi-pf-expo-monitor table.dataTable .clickable:hover {
+  text-decoration: underline;
+}
+
+div.wfi-pf-expo-monitor table.dataTable .number {
+  text-align: right;
+}
+
+div.wfi-pf-expo-monitor table.dataTable tbody th,
+div.wfi-pf-expo-monitor table.dataTable tbody td {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+div.wfi-pf-expo-monitor .value {
+  text-align: right;
+}
+
+div.wfi-pf-expo-monitor table {
+  table-layout: fixed;
+}
+
+div.wfi-pf-expo-monitor table td {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 0px 10px 0px 10px;
+}
+
+div.wfi-pf-expo-monitor table tr th {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+div.wfi-pf-expo-monitor table .group * {
+  font-weight: bold;
+}

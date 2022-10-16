@@ -1,0 +1,18 @@
+header.title span#download {
+  background-image: url("../../src/images/button-images.svg");
+  background-position-x: -375px;
+  background-position-y: -20px;
+  background-size: initial;
+  background-repeat-x: no-repeat;
+  background-repeat-y: no-repeat;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  height: 15px;
+  width: 20px;
+}
+
+div#buttons {
+  display: flex;
+}
