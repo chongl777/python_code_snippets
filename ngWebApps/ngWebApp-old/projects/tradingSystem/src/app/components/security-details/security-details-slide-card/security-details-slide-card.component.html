@@ -1,0 +1,368 @@
+
+
+<!-- <ngu-carousel #myCarousel [inputs]="carouselTile" [dataSource]="carouselTileItems"
+     (carouselLoad)="carouselTileLoad(myCarousel.activePoint)"> -->
+<ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="securityTileItems">
+
+	<ngu-tile *nguCarouselDef="let item; let i = index">
+    <!-- <div class="tile-title"> {{item.title}} </div> -->
+    <ng-container *ngTemplateOutlet="item.template; context: secInfo"></ng-container>
+	</ngu-tile>
+
+	<button NguCarouselPrev class="leftRs" [style.opacity]="myCarousel.isFirst ? 0.2:1">&lt;</button>
+	<button NguCarouselNext class="rightRs" [style.opacity]="myCarousel.isLast ? 0.2:1">&gt;</button>
+	<ul class="toggle-point" NguCarouselPoint>
+		<li *ngFor="let i of myCarousel.pointNumbers" [class.active]="i==myCarousel.activePoint"
+        (click)="myCarousel.moveTo(i)"></li>
+	</ul>
+</ngu-carousel>
+
+<ng-template #Details let-security="security" let-outstanding="security.marketData.outstandingAmt">
+  <div class="tile-title"> Security Details </div>
+  <div class="tile-template tile-security-info">
+    <div class="row">
+      <div class="field"> SecurityID </div>
+      <div class="value"><a target="_blank"
+              href="https://westfieldinvestment.wfi.local/pfmgmt/sec_profile/security_profile?sid={{security.securityID}}&amp;trading_records=1&amp;fund_id=8158&amp;paper_trade=0">
+        {{security.securityID}}
+      </a></div>
+    </div>
+    <div class="row">
+      <div class="field"> Description </div>
+      <div class="value"> {{security.description}} </div>
+    </div>
+    <div class="row">
+      <div class="field"> ISIN </div>
+      <div class="value"> {{security.isin}} </div>
+    </div>
+    <div class="row">
+      <div class="field"> BBG ID </div>
+      <div class="value"> <a target="bbglinks" href="{{ security.bbg_links }}">{{security.bbg_id}} </a> </div>
+    </div>
+    <div class="row">
+      <div class="field"> Finra ID </div>
+      <div class="value"> {{security.finra_ticker}} </div>
+    </div>
+    <div class="row">
+      <div class="field"> Lien </div>
+      <div class="value"> {{security.payment_rnk}} </div>
+    </div>
+    <div class="row">
+      <div class="field"> Outstanding Amt </div>
+      <div class="value"> {{outstanding.value / 1000000 | number: '1.0-3' }} MM </div>
+    </div>
+    <div class="row">
+      <div class="field"> Industry Level 1 </div>
+      <div class="value"> {{security.industry_level_1}} </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Industry Level 2 </div>
+      <div class="value"> {{security.industry_level_2}} </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #PriceInfo let-security="security"
+             let-priceData="security.marketData.priceData"
+             let-rating="security.marketData.rating"
+             let-shortCost="security.marketData.shortCost">
+  <div class="tile-title"> Market Info </div>
+  <div class="tile-template tile-price-info" >
+    <div class="row">
+      <div class="field"> <a target="bbglinks" href="{{ security.bbg_links+'QMGR'}}">BBG Price</a> </div>
+      <div class="value">
+        <div *ngIf="priceData.bbg_price.price"
+             [class.positive]="priceData.bbg_price.diff>0"
+             [class.negative]="priceData.bbg_price.diff<0"
+             [@slideInOut]="priceData.bbg_price.price">
+          {{ priceData.bbg_price.price | number: '1.3-3' }} <span>({{ priceData.bbg_price.diff | number: '1.3-3' }})</span> @
+          {{ priceData.bbg_price.t_date | date: 'MM-d HH:mm:ss'}}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <a target="_blank"
+           href="https://finra-markets.morningstar.com/BondCenter/BondTradeActivitySearchResult.jsp?ticker={{security.finra_ticker}}">
+          Finra Price
+        </a>
+      </div>
+      <div class="value">
+        <div *ngIf="priceData.finra_price.price"
+             [class.positive]="priceData.finra_price.diff>0"
+             [class.negative]="priceData.finra_price.diff<0"
+             [@slideInOut]="priceData.finra_price.price">
+          {{priceData.finra_price.price | number: '1.3-3' }} <span>({{ priceData.finra_price.diff | number: '1.3-3' }})</span> @
+          {{priceData.finra_price.t_date | date: 'MM-d hh:mm:ss'}}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field"> CapIQ Price </div>
+      <div class="value">
+        <div *ngIf="priceData.capiq_price.price"
+             [class.positive]="priceData.capiq_price.diff>0"
+             [class.negative]="priceData.capiq_price.diff<0"
+             [@slideInOut]="priceData.capiq_price.price">
+          {{priceData.capiq_price.price | number: '1.3-3' }} <span>({{ priceData.capiq_price.diff | number: '1.3-3' }})</span> @
+          {{priceData.capiq_price.t_date | date: 'MM-d hh:mm:ss'}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Comp. Price </div>
+      <div class="value">
+        <div *ngIf="priceData.compositePrice"
+             [class.positive]="priceData.compositeDiff>0"
+             [class.negative]="priceData.compositeDiff<0"
+             [@slideInOut]="priceData.compositePrice">
+          {{priceData.compositePrice | number: '1.3-3' }} <span>({{ priceData.compositeDiff | number: '1.3-3' }})</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Short Status </div>
+      <div class="value">
+        <div style="display:flex; flex-direction:row; float:right" [class]="shortCost.status=='GOOD' ? 'GOOD': 'NOGOOD'">
+          <span>{{ shortCost.status }} </span> <div *ngIf="shortCost.status!='Unavailable'"> @ {{shortCost.t_date | date: 'y-MM-d'}}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Short Rate</div>
+      <div class="value">
+        <div  *ngIf="shortCost.status!='Unavailable'">
+          {{ shortCost.rate }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Short Filled</div>
+      <div class="value">
+        <div  *ngIf="shortCost.status!='Unavailable'">
+          {{ shortCost.quantity | number: '1.0-0' }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Rating</div>
+      <div class="value">
+        <div  *ngIf="rating.rtg">
+          {{ rating.rtg }} @
+          {{ rating.rtg_date | date: 'y-MM-d'}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Prev Rating</div>
+      <div class="value">
+        <div  *ngIf="rating.rtg">
+          {{ rating.rtg_prev }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template let-callDates="security.marketData.callDates" #CallDates>
+  <div class="tile-title"> Call Schedule </div>
+  <div class="tile-template tile-call-dates" >
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th style="width:35%">dates</th>
+          <th>call px</th>
+          <th>duration</th>
+          <th>yield</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let callDt of callDates">
+          <td>{{callDt.call_date | date: 'y-MM-dd'}}</td>
+          <td>{{callDt.call_px | number: '1.2-2'}}</td>
+          <td style="text-align: center">{{callDt.modified_dur | number: '1.2-2'}}</td>
+          <td>{{callDt.yld | percent: '1.2-2'}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+  </div>
+</ng-template>
+
+<ng-template let-emc="security.marketData.emcScoreData" #EMC>
+  <div class="tile-title"> {{ NAME_MAPPING['EMC'] }} details </div>
+  <div class="tile-template tile-emc-info" >
+
+    <div class="row">
+      <div class="field"> {{ NAME_MAPPING['EMC'] }} Score </div>
+      <div class="value">
+          {{emc.emc_score }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> {{ NAME_MAPPING['EMC'] }} Signal </div>
+      <div class="value">
+        {{emc.emc_signal*100 | number: '1.2-2'}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> 1 Month Return </div>
+      <div class="value">
+        {{emc.ret_1m | percent:'.2'}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> 2 Month Return </div>
+      <div class="value">
+        {{emc.ret_2m | percent:'.2'}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> 3 Month Return </div>
+      <div class="value">
+        {{emc.ret_3m | percent:'.2'}}
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template let-rvs="security.marketData.rvsScoreData" #RVS>
+  <div class="tile-title"> {{ NAME_MAPPING['RVS'] }}  details </div>
+
+  <div class="tile-template tile-rvs-info" >
+
+    <div class="row">
+      <div class="field"> {{ NAME_MAPPING['RVS'] }} Score </div>
+      <div class="value">
+        {{rvs.rvs_score }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> {{ NAME_MAPPING['RVS'] }} Signal </div>
+      <div class="value">
+        {{rvs.signal_strength | number: '1.0-0'}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Spread Used / Fair Spread </div>
+      <div class="value">
+        {{rvs.bond_stw | number: '1.0-0'}} / {{rvs.fair_spread | number: '1.0-0'}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Price Used </div>
+      <div class="value">
+        {{rvs.bond_px | number: '1.2-3'}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Bond Dur </div>
+      <div class="value">
+        {{rvs.bond_dur | number: '1.2-2'}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Equity MktCap </div>
+      <div class="value" *ngIf="rvs.eqt_mktcap">
+        {{rvs.eqt_mktcap | number: '1.0-0'}} MM
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Total Debt </div>
+      <div class="value" *ngIf="rvs.total_debt">
+        {{rvs.total_debt | number: '1.0-0'}} MM
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Leverage </div>
+      <div class="value">
+        {{rvs.leverage_ratio | number: '1.2-2'}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Bond Rating </div>
+      <div class="value">
+        {{rvs.bond_rtg}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Sector </div>
+      <div class="value">
+        {{rvs.sector}}
+      </div>
+    </div>
+
+  </div>
+</ng-template>
+
+<ng-template  let-security="security" #ExternalLink>
+  <div class="tile-title"> External Link </div>
+  <div class="tile-template tile-external-link">
+    <div class="row">
+      <div class="field"> Security Details </div>
+      <div class="value">
+        <a target="_blank"
+           href="https://westfieldinvestment.wfi.local/pfmgmt/sec_profile/security_profile?sid={{security.securityID}}&amp;trading_records=1&amp;fund_id=8158&amp;paper_trade=0">
+          View </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field"> Security Signal </div>
+      <div class="value">
+        <a target="_blank"
+           href="https://westfieldinvestment.wfi.local/pfmgmt/sec_signal/index?sid={{security.securityID}}&trading_records=1&fund_id=8158&paper_trade=0">
+          View </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="field"> Trace History </div>
+      <div class="value">
+        <a target="_blank"
+           href="https://finra-markets.morningstar.com/BondCenter/BondTradeActivitySearchResult.jsp?ticker={{security.finra_ticker}}">
+          View </a>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template let-watchlist="watchlist" #WatchlistInfo>
+  <div class="tile-title"> Watchlist Comments </div>
+  <div class="tile-template tile-watchlist">
+    <div class="row">
+      <div class="field"> Category </div>
+      <div class="value">
+        {{watchlist.category}}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field"> Reasons </div>
+      <div class="value">
+        {{watchlist.reasons}}
+      </div>
+    </div>
+  </div>
+</ng-template>

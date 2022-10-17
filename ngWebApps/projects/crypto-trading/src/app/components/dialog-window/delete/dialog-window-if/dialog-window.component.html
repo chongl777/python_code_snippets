@@ -1,0 +1,20 @@
+<div (mousedown)="onFocus()" class="container" cdkDrag cdkDragBoundary=".mdl-layout__content"
+     cdkDragRootElement=".cdk-overlay-pane">
+  <mat-dialog-title cdkDragHandle>
+    {{title}}
+    <span class="flex-spacer" ></span>
+
+    <button *ngIf="this.setting.popupButton" mat-button (click)="openPopup()">
+      <i class="material-icons">launch</i>
+    </button>
+
+    <button *ngIf="this.setting.minimizeButton" mat-button (click)="minizeWindow()">
+        <i class="material-icons">remove</i>
+    </button>
+    <button  *ngIf="this.setting.closeButton" mat-button mat-dialog-close>&times;</button>
+  </mat-dialog-title>
+
+  <!-- <div #Host> -->
+    <ng-template #Host winHost></ng-template>
+    <!-- </div> -->
+</div>

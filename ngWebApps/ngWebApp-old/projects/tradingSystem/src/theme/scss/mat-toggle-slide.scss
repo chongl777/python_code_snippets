@@ -1,0 +1,114 @@
+@import "../theme";
+
+// $_mat-button-ripple-opacity: 0.1;
+
+@include mat-slide-toggle-color($color-theme);
+.mat-slide-toggle {
+  $accent: map_get($color-theme, primary);
+  $contrast: map_get($accent, contrast);
+
+  .mat-slide-toggle-bar {
+    $color: map_get($accent, 600);
+    background-color: $color;
+  }
+  .mat-slide-toggle-thumb {
+    $color: map_get($accent, 200);
+    background-color: $color;
+  }
+}
+
+.buy-sell {
+
+  @include mat-slide-toggle-color($buy-sell-theme);
+  .mat-slide-toggle.mat-primary{
+    $accent: map_get($buy-sell-theme, primary);
+    $contrast: map_get($accent, contrast);
+
+    .mat-slide-toggle-bar {
+      $color: map_get($contrast, 600);
+      background-color: $color;
+    }
+    .mat-slide-toggle-thumb {
+      $color: map_get($contrast, 200);
+      background-color: $color;
+    }
+  }
+}
+
+
+.cdk-visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  outline: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.mat-slide-toggle-label {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  height: inherit;
+  cursor: pointer;
+}
+
+$slide-width: 60px;
+$thumb-width: 10px;
+
+.mat-slide-toggle {
+  &.mat-checked .mat-slide-toggle-thumb-container {
+    transform: translate3d(#{$slide-width - $thumb-width}, 0, 0)!important;
+  }
+
+  &.mat-checked .mat-slide-toggle-content {
+    transform: translate3d(0px, 0, 0) !important;
+  }
+
+  &:not(.mat-checked) .mat-slide-toggle-content {
+    transform: translate3d($thumb-width, 0, 0) !important;
+  }
+
+  .mat-slide-toggle-label {
+    position: relative;
+  }
+
+  .mat-slide-toggle-bar {
+    position: relative;
+    width: $slide-width!important;
+    // height: 20px!important;
+    flex-shrink: 0;
+    border-radius: 0px!important;
+    margin: 0px;
+  }
+
+  .mat-slide-toggle-thumb-container {
+    top: 0px!important;
+    width: $thumb-width;
+    height: 100%;
+  }
+
+  .mat-slide-toggle-thumb {
+    height: 100%;
+    width: $thumb-width!important;
+    border-radius: 0%!important;
+  }
+
+  .mat-slide-toggle-content {
+    position:absolute;
+    width: #{$slide-width - $thumb-width};
+    text-align: center;
+    pointer-events: none!important;
+  }
+
+  .mat-slide-toggle-label-before .mat-slide-toggle-bar, .mat-slide-toggle-bar {
+    margin-right: 0px!important;
+    margin-left: 0px!important;
+  }
+}

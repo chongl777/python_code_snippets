@@ -1,0 +1,41 @@
+
+<div class="container">
+  <div class="sec-lookup">
+    <form class="security-search-form">
+      <mat-form-field class="full-width">
+        <mat-label>Security</mat-label>
+        <input type="text"
+               placeholder="Search..."
+               matInput
+               [formControl]="searchControl"
+               [matAutocomplete]="auto1"/>
+        <!-- <mat-icon matSuffix>keyboard_arrow_down</mat-icon> -->
+        <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displaySecurityFn"
+                          (optionSelected)="onSecuritySelected($event)">
+          <mat-option *ngFor="let security of filteredOptions | async" [value]="security">
+            <div class="sec-option" style="display:flex; flex-direction: row">
+              <div class="sec-id">{{security.securityID}}</div>
+              <div class="sec-des">{{security.description}}</div>
+              <div class="sec-deal">{{security.deal}}</div>
+            </div>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </form>
+
+    <div class="spacer"></div>
+
+    <div class="itemBox" *ngIf="!securitySubscription.closed" (click)="connectOrBreakLink()">
+      <i class="material-icons">link</i>
+    </div>
+
+    <div class="itemBox" *ngIf="securitySubscription.closed"  (click)="connectOrBreakLink()">
+      <i class="material-icons">link_off</i>
+    </div>
+
+  </div>
+
+  <div class="widget">
+    <ng-template winHost></ng-template>
+  </div>
+</div>

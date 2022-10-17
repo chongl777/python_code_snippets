@@ -1,0 +1,301 @@
+@import '~src/helpers';
+
+:host {
+  //display: flex;
+  //display: inline-block;
+  width: 100%;
+  //flex-direction: column;
+  //height: 100%;
+}
+
+app-spinner-or-error {
+  // flex: 1;
+  width: 100%;
+  display: inline-block;
+  height: calc(100% - #{$footer-height});
+}
+
+.scroll-viewport>table.loading {
+  opacity: 0;
+}
+
+div.scroll-viewport {
+  width: 100%;
+  height: calc(100% - #{$footer-height});
+  overflow: auto;
+  contain: strict;
+  // flex: 1;
+
+  tr.pos-header {
+    * {
+      font-weight: bold;
+    }
+  }
+
+
+  div {
+    height: 100%;
+  }
+
+  tr.pos-header, tr.pos-row, tr.pos-footer {
+    height: $row-height;
+  }
+
+  .content-table {
+    width: 100%;
+    table-layout: fixed;
+
+    div.cell-div {
+      vertical-align: middle;
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  // th.mat-header-cell:last-of-type {
+  //   padding: 0px;
+  // }
+}
+
+th.tiny-sort {
+  ::ng-deep {
+    div.mat-sort-header-arrow {
+      margin: 0px;
+      transform: translateY(0px)scaleX(0.5)!important;
+    }
+  }
+}
+
+td.tiny-sort.right-align {
+  padding-right: 10px!important;
+}
+
+th.right-align.subheader {
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: right;
+  padding-right: 10px!important;
+}
+
+th.right-align.mat-sort-header {
+  padding-left: 0px;
+  padding-right: 0px!important;
+  ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+td.right-align {
+  padding-right: 20px!important;
+  div.cell-div {
+    text-align: right;
+  }
+}
+
+div.cell-div {
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+div.footer-div {
+  display: flex;
+  flex-direction: row;
+  height: $footer-height;
+
+  div.buttons {
+    margin: auto;
+    display:flex;
+    width: 85px;
+    margin-right: 10px;
+    height: 22px;
+  }
+
+  .mat-button {
+    width: 90px;
+    color: white;
+    margin-left: 0px;
+    height: 100%;
+    width: 100%;
+    line-height: 25px;
+    ::ng-deep {
+      font-weight: bold;
+    }
+  }
+
+  div.spacer {
+    flex: 1;
+  }
+
+  div.wl-date {
+    margin: auto;
+  }
+
+}
+
+div.pf-dates {
+  font-size: 8px;
+  div {
+    height: #{$footer-height/2};
+  }
+}
+
+::ng-deep div.trade-buttons {
+  & {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  app-trade-buttons {
+    height: 20px;
+  }
+  height: 40px!important;
+  display: inline-block;
+}
+
+td.mat-cell {
+  border: none;
+}
+
+::ng-deep .mat-column-Selected {
+  text-align: center!important;
+  width: 2%!important;
+  padding: 0px!important;
+  input {
+    cursor: pointer;
+  }
+}
+
+::ng-deep .mat-column-Security {
+  width: 15%!important;
+}
+
+::ng-deep .clickable {
+  cursor: pointer;
+}
+
+::ng-deep .mat-column-Pnl {
+  width: 10%!important;
+}
+
+::ng-deep .mat-column-CostBasis {
+  width: 8%!important;
+}
+
+::ng-deep .mat-column-Quantity {
+  width: 10%!important;
+}
+
+::ng-deep .mat-column-Change {
+  width: 8%!important;
+}
+
+::ng-deep .mat-column-Price {
+  width: 8%!important;
+}
+
+::ng-deep .mat-column-YTM,
+::ng-deep .mat-column-YTW,
+::ng-deep .mat-column-YTF {
+  width: 5%!important;
+}
+
+::ng-deep .mat-column-Factor {
+  width: 8%!important;
+}
+
+::ng-deep .mat-column-MarketVal {
+  width: 8%!important;
+}
+
+::ng-deep .mat-column-SID {
+  width: 2%!important;
+}
+
+::ng-deep .mat-column-Sector {
+  width: 8%!important;
+}
+
+::ng-deep .mat-column-ERH, .mat-column-RVS, .mat-column-EMC, .mat-column-LR {
+  width: 4%!important;
+}
+
+::ng-deep tr[mat-row].child-table-row.detailed-hide {
+  display: none;
+}
+
+::ng-deep tr[mat-row].child-table-row {
+  min-height: 0px!important;
+  height: 0px!important;
+  td {
+    border: none!important;
+    padding: 0px;
+    div.child-table-wrapper {
+      overflow:hidden;
+      display: block;
+      div.security-detail{
+        /* border-bottom: 1px solid $border-color; */
+        display: block;
+        padding: $padding-detail;
+      }
+    }
+  }
+
+  div.security-detail-wrapper {
+    overflow: hidden;
+    background-color: $color-sec-detail!important;
+  }
+}
+
+
+:host {
+  $set-width: 8px;
+  * {
+    font-size: $data-table-font-size;
+    font-weight: bold;
+  }
+
+  ::ng-deep .level-1 * {
+    font-size: #{$data-table-font-size - 0.5px}!important;
+    font-weight: bold;
+    .step-align {
+      padding-left: #{$set-width * 1}!important;
+    }
+  }
+
+  ::ng-deep .level-2 * {
+    font-size: #{$data-table-font-size - 1px}!important;
+    .step-align {
+      padding-left: #{$set-width * 2}!important;
+    }
+  }
+
+  ::ng-deep .level-3 * {
+    font-size: #{$data-table-font-size - 1.5px}!important;
+    .step-align {
+      padding-left: #{$set-width * 3}!important;
+    }
+  }
+
+  ::ng-deep .level-4 * {
+    font-size: #{$data-table-font-size - 2px}!important;
+    .step-align {
+      padding-left: #{$set-width * 4}!important;
+    }
+  }
+
+  ::ng-deep .level-5 * {
+    font-size: #{$data-table-font-size - 2.5px}!important;
+    .step-align {
+      padding-left: #{$set-width * 5}!important;
+    }
+  }
+}

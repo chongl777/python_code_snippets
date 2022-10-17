@@ -1,0 +1,20 @@
+
+ <div class="mdl-layout__header-row">
+   <div class="mdl-layout-spacer"></div>
+   <div  class="avatar-dropdown">
+     <a href="" (click)="login()" *ngIf="!(isLoggedIn$ | async)"><span>Login</span></a>
+   </div>
+
+   <!-- <li><a href="{{ url_for('auth.user', username=current_user.username) }}">Profile</a></li> -->
+
+   <div *ngIf="isLoggedIn$ | async">
+     <a class="current-user-name"
+        target="_blank"
+        href="https://westfieldinvestmentllc.sharepoint.com/sites/Investment">
+       {{currentUser.initial}}</a></div>
+   <!-- <div><a (click)="logout()" *ngIf="authService.isLoggedIn$ | async"><span>Logout</span></a></div> -->
+   <div class="avatar-dropdown">
+     <a href="{{logout_url}}" *ngIf="isLoggedIn$ | async">Logout</a>
+   </div>
+
+ </div>

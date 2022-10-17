@@ -1,0 +1,12 @@
+<div class="status-span">
+  <div class="trade-button" *ngIf="ord.canUpdate">
+    <a class="submit" *ngIf="!(ord.loading$ | async)" (click)="openTradeDialog()" mat-button>
+      UPDATE
+    </a>
+    <a class="wait" *ngIf="(ord.loading$ | async)" mat-button [disabled]="true"> Waiting... </a>
+  </div>
+
+  <div class="trade-button" *ngIf="!ord.canUpdate">
+    <button class="submit" (click)="openTradeDialog()" mat-button> VIEW </button>
+  </div>
+</div>

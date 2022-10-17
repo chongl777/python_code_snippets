@@ -1,0 +1,146 @@
+$label-height: 32px;
+
+:host {
+  height: 100%;
+  width: 100%;
+  display: inline-flex;
+  flex-direction: column;
+}
+
+app-expansion-panel {
+  ::ng-deep {
+    div[role='region'] {
+      background: rgba(steelblue, 0.2);
+    }
+  }
+}
+
+.page-body {
+  display: flex;
+  flex-direction: columns;
+  height: 100%;
+  width: 100%;
+
+  overflow: auto;
+  .sec-list {
+    flex: 0 0 350px;
+    ::ng-deep &>.container>.body {
+      overflow-y: auto!important;
+    }
+  }
+
+  mat-tab-group {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+
+    ::ng-deep {
+      .mat-dialog-title {
+        height: $label-height;
+      }
+      mat-tab-header {
+        height: #{$label-height - 1px};
+        .mat-tab-label {
+          height: #{$label-height - 1px};
+        }
+      }
+      .mat-tab-body-wrapper {
+        height: 100%;
+      }
+
+      div[role="tab"].mat-tab-disabled {
+        flex: 1;
+        color: white;
+        opacity: 1;
+        font-weight: bold;
+        justify-content: end;
+        padding-right: 0px;
+        padding-left: 0px;
+        padding: 0px;
+      }
+    }
+  }
+
+  .signal-panel {
+    flex: 1;
+    overflow: hidden;
+
+    ::ng-deep &>.container {
+      overflow: hidden;
+      width: 100%;
+      display: inline-flex!important;
+
+      &>.body {
+      overflow: auto!important;
+      display: inline-block;
+      flex-direction: row;
+      // justify-content: center;
+      height: 100%;
+      flex: 1;
+      position: relative;
+      }
+    }
+
+    app-spinner-or-error {
+      position: absolute;
+      display:inline-block;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      background: white;
+    }
+
+  }
+
+  .signal-modal {
+    width: 500px;
+    height: 800px;
+    display: inline-block;
+    margin: 10px;
+
+    box-shadow: 2px 2px 2px grey;
+    border: 1px solid;
+  }
+}
+
+app-input-search {
+  display:inline-block;
+  width: 300px;
+}
+
+::ng-deep {
+  .mat-option-text .sec-option {
+    font-size: 10px;
+    div {
+      padding-left: 0px;
+      padding-right: 20px;
+    }
+    div:first-child {
+      width: 10%;
+    }
+    div:nth-child(2) {
+      width: 50%;
+      overflow: hidden;
+    }
+
+    div:nth-child(3) {
+      padding-left: 10px;
+      width: 30%;
+    }
+  }
+  .mat-optgroup-label {
+    background: grey;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+  }
+  .mat-option {
+    padding-left: 30px!important;
+  }
+
+  .mat-optgroup-label, .mat-option {
+    height: 20px!important;
+    line-height: 20px!important;
+  }
+
+}

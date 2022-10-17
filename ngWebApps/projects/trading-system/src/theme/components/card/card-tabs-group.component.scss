@@ -1,0 +1,84 @@
+// @import '~helpers';
+@import '~src/helpers';
+// @import '~src/variables';
+
+base-card.tab {
+  .tab-wrapper {
+    height: auto;
+  }
+  a.card-tab {
+    font-size: 12px;
+    padding: 0px 5px 0px 5px;
+    overflow: hidden;
+    &:hover {
+      font-weight: bold;
+    }
+  }
+
+  [mat-button] {
+    &.active {
+      color: white;
+      background-color: #444;
+    }
+  }
+
+}
+
+base-card.slash {
+  [mat-button] {
+    color: white;
+  }
+
+  .slash-separator {
+    height: 100%;
+    border-left: 1px solid;
+    transform: rotate(15deg);
+    margin: 0px 10px;
+  }
+
+  app-tool-bar {
+    height: 100%;
+  }
+
+  mat-toolbar {
+    height: 100%;
+  }
+}
+
+.spacer {
+  flex: 1;
+}
+
+
+mat-toolbar a[mat-button] {
+  overflow: hidden;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  padding: 0px;
+}
+
+div.itemBox {
+  transform: scale(0.8);
+}
+
+.buttom.itemBox {
+  cursor: pointer;
+}
+
+.buttom.itemBox:hover {
+  transform: scale(1.2);
+  user-select: none;
+}
+
+::ng-deep .mat-dialog-container {
+  box-shadow: 0px 0px 16px 2px grey;
+  padding: 0px!important;
+}
+
+base-card {
+  height: 100%;
+  base-card-body {
+    flex: 1 1;
+  }
+}

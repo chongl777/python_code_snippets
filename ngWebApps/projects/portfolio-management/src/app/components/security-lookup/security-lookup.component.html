@@ -1,0 +1,30 @@
+<app-expansion-panel [expanded]="true">
+  <div class="content">
+    <app-input-search
+        [displayFn]="displaySelected"
+        [onSelected]="onSelectedSecurity"
+        [filterFn]="filterSecurity">
+      <ng-template let-item="item">
+        <div class="sec-option" style="display:flex; flex-direction: row">
+          <div class="sec-id">{{item['sid']}}</div>
+          <div class="sec-des">{{item['description']}}</div>
+          <div class="sec-deal">{{item['id']}}</div>
+        </div>
+      </ng-template>
+    </app-input-search>
+    <div class="link">
+      <!-- <a routerLink="{{urls.sec_info_url}}" queryParamsHandling="merge">Old Page</a> -->
+      <a href="{{ oldUrl }}" queryParamsHandling="merge">Old Page</a>
+    </div>
+  </div>
+</app-expansion-panel>
+
+
+<div class="page-body">
+  <app-spinner-or-error *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+  </app-spinner-or-error>
+
+  <ng-container>
+    <router-outlet></router-outlet>
+  </ng-container>
+</div>

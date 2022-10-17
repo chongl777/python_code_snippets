@@ -1,0 +1,43 @@
+@import '~src/helpers';
+
+:host {
+  //height: calc(100% - #{$grid-desktop-gutter/2});
+  height: 100%;
+}
+
+// @media (min-width: $grid-desktop-breakpoint) {
+//   :host {
+//     height: calc(100% - #{$grid-desktop-gutter});
+//   }
+// }
+.page-table {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+}
+
+app-tool-bar {
+  height: 25px;
+}
+
+.port-allocation-cell {
+  // height: 100%;
+  flex: 1;
+  // height: calc(100% - 400px - 64px);
+  ::ng-deep  base-card {
+    height: 100%
+  }
+}
+
+.mdl-cell {
+  // margin: 0px!important;
+  flex: 1
+}
+
+// @media (min-width: $grid-desktop-breakpoint) {
+//   .mdl-cell {
+//     height: calc(100% - #{$grid-desktop-gutter});
+//     // height: calc(100% - 32px);
+//   }
+// }

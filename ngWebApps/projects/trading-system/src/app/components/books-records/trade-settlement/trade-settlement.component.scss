@@ -1,0 +1,278 @@
+@import '~src/helpers';
+$margin-vertical: 10px;
+$color-alternative-row: #515254;
+$color-buy: green;
+$color-sell: red;
+
+
+:host {
+  with: 100%;
+
+  display: flex!important;
+  flex-direction: row;
+  height: 100%;
+
+  .panel-wraper {
+    background-color: $card-background-color;
+    margin: #{$margin-vertical} 5px #{$margin-vertical} 5px;
+    height: calc(100% - #{$margin-vertical * 2});
+    width: 100%;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+
+    .top-panel {
+      height: 55px;
+      display: inline-block;
+      width: 100%;
+
+      .select-date-range {
+        margin-left: 5px;
+      }
+    }
+
+    .panel {
+      // border-radius: 10px;
+      display: flex;
+      background: inherit;
+      flex: 1;
+      flex-direction: column;
+      width: 100%;
+      min-height: 0;
+      overflow:hidden;
+
+      .txn-panel {
+        display: flex;
+        flex: 1;
+        overflow: hidden;
+
+        .scroll-view {
+          flex: 1;
+          overflow: auto;
+          display: flex;
+        }
+      }
+
+      .grp-row {
+        background-color: #262729;
+      }
+
+      .ticket-panel {
+        background: inherit;
+        // height: 100%;
+        flex: 1;
+        padding: 0px 10px;
+        overflow-y: auto;
+
+        .transaction-table {
+          width: 100%;
+        }
+      }
+      .footer-div {
+        height: 40px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .spacer {
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  .ticket-details {
+    width: 200px;
+    height: 100%;
+  }
+
+
+  .transaction-table-group {
+    height: 100%;
+    width: 100%;
+
+    .grp-details-cell {
+      padding: 0;
+    }
+
+    .mat-column-counterparty {
+      .cell-div {
+        display: flex;
+        width: 350px;
+      }
+      .cp-title {
+        margin-right: 5px;
+      }
+      .cp-name {
+        color: steelblue;
+      }
+    }
+
+    .mat-column-cp_email {
+      .cell-div {
+        display: flex;
+      }
+      .cp-title {
+        width: 60px;
+        margin: auto;
+      }
+      .cp-email {
+        color: steelblue;
+        flex: 1;
+      }
+    }
+
+  }
+
+  .transaction-table {
+    background: inherit;
+    & * {
+      font-size: 12px;
+    }
+    height: 100%;
+    overflow: auto;
+
+
+    mat-header-row, mat-row {
+      min-height: 28px!important;
+      background: inherit;
+    }
+
+    mat-header-row {
+      border-bottom: none;
+    }
+
+    mat-header-cell {
+      border-bottom: 1px solid;
+    }
+
+    mat-header-cell, mat-cell {
+      background: inherit;
+    }
+
+    mat-header-row {
+      background: inherit;
+    }
+
+    mat-row.even {
+      background-color: $color-alternative-row!important;
+    }
+
+    mat-row:hover{
+      background-color: gray!important;
+    }
+
+    mat-row.selected {
+      mat-cell {
+        border-top: 1px solid white!important;
+        border-bottom: 1px solid white!important;
+      }
+
+      mat-cell:first-of-type {
+        border-left: 1px solid white!important;
+      }
+
+      mat-cell:last-of-type {
+        border-right: 1px solid white!important;
+      }
+    }
+
+    .cell-div {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .mat-column-Select {
+      flex: 1;
+      min-width: 30px;
+      padding-left: 10px;
+    }
+
+    .mat-column-TradeId {
+      flex: 3;
+      min-width: 50px;
+    }
+
+    .mat-column-Price {
+      flex: 3;
+      min-width: 50px;
+    }
+
+    .mat-column-Name {
+      flex: 8;
+      min-width: 150px;
+      .cell-div {
+        width: 80%;
+      }
+    }
+
+    .mat-column-Quantity {
+      flex: 5;
+      min-width: 100px;
+    }
+
+
+    .mat-column-Side {
+      flex: 2;
+      min-width: 30px;
+    }
+
+    .mat-column-TradeDt {
+      flex: 6;
+      min-width: 120px;
+    }
+
+    .mat-column-CPty {
+      flex: 3;
+      min-width: 40px;
+    }
+
+    .mat-column-TradePrint {
+      flex: 4;
+      min-width: 70px;
+    }
+
+    .mat-column-BrokerConfirmed {
+      flex: 4;
+      min-width: 100px;
+    }
+
+    .mat-column-CP_Code {
+      flex: 1;
+      min-width: 60px;
+    }
+
+    .mat-column-TradePrint {
+      flex: 2;
+      min-width: 200px;
+      padding-right: 0px!important;
+      .cell-div {
+        text-align: right;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  .mat-button {
+    color: white;
+    height: 30px;
+    width: 120px;
+    margin: auto 10px;
+    overflow: hidden;
+  }
+
+  .mat-button.positive {
+    background-color: $color-buy;
+  }
+
+  .mat-button.negative {
+    background-color: $color-sell;
+  }
+
+  app-spinner-or-error {
+    display: inline-block;
+    flex: 1;
+  }
+
+}

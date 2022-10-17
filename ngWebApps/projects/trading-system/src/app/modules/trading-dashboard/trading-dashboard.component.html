@@ -1,0 +1,122 @@
+
+<div class="page-table">
+
+  <app-tool-bar [trade]="true" [secInfo]="true" [toolbox]="true"></app-tool-bar>
+
+  <div class="mdl-layout__content mdl-grid mdl-cell mdl-cell--12-col-desktop
+              mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+    <div class="half-block mdl-grid mdl-cell mdl-cell--8-col-desktop
+                mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-cell--top"
+         style="flex-flow: row wrap; flex-direction: column;">
+
+      <div class="ioi-cell mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+        <base-card-tabs-group [onOpenConfig]="onOpenConfig">
+
+          <base-card-tab label="Active IOI" [showSetting]="true" [showDownload]="false">
+            <ng-template cardContent>
+              <app-ioi-list #cardContent [showValid]="true" class="ioi-card"></app-ioi-list>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Expired IOI" [showSetting]="true" [showDownload]="false">
+            <ng-template cardContent>
+              <app-ioi-list #cardContent [showValid]="false" class="ioi-card"></app-ioi-list>
+            </ng-template>
+          </base-card-tab>
+
+        </base-card-tabs-group>
+      </div>
+
+      <div
+          class="mdl-cell mdl-cell--12-col-desktop watchlist
+                 mdl-cell--12-col-tablet mdl-cell--12-col-phone
+                 mdl-cell--top  wl-grid-container">
+        <base-card-tabs-group [onDownload]="onDownload">
+          <base-card-tab label="Watchlist Long Axe" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-watchlist #appWatchlist [showValid]="true" [longShort]="1" #cardContent></app-watchlist>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Watchlist Short Axe" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-watchlist #appWatchlist [showValid]="true" [longShort]="-1" #cardContent></app-watchlist>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Invalid Watchlist" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-watchlist #appWatchlist [showValid]="false" [longShort]="0" #cardContent></app-watchlist>
+            </ng-template>
+          </base-card-tab>
+        </base-card-tabs-group>
+      </div>
+
+    </div>
+
+    <div style="flex-flow: row wrap; display: flex; flex-direction: column;"
+         class="half-block mdl-grid mdl-cell mdl-cell--4-col-desktop
+                mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+      <div class="portfolio-cell mdl-cell mdl-cell--12-col-desktop
+                  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <base-card-tabs-group [onDownload]="onDownload">
+
+          <base-card-tab label="Allocation" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-portfolio #appPortfolio class="portfolio-card" #cardContent></app-portfolio>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Today's Trade" [showSetting]="false"  [showDownload]="true" [component]="appTransaction">
+            <app-trading-records
+                #appTransaction
+                [secDetailSize]="'small'" class="portfolio-card txn-table">
+              <ng-template #TxnSecurityDetail let-security="security">
+                <div class="security-detail-wrapper">
+                  <div class="security-detail">
+                    <app-security-details-slide-card
+                        [sizeInfo]="'xlarge'"
+                        [secInfo]="{security: security, watchlist: {reasons: null, category: null}}">
+                    </app-security-details-slide-card>
+                  </div>
+                </div>
+              </ng-template>
+            </app-trading-records>
+          </base-card-tab>
+
+        </base-card-tabs-group>
+      </div>
+
+      <div class="order-list-cell mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+
+        <base-card-tabs-group [onDownload]="onDownload">
+          <base-card-tab label="IOI Orders" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-order-list #appOrders [filterKey]="'ActiveIOIOrders'" class="orders-card" #cardContent></app-order-list>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Reg Orders" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-order-list #appOrders [filterKey]="'ActiveRegOrders'" class="orders-card" #cardContent></app-order-list>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Filled Orders" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-order-list #appOrders [filterKey]="'FilledOrders'" class="orders-card" #cardContent></app-order-list>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Expired Orders" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-order-list #appOrders [filterKey]="'ExpiredOrders'" class="orders-card" #cardContent></app-order-list>
+            </ng-template>
+          </base-card-tab>
+        </base-card-tabs-group>
+      </div>
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,10 @@
+<div class="msg-bar" *ngIf="msg != ''">{{msg}}</div>
+<div class="mdl-content">
+  <div class="mdl-grid">
+    <button mat-raised-button color="accent"
+            class="mdl-button sign-in"
+            type="submit" (click)="authenticate()">
+      SIGN IN WITH AZURED AD
+    </button>
+  </div>
+</div>

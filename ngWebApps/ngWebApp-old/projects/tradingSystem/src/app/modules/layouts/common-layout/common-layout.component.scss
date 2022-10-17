@@ -1,0 +1,40 @@
+::ng-deep base-card-tabs-group base-card.tab  base-card-title {
+  padding-bottom: 0px!important;
+  font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+
+  [mat-button] {
+    line-height: 28px!important;
+    ::ng-deep *{
+      font-stretch: condensed;
+    }
+  }
+}
+
+::ng-deep base-card-title {
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-weight: bold;
+
+}
+
+::ng-deep base-card.slash {
+  a[mat-button].active
+  //, a[mat-button]:hover
+  {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  a[mat-button]:hover {
+  }
+
+  a[mat-button] {
+    font-size: 12px;
+  }
+}
+
+
+
+::ng-deep a[mat-button].card-tab {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}

@@ -1,0 +1,34 @@
+<div class="setting-panel">
+
+  <form class="security-search-form">
+    <mat-form-field class="full-width">
+      <mat-label>Security</mat-label>
+      <input type="text"
+             placeholder="Search..."
+             matInput
+             (blur)="onBlur()"
+             [formControl]="searchControl"
+             [matAutocomplete]="auto1"/>
+      <mat-autocomplete #auto1="matAutocomplete" [displayWith]="displaySecurityFn"
+                        (optionSelected)="onSecuritySelected($event)">
+        <mat-option *ngFor="let security of filteredOptions | async" [value]="security">
+          <div class="sec-option" style="display:flex; flex-direction: row">
+            <div class="sec-id">{{security.securityID}}</div>
+            <div class="sec-des">{{security.description}}</div>
+            <div class="sec-deal">{{security.deal}}</div>
+          </div>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+</div>
+
+<mat-dialog-actions class="mdl-card__actions">
+  <span class="flex-spacer"></span>
+	<button mat-button class="cancel mat-tab-nav-bar mat-background-primary text-floral-white"
+          (click)="onNoClick()">Cancel</button>
+	<button mat-button class="submit mat-tab-nav-bar mat-background-primary text-floral-white"
+          [disabled]="!isvalid"
+          [mat-dialog-close]="this.security" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

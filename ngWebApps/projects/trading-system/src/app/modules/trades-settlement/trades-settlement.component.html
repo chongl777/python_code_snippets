@@ -1,0 +1,47 @@
+<div class="page-table">
+  <app-tool-bar [secInfo]="true"></app-tool-bar>
+
+  <div class="mdl-layout__content mdl-grid mdl-cell mdl-cell--12-col-desktop
+              mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+
+    <div class="mdl-grid mdl-cell mdl-cell--5-col-desktop full-height-grid-cell
+                mdl-cell--5-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+      <base-card>
+        <base-card-title>
+          Trade Settlement
+          <div class="spacer"></div>
+          <div class="buttom itemBox"
+               (click)="onRefresh(tradeSettlement)">
+            <i class="material-icons">refresh</i>
+          </div>
+        </base-card-title>
+
+        <base-card-body>
+          <app-trade-settlement class="trades-card" #tradeSettlement>
+          </app-trade-settlement>
+        </base-card-body>
+      </base-card>
+    </div>
+
+    <div class="mdl-grid mdl-cell mdl-cell--7-col-desktop full-height-grid-cell
+                mdl-cell--7-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+
+      <base-card>
+        <base-card-title>
+          Related Email Thread
+          <div class="spacer"></div>
+          <div class="buttom itemBox"
+               (click)="onRefresh(emailThread)">
+            <i class="material-icons">refresh</i>
+          </div>
+        </base-card-title>
+
+        <base-card-body>
+          <app-trade-email-communication
+              class="trades-card" #emailThread>
+          </app-trade-email-communication>
+        </base-card-body>
+      </base-card>
+    </div>
+  </div>
+</div>

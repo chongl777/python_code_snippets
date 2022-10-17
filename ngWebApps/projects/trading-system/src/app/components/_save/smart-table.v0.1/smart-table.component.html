@@ -1,0 +1,27 @@
+<!-- this mat-row will be added to table inside code -->
+<tr mat-row *matRowDef="let item; columns: ['ChildTable']"
+    class="child-table-row">
+</tr>
+
+
+<table mat-table #Table [dataSource]="dataSource" class="content-table"
+       matSort matSortDisableClear multiTemplateDataRows>
+
+  <ng-container #TestDef matColumnDef="ChildTable">
+    <td mat-cell
+        *matCellDef="let item" [attr.colspan]="columnsToDisplay.length">
+      <div class="child-table-wrapper" style="height: 100%; display: flex;"
+           *ngIf="item.expanded">
+
+        <app-smart-child-table
+            *ngIf="item.children" [data]="item.children"
+            [nonChildrenRowTemplate]="nonChildrenRowTemplate"
+            [columnsToDisplay]="columnsToDisplay" [contentColumnDefs]="columnDefs" [level]="1">
+        </app-smart-child-table>
+
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-content></ng-content>
+</table>

@@ -1,0 +1,229 @@
+@import '~src/helpers';
+
+$color-positive: lawngreen;
+$color-negative: lightcoral;
+$color-disabled: gray;
+$color-submit: green;
+$color-close:red;
+
+:host {
+  display: block;
+  background: $color-dialog-background;
+  height: 100%;
+  width: 100%;
+}
+
+div.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+app-spinner-or-error {
+  flex: 1;
+}
+
+form.loading {
+  display: none!important;
+}
+
+.mat-dialog-content.list-ctrl {
+  flex: none!important;
+  mat-form-field {
+    width: 210px;
+  }
+}
+
+mat-toolbar,
+mat-dialog-title {
+  color: $color-dialog-title-text;
+  background: $color-dialog-title-background;
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  display: flex;
+  cursor: move;
+  padding: 0px 10px 0px 5px;
+
+  button[mat-button] {
+    line-height: 25px;
+    min-width: 25px;
+    background: $color-dialog-background;
+    font-size: 25px;
+    padding: 0px;
+    color: $color-dialog-title-text;
+  }
+
+  button[mat-button] {
+    background: $color-dialog-title-background!important;
+  }
+
+}
+
+form.orderForm {
+  display: flex;
+  flex-direction: column;
+  // background: $color-gray;
+}
+
+.mat-dialog-actions {
+  padding: 0px;
+  margin: 0px;
+  height: 40px;
+  min-height: auto;
+}
+
+.mat-dialog-content {
+  flex: 1;
+}
+
+form p {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0px!important;
+}
+
+.scroll-viewport,
+.cdk-virtual-scroll-viewport {
+  overflow-y: scroll;
+  flex: 1
+}
+
+.cdk-virtual-scroll-viewport.loading {
+  display: none;
+}
+
+table {
+  width: 100%;
+  color: white;
+  table-layout: fixed;
+  th {
+    background-color: $color-gray;
+  }
+
+  tr {
+    height: $row-height;
+  }
+
+  mat-slide-toggle {
+    vertical-align: middle;
+  }
+
+  div.cell-div {
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .mat-column-Security {
+    width: 35%!important;
+  }
+  .mat-column-Quantity {
+    width: 20%!important;
+    input {
+      width: 80%;
+      background-color: $color-gray;
+      color: white;
+      border: none;
+    }
+  }
+  .mat-column-Side {
+    width: 12%!important;
+    &.positive div {
+      color: $color-positive;
+    }
+    &.negative div {
+      color: $color-negative;
+    }
+  }
+  .mat-column-Price {
+    width: 20%!important;
+    input {
+      width: 80%;
+      background-color: $color-gray;
+      color: white;
+      border: none;
+    }
+  }
+  .mat-column-Status {
+    width: 15%!important;
+    .New {
+      color: $color-positive;
+    }
+
+    .Rejected {
+      color: $color-negative;
+    }
+  }
+}
+
+.mat-form-field {
+  margin: 5px 40px 5px 40px;
+}
+
+.center-align {
+  text-align: center;
+}
+
+th.center-align {
+  ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+th.right-align {
+  padding-left: 0px;
+  padding-right: 0px;
+  ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+td.right-align.input-container {
+  padding-right: 0px!important;
+}
+
+td.right-align {
+  padding-right: 20px!important;
+  text-align: right;
+  input {
+    text-align: right;
+  }
+  div.cell-div {
+    text-align: right;
+  }
+}
+
+th.tiny-sort {
+  ::ng-deep {
+    div.mat-sort-header-arrow {
+      margin: 0px;
+      transform: translateY(0px)scaleX(0.5)!important;
+    }
+  }
+}
+
+[mat-button] {
+  color: white;
+  height: 25px;
+}
+
+[mat-button][disabled] {
+  background-color: $color-disabled!important;
+}
+
+[mat-button].negative {
+  background-color: $color-close;
+}
+
+[mat-button].positive {
+  background-color: $color-submit;
+}

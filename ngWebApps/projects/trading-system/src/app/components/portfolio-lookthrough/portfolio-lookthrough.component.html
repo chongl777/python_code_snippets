@@ -1,0 +1,374 @@
+<div class="scroll-viewport" matSort>
+  <app-spinner-or-error *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+  </app-spinner-or-error>
+
+  <ng-container *ngIf="!(loading$ | async) && (errMsg == '') && dataService">
+    <mat-table-expandable
+        class="level-0"
+        [dataSource]="dataSource"
+        [nonChildrenRowTemplate]="secDetailsTemplate"
+        [columnsToDisplay]="columnsToDisplay" multiTemplateDataRows>
+
+      <tr mat-header-row class="pos-header"
+          *matHeaderRowDef="columnsToDisplay; sticky: true">
+      </tr>
+
+      <!-- <tr mat-header-row class="pos-header pos-sub-header"
+           *matHeaderRowDef="totalColumns; sticky: true">
+           </tr> -->
+
+      <tr mat-row
+          *matRowDef="let item; columns: columnsToDisplay; let i=dataIndex;"
+          (click)="onSelectSecurity(item)"
+          class="pos-row  {{ rowClassFn(item) }}" [class.even]="i % 2 == 0"  [class.odd]="i % 2 == 1">
+      </tr>
+
+      <ng-container matColumnDef="TotalQuantity">
+        <th class="right-align subheader" mat-header-cell *matHeaderCellDef>
+          <div class="cell-div">{{dataService.totalQuantity | number: '1.0-0'}}</div>
+        </th>
+      </ng-container>
+
+       <ng-container matColumnDef="TotalPnl">
+        <th class="right-align subheader" mat-header-cell *matHeaderCellDef>
+          <div
+              [class.positive]="dataService.totalPnl > 0 "
+              [class.negative]="dataService.totalPnl < 0 "
+              class="cell-div">{{dataService.totalPnl | number: '1.0-0'}}</div>
+        </th>
+      </ng-container>
+
+      <ng-container matColumnDef="Total">
+        <th mat-header-cell *matHeaderCellDef> Total </th>
+      </ng-container>
+
+      <ng-container matColumnDef="Empty">
+        <th mat-header-cell *matHeaderCellDef>  </th>
+      </ng-container>
+
+      <ng-container matColumnDef="Selected">
+        <th mat-header-cell *matHeaderCellDef>
+          <input [(ngModel)]="dataService.allSelected" type="checkbox"/>
+        </th>
+        <td mat-cell *matCellDef="let pos;">
+          <input *ngIf="pos.security" [(ngModel)]="pos.selected" type="checkbox"/>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Sector">
+        <th mat-header-cell class="tiny-sort left-align" *matHeaderCellDef mat-sort-header> Sector </th>
+        <td mat-cell class="tiny-sort left-align" *matCellDef="let pos">
+          <div class="cell-div">
+            {{ pos.sector}}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="MarketVal">
+        <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header> MarketVal </th>
+        <td mat-cell class="tiny-sort right-align" *matCellDef="let pos">
+          <div class="cell-div">
+            {{ pos.marketVal | number: '1.0-0' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NetExposure">
+        <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header> Exposure (Net) </th>
+        <td mat-cell class="tiny-sort right-align" *matCellDef="let pos">
+          <div class="cell-div">
+            {{ pos.exposure | number: '1.0-0' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="GrossExposure">
+        <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header> Exposure (Gross)</th>
+        <td mat-cell class="tiny-sort right-align" *matCellDef="let pos">
+          <div class="cell-div">
+            {{ pos.exposure_gross | number: '1.0-0' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Deal">
+        <th mat-header-cell class="tiny-sort left-align" *matHeaderCellDef mat-sort-header> Deal </th>
+        <td mat-cell class="tiny-sort left-align" *matCellDef="let pos">
+          <div class="cell-div">
+            {{ pos.deal}}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Rtg">
+        <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header> Rtg </th>
+        <td mat-cell class="tiny-sort right-align" *matCellDef="let pos">
+          <div class="cell-div">
+            {{ pos.rtg }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="MarketSeg">
+        <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header>
+          MktSeg </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort">
+          <div class="cell-div">
+            {{ pos.marketSegment}}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="LiqScore">
+        <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header>
+          LiqScore </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort">
+          <div class="cell-div">
+            {{ pos.liqScore | number: '1.0-0'}}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="RtgRnk">
+        <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header> RtgRnk </th>
+        <td mat-cell class="tiny-sort right-align" *matCellDef="let pos">
+          <div class="cell-div">
+            {{ pos.rtg_rnk }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="EMC">
+        <th mat-header-cell class="tiny-sort right-align signal" *matHeaderCellDef mat-sort-header>
+          {{ NAME_MAPPING['EMC'] }} </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort signal">
+          <div class="cell-div" [@slideInOut]="pos.emc_score">{{ pos.emc_score | number: '1.1-1'}}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="EMCST">
+        <th mat-header-cell class="tiny-sort right-align signal" *matHeaderCellDef mat-sort-header>
+          {{ NAME_MAPPING['EMCST'] }} </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort signal">
+          <div class="cell-div" [@slideInOut]="pos.emc_st_score">{{ pos.emc_st_score | number: '1.1-1'}}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="RVS">
+        <th mat-header-cell class="tiny-sort right-align signal" *matHeaderCellDef mat-sort-header>
+          {{ NAME_MAPPING['RVS'] }} </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort signal">
+          <div class="cell-div">{{ pos.rvs_score | number: '1.1-1' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="RVS2">
+        <th mat-header-cell class="tiny-sort right-align signal" *matHeaderCellDef mat-sort-header>
+          {{ NAME_MAPPING['RVS2'] }} </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort signal">
+          <div class="cell-div" [@slideInOut]="pos.rvs_score_new">
+            {{ pos.rvs_score_new | number: '1.1-1' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ERH">
+        <th mat-header-cell class="tiny-sort right-align signal" *matHeaderCellDef mat-sort-header>
+          {{ NAME_MAPPING['ERH'] }} </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort signal">
+          <div class="cell-div">{{ pos.erh_score | number: '1.1-1' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="FA">
+        <th mat-header-cell class="tiny-sort right-align signal" *matHeaderCellDef mat-sort-header>
+          {{ NAME_MAPPING['FA'] }} </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort signal">
+          <div class="cell-div">{{ pos.fa_score }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="LR">
+        <th mat-header-cell class="tiny-sort right-align signal" *matHeaderCellDef mat-sort-header> LR </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort signal">
+          <div class="cell-div">{{ pos.leverage_ratio | number: '1.1-1' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="LR_S">
+        <th mat-header-cell class="tiny-sort right-align signal" *matHeaderCellDef mat-sort-header> LS </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort signal">
+          <div class="cell-div">{{ pos.leverage_score | number: '1.0-0' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="LR_S_SW">
+        <th mat-header-cell class="tiny-sort right-align signal" *matHeaderCellDef mat-sort-header> LSW </th>
+        <td mat-cell *matCellDef="let pos" class="right-align tiny-sort signal">
+          <div class="cell-div">{{ pos.leverage_score_secwise | number: '1.0-0' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="SID">
+        <th mat-header-cell class="left-align" *matHeaderCellDef> </th>
+        <td class="center-align" mat-cell *matCellDef="let pos;"
+            #matCell>
+          <div class="cell-div">{{pos.securityID }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="SecEvt">
+        <th mat-header-cell class="" *matHeaderCellDef> </th>
+        <td class="" mat-cell *matCellDef="let pos;"
+            #matCell>
+          <div *ngIf="pos.secEvt">
+            <app-security-events [SecEvt]="pos.secEvt"></app-security-events>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Security">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+        <td mat-cell *matCellDef="let pos;" class="step-align"
+            (click)="$event.stopPropagation(); onSelectPosition(pos)"  #matCell>
+          <div class="cell-div"><div class="clickable">{{ pos.pos_name }}</div></div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Price">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div *ngIf="pos.price">
+            <div
+                [@slideInOut]="pos.price"
+                [class.positive]="pos.price_diff > 0 "
+                [class.negative]="pos.price_diff < 0 "
+                class="cell-div">{{ pos.price | number: '1.0-3'}}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="ModifiedDur">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Dur </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div *ngIf="pos.modified_dur">
+            <div
+                class="cell-div">{{ pos.modified_dur | number: '1.2-2'}}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="YTM">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> YTM </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div *ngIf="pos.ytm">
+            <div
+                [@slideInOut]="pos.ytm"
+                class="cell-div">{{ pos.ytm | percent: '1.1-1'}}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="YTW">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> YTW </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div *ngIf="pos.ytw">
+            <div
+                [@slideInOut]="pos.ytw"
+                class="cell-div">{{ pos.ytw | percent: '1.1-1'}}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="YTF">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> YTF </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div *ngIf="pos.ytf">
+            <div
+                [@slideInOut]="pos.ytf"
+                class="cell-div">{{ pos.ytf | percent: '1.1-1'}}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Factor">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Factor </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div *ngIf="pos.factor">
+            <div
+                class="cell-div">{{ pos.factor | number: '1.0-3'}}
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Change">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Px Diff </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div
+              [@slideInOut]="pos.price_diff"
+              [class.positive]="pos.price_diff > 0 "
+              [class.negative]="pos.price_diff < 0 "
+              class="cell-div">
+            {{ pos.price_diff | number: '1.0-3' }}
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="EqRet">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Eq Ret </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div
+              [@slideInOut]="pos.eq_intraday_ret"
+              [class.positive]="pos.eq_intraday_ret > 0 "
+              [class.negative]="pos.eq_intraday_ret < 0 "
+              class="cell-div">
+            {{ pos.eq_intraday_ret | percent: '1.2-2' }}
+          </div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Quantity">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Qty </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div class="cell-div">{{ pos.quantity | number: '1.0-0' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="CostBasis">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> CostBasis </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div class="cell-div">{{ pos.costBasis | number: '1.2-2' }}</div>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Pnl">
+        <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> PnL </th>
+        <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div
+              [@slideInOut]="pos.pnl"
+              [class.positive]="pos.pnl > 0 "
+              [class.negative]="pos.pnl < 0 "
+              class="cell-div">
+            {{ pos.pnl / 1000| number: '1.1-1' }}K
+          </div>
+        </td>
+      </ng-container>
+    </mat-table-expandable>
+  </ng-container>
+</div>
+<div class="footer-div" *ngIf="dataService && !errMsg">
+  <div class="buttons" *ngIf="dataService.anySelected">
+    <button class="positive" (click)="openTradeDialog(1)" mat-button>Add Pos</button>
+  </div>
+
+  <div class="buttons" *ngIf="dataService.anySelected">
+    <button class="negative" (click)="openTradeDialog(-1)" mat-button>Close Pos</button>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="pf-dates">
+    <div>
+      Allocation Date: {{ portfolioService.pos_date | date: 'yyyy-MM-dd hh:mm'}}
+    </div>
+    <div>
+      Reference Date: {{ portfolioService.ref_date | date: 'yyyy-MM-dd hh:mm'}}
+    </div>
+  </div>
+
+</div>

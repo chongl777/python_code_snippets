@@ -1,0 +1,44 @@
+<table #ChildTable mat-table [dataSource]="dataSource" class="content-table" multiTemplateDataRows>
+
+  <tr mat-row
+      *matRowDef="let pos; columns: columnsToDisplay; let i=dataIndex"
+      class="pos-row"  [class.even]="i % 2 == 0"  [class.odd]="i % 2 == 1">
+  </tr>
+
+  <tr mat-row *matRowDef="let pos; columns: ['ChildTable']"
+      class="child-table-row">
+  </tr>
+
+  <ng-container matColumnDef="ChildTable">
+    <td mat-cell
+        *matCellDef="let item" [attr.colspan]="columnsToDisplay.length">
+      <div class="child-table-wrapper" style="display: flex;"
+           *ngIf="item.expanded">
+
+        <app-smart-child-table
+            [nonChildrenRowTemplate]="nonChildrenRowTemplate"
+            *ngIf="item.children"
+            [data]="item.children" [columnsToDisplay]="columnsToDisplay"
+            [contentColumnDefs]="contentColumnDefs" [level]="level+1">
+        </app-smart-child-table>
+
+        <ng-container *ngIf="!item.children">
+          <!-- <div class="trade-buttons">
+               <app-trade-buttons [security]="item.security"></app-trade-buttons>
+               </div>
+               <app-security-details-slide-card
+               [sizeInfo]="'large'"
+               [secInfo]="{security: item.security, watchlist: {reasons: null, category: null}}">
+               </app-security-details-slide-card> -->
+          <ng-container
+              *ngTemplateOutlet="nonChildrenRowTemplate; context:item"
+          ></ng-container>
+        </ng-container>
+
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-content></ng-content>
+
+</table>

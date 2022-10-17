@@ -1,0 +1,358 @@
+@import '~src/helpers';
+$color-buy: green;
+$color-sell: red;
+$color-font: white;
+$color-normal: $color-dialog-title-background;
+$td-bg-colors: $card-background-color;
+
+$filter-field-height: 54px;
+
+:host {
+  background-color: $background-color;
+  // display: flex;
+  // flex-direction: column;
+  // height: 100%;
+  // width: 100%;
+
+  // app-spinner-or-error {
+  //   height: 0px;
+  // }
+  app-spinner-or-error.loading {
+    height: 100%;
+    width: 100%;
+    display: inline-block;
+  }
+
+  mat-form-field.filter-input {
+    height: $filter-field-height;
+  }
+
+  mat-form-field.filter-input.loading {
+    opacity: 0;
+  }
+}
+
+cdk-virtual-scroll-viewport.loading {
+  opacity: 0;
+}
+
+cdk-virtual-scroll-viewport {
+  width: 100%;
+  height: calc(100% - #{$footer-height} - #{$filter-field-height} - 5px);
+
+  ::ng-deep div.cdk-virtual-scroll-content-wrapper {
+    min-width: 1100px;
+  }
+
+  div {
+    height: 100%;
+  }
+
+  tr[mat-header-row]>th,
+  tr[mat-footer-row]>th {
+    background-color: $background-color;
+  }
+
+  .content-table {
+    width: 100%;
+    table-layout: fixed;
+
+    div.cell-div {
+      vertical-align: middle;
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  * {
+    font-size: $data-table-font-size;
+  }
+}
+
+.mat-header-cell:last-of-type,
+.mat-cell:last-of-type {
+    padding-right: 8px;
+}
+
+.mat-header-cell, .mat-cell {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.mat-header-cell {
+  text-align: center;
+}
+
+tr.wl-header, tr.wl-row {
+  height: $row-height;
+}
+
+
+div.footer-div {
+  display: flex;
+  flex-direction: row;
+  height: $footer-height;
+
+  div.buttons {
+    margin: auto;
+    display:flex;
+    height: 22px;
+  }
+
+  .mat-button {
+    width: 90px;
+    color: white;
+    margin-left: 10px;
+    height: 100%;
+    line-height: 25px;
+    ::ng-deep * {
+      font-weight: bold;
+    }
+  }
+
+  .mat-button.positive {
+    background-color: $color-buy;
+  }
+
+  .mat-button.close {
+    background-color: $color-normal;
+  }
+
+  .mat-button.negative {
+    background-color: $color-sell;
+  }
+
+  div.spacer {
+    flex: 1;
+  }
+
+  div.wl-date {
+    margin: auto;
+  }
+}
+
+tr.mat-row {
+  td.mat-cell {
+    background-color: $td-bg-colors;
+    // border-top: 1px solid $border-color;
+  }
+}
+
+
+tr.mat-row:hover {
+  td.mat-cell {
+    background-color: $hover-background-color;
+  }
+}
+
+.mat-column-Signals {
+  width: 20%!important;
+  word-wrap: break-word !important;
+  white-space: unset !important;
+
+  span {
+    margin: auto;
+    width: 80px;
+    display: flex;
+    flex-direction: row;
+    div {
+      display: inline-block;
+      text-align: center;
+      width: 30%;
+    }
+  }
+}
+
+.mat-column-Event {
+  width: 25px;
+}
+
+tr[mat-row].security-detail-row.detailed-hide {
+  display: none;
+}
+
+tr[mat-row].security-detail-row,
+tr[mat-header-row].security-detail-row {
+  min-height: 0px!important;
+  height: 0px!important;
+  td {
+    border: none!important;
+    padding: 0px;
+    div.security-detail-wrapper {
+      overflow:hidden;
+      div.security-detail{
+        /* border-bottom: 1px solid $border-color; */
+        display: block;
+        padding: $padding-detail;
+      }
+    }
+  }
+
+  div.security-detail-wrapper {
+    overflow: hidden;
+    background-color: $color-sec-detail!important;
+  }
+
+}
+
+.clickable {
+  cursor: pointer;
+  // text-decoration: underline;
+  color: $text-color-primary;
+}
+
+.clickable:hover {
+  color: $button-fab-hover-color-alt;
+}
+
+tr[mat-footer-row] th {
+  text-align: left!important;
+}
+
+.mat-column-Selected {
+  text-align: center;
+  width: 30px!important;
+  padding: 0px!important;
+  input {
+    cursor: pointer;
+  }
+}
+
+.mat-column-Price {
+  width: 45px!important;
+  // flex: 18 18 18% !important;
+  .cell-div.positive {
+    color: $positive-color;
+  }
+
+  .cell-div.negative {
+    color: $negative-color;
+  }
+}
+
+.mat-column-Rating {
+  width: 45px;
+}
+
+.mat-column-LiqScore {
+  width: 45px;
+}
+
+.mat-column-MarketSeg {
+  width: 45px;
+}
+
+.mat-column-ModifiedDur, .mat-column-YTM, .mat-column-YTW, .mat-column-YTF, .mat-column-EqRet {
+  width: 34px;
+
+  .cell-div.positive {
+    color: $positive-color;
+  }
+
+  .cell-div.negative {
+    color: $negative-color;
+  }
+}
+
+.mat-column-ShortInfo {
+  width: 60px;
+}
+td.mat-column-ShortInfo {
+  padding-right: 10px;
+  .cell-div.GOOD, .cell-div.PARTIAL {
+    color: $positive-color;
+  }
+}
+
+.mat-column-Sector {
+  width: 10%;
+}
+
+.mat-column-Subsector {
+  width: 10%;
+}
+
+.mat-column-Outstanding {
+  width: 50px!important;
+}
+
+.mat-column-RVS, .mat-column-EMC, .mat-column-ERH, .mat-column-LR,
+.mat-column-LR_S, .mat-column-LR_S_SW, .mat-column-FA {
+  width: 30px;
+  text-align: right;
+}
+
+.mat-column-Security {
+  width: 85px;
+}
+
+.mat-column-CurrentQty, .mat-column-CurrentQtyD {
+  width: 55px;
+  text-align: right;
+}
+
+th.tiny-sort {
+  ::ng-deep {
+    div.mat-sort-header-arrow {
+      margin: 0px;
+      transform: translateY(0px)scaleX(0.5)!important;
+    }
+  }
+}
+
+th {
+  white-space: nowrap;
+  ::ng-deep .mat-sort-header-container {
+    white-space: nowrap;
+  }
+}
+
+th.right-align {
+  padding-left: 0px;
+  padding-right: 0px;
+  ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+td.tiny-sort.right-align {
+  padding-right: 10px!important;
+}
+
+.right-align {
+  div.cell-div {
+    text-align: right;
+  }
+}
+
+th.center-align {
+  ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+td.tiny-sort.center-align {
+  padding-right: 10px!important;
+}
+
+div.trade-buttons {
+  &>div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  app-trade-buttons {
+    height: 20px;
+  }
+  height: 40px!important;
+  display: inline-block;
+}
+
+mat-form-field.filter-input {
+  width: 100%;
+}

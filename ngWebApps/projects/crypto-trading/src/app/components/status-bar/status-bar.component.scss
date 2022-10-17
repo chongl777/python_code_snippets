@@ -1,0 +1,34 @@
+:host {
+  display: flex;
+  .spacer {
+    display: flex;
+    flex: 1 1;
+  }
+
+}
+
+div.StatusBar {
+  label.blank {
+    width: 10px;
+    display: inline-block;
+  }
+  label.Connected {
+    color: green;
+    font-weight: bold;
+  }
+
+  label.Connecting {
+    color: blue;
+    font-weight: bold;
+  }
+
+  label.Disconnected,
+  label.Closed {
+    color: red;
+    font-weight: bold;
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+}

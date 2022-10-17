@@ -1,0 +1,16 @@
+<div class="container" fxLayout="column">
+  <!-- <header fxFlex="25px" class="dialog-title" fxLayout="row">
+       <div class="dialog-tab">{{title}}</div>
+       <div class="spacer"></div>
+       </header> -->
+  <mat-toolbar fxFlex="30px">
+    <!-- <a mat-button (click)="onTabClick('active_ioi')">Active IOI</a>
+         <a mat-button (click)="onTabClick('expired_ioi')" >Expired IOI</a> -->
+    <a mat-button (click)="onTabClick(view.view)"
+       [ngClass]="this.currentView === view.view ? 'active' : ''"
+       *ngFor="let view of availableViews" >{{view.title}} </a>
+  </mat-toolbar>
+  <div fxFlex class="dialog-window">
+    <ng-content></ng-content>
+  </div>
+</div>

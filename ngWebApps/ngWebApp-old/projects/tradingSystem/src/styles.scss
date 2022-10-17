@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+// @import './theme/components/card/card.component';
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~src/helpers';
+@import '~material-design-lite/src/material-design-lite.scss';
+@import '~src/theme/style';
+// @import '~src/theme/matfield';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* spinner */
+
+mat-spinner>svg>circle {
+  stroke: $spinner-color;
+}

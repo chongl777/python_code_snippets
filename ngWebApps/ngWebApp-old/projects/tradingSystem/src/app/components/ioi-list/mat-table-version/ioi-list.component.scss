@@ -1,0 +1,380 @@
+@import '~src/helpers';
+
+$td-bg-colors: $card-background-color;
+
+:host {
+  background-color: $background-color;
+  // width: 100%;
+  height: 100%;
+  .mat-header-row>.mat-header-cell,
+  .mat-footer-row>.mat-header-cell {
+    background-color: $background-color;
+  }
+
+  .mat-table {
+    width: 100%;
+    height: 100%;
+
+    div.cell-div {
+      vertical-align: middle;
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  * {
+    font-size: $data-table-font-size;
+  }
+
+  ::ng-deep .cdk-virtual-scroll-content-wrapper
+  {
+    // transform: translateY(0px) !important;
+    position: static;
+    display: contents;
+  }
+
+}
+
+cdk-virtual-scroll-viewport.loading {
+  opacity: 0;
+}
+
+cdk-virtual-scroll-viewport {
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  div {
+    height: 100%;
+  }
+
+}
+
+mat-row, mat-footer-row {
+  min-height: initial;
+  height: $row-height;
+  align-items: flex-start;
+}
+
+.mat-header-row {
+  // height: $row-height;
+  border-bottom: none;
+  .mat-header-cell {
+    padding-left: 0px;
+    padding-right: 0px;
+    font-weight: bold;
+    border-bottom: 1px solid;
+    // line-height: $row-height-header;
+  }
+}
+
+.mat-row {
+  margin-bottom: 1px;
+  border-bottom: none;
+
+  &.selected {
+    height: 200px;
+  }
+
+  .mat-cell {
+    background-color: $td-bg-colors;
+    border-bottom: 1px solid;
+    margin-bottom: 1px;
+    // border-top: 1px solid $border-color;
+  }
+
+  .mat-column-Side.OWIC {
+    background: red!important;
+  }
+
+  .mat-column-Side.BWIC {
+    background: green!important;
+  }
+}
+
+.mat-row.selected-ioi-element-row, .mat-row.ioi-element-row:hover {
+  .mat-cell {
+    background: $hover-background-color;
+  }
+}
+
+.mat-header-row {
+  min-height: initial;
+  height: 30px;
+  .mat-header-cell {
+    height: 100%;
+  }
+}
+
+mat-cell:last-of-type, mat-header-cell:last-of-type, mat-footer-cell:last-of-type {
+  padding: initial;
+}
+
+.mat-header-cell.tiny-sort {
+  ::ng-deep {
+    div.mat-sort-header-arrow {
+      margin: 0px;
+      transform: translateY(0px)scaleX(0.5)!important;
+    }
+  }
+}
+
+.center-align {
+  &.mat-cell {
+    padding: initial;
+
+    .cell-div {
+      text-align: center;
+    }
+  }
+  &.mat-header-cell {
+    ::ng-deep .mat-sort-header-container {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+    }
+  }
+}
+
+.right-align {
+  &.mat-cell {
+    padding: initial;
+
+    .cell-div {
+      text-align: right;
+      // margin-right: 8px;
+      width: calc(100% - 8px)!important;
+    }
+  }
+
+  &.mat-header-cell {
+    ::ng-deep .mat-sort-header-container {
+      display: flex;
+      flex: 1;
+      justify-content: flex-end;
+    }
+  }
+}
+
+
+.mat-column-Side {
+  color: white;
+  flex: 0.1;
+  min-width: 50px!important;
+  cursor: pointer;
+}
+
+.mat-column-IOITime {
+  min-width: 80px!important;
+  flex: 0.1;
+}
+
+.mat-column-Security {
+  min-width: 125px!important;
+  //flex: 0.1;
+  flex: 1;
+}
+
+.mat-column-Quantity {
+  flex: 1;
+  min-width: 85px!important;
+}
+
+.mat-column-Event {
+  min-width: 40px!important;
+  flex: 1;
+}
+
+.mat-column-Sector {
+  flex: 1;
+  min-width: 30px!important;
+  text-align: right;
+}
+
+.mat-column-ModifiedDur, .mat-column-YTM, .mat-column-YTW, .mat-column-YTF {
+  flex: 1;
+  min-width: 50px!important;
+}
+
+.mat-column-FA {
+  flex: 1;
+  min-width: 30px!important;
+}
+
+.mat-column-EqRet {
+  flex: 1;
+  min-width: 50px!important;
+
+  .cell-div.positive {
+    color: $positive-color;
+  }
+  .cell-div.negative {
+    color: $negative-color;
+  }
+}
+
+.mat-column-Reasons {
+  flex: 1;
+  min-width: 50px!important;
+}
+
+.mat-column-AON {
+  flex: 1;
+  width: 50px!important;
+}
+
+.mat-column-TimeLeft {
+  flex: 1;
+  width: 110px!important;
+}
+
+.mat-column-Category {
+  flex: 1;
+  width: 50!important;
+  word-wrap: break-word !important;
+  white-space: unset !important;
+}
+
+.mat-column-ShortInfo {
+  ::ng-deep .mat-sort-header-container {
+    display:flex;
+    justify-content:flex-end;
+  }
+  width: 100px!important;
+  flex: 1;
+
+  .cell-div {
+    text-align: right;
+    color: $negative-color;
+  }
+  .cell-div.GOOD, .cell-div.PARTIAL {
+    color: $positive-color;
+  }
+}
+
+.mat-column-Price {
+
+  min-width: 20!important;
+  flex: 1;
+
+  a {
+    color: inherit;
+    font-weight: inherit;
+  }
+
+  .cell-div a.positive {
+    color: $positive-color;
+  }
+  .cell-div a.negative {
+    color: $negative-color;
+  }
+}
+
+.mat-column-PriceType {
+  min-width: 50px!important;
+  flex: 1 !important;
+  text-align: right;
+}
+
+.mat-column-Signals {
+  min-width: 100px!important;
+  flex: 1 !important;
+
+  span {
+    margin: auto;
+    width: 90px;
+    display: flex;
+    flex-direction: row;
+    div {
+      display: inline-block;
+      text-align: center;
+      width: 30px;
+    }
+  }
+}
+
+.mat-column-Leverage {
+  min-width: 100px!important;
+  flex: 1 !important;
+
+  span {
+    margin: auto;
+    width: 90px;
+    display: flex;
+    flex-direction: row;
+    div {
+      display: inline-block;
+      text-align: center;
+      width: 30px;
+    }
+  }
+}
+
+.mat-column-LiqScore {
+  flex: 1;
+  min-width: 60px;
+}
+
+.mat-column-UserRating, .mat-column-Rating {
+  flex: 1;
+  min-width: 50px;
+}
+
+.mat-column-CurrentQty,
+.mat-column-CurrentQtyD {
+  flex: 1;
+  min-width: 50px;
+}
+
+
+.mat-header-cell:last-of-type {
+  padding: 0px;
+}
+
+.security-detail {
+  overflow: hidden;
+}
+
+.mat-column-ioiDetail {
+  // height: 200px;
+
+  div.security-detail-wrapper {
+    height: 100%;
+    background-color: $color-sec-detail!important;
+  }
+
+}
+
+mat-header-cell {
+  white-space: nowrap;
+  ::ng-deep .mat-sort-header-container {
+    white-space: nowrap;
+  }
+}
+
+.mat-row.security-detail-row,
+mat-header-row.security-detail-row {
+  min-height: 0px!important;
+  height: auto!important;
+  .mat-cell {
+    border: none!important;
+    padding: 0px;
+    div.security-detail-wrapper {
+      overflow:hidden;
+      div.security-detail{
+        /* border-bottom: 1px solid $border-color; */
+        display: block;
+        padding: $padding-detail;
+      }
+    }
+  }
+
+  div.security-detail-wrapper {
+    overflow: hidden;
+    background-color: $color-sec-detail!important;
+  }
+
+}

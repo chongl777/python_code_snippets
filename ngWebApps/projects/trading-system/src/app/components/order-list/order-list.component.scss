@@ -1,0 +1,215 @@
+@import '~src/helpers';
+
+$color-bid: green;
+$color-offer: red;
+$color-button-background: steelblue;
+
+:host {
+  background-color: $background-color;
+}
+
+div.scroll-viewport {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  contain: strict;
+
+  * {
+    font-size: $data-table-font-size;
+    font-weight: 100;
+  }
+
+  .mat-table {
+    width: 100%;
+    height: auto;
+
+    .mat-cell, .mat-header-cell {
+      //border: 1px solid;
+    }
+  }
+
+  .mat-table.Loading {
+    display: none;
+  }
+
+  a.clickable {
+    cursor: pointer;
+    color: white;
+  }
+
+  .mat-header-row * {
+    font-weight: bold;
+  }
+
+  .mat-row.ord-row:hover {
+    background: $hover-background-color;
+  }
+
+  .mat-row, .mat-header-row {
+    height: #{$row-height + 1};
+    min-height: #{$row-height + 1};
+  }
+
+  .mat-header-row>th,
+  .mat-footer-row>th {
+    background-color: $background-color;
+  }
+
+  .mat-cell {
+    .cell-div {
+      padding-right: 10px;
+      width: calc(100% - 10px);
+    }
+  }
+
+  .mat-cell.center-align {
+    text-align: center;
+  }
+
+  .mat-column-CurrentQty {
+  }
+
+  .mat-column-Update {
+    flex: 1;
+    text-align: center;
+  }
+
+
+  .mat-column-Sid {
+    flex: 1;
+  }
+
+  .mat-column-Security {
+    flex: 1;
+    min-width: 135px;
+  }
+
+  .mat-column-OrderType {
+    flex: 1;
+  }
+
+  .mat-column-Quantity {
+    flex: 1;
+  }
+
+  .mat-column-Side {
+    flex: 1;
+    cursor: pointer;
+    padding-left: 0px!important;
+  }
+
+  .mat-column-Price {
+    flex: 1;
+  }
+
+  .mat-column-OrderStatus {
+    flex: 1;
+  }
+
+  .mat-column-PriceType {
+    flex: 1;
+  }
+
+  .mat-column-IOIOrder {
+    flex: 1;
+  }
+
+  .BID>div.cell-div {
+    background: $color-bid;
+  }
+
+  .OFFER>div.cell-div {
+    background: $color-offer;
+  }
+
+  mat-header-cell.center-align,
+  mat-cell.center-align {
+    text-align: center;
+  }
+}
+
+mat-header-cell.tiny-sort {
+  ::ng-deep {
+    div.mat-sort-header-arrow {
+      margin: 0px;
+      transform: translateY(0px)scaleX(0.5)!important;
+    }
+  }
+}
+
+.mat-cell.tiny-sort.right-align {
+
+}
+
+.mat-header-cell.right-align {
+//  padding-left: 0px;
+//  padding-right: 0px;
+  ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.mat-header-cell.center-align {
+  text-align: center;
+}
+
+.mat-cell.right-align {
+//  padding-right: 20px!important;
+  div.cell-div {
+    text-align: right;
+  }
+}
+
+app-ioi-status {
+  ::ng-deep {
+    font-size: 8px!important;
+    * {
+      line-height: #{$row-height/2};
+    }
+  }
+}
+
+div.cell-div {
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+.mat-row.security-detail-row {
+  min-height: 0px !important;
+  height: 0px !important;
+  display: none;
+  border: none;
+  .mat-cell {
+    border: none;
+    padding: 0px;
+    div.security-detail-wrapper {
+      overflow:hidden;
+      div.security-detail{
+        /* border-bottom: 1px solid $border-color; */
+        display: block;
+        padding: $padding-detail;
+      }
+    }
+  }
+}
+
+.mat-row.security-detail-row.selected-ord-cell {
+  height: auto!important;
+  display: flex;
+}
+
+div.security-detail-wrapper {
+  overflow: hidden;
+  background-color: $color-sec-detail!important;
+}
+
+mat-cell, mat-header-cell, mat-footer-cell {
+    flex: 1;
+    display: inline-block;
+}

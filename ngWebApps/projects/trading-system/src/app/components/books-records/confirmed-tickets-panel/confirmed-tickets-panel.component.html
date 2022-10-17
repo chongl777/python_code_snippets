@@ -1,0 +1,132 @@
+<div class="wrapper">
+  <div class="panel-wraper" (click)="onUnSelect()">
+    <div class="top-panel">
+      <mat-form-field class="select-date-range" appearance="fill">
+      <mat-label>Select Date Range</mat-label>
+      <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker">
+      <input matStartDate formControlName="start" placeholder="Start date">
+      <input matEndDate formControlName="end" placeholder="End date">
+        </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+
+      <mat-error *ngIf="dateRange.controls.start.hasError('matStartDateInvalid')">Invalid start date</mat-error>
+      <mat-error *ngIf="dateRange.controls.end.hasError('matEndDateInvalid')">Invalid end date</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="panel">
+      <div class="ticket-panel">
+        <app-spinner-or-error *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+        </app-spinner-or-error>
+        <ng-container  *ngIf="!(loading$ | async) && !errMsg">
+          <mat-table class="transaction-table" [dataSource]="data" multiTemplateDataRows
+                     matSort matSortDirection="asc" matSortDisableClear>
+            <mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"  class="txn-header"></mat-header-row>
+            <mat-row *matRowDef="let txn; columns: columnsToDisplay; let even = even;"
+                     (click)="onSelect(txn, $event)"
+                     [class.selected]="txn==transaction"
+                     [class.even]="even"  [class.odd]="!even"
+                     class="txn-row"></mat-row>
+
+            <ng-container matColumnDef="Select" sticky>
+              <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? masterToggle() : null"
+                              [checked]="selection.hasValue() && isAllSelected()"
+                              [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox>
+              </mat-header-cell>
+              <mat-cell *matCellDef="let txn">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                              (change)="$event ? selection.toggle(txn) : null"
+                              *ngIf="txn.isvalid"
+                              [checked]="selection.isSelected(txn)">
+                </mat-checkbox>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Side">
+              <mat-header-cell *matHeaderCellDef> Side </mat-header-cell>
+              <mat-cell
+                  class="clickable"
+                  *matCellDef="let txn">
+                <div [ngClass] ="txn.quantity > 0 ? 'positive' : 'negative'">
+                  {{ txn.quantity > 0 ? 'Buy' : 'Sell' }}</div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="TradeId">
+              <mat-header-cell *matHeaderCellDef> TradeId </mat-header-cell>
+              <mat-cell
+                  *matCellDef="let txn">
+                <div class="cell-div">{{txn.tradeID }}</div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="TradeDt">
+              <mat-header-cell *matHeaderCellDef> TradeDt </mat-header-cell>
+              <mat-cell *matCellDef="let txn">
+                <div class="cell-div">{{txn.tradeDate | date: 'yyyy-MM-dd HH:mm:ss' }}</div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Name">
+              <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+              <mat-cell *matCellDef="let txn">
+                <div class="cell-div">{{txn.security.description }}</div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="Quantity">
+              <mat-header-cell *matHeaderCellDef> Shares </mat-header-cell>
+              <mat-cell *matCellDef="let txn">
+                <div class="cell-div">{{txn.quantity | number: '1.0-2' }}</div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="CounterPty">
+              <mat-header-cell *matHeaderCellDef> CPty </mat-header-cell>
+              <mat-cell *matCellDef="let txn">
+                <div class="cell-div">{{txn.counterParty }}</div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="TradePrint">
+              <mat-header-cell *matHeaderCellDef> TradePrint </mat-header-cell>
+              <mat-cell *matCellDef="let txn">
+                <div class="cell-div">{{txn.tradePrint }}</div>
+              </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="CP_Code">
+              <mat-header-cell *matHeaderCellDef> CP_Code </mat-header-cell>
+              <mat-cell *matCellDef="let txn">
+                <div class="cell-div">{{txn.cpCode }}</div>
+              </mat-cell>
+            </ng-container>
+
+          </mat-table>
+        </ng-container>
+      </div>
+      <div class="footer-div" *ngIf="selection.selected.length">
+        <div class="spacer"></div>
+
+        <ng-container *ngIf="selection.selected.length">
+          <button class="positive" (click)="sendTradePrint()" mat-button>Send TradePrint</button>
+        </ng-container>
+
+        <ng-container *ngIf="selection.selected.length">
+          <button class="positive" (click)="submitTradePrint()" mat-button>Submit TradePrint</button>
+        </ng-container>
+
+        <div class="spacer"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="ticket-details">
+    <app-ticket-details></app-ticket-details>
+  </div>
+</div>

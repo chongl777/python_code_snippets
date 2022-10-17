@@ -1,0 +1,12 @@
+<div (mousedown)="onFocus()" class="container" cdkDrag cdkDragBoundary=".mdl-layout__content"
+     cdkDragRootElement=".cdk-overlay-pane">
+  <mat-dialog-title cdkDragHandle>
+    {{title}}
+    <span class="flex-spacer" ></span>
+    <button mat-button mat-dialog-close>&times;</button>
+  </mat-dialog-title>
+
+  <ng-content>
+  </ng-content>
+
+</div>

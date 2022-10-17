@@ -1,0 +1,33 @@
+:host {
+  mat-expansion-panel {
+    border-radius: 0px!important;
+
+    ::ng-deep .mat-expansion-indicator {
+      font-size: 5px;
+      position: relative;
+      top: -2px;
+    }
+    &.mat-expanded {
+      ::ng-deep .mat-expansion-indicator {
+        top: 3px;
+      }
+    }
+  }
+
+  mat-expansion-panel-header {
+    font-size: 4px;
+    height: 10px!important;
+    padding: 0px;
+
+    justify-content: center;
+    ::ng-deep {
+      span.mat-content {
+        display: none;
+      }
+    }
+  }
+
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 10px 10px;
+  }
+}

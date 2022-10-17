@@ -1,0 +1,262 @@
+<app-spinner-or-error *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg"></app-spinner-or-error>
+
+<!-- *ngIf="!(wlDataService.loading$ | async)  && !errMsg" -->
+<cdk-virtual-scroll-viewport
+    #ScrollDiv
+    tvsItemSize="24"
+    [class.loading]="(loading$ | async)  || !!(errMsg)"
+    [footerEnabled]="false"
+    [headerEnabled]="true"
+    [headerHeight]="30"
+    [bufferMultiplier]="0.1"
+    class="wrapper mat-elevation-z2 scroll-div">
+  <table mat-table [dataSource]="dataSource" class="content-table"
+         matSort matSortActive="['Security', 'Quantity', 'Change']"
+         #Table
+         [@showAni]
+         matSortDisableClear
+         multiTemplateDataRows>
+    <tr mat-header-row class="pos-header"
+        *matHeaderRowDef="columnsToDisplay; sticky: true">
+    </tr>
+    <tr mat-header-row class="pos-header"
+        *matHeaderRowDef="['EmptySticky', 'Total', 'Empty', 'Empty', 'Empty', 'Empty', 'Empty',
+                          'Empty', 'Empty', 'TotalQuantity', 'Empty', 'Empty', 'Empty',
+                          'TotalPnl', 'Empty', 'Empty'];
+                          sticky: true">
+    </tr>
+
+    <tr mat-row
+        *matRowDef="let pos; columns: columnsToDisplay;"
+        (click)="onSelectSecurity(pos.security)"
+        class="pos-row">
+    </tr>
+
+    <tr mat-row *matRowDef="let pos; columns: ['SecDetails']"
+        class="security-detail-row">
+    </tr>
+
+    <ng-container matColumnDef="Selected" sticky>
+      <th mat-header-cell *matHeaderCellDef>
+        <input [(ngModel)]="dataService.allSelected" type="checkbox"/>
+      </th>
+      <td mat-cell *matCellDef="let pos;">
+        <input [(ngModel)]="pos.selected" type="checkbox"/>
+        <!-- <mat-checkbox [checked]="wi.selected" (change)="onSelectedWatchItem(wi)"></mat-checkbox> -->
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Security" sticky>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Security </th>
+      <td mat-cell *matCellDef="let pos;"
+          (click)="onSelectPosition(pos, ScrollDiv, matCell)"  #matCell>
+        <div class="cell-div"><a class="clickable">{{pos.pos_name }}</a></div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Event">
+      <th mat-header-cell class="tiny-sort center-align" *matHeaderCellDef mat-sort-header> Evt </th>
+      <td mat-cell class="tiny-sort center-align" *matCellDef="let pos;">
+        <app-security-events [SecEvt]="pos.security.secEvt"></app-security-events>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="SecDetails">
+      <td mat-cell
+          [class.selected-pos-row]="selectedPosition === pos"
+          *matCellDef="let pos" [attr.colspan]="columnsToDisplay.length">
+        <div class="security-detail-wrapper"
+             [@detailExpand]="pos == selectedPosition ? 'expanded' : 'collapsed'"
+             *ngIf="pos == selectedPosition">
+          <div class="trade-buttons">
+            <div>
+              <app-trade-buttons [security]="pos.security"></app-trade-buttons>
+            </div>
+          </div>
+          <div class="security-detail">
+            <app-security-details-slide-card
+                [sizeInfo]="'middle'"
+                (beingDestroyed)="SecDetailBeingDestroyed()"
+                [secInfo]="{security: selectedPosition.security, watchlist: {reasons: null, category: null}}">
+            </app-security-details-slide-card>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="TotalQuantity">
+      <th class="right-align subheader" mat-header-cell *matHeaderCellDef>
+        <div class="cell-div">{{dataService.totalQuantity | number: '1.0-0'}}</div>
+      </th>
+    </ng-container>
+
+    <ng-container matColumnDef="TotalPnl">
+      <th class="right-align subheader" mat-header-cell *matHeaderCellDef>
+        <div
+            [class.positive]="dataService.totalPnl > 0 "
+            [class.negative]="dataService.totalPnl < 0 "
+            class="cell-div">{{dataService.totalPnl | number: '1.0-0'}}</div>
+      </th>
+    </ng-container>
+
+    <ng-container matColumnDef="Empty">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+    </ng-container>
+
+    <ng-container matColumnDef="EmptySticky" sticky>
+      <th mat-header-cell *matHeaderCellDef>  </th>
+    </ng-container>
+
+    <ng-container matColumnDef="Sector">
+      <th mat-header-cell class="tiny-sort left-align" *matHeaderCellDef mat-sort-header> Sector </th>
+      <td mat-cell class="tiny-sort left-align" *matCellDef="let pos">
+        <div class="cell-div">
+          {{ pos.security.sector}}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="MarketSeg">
+      <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header>
+        MktSeg </th>
+      <td mat-cell *matCellDef="let pos" class="right-align tiny-sort">
+        <div class="cell-div">
+          {{ pos.marketSegment}}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ModifiedDur">
+      <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Dur </th>
+      <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+        <div *ngIf="pos.modified_dur">
+          <div
+              class="cell-div">{{ pos.modified_dur | number: '1.2-2'}}
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="EMC">
+      <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header>
+        {{ NAME_MAPPING['EMC'] }} </th>
+      <td mat-cell *matCellDef="let pos" class="right-align tiny-sort">
+        <div class="cell-div">{{ pos.security.marketData.emcScoreData.emc_score }}</div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="RVS">
+      <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header>
+        {{ NAME_MAPPING['RVS'] }} </th>
+      <td mat-cell *matCellDef="let pos" class="right-align tiny-sort">
+        <div class="cell-div">{{ pos.security.marketData.rvsScoreData.rvs_score }}</div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="ERH">
+      <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header>
+        {{ NAME_MAPPING['ERH'] }} </th>
+      <td mat-cell *matCellDef="let pos" class="right-align tiny-sort">
+        <div class="cell-div">{{ pos.security.marketData.emcScoreData.emc_score +
+            pos.security.marketData.rvsScoreData.rvs_score }}</div>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="LR">
+      <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header> LR </th>
+      <td mat-cell *matCellDef="let pos" class="right-align tiny-sort">
+        <div class="cell-div">{{ pos.leverage_ratio | number: '1.1-1' }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Total" sticky>
+      <th mat-header-cell *matHeaderCellDef> Total </th>
+    </ng-container>
+
+    <ng-container matColumnDef="SID">
+      <th mat-header-cell class="right-align" *matHeaderCellDef> </th>
+      <td class="right-align" mat-cell *matCellDef="let pos;"
+          (click)="onSelectPosition(pos, ScrollDiv, matCell)"  #matCell>
+        <div class="cell-div"><a class="clickable">{{pos.security.securityID }}</a></div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Price">
+      <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
+      <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+        <div *ngIf="pos.security.marketData.priceData.compositePrice">
+          <div
+              [@slideInOut]="pos.security.marketData.priceData.compositePrice"
+              [class.positive]="pos.security.marketData.priceData.compositeDiff > 0 "
+              [class.negative]="pos.security.marketData.priceData.compositeDiff < 0 "
+              class="cell-div">{{ pos.security.marketData.priceData.compositePrice | number: '1.0-3'}}
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Change">
+      <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Change </th>
+      <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+          <div
+              [@slideInOut]="pos.security.marketData.priceData.compositePrice"
+              [class.positive]="pos.security.marketData.priceData.compositeDiff > 0 "
+              [class.negative]="pos.security.marketData.priceData.compositeDiff < 0 "
+              class="cell-div">
+            {{ pos.security.marketData.priceData.compositeDiff| number: '1.0-3' }}
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Quantity">
+      <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> Qty </th>
+      <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+        <div class="cell-div">{{ pos.quantity | number: '1.0-0' }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="CostBasis">
+      <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> CostBasis </th>
+      <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+        <div class="cell-div">{{ pos.costBasis | number: '1.2-2' }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Pnl">
+      <th class="right-align tiny-sort" mat-header-cell *matHeaderCellDef mat-sort-header> PnL </th>
+      <td class="right-align tiny-sort" mat-cell *matCellDef="let pos">
+        <div
+            [@slideInOut]="pos.pnl"
+            [class.positive]="pos.pnl > 0 "
+            [class.negative]="pos.pnl < 0 "
+            class="cell-div">
+          {{ pos.pnl/ 1000| number: '1.1-1' }}K
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="LiqScore">
+      <th mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header>
+        LiqScore </th>
+      <td mat-cell *matCellDef="let pos" class="right-align tiny-td tiny-sort">
+        <div class="cell-div">
+          {{ pos.liqScore}}</div>
+      </td>
+    </ng-container>
+
+  </table>
+</cdk-virtual-scroll-viewport>
+<div class="footer-div">
+  <div class="buttons" *ngIf="dataService.anySelected">
+    <button class="positive" (click)="openTradeDialog(1)" mat-button>Add Pos</button>
+  </div>
+
+  <div class="buttons" *ngIf="dataService.anySelected">
+    <button class="negative" (click)="openTradeDialog(-1)" mat-button>Close Pos</button>
+  </div>
+
+  <div class="spacer"></div>
+  <div class="pf-dates">
+    <div>
+      Allocation Date: {{ portfolioService.pos_date | date: 'yyyy-MM-dd hh:mm'}}
+    </div>
+    <div>
+      Reference Date: {{ portfolioService.ref_date | date: 'yyyy-MM-dd hh:mm'}}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+ng n ngWebApps --style=scss --create-application=false
+
+ng add material
+ng add forms
+
+npm install flex-layout
+npm install d3
+npm install hammerjs
+npm install uuid
+
+npm install @types/uuid
+npm install @types/d3
+npm install @types/hammerjs
+
+npm install material-design-lite
+npm install ng-table-virtual-scroll
+npm install ngx-cookie-service
+
+npm install @stomp/ng2-stompjs
+
+npm link shared-library
+
+
+ng generate application email-processor

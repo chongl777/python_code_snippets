@@ -1,0 +1,43 @@
+
+<div class="tile-template tile-security-info">
+  <div class="row">
+    <div class="field"> SecurityID </div>
+    <div class="value"><a target="_blank"
+                          href="https://westfieldinvestment.wfi.local/pfmgmt/sec_profile/security_profile?sid={{security.securityID}}&amp;trading_records=1&amp;fund_id=8158&amp;paper_trade=0">
+      {{security.securityID}}
+    </a></div>
+  </div>
+  <div class="row">
+    <div class="field"> Description </div>
+    <div class="value"> {{security.description}} </div>
+  </div>
+  <div class="row">
+    <div class="field"> ISIN </div>
+    <div class="value"> {{security.isin}} </div>
+  </div>
+  <div class="row">
+    <div class="field"> BBG ID </div>
+    <div class="value"> <a target="bbglinks" href="{{ security.bbg_links }}">{{security.bbg_id}} </a> </div>
+  </div>
+  <div class="row">
+    <div class="field"> Finra ID </div>
+    <div class="value"> {{security.finra_ticker}} </div>
+  </div>
+  <div class="row">
+    <div class="field"> Lien </div>
+    <div class="value"> {{security.payment_rnk}} </div>
+  </div>
+  <div class="row">
+    <div class="field"> Outstanding Amt </div>
+    <div class="value"> {{security.marketData.outstandingAmt.value / 1000000 | number: '1.0-3' }} MM </div>
+  </div>
+  <div class="row">
+    <div class="field"> Industry Level 1 </div>
+    <div class="value"> {{security.industry_level_1}} </div>
+  </div>
+
+  <div class="row">
+    <div class="field"> Industry Level 2 </div>
+    <div class="value"> {{security.industry_level_2}} </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+ng serve -o --project tradingSystem --host=0.0.0.0 --port 4200 --ssl=true --sslCert=C:\Users\cliu\Desktop\WFI\pylib\ssl\wfi-selfsigned.crt --sslKey=C:\Users\cliu\Desktop\WFI\pylib\ssl\wfi-selfsigned.key --disableHostCheck=true
+cmd /k
+pause

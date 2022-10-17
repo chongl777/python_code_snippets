@@ -1,0 +1,69 @@
+@import '~src/helpers';
+
+:host {
+  //display: flex;
+  table-layout: fixed;
+  // display: inline-block;
+  display: table;
+  width: 100%;
+  // height: 100%;
+  //flex-direction: column;
+  //height: 100%;
+  display: table;
+  width: 100%;
+
+  ::ng-deep {
+    .mat-header-cell.tiny-sort {
+      ::ng-deep {
+        div.mat-sort-header-arrow {
+          margin: 0px;
+          transform: translateY(0px)scaleX(0.5)!important;
+        }
+      }
+    }
+
+    .mat-cell {
+      padding-right: 0px;
+    }
+
+    .right-align {
+      &.mat-cell.tiny-sort.right-align div.cell-div {
+        padding-right: 10px!important;
+        width: calc(100% - 10px);
+      }
+
+      &.mat-header-cell.right-align.mat-sort-header {
+        padding-left: 0px;
+        padding-right: 0px!important;
+        ::ng-deep .mat-sort-header-container {
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+
+      &.mat-header-cell.right-align.subheader {
+        padding-left: 0px;
+        padding-right: 0px;
+        text-align: right;
+        padding-right: 10px!important;
+      }
+
+      &.mat-cell.right-align {
+        div.cell-div {
+          padding-right: 20px!important;
+          text-align: right;
+          width: calc(100% - 20px);
+        }
+      }
+    }
+
+    div.cell-div {
+      vertical-align: middle;
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<app-spinner-or-error *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+</app-spinner-or-error>
+
+<ng-container>
+  <app-tree-chart
+      #treeChart
+      [tooltipDisplay]="tooltipDisplay"
+      [clickNodes]="clickNodes"
+      [svgDefs]="html"
+      [dataSource]="dataSource">
+  </app-tree-chart>
+</ng-container>

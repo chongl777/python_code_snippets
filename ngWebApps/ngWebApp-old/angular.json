@@ -1,0 +1,179 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "tradingSystem": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "projects/tradingSystem",
+            "sourceRoot": "projects/tradingSystem/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/tradingSystem",
+                        //"outputPath": "//10.92.1.8/Ng Apps/tradingSystem1",
+                        "index": "projects/tradingSystem/src/index.html",
+                        "main": "projects/tradingSystem/src/main.ts",
+                        "polyfills": "projects/tradingSystem/src/polyfills.ts",
+                        "tsConfig": "projects/tradingSystem/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/tradingSystem/src/favicon.ico",
+                            "projects/tradingSystem/src/assets"
+                        ],
+                        "styles": [
+                            "projects/tradingSystem/src/styles.scss"
+                        ],
+                        "scripts": [
+                            "node_modules/material-design-lite/material.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/tradingSystem/src/environments/environment.ts",
+                                    "with": "projects/tradingSystem/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "tradingSystem:build",
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "tradingSystem:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "tradingSystem:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/tradingSystem/src/test.ts",
+                        "polyfills": "projects/tradingSystem/src/polyfills.ts",
+                        "tsConfig": "projects/tradingSystem/tsconfig.spec.json",
+                        "karmaConfig": "projects/tradingSystem/karma.conf.js",
+                        "assets": [
+                            "projects/tradingSystem/src/favicon.ico",
+                            "projects/tradingSystem/src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+                            "projects/tradingSystem/src/styles.scss"
+                        ],
+                        "scripts": [
+                            "node_modules/material-design-lite/material.js"
+                        ]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/tradingSystem/tsconfig.app.json",
+                            "projects/tradingSystem/tsconfig.spec.json",
+                            "projects/tradingSystem/e2e/tsconfig.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "projects/tradingSystem/e2e/protractor.conf.js",
+                        "devServerTarget": "tradingSystem:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "tradingSystem:serve:production"
+                        }
+                    }
+                }
+            }
+        },
+        "shared-library": {
+            "projectType": "library",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "projects/shared-library",
+            "sourceRoot": "projects/shared-library/src",
+            "prefix": "",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "tsConfig": "projects/shared-library/tsconfig.lib.json",
+                        "project": "projects/shared-library/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/shared-library/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/shared-library/src/test.ts",
+                        "tsConfig": "projects/shared-library/tsconfig.spec.json",
+                        "karmaConfig": "projects/shared-library/karma.conf.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/shared-library/tsconfig.lib.json",
+                            "projects/shared-library/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

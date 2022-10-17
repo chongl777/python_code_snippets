@@ -1,0 +1,47 @@
+:host {
+  display: inline-block;
+  overflow-y: auto;
+
+  .content-table {
+    &.loading {
+      display: none;
+    }
+    width: 100%;
+    table-layout: fixed;
+
+    .mat-cell.name-field, .mat-header-cell.name-field {
+      width: 10%!important;
+    }
+
+    .mat-cell.price-field, .mat-header-cell.price-field {
+      width: 10%!important;
+    }
+
+    .mat-cell.size-field, .mat-header-cell.size-field {
+      width: 10%!important;
+    }
+
+    .mat-cell.time-field, .mat-header-cell.time-field {
+      width: 10%!important;
+    }
+
+    .mat-cell.signal-field, .mat-header-cell.signal-field {
+      width: 6%!important;
+    }
+
+    .mat-column-Trade {
+      &.mat-header-cell {
+        text-align: center;
+      }
+
+      div.button-fixture {
+        text-align: center;
+      }
+      width: 6%!important;
+    }
+
+    .mat-row:hover {
+      background-color: gainsboro!important;
+    }
+  }
+}

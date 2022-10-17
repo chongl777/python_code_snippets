@@ -1,0 +1,51 @@
+::ng-deep .event-text {
+  font-weight: bold;
+  font-size: 8px;
+  fill: white;
+}
+
+::ng-deep .circle {
+  cursor: pointer;
+  background: gold;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  border-radius: 50%;
+  display: flex; /* or inline-flex */
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 9px;
+}
+
+::ng-deep .circle.FC {
+  background-color: red;
+}
+
+::ng-deep .circle.E {
+  background-color: orange;
+}
+
+::ng-deep .circle.PC {
+  background-color: red;
+}
+
+::ng-deep .circle.C {
+  background-color: green;
+}
+
+::ng-deep .circle.O {
+  background-color: steelblue;
+}
+
+::ng-deep .circle.IP {
+  background-color: purple;
+}
+
+::ng-deep div.tooltip {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  z-index: 10000;
+  padding: 5px;
+}

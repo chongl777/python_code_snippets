@@ -1,0 +1,532 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "tradingSystem": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "projects/trading-system",
+            "sourceRoot": "projects/trading-system/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/tradingSystem",
+                        "index": "projects/trading-system/src/index.html",
+                        "main": "projects/trading-system/src/main.ts",
+                        "polyfills": "projects/trading-system/src/polyfills.ts",
+                        "tsConfig": "projects/trading-system/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/trading-system/src/favicon.ico",
+                            "projects/trading-system/src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+                            "projects/trading-system/src/styles.scss"
+                        ],
+                        "scripts": [
+                            "node_modules/material-design-lite/material.js"
+                        ]
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/trading-system/src/environments/environment.ts",
+                                    "with": "projects/trading-system/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "tradingSystem:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "tradingSystem:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "tradingSystem:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/trading-system/src/test.ts",
+                        "polyfills": "projects/trading-system/src/polyfills.ts",
+                        "tsConfig": "projects/trading-system/tsconfig.spec.json",
+                        "karmaConfig": "projects/trading-system/karma.conf.js",
+                        "assets": [
+                            "projects/trading-system/src/favicon.ico",
+                            "projects/trading-system/src/assets"
+                        ],
+                        "styles": [
+                            "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+                            "projects/trading-system/src/styles.scss"
+                        ],
+                        "scripts": []
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/trading-system/tsconfig.app.json",
+                            "projects/trading-system/tsconfig.spec.json",
+                            "projects/trading-system/e2e/tsconfig.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "projects/trading-system/e2e/protractor.conf.js",
+                        "devServerTarget": "tradingSystem:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "tradingSystem:serve:production"
+                        }
+                    }
+                }
+            }
+        },
+        "shared-library": {
+            "projectType": "library",
+            "root": "projects/shared-library",
+            "sourceRoot": "projects/shared-library/src",
+            "prefix": "lib",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:ng-packagr",
+                    "options": {
+                        "tsConfig": "projects/shared-library/tsconfig.lib.json",
+                        "project": "projects/shared-library/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/shared-library/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/shared-library/src/test.ts",
+                        "tsConfig": "projects/shared-library/tsconfig.spec.json",
+                        "karmaConfig": "projects/shared-library/karma.conf.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/shared-library/tsconfig.lib.json",
+                            "projects/shared-library/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
+        },
+        "email-processor": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "projects/email-processor",
+            "sourceRoot": "projects/email-processor/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/email-processor",
+                        "index": "projects/email-processor/src/index.html",
+                        "main": "projects/email-processor/src/main.ts",
+                        "polyfills": "projects/email-processor/src/polyfills.ts",
+                        "tsConfig": "projects/email-processor/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/email-processor/src/favicon.ico",
+                            "projects/email-processor/src/assets"
+                        ],
+                        "styles": [
+                            "projects/email-processor/src/styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/email-processor/src/environments/environment.ts",
+                                    "with": "projects/email-processor/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "email-processor:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "email-processor:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "email-processor:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/email-processor/src/test.ts",
+                        "polyfills": "projects/email-processor/src/polyfills.ts",
+                        "tsConfig": "projects/email-processor/tsconfig.spec.json",
+                        "karmaConfig": "projects/email-processor/karma.conf.js",
+                        "assets": [
+                            "projects/email-processor/src/favicon.ico",
+                            "projects/email-processor/src/assets"
+                        ],
+                        "styles": [
+                            "projects/email-processor/src/styles.scss"
+                        ],
+                        "scripts": []
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/email-processor/tsconfig.app.json",
+                            "projects/email-processor/tsconfig.spec.json",
+                            "projects/email-processor/e2e/tsconfig.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "projects/email-processor/e2e/protractor.conf.js",
+                        "devServerTarget": "email-processor:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "email-processor:serve:production"
+                        }
+                    }
+                }
+            }
+        },
+        "portfolio-management": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "projects/portfolio-management",
+            "sourceRoot": "projects/portfolio-management/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/portfolio-management",
+                        "index": "projects/portfolio-management/src/index.html",
+                        "main": "projects/portfolio-management/src/main.ts",
+                        "polyfills": "projects/portfolio-management/src/polyfills.ts",
+                        "tsConfig": "projects/portfolio-management/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/portfolio-management/src/favicon.ico",
+                            "projects/portfolio-management/src/assets"
+                        ],
+                        "styles": [
+                            "projects/portfolio-management/src/styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/portfolio-management/src/environments/environment.ts",
+                                    "with": "projects/portfolio-management/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "portfolio-management:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "portfolio-management:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "portfolio-management:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/portfolio-management/src/test.ts",
+                        "polyfills": "projects/portfolio-management/src/polyfills.ts",
+                        "tsConfig": "projects/portfolio-management/tsconfig.spec.json",
+                        "karmaConfig": "projects/portfolio-management/karma.conf.js",
+                        "assets": [
+                            "projects/portfolio-management/src/favicon.ico",
+                            "projects/portfolio-management/src/assets"
+                        ],
+                        "styles": [
+                            "projects/portfolio-management/src/styles.scss"
+                        ],
+                        "scripts": []
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/portfolio-management/tsconfig.app.json",
+                            "projects/portfolio-management/tsconfig.spec.json",
+                            "projects/portfolio-management/e2e/tsconfig.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "projects/portfolio-management/e2e/protractor.conf.js",
+                        "devServerTarget": "portfolio-management:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "portfolio-management:serve:production"
+                        }
+                    }
+                }
+            }
+        },
+        "crypto-trading": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "projects/crypto-trading",
+            "sourceRoot": "projects/crypto-trading/src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/crypto-trading",
+                        "index": "projects/crypto-trading/src/index.html",
+                        "main": "projects/crypto-trading/src/main.ts",
+                        "polyfills": "projects/crypto-trading/src/polyfills.ts",
+                        "tsConfig": "projects/crypto-trading/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            "projects/crypto-trading/src/favicon.ico",
+                            "projects/crypto-trading/src/assets"
+                        ],
+                        "styles": [
+                            "projects/crypto-trading/src/styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "projects/crypto-trading/src/environments/environment.ts",
+                                    "with": "projects/crypto-trading/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "crypto-trading:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "crypto-trading:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "crypto-trading:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "projects/crypto-trading/src/test.ts",
+                        "polyfills": "projects/crypto-trading/src/polyfills.ts",
+                        "tsConfig": "projects/crypto-trading/tsconfig.spec.json",
+                        "karmaConfig": "projects/crypto-trading/karma.conf.js",
+                        "assets": [
+                            "projects/crypto-trading/src/favicon.ico",
+                            "projects/crypto-trading/src/assets"
+                        ],
+                        "styles": [
+                            "projects/crypto-trading/src/styles.scss"
+                        ],
+                        "scripts": []
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "projects/crypto-trading/tsconfig.app.json",
+                            "projects/crypto-trading/tsconfig.spec.json",
+                            "projects/crypto-trading/e2e/tsconfig.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                },
+                "e2e": {
+                    "builder": "@angular-devkit/build-angular:protractor",
+                    "options": {
+                        "protractorConfig": "projects/crypto-trading/e2e/protractor.conf.js",
+                        "devServerTarget": "crypto-trading:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "crypto-trading:serve:production"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "defaultProject": "tradingSystem"
+}

@@ -1,0 +1,19 @@
+@import '~src/helpers';
+// $border-color: black;
+:host {
+  display: block;
+  background: $color-dialog-background;
+  height: 100%;
+  width: 100%;
+}
+
+.mat-dialog-container {
+  height: calc(100% - 20px);
+  overflow-y: auto;
+}
+
+app-status-bar {
+  height: 20px;
+  overflow: hidden;
+  font-size: 9px;
+}

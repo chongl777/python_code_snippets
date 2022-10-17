@@ -1,0 +1,89 @@
+<div class="setting-panel">
+  <div class="fund-setting" *ngFor="let fundSetting of fundsSetting">
+    <div class="fund-name">
+      {{fundSetting.fundName}}:
+    </div>
+
+    <div class="settings">
+      <div class="row">
+        <div>
+          <mat-form-field class="allocation">
+            <mat-label>Default Allocation</mat-label>
+            <input mat-input matNativeControl [matInputFormat]="'.0%'"
+                   [(ngModel)]="fundSetting.defaultAlloc">
+          </mat-form-field>
+        </div>
+        <div class="spacer"></div>
+      </div>
+
+      <div class="row">
+
+        <div>
+          <mat-form-field class="allocation">
+            <mat-label>Default sLevel1</mat-label>
+
+            <mat-select [(ngModel)]="fundSetting.sLevel1">
+              <mat-option *ngFor="let tag of availableSTags1();" [value]="tag">
+                <span style="display:flex; flex-direction: row;">
+                  <div>
+                    {{tag}}
+                  </div>
+                </span>
+              </mat-option>
+            </mat-select>
+
+          </mat-form-field>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div>
+          <mat-form-field class="allocation">
+            <mat-label>Default sLevel2</mat-label>
+
+            <mat-select [(ngModel)]="fundSetting.sLevel2">
+              <mat-option *ngFor="let tag of availableSTags2(fundSetting);" [value]="tag">
+                <span style="display:flex; flex-direction: row;">
+                  <div>
+                    {{tag}}
+                  </div>
+                </span>
+              </mat-option>
+            </mat-select>
+
+          </mat-form-field>
+        </div>
+
+        <div class="spacer"></div>
+
+        <div>
+          <mat-form-field class="allocation">
+            <mat-label>Default sLevel3</mat-label>
+
+            <mat-select [(ngModel)]="fundSetting.sLevel3">
+              <mat-option *ngFor="let tag of availableSTags3(fundSetting);" [value]="tag">
+                <span style="display:flex; flex-direction: row;">
+                  <div>
+                    {{tag}}
+                  </div>
+                </span>
+              </mat-option>
+            </mat-select>
+
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<mat-dialog-actions class="mdl-card__actions">
+  <div class="error">{{errorMessage}}</div>
+  <span class="flex-spacer"></span>
+	<button mat-button class="cancel mat-tab-nav-bar mat-background-primary text-floral-white" (click)="onNoClick()">Cancel</button>
+	<button mat-button class="submit mat-tab-nav-bar mat-background-primary text-floral-white" [disabled]="errorMessage != ''"
+          [mat-dialog-close]="{fundsSettings: _fundsSetting}" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

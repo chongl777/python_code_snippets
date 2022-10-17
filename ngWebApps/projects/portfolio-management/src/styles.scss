@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import '~/src/theme/indigo-pink-additional.scss';
+
+
+.mat-dialog-container {
+  padding: 5px!important;
+}
+
+// tr.mat-row, tr.mat-footer-row {
+//   height: inherit!important;
+// }

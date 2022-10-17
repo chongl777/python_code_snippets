@@ -1,0 +1,31 @@
+
+<!-- Toolbar -->
+
+<div class="body" role="main">
+  <!--
+       <app-nav-bar></app-nav-bar>
+
+     -->
+  <router-outlet></router-outlet>
+
+  <!-- <div class="content">
+
+       <div class="flex-expand">
+
+       <app-tabs id="ioi-tabs" [availableViews]="[{view: 'active_ioi', title:'Active IOI'}, {view: 'expired_ioi', title:'Expired IOI'}]" #myTabs>
+       <app-ioi-list [showValid]="true"  *ngIf="myTabs.currentView=='active_ioi'"></app-ioi-list>
+       <app-ioi-list [showValid]="false"  *ngIf="myTabs.currentView=='expired_ioi'"></app-ioi-list>
+       </app-tabs>
+
+       <app-tabs id="watchlist-tabs" [availableViews]="[{view: 'long_axe', title:'Long Axe'}, {view: 'short_axe', title:'Short Axe'}]" #myTabs2>
+       <app-watchlist [longShort]="1"  *ngIf="myTabs2.currentView=='long_axe'"></app-watchlist>
+       <app-watchlist [longShort]="-1"  *ngIf="myTabs2.currentView=='short_axe'"></app-watchlist>
+       </app-tabs>
+       </div>
+
+       </div> -->
+  <!--
+       <app-status-bar>
+       </app-status-bar>
+     -->
+</div>

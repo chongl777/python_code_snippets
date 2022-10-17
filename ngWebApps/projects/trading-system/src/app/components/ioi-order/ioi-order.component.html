@@ -1,0 +1,300 @@
+<!-- <app-dialog-window [title]="order.security.description + ' Ticket'">
+     </app-dialog-window> -->
+
+
+<div *ngIf="ioi" class="ticket-title {{ioi.side == SIDE.Buy ? 'OWIC': 'BWIC'}}">
+  {{ioi.side == SIDE.Buy ? 'OFFER' : 'BID'}} WANTED
+</div>
+
+<div *ngIf="!ioi"
+     [@slideInOut]="ordForm.get('isBuy').value"
+     class="ticket-title {{ordForm.get('isBuy').value ? 'BUY': 'SELL'}}">
+  {{ordForm.get('isBuy').value ? 'Buy' : 'Sell'}}
+</div>
+
+<mat-dialog-content class="content">
+  <form [formGroup]="ordForm"
+        (keydown.enter)="$event.preventDefault()">
+
+    <div class="sec-info">
+      <div class="security-des">{{order.security.description}}</div>
+      <div class="flex-spacer"></div>
+      <div *ngIf="ioi" class="ioi-time">
+        <div class='title' [class.expired]="ioi.expired">{{ !ioi.expired ? (ioi.ioiResponseTime ? 'DUE IN ' : 'ASAP ') : "EXPIRED" }}</div>
+        <div class='value' *ngIf="ioi.valid">{{ ioi.expired ? '' :(timeLeft - 68400000 | date:'HH:mm:ss') }}</div>
+      </div>
+      <div *ngIf="ioi && ioi.ioiResponseTime != null" class="ioi-time">
+        <div class='title' [class.expired]="!ioi.valid">{{ioi.valid ? 'GOOD FOR' : 'ENDED'}}</div>
+        <div class='value' *ngIf="ioi.valid" [class.expired]="!ioi.valid">{{ goodFor - 68400000 | date:'mm:ss'  }}</div>
+      </div>
+      <div *ngIf="!ioi" class="toggle buy-sell">
+        <mat-slide-toggle class="buy-sell" formControlName="isBuy" [color]="'primary'">
+          {{ordForm.get('isBuy').value ? 'Buy' : 'Sell'}}
+        </mat-slide-toggle>
+      </div>
+
+      <div *ngIf="!ioi" class="toggle">
+        <mat-slide-toggle formControlName="isPrice">
+          {{ordForm.get('isPrice').value ? 'Price' : 'Spread'}}
+        </mat-slide-toggle>
+      </div>
+
+    </div>
+
+    <div class="form-div">
+      <mat-form-field class="big-input">
+        <mat-label>Quantity</mat-label>
+        <input matNativeControl type="number"
+               min="0" formControlName="quantity" required>
+        <!-- <div style="font-size: 12px">M</div> -->
+        <span matSuffix>M</span>
+        <mat-error *ngIf="formErrors.quantity">{{formErrors.quantity}}</mat-error>
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+      <mat-form-field class="big-input">
+        <mat-label>{{ordForm.get('isPrice').value ? 'Price' : 'Spread'}}</mat-label>
+        <input matNativeControl type="number"
+               step="{{ordForm.get('isPrice').value ? 0.1 : 1}}" formControlName="price"
+               (keydown.enter)="recalcRVS(ordForm.get('price').value)" required>
+        <span class="suffix" matSuffix>{{ordForm.get('isPrice').value ? 'Price' : 'Spread'}}</span>
+        <mat-error *ngIf="formErrors.isPrice">{{formErrors.isPrice}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-div">
+      <mat-form-field class="big-input">
+        <!-- <input matNativeControl placeholder="Order Type" type="string"
+             formControlName="orderType" required> -->
+        <mat-label>Order Type</mat-label>
+        <mat-select formControlName="orderType" required>
+
+          <!-- <mat-option value="1">AA</mat-option>
+               <mat-option value="2" disabled>Option 2 (disabled)</mat-option> -->
+          <mat-option *ngFor="let ordTyp of ORDER_TYPE_MAP;"
+                      [disabled]="ordTyp.key!=ordForm.get('orderType').value" [value]="ordTyp.key">
+            <span style="display:flex; flex-direction: row;">
+              <div class="invalid"
+                   style="margin-right: 2px;"
+                   *ngIf="ordTyp.key != ordForm.get('orderType').value">
+                {{ordTyp.key != ordForm.get('orderType').value ? '(disabled)': ''}}
+              </div>
+              <div>{{ordTyp.value}}</div>
+            </span>
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="formErrors.orderType">{{formErrors.orderType}}</mat-error>
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+      <mat-form-field class="big-input">
+        <mat-label>{{ordForm.get('isPrice').value ? 'Implied Spread' : 'Implied Price'}}</mat-label>
+        <input matNativeControl
+               class="status-{{status.toString()}}"
+               disabled value="{{ formatVal((ordForm.get('isPrice').value ? (rvs_info.g_stm | number:'.0-0') : (rvs_info.price | number: '.2-2')) || 'NaN')}}">
+        <span class="suffix" matSuffix>{{ordForm.get('isPrice').value ? 'Spread' : 'Price'}}</span>
+        <mat-error *ngIf="formErrors.isPrice">{{formErrors.isPrice}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-div">
+      <mat-form-field class="big-input">
+        <mat-label>Gov Bond Benchmark Yield</mat-label>
+        <input matNativeControl
+               class="status-{{status.toString()}}"
+               disabled value="{{ formatVal((rvs_info.mat_gterm_yld | percent: '1.2-2') +' @ '+ rvs_info.mat_gterm_name) }}">
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+      <mat-form-field class="big-input">
+        <mat-label>Implied Yield</mat-label>
+        <input matNativeControl
+               class="status-{{status.toString()}}"
+               disabled value="{{ formatVal(rvs_info.ytm | percent: '1.2-2')}}">
+      </mat-form-field>
+    </div>
+
+    <div class="form-div">
+      <mat-form-field class="big-input">
+        <mat-label>Rating Override</mat-label>
+        <mat-select
+            [(ngModel)]="ratingOverride" [ngModelOptions]="{standalone: true}">
+          <mat-option *ngFor="let rtg of RATING;"
+                      [value]="rtg">
+            {{ rtg }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+    </div>
+    <div  class="rvs-override">
+      <div class="form-div">
+        <mat-form-field>
+          <input matNativeControl placeholder="Bond STW" type="string" name="rvs_stw"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.g_stw| number: '1.0-0') }}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Score(STW based)" type="string" name="rvs_score_stw"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.stw_score| number: '1.0-0') }}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Signal(STW based)" type="string" name="rvs_signal_stw"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.stw_strength| number: '1.0-0') }}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Dur(STW based)" type="string" name="dur_stw"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.stw_dur | number: '1.2-2') }}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Fair STW" type="string" name="rvs_price_stw"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.g_stw - rvs_info.stw_strength | number: '1.0-0') }}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Fair Price" type="string" name="rvs_fair_price_stw"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.ytw_fair_px | number: '1.2-2') }}" disabled>
+          <div [class.loading]="status != 3"
+               [class.positive]="rvs_info.ytw_fair_px > this.order.tgt_price"
+               [class.negative]="rvs_info.ytw_fair_px < this.order.tgt_price"
+               style="font-size:8px">
+            {{'('+(rvs_info.ytw_fair_px/this.order.tgt_price -1 | percent: '1.2-2') + ')'}}
+          </div>
+        </mat-form-field>
+      </div>
+
+      <div class="form-div">
+        <mat-form-field>
+          <input matNativeControl placeholder="Bond STM" type="string" name="rvs_stm"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.g_stm| number: '1.0-0') }}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Score(STM based)" type="string" name="rvs_score_stm"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.stm_score| number: '1.0-0') }}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Signal(STM based)" type="string" name="rvs_signal_stm"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.stm_strength| number: '1.0-0') }}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Dur(STM based)" type="string" name="dur_stm"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.stm_dur | number: '1.2-2') }}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Fair STM" type="string" name="rvs_price_stm"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( rvs_info.g_stm - rvs_info.stm_strength | number: '1.0-0') }}" disabled>
+        </mat-form-field>
+
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Fair Price" type="string" name="rvs_fair_price_stm"
+                 class="status-{{status.toString()}}"
+                 value="{{ formatVal( (rvs_info.ytm_fair_px | number: '1.2-2'))}}" disabled>
+          <div [class.loading]="status != 3"
+               [class.positive]="rvs_info.ytm_fair_px > this.order.tgt_price"
+               [class.negative]="rvs_info.ytm_fair_px < this.order.tgt_price"
+               style="font-size:8px">
+            {{'('+(rvs_info.ytm_fair_px/this.order.tgt_price -1 | percent: '1.2-2') + ')'}}
+          </div>
+        </mat-form-field>
+      </div>
+
+    </div>
+
+    <div class="order-status">
+      <div class="form-div">
+        <mat-form-field style="width:400px!important">
+          <input matNativeControl placeholder="Order ID" type="string" name="ord_id"
+                 value="{{order.order_id}}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="Order Status" type="string" name="ord_status"
+                 [@slideInOut]="order.OrderStatus"
+                 value="{{order.OrderStatus}}" disabled>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="ioi-status" *ngIf="order.ioi">
+      <div class="form-div">
+        <mat-form-field style="width:400px!important">
+          <input matNativeControl placeholder="IOI ID" type="string" name="ioi_id"
+                 value="{{order.ioi_id}}" disabled>
+        </mat-form-field>
+        <div class="flex-spacer"></div>
+        <mat-form-field>
+          <input matNativeControl placeholder="IOI Status" type="string" name="ioi_status"
+                 [@slideInOut]="order.ioi"
+                 value="{{order.ioi.expired ? 'Expired': 'Active'}}" disabled>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <mat-dialog-actions>
+      <span class="flex-spacer">
+        <span class="order-text"> {{ orderText }}</span>
+      </span>
+
+      <button
+          *ngIf="order.canCancel"
+          (click)="onCancel($event)"
+          [disabled]="ordForm.invalid ||  (loading$ | async)" mat-button type="submit"
+          class="cancel mat-tab-nav-bar mat-background-primary text-floral-white">
+        <div *ngIf="!(loading$ | async)">Cancel Order</div>
+        <div class="waiting" *ngIf="(loading$ | async)"> Waiting...</div>
+      </button>
+
+      <button
+          *ngIf="order.canReplace"
+          (click)="onReplace($event)"
+          [disabled]="ordForm.invalid || (loading$ | async)" mat-button type="submit"
+          class="submit mat-tab-nav-bar mat-background-primary text-floral-white">
+        <div *ngIf="!(loading$ | async)">Submit Update</div>
+        <div class="waiting" *ngIf="(loading$ | async)"> Waiting...</div>
+      </button>
+
+      <button
+          *ngIf="canSubmit"
+          (click)="onSubmit($event)"
+          [disabled]="ordForm.invalid || (loading$ | async)" mat-button type="submit"
+          class="submit mat-tab-nav-bar mat-background-primary text-floral-white">
+        <div *ngIf="(!(loading$ | async))">Submit {{ TradeText }}</div>
+        <div class="waiting" *ngIf="(loading$ | async)"> Waiting...</div>
+      </button>
+
+    </mat-dialog-actions>
+
+  </form>
+
+  <!-- <form
+       [formGroup]="ordForm"
+       (keydown.enter)="$event.preventDefault()"
+       class="orderForm" novalidate #orderForm="ngForm">
+       <mat-dialog-content>
+
+       </mat-dialog-content>
+
+       </form> -->
+</mat-dialog-content>
+
+<app-security-details-slide-card
+    [sizeInfo]="'fixed-3'" style="font-size:9px;"
+    [secInfo]="{security: order.security, watchlist: {reasons: ioi && ioi.reasons, category: ioi && ioi.category}}">
+</app-security-details-slide-card>

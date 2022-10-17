@@ -1,0 +1,55 @@
+<div class="plot-area" navh="50" zoombarh="40">
+  <div class="interactive-plot" style="position: relative;">
+    <div class="top-bar top-zoom-bar"
+         style="margin-left: 0px; margin-right: 0px; margin-bottom: 0px; height: 18px; display: flex;">
+      <div class="zoom-bar-holder">
+        <div class="zoom-options">
+          <div style="font-weight: bold; margin: auto;">zoom:</div>
+          <div class="zoom-scale" (click)="zoom('1d')">1d</div>
+          <div class="zoom-scale" (click)="zoom('mtd')">mtd</div>
+          <div class="zoom-scale" (click)="zoom('1m')">1m</div>
+          <div class="zoom-scale" (click)="zoom('3m')">3m</div>
+          <div class="zoom-scale" (click)="zoom('6m')">6m</div>
+          <div class="zoom-scale" (click)="zoom('ytd')">ytd</div>
+          <div class="zoom-scale" (click)="zoom('1y')">1y</div>
+          <div class="zoom-scale" (click)="zoom('3y')">3y</div>
+        </div>
+        <div class="time-frame" style="display: flex;">
+            <input type="date" [ngModel]="xStart | date:'yyy-MM-dd'" class="time-frame-date"/>
+            <div class="dash" style="width: 10px; text-align: center;">-</div>
+            <input type="date" [ngModel]="xEnd | date:'yyy-MM-dd'" class="time-frame-date"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="top-bar top-legend-bar">
+      <div class="legend-bar"
+           style="display: flex; float: left; height: 100%; width: 100%;">
+        <ng-container *ngFor="let legend of legends">
+          <div class="legend" style="height: 100%; margin: 0px; display: flex;">
+            <svg style="width: 15%; height: 100%;">
+              <circle r="4" cx="7" cy="10" style="fill: {{legend.color}};">
+              </circle>
+            </svg>
+            <div style="padding: 0px; width: 80%;">
+              <div class="legend-text" style="height: 100%; display: block;">{{ legend.field }}</div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div #plotArea class="chart-area">
+      <svg class="main-chart">
+
+      </svg>
+
+      <svg class="navi-chart">
+
+      </svg>
+
+      <div #tooltip class="tooltip">
+    </div>
+
+  </div>
+</div>

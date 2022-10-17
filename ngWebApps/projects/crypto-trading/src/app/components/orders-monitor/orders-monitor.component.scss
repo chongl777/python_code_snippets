@@ -1,0 +1,98 @@
+:host {
+  display: inline-block;
+  overflow-y: auto;
+
+  .content-table {
+    &.loading {
+      display: none;
+    }
+    width: 100%;
+    table-layout: fixed;
+
+    .mat-row.level-0.even {
+      background: gainsboro;
+    }
+
+    .mat-column-ID {
+      width: 20%;
+      cursor: pointer;
+    }
+
+    .mat-column-Side {
+      &.Buy {
+        color: green;
+      }
+      &.Sell {
+        color: red;
+      }
+    }
+
+    .mat-row.detail-row {
+      height: 0px!important;
+      border: none;
+    }
+
+    .mat-column-Fills {
+      * {
+        font-style:italic;
+        color: blue;
+      }
+
+      &:hover {
+        background: white;
+      }
+      padding-right: 0px;
+      padding-left: 0px;
+
+      tr.mat-header-row, tr.mat-row, tr.mat-footer-row {
+        height: 25px;
+      }
+
+      tr {
+        td.mat-cell:first-of-type {
+          padding-left: 30px!important;
+        }
+        th.mat-header-cell:first-of-type {
+          padding-left: 30px;
+        }
+      }
+
+      tr:first
+    }
+
+    .mat-cell.size-field {
+      overflow: hidden;
+      padding-right: 5px;
+      padding-left: 5px;
+    }
+
+    .mat-cell.name-field, .mat-header-cell.name-field {
+      width: 10%!important;
+    }
+
+    .mat-cell.price-field, .mat-header-cell.price-field {
+      width: 10%!important;
+    }
+
+    .mat-cell.size-field, .mat-header-cell.size-field {
+      width: 10%!important;
+    }
+
+    .mat-cell.time-field, .mat-header-cell.time-field {
+      width: 10%!important;
+    }
+
+    .mat-cell.signal-field, .mat-header-cell.signal-field {
+      width: 6%!important;
+    }
+
+    .mat-row:hover {
+      background-color: gray!important;
+    }
+
+    .content-div {
+      overflow: hidden;
+      width: 85%;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+
+<app-spinner-or-error [loading$]="loading$" [errMsg]="errMsg" [class.loading]="(loading$ | async)" ></app-spinner-or-error>
+
+<table mat-table [dataSource]="dataSource" class="content-table"
+       matSort matSortActive="['Type', 'Coin', 'Balance', 'Available', 'MktVal']"
+       [class.loading]="(loading$ | async)  || !!(errMsg)"
+       matSortDisableClear
+       multiTemplateDataRows>
+
+  <tr mat-header-row class="pos-header"
+      *matHeaderRowDef="columnsToDisplay; sticky: true">
+  </tr>
+
+  <tr mat-row
+      *matRowDef="let coin; columns: columnsToDisplay;"
+      (click)="onSelectSecurity(coin)"
+      class="pos-row">
+  </tr>
+
+
+  <ng-container matColumnDef="Type">
+    <th mat-header-cell *matHeaderCellDef class="name-field" mat-sort-header>
+      Acct Type
+    </th>
+    <td mat-cell *matCellDef="let acct;" class="name-field">
+      {{acct.acct_type}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Coin">
+    <th mat-header-cell *matHeaderCellDef class="name-field" mat-sort-header>
+      Coin
+    </th>
+    <td mat-cell *matCellDef="let acct;" class="name-field">
+      {{acct.coin}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Balance">
+    <th mat-header-cell *matHeaderCellDef class="size-field" mat-sort-header>
+      Balance
+    </th>
+    <td mat-cell *matCellDef="let acct;" class="size-field">
+      {{acct.balance | number: '1.0-2'}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Available">
+    <th mat-header-cell *matHeaderCellDef class="size-field" mat-sort-header>
+      Availabel
+    </th>
+    <td mat-cell *matCellDef="let acct;" class="size-field">
+      {{acct.available | number: '1.0-2'}}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Price">
+    <th mat-header-cell *matHeaderCellDef class="price-field">
+      LastPrice
+    </th>
+    <td mat-cell *matCellDef="let acct;" class="price-field">
+      <div>
+        {{acct.lastPrice | number: '1.0-100'}}
+      </div>
+
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="MktVal">
+    <th mat-header-cell *matHeaderCellDef class="price-field" mat-sort-header>
+      MktVal
+    </th>
+    <td mat-cell *matCellDef="let acct;" class="price-field">
+      <div>
+        {{acct.marketVal | number: '1.0-2'}}
+      </div>
+
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="Trade">
+    <th mat-header-cell *matHeaderCellDef>
+      Trade
+    </th>
+    <td mat-cell *matCellDef="let acct;">
+      <div class="button-fixture">
+        <!-- <app-trade-button *ngIf="acct.security"  [coin]="acct.security"></app-trade-button> -->
+        <app-trade-button [disabled]="acct.security==null"  [coin]="acct.security"></app-trade-button>
+      </div>
+
+    </td>
+  </ng-container>
+
+</table>

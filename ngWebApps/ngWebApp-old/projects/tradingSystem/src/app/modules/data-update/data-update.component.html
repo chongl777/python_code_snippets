@@ -1,0 +1,33 @@
+<div class="mdl-grid mdl-cell mdl-cell--12-col-desktop
+            mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-cell--top"
+     style="height: 100%; flex-flow: row wrap;">
+
+  <div class="data-update mdl-cell mdl-cell--3-col-desktop
+              mdl-cell--3-col-tablet mdl-cell--12-col-phone">
+    <base-card class="data-update">
+      <base-card-title>
+        <mat-toolbar fxFlex>
+          <a mat-button class="card-tab" [ngClass]="'active'">Data Update</a>
+        </mat-toolbar>
+      </base-card-title>
+      <base-card-body>
+        <app-data-update-panel class="portfolio-card"></app-data-update-panel>
+      </base-card-body>
+    </base-card>
+  </div>
+
+  <div class="msg-log mdl-cell mdl-cell--9-col-desktop
+              mdl-cell--9-col-tablet mdl-cell--12-col-phone">
+    <base-card>
+      <base-card-title>
+        <mat-toolbar fxFlex>
+          <a mat-button class="card-tab" [ngClass]="'active'">Msg Log</a>
+        </mat-toolbar>
+      </base-card-title>
+      <base-card-body>
+        <app-debug-msg class="debug-msg-card"></app-debug-msg>
+      </base-card-body>
+    </base-card>
+
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<app-spinner-or-error
+    *ngIf="(loadingAll$ | async) || errMsg" [loading$]="loadingAll$" [errMsg]="errMsg">
+</app-spinner-or-error>
+
+<div class="container">
+  <button color="primary" (click)="updateFinraID()" mat-raised-button class="data-update-button">
+    Update Finra ID
+  </button>
+  <button color="primary" (click)="updateCorpStructure()" mat-raised-button class="data-update-button">
+    Update Corporate Structure (BBG)
+  </button>
+  <button color="primary" (click)="updateBBGHist()" mat-raised-button class="data-update-button">
+    Update History Price (BBG)
+  </button>
+  <button color="primary" (click)="updateFinraPrice()" mat-raised-button class="data-update-button">
+    Update History Price (FINRA)
+  </button>
+  <button color="primary" (click)="updateCache()" mat-raised-button class="data-update-button">
+    Update Cached Value
+  </button>
+  <button color="primary" (click)="updateCache(true)" mat-raised-button class="data-update-button">
+    Update All Cached Value
+  </button>
+</div>

@@ -1,0 +1,123 @@
+<div class="scroll-viewport">
+
+  <app-spinner-or-error [loading$]="loading$" [errMsg]="errMsg"></app-spinner-or-error>
+
+  <mat-table class="wrapper" [dataSource]="dataSource" multiTemplateDataRows
+         [@showAni]
+         [class.Loading]="(loading$ | async)"
+         matSort matSortDirection="asc" matSortDisableClear>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"  class="ord-header"></mat-header-row>
+    <mat-row *matRowDef="let ord; columns: columnsToDisplay" class="ord-row"
+             [@showHide]="filterKey ? 'dynamic': 'static'"></mat-row>
+    <mat-row *matRowDef="let ord; columns: ['SecDetails']"
+             [class.selected-ord-cell]="selectedOrder === ord"
+             class="security-detail-row">
+    </mat-row>
+
+    <ng-container matColumnDef="Side">
+      <mat-header-cell class="tiny-sort" *matHeaderCellDef mat-sort-header></mat-header-cell>
+      <mat-cell
+          class="center-align tiny-sort"
+          (click)="onSelectOrder(ord)"
+          [class] ="ord.side == '1' ? 'BID' : 'OFFER'"
+          *matCellDef="let ord">
+        <div class="cell-div">
+          {{ ord.side == '1' ? 'Bid' : 'Offer' }}
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Sid">
+      <mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header> Sid </mat-header-cell>
+      <mat-cell *matCellDef="let ord"  class="right-align tiny-sort">
+        <div class="cell-div">{{ ord.security.securityID }}</div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Security">
+      <mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header> Security </mat-header-cell>
+      <mat-cell *matCellDef="let ord" class="right-align tiny-sort">
+        <div class="cell-div">{{ ord.security.description }}</div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="OrderType">
+      <mat-header-cell class="right-align tiny-sort" *matHeaderCellDef mat-sort-header> OrderType </mat-header-cell>
+      <mat-cell *matCellDef="let ord" class="right-align tiny-sort">
+        <div class="cell-div">{{ ord.OrderType }}</div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Quantity">
+      <mat-header-cell class="right-align tiny-sort" *matHeaderCellDef mat-sort-header> Qty </mat-header-cell>
+      <mat-cell class="right-align tiny-sort" *matCellDef="let ord">
+        <div class="cell-div">{{ord.quantity | number }}</div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="CurrentQty">
+      <mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header> CurrQty </mat-header-cell>
+      <mat-cell *matCellDef="let ord" class="right-align tiny-sort">
+        <span>
+          <div class="cell-div">
+            <div *ngIf="portfolioService.positions[ord.security.securityID]">
+              {{ (portfolioService.getPosition(ord.security.securityID).quantity)/1000000 | number:'1.2-2' }} MM
+            </div>
+          </div>
+        </span>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Price">
+      <mat-header-cell class="right-align tiny-sort" *matHeaderCellDef mat-sort-header>
+        {{filterKey == 'FilledOrders' ? 'FilledPx' : 'Price'}} </mat-header-cell>
+      <mat-cell class="right-align tiny-sort" *matCellDef="let ord">
+        <div class="cell-div">{{filterKey == 'FilledOrders' ? ord.last_px : ord.order_price | number: '1.0-3' }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="PriceType">
+      <mat-header-cell class="right-align tiny-sort" *matHeaderCellDef mat-sort-header> PriceType </mat-header-cell>
+      <mat-cell class="right-align tiny-sort" *matCellDef="let ord">
+        <div class="cell-div">{{ ord.PriceType }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="OrderStatus">
+      <mat-header-cell class="right-align tiny-sort" *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell class="right-align tiny-sort" *matCellDef="let ord">
+        <div [@slideInOut]="ord.OrderStatus"
+             class="cell-div">{{ord.OrderStatus }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="IOIOrder">
+      <mat-header-cell class="center-align" *matHeaderCellDef> IOI </mat-header-cell>
+      <mat-cell class="center-align" *matCellDef="let ord" style="overflow:hidden">
+        <app-ioi-status *ngIf="ord.ioi" [order]="ord" [showButton]="false"></app-ioi-status>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Update">
+      <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+      <mat-cell *matCellDef="let ord">
+        <div class="cell-div">
+          <app-order-status [ord]="ord"></app-order-status>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="SecDetails">
+      <mat-cell
+          [class.selected-ord-cell]="selectedOrder === ord"
+        *matCellDef="let ord" [attr.colspan]="columnsToDisplay.length">
+        <div class="security-detail-wrapper"
+             [@detailExpand]="ord == selectedOrder ? 'expanded' : 'collapsed'"
+             *ngIf="ord == selectedOrder">
+          <div class="security-detail">
+            <app-security-details-slide-card
+                [sizeInfo]="'middle'"
+                [secInfo]="{security: selectedOrder.security, watchlist: {reasons: null, category: null}}">
+            </app-security-details-slide-card>
+          </div>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+  </mat-table>
+</div>

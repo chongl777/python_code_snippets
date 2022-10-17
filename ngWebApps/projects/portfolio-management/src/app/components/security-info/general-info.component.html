@@ -1,0 +1,32 @@
+
+<div class="page-body">
+  <app-modal [title]="'Security List'" class="sec-list" [color-theme]="'mat-accent'">
+    <app-security-list></app-security-list>
+  </app-modal>
+
+  <!-- <app-modal [title]="'Overview'" class="security-panel"  [color-theme]="'mat-accent-2'"> -->
+  <mat-tab-group color="accent-2">
+    <mat-tab label="Overview">
+      <ng-template matTabContent>
+        <app-security-general-info-overview></app-security-general-info-overview>
+      </ng-template>
+    </mat-tab>
+    <mat-tab label="CashFlows">
+      <app-cashflows></app-cashflows>
+    </mat-tab>
+    <mat-tab label="Data Update">
+      <app-data-update></app-data-update>
+    </mat-tab>
+
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <button mat-raised-button (click)="goToTradingSignal()" color="accent">
+          TradingSignal
+        </button>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  <app-modal [title]="'Entity Cast'" class="entity-cast shrink-1" [color-theme]="'mat-accent-3'">
+    <app-entity-cast></app-entity-cast>
+  </app-modal>
+</div>

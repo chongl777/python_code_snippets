@@ -1,0 +1,122 @@
+@import '~src/helpers';
+
+$color-border: gray;
+$color-toggle-active: white;
+$color-toggle: gray;
+$color-arrow: white;
+$color-buy: green;
+$color-sell: red;
+$color-invalid: red;
+$color-disabled: cornflowerblue;
+
+:host {
+  width: 100%;
+  display: inline-block;
+}
+
+.tag-wrapper {
+  height: 0px;
+}
+
+.title {
+  text-align: center;
+  font-weight: bold;
+}
+
+.tag {
+  position: relative;
+  // margin: 0px 0px 0px 11px;
+  width:fit-content;
+  top: 0px;
+  left: 10px;
+  background-color: $card-background-color;
+  display: inline-block;
+  padding: 0px 5px;
+}
+
+.ticket-wrapper {
+  border: 1px solid;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 100%;
+  .ticket {
+    overflow-x: auto;
+  }
+
+}
+
+.ticket {
+  height: 100%;
+  overflow-y: auto;
+}
+
+
+div.column {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 5px;
+  font-size: 11px;
+  // min-width: 510px;
+}
+
+mat-form-field {
+  width: 175px;
+  height: 40px;
+}
+
+mat-form-field {
+  margin: 0px 10px;
+}
+
+
+input[disabled] {
+  color: $color-disabled!important;
+}
+
+mat-form-field.invalid {
+  input {
+    color: $color-invalid!important;
+  }
+}
+
+mat-hint.error {
+  color: $color-invalid;
+}
+
+input.invalid {
+  color: $color-invalid!important;
+}
+
+.accrued-calc {
+  cursor: pointer;
+  transform: scale(0.7);
+
+  .material-icons {
+    font-size: 15px;
+  }
+}
+
+.accrued-calc:hover {
+  transform: scale(0.8);
+}
+
+.accrued-calc-wrapper {
+  line-height: 1.125;
+  height: 12px;
+  input {
+    height: 12px;
+  }
+}
+
+div.waiting, input.loading {
+  animation: blinkingText 0.9s infinite;
+  color: $color-invalid!important;
+}
+
+@keyframes blinkingText{
+    0%  { opacity: 1; }
+    25% { opacity: 0.65; }
+    50% { opacity: 0.25; }
+    75% { opacity: 0.65; }
+    100%{ opacity: 1; }
+}

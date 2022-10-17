@@ -1,0 +1,12 @@
+<mat-tab-group dynamicHeight>
+  <mat-tab label="General Info">
+    <app-security-general-info class="widget" [security]="security"></app-security-general-info>
+  </mat-tab>
+  <mat-tab label="Signal Matrix">
+    <app-signal-matrix class="widget" [security]="security"></app-signal-matrix>
+  </mat-tab>
+
+  <mat-tab label="Security Allocation">
+    <app-security-allocation class="widget" [listenSecEvt]="false" [security]="security"></app-security-allocation>
+  </mat-tab>
+</mat-tab-group>

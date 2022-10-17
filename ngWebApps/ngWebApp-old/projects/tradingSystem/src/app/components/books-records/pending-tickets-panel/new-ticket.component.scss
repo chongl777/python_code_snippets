@@ -1,0 +1,106 @@
+@import '~src/helpers';
+
+$height-search-bar: 50px;
+$color-font: white;
+$button-height: 27px;
+$button-width: 100px;
+$drop-down-bg: #444;
+$drop-down-border-clr: #dddddd;
+$color-selected: #666;
+$color-cancel: gray;
+$color-disabled: gray;
+$alternative-color:rgba(255, 255, 255, 0.05);
+
+:host {
+  font-size: 15px;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.error {
+  font-size: 11px;
+  color: $color-red;
+}
+
+mat-form-field {
+  width: 110px;
+}
+
+mat-dialog-actions {
+  padding: 0px 20px;
+  margin: 0px;
+
+  .mat-button {
+    width: $button-width!important;
+    height: $button-height!important;
+    padding: initial!important;
+  }
+}
+
+
+button.mat-background-primary {
+  color: $color-font;
+  background: $color-dialog-title-background;
+}
+
+button.cancel {
+  background-color: $color-cancel;
+}
+
+
+button[disabled] {
+  background: $color-disabled;
+}
+
+form.security-search-form {
+  margin: auto;
+
+  width: 250px;
+  mat-form-field {
+    width: 100%;
+  }
+
+  ::ng-deep .mat-autocomplete-panel {
+    border: 1px solid $drop-down-border-clr;
+  }
+}
+
+mat-option {
+  // background-color: $drop-down-bg;
+  background-color: $drop-down-bg;
+  font-size: 8px;
+  height: 20px;
+  &.mat-selected {
+    background-color: $drop-down-bg;
+  }
+
+  &.mat-active {
+    background-color: $color-selected;
+  }
+}
+
+.sec-option {
+  width: 100%;
+  .sec-id {
+    width: 20%
+  }
+  .sec-des {
+    width: 50%;
+  }
+  .sec-deal {
+    width: 30%;
+  }
+}

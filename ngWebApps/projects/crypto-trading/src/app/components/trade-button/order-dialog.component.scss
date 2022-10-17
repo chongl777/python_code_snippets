@@ -1,0 +1,79 @@
+$height-ticket-title: 30px;
+$color-bwic: green;
+$color-owic: red;
+$color-font: white;
+$color-expired: red;
+$color-disabled: gray;
+$color-cancel: red;
+$color-invalid: red;
+$color-ready: lawngreen;
+$color-error: lightcoral;
+$color-positive: lawngreen;
+$color-negative: lightcoral;
+
+$font-size-general: 11px;
+$font-size-ioi: 15px;
+$font-size-ioi-title: 8px;
+$button-height: 27px;
+$button-width: 100px;
+
+:host {
+  display: inline-block;
+  overflow-y: auto;
+  flex: 1;
+
+  .BUY {
+    color: $color-bwic;
+  }
+
+  .SELL {
+    color: $color-owic;
+  }
+
+  mat-dialog-content {
+    margin: 0px!important;
+    height: calc(100% - 34px);
+  }
+
+  .flex-spacer {
+    flex: 1;
+  }
+
+  div.order-title {
+    height: $height-ticket-title;
+    line-height: $height-ticket-title;
+    border-bottom-style: solid;
+    border-bottom-width: 4px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  div.sec-info {
+    display: flex;
+    height: 40px;
+
+    div {
+      margin: auto;
+    }
+  }
+
+  div.form-div {
+    display: flex;
+  }
+
+  .mat-form-field.big-input {
+    width: 250px;
+  }
+
+  .mat-form-field.market-data {
+    width: 80px;
+  }
+
+  .order-text {
+    color: $color-ready;
+  }
+  .error-text {
+    color: $color-error;
+  }
+}

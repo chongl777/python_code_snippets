@@ -1,0 +1,156 @@
+
+<div class="page-table">
+
+  <app-tool-bar [trade]="true" [secInfo]="true"></app-tool-bar>
+
+  <div class="mdl-layout__content mdl-grid mdl-cell mdl-cell--12-col-desktop
+              mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+    <div class="half-block mdl-grid mdl-cell mdl-cell--8-col-desktop
+                mdl-cell--8-col-tablet mdl-cell--4-col-phone mdl-cell--top"
+         style="flex-flow: row wrap; flex-direction: column;">
+
+      <div class="ioi-cell mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+        <base-card-tabs-group>
+
+          <base-card-tab label="Active IOI" [showSetting]="false" [showDownload]="false">
+            <ng-template cardContent>
+              <app-ioi-list #cardContent [showValid]="true" class="ioi-card"></app-ioi-list>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Expired IOI" [showSetting]="false"  [component]="appTransaction">
+            <ng-template cardContent>
+              <app-ioi-list [showValid]="false" class="ioi-card"></app-ioi-list>
+            </ng-template>
+          </base-card-tab>
+
+        </base-card-tabs-group>
+      </div>
+
+      <div
+          class="mdl-cell mdl-cell--12-col-desktop watchlist
+                 mdl-cell--12-col-tablet mdl-cell--12-col-phone
+                 mdl-cell--top  wl-grid-container">
+        <base-card-tabs-group [onDownload]="onDownload">
+          <base-card-tab label="Watchlist Long Axe" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-watchlist #appWatchlist [showValid]="true" [longShort]="1" #cardContent></app-watchlist>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Watchlist Short Axe" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-watchlist #appWatchlist [showValid]="true" [longShort]="-1" #cardContent></app-watchlist>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Invalid Watchlist" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-watchlist #appWatchlist [showValid]="false" [longShort]="0" #cardContent></app-watchlist>
+            </ng-template>
+          </base-card-tab>
+        </base-card-tabs-group>
+      </div>
+
+    </div>
+
+    <div style="flex-flow: row wrap; display: flex; flex-direction: column;"
+         class="half-block mdl-grid mdl-cell mdl-cell--4-col-desktop
+                mdl-cell--4-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+      <div class="portfolio-cell mdl-cell mdl-cell--12-col-desktop
+                  mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+        <base-card-tabs-group [onDownload]="onDownload">
+
+          <base-card-tab label="Allocation" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-portfolio #appPortfolio class="portfolio-card" #cardContent></app-portfolio>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Today's Trade" [showSetting]="false"  [showDownload]="true" [component]="appTransaction">
+            <app-trading-records #appTransaction class="portfolio-card"></app-trading-records>
+          </base-card-tab>
+
+        </base-card-tabs-group>
+      </div>
+
+      <div class="order-list-cell mdl-cell mdl-cell--12-col-desktop mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+
+        <base-card-tabs-group [onDownload]="onDownload">
+          <base-card-tab label="IOI Orders" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-order-list #appOrders [filterKey]="'ActiveIOIOrders'" class="orders-card" #cardContent></app-order-list>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Reg Orders" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-order-list #appOrders [filterKey]="'ActiveRegOrders'" class="orders-card" #cardContent></app-order-list>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Filled Orders" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-order-list #appOrders [filterKey]="'FilledOrders'" class="orders-card" #cardContent></app-order-list>
+            </ng-template>
+          </base-card-tab>
+
+          <base-card-tab label="Expired Orders" [showSetting]="false" [showDownload]="true">
+            <ng-template cardContent>
+              <app-order-list #appOrders [filterKey]="'ExpiredOrders'" class="orders-card" #cardContent></app-order-list>
+            </ng-template>
+          </base-card-tab>
+        </base-card-tabs-group>
+
+        <!-- <ng-template #orderCard let-ctx="ctx">
+             <base-card>
+             <base-card-title>
+             <mat-toolbar class="order-tab" fxFlex>
+             <a mat-button class="card-tab" [ngClass]="ctx.selected=='ioi_orders'? 'active' : ''"
+             (click)="ctx.selected='ioi_orders'">IOI Orders</a>
+             <a mat-button class="card-tab" [ngClass]="ctx.selected=='reg_orders'? 'active' : ''"
+             (click)="ctx.selected='reg_orders'">Reg Orders</a>
+             <a mat-button class="card-tab" [ngClass]="ctx.selected=='filled_orders'? 'active' : ''"
+             (click)="ctx.selected='filled_orders'">Filled Orders</a>
+             <a mat-button class="card-tab" [ngClass]="ctx.selected=='expired_orders'? 'active' : ''"
+             (click)="ctx.selected='expired_orders'">Expired Orders</a>
+             <div class="spacer"></div>
+             <div class="buttom itemBox"
+             (click)="onDownload(ctx.selected)">
+             <i class="material-icons">cloud_download</i></div>
+             </mat-toolbar>
+             </base-card-title>
+             <base-card-body>
+             <ng-template #ioiOrders>
+
+             </ng-template>
+             <ng-template #regOrders>
+
+             </ng-template>
+
+             <ng-template #filledOrders>
+
+             </ng-template>
+
+             <ng-template #expiredOrders>
+
+             </ng-template>
+
+             <ng-container *ngTemplateOutlet="{'ioi_orders': ioiOrders,
+             'reg_orders': regOrders,
+             'filled_orders': filledOrders,
+             'expired_orders': expiredOrders
+             }[ctx.selected]">
+             </ng-container>
+
+             </base-card-body>
+             </base-card>
+             </ng-template>
+             <ng-container *ngTemplateOutlet="orderCard; context: {ctx: {selected: 'ioi_orders'}}">
+             </ng-container> -->
+      </div>
+    </div>
+
+  </div>
+
+</div>

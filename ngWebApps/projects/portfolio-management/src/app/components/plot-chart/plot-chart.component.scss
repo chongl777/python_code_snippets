@@ -1,0 +1,98 @@
+:host {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+
+::ng-deep .axis .upper-line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.plot-area {
+  height: 100%;
+  width: 100%;
+  font-size: 13px;
+  ::ng-deep .interactive-plot {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    input::-webkit-calendar-picker-indicator{
+      display: none;
+    }
+
+    .axis path,
+    .axis .upper-line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+    text.right-yaxis-text {
+      text-anchor: end!important;
+    }
+
+    line.guideline {
+      fill: none;
+      stroke: black;
+      opacity: 0.5;
+      stroke-width: 1.5px;
+    }
+  }
+
+  .zoom-bar-holder {
+    overflow: hidden;
+    border: solid 1px #bbb;
+    justify-content: space-between;
+    background-color: rgba(236, 236, 236, 0.95);
+
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    .zoom-options {
+      display: flex;
+      flex-direction: row;
+      .zoom-scale {
+        margin-left: 5px;
+        text-decoration: underline;
+        cursor: pointer;
+        margin-top: auto;
+      }
+    }
+
+    .time-frame {
+      width: 180px;
+      .dash {
+        width: 10%;
+      }
+      .time-frame-date {
+        width: 45%;
+      }
+    }
+  }
+
+  .top-legend-bar {
+    height: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
+    display: flex;
+
+    .legend-bar {
+    }
+  }
+
+  .chart-area {
+    overflow: hidden;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tooltip {
+    position: fixed;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+    border-radius: 6px;
+    z-index: 100;
+  }
+}

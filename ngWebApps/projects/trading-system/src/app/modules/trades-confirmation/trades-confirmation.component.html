@@ -1,0 +1,76 @@
+<div class="page-table">
+  <app-tool-bar [secInfo]="true"></app-tool-bar>
+
+  <div class="mdl-layout__content mdl-grid mdl-cell mdl-cell--12-col-desktop
+              mdl-cell--12-col-tablet mdl-cell--4-col-phone">
+
+    <div class="mdl-cell--5-col-desktop full-height-div
+                mdl-cell--5-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+
+      <div class="card-wrapper mdl-grid mdl-cell two-third-height-div">
+        <base-card-tabs-group [tabStyle]="'slash'" [onRefresh]="onRefresh">
+
+          <base-card-tab label="Pending Transactions"
+                         [component]="pendingTicket"
+                         [showSetting]="false" [showDownload]="false"
+                         [showRefresh]="true">
+              <app-pending-tickets-panel class="trades-card" #pendingTicket>
+              </app-pending-tickets-panel>
+          </base-card-tab>
+
+          <base-card-tab label="Confirmed Transactions" [showSetting]="false"
+                         [showDownload]="false"
+                         [component]="Transactions"
+                         [showRefresh]="true">
+              <app-confirmed-tickets-panel class="trades-card" #Transactions>
+              </app-confirmed-tickets-panel>
+          </base-card-tab>
+
+        </base-card-tabs-group>
+
+      </div>
+
+      <div class="card-wrapper mdl-grid mdl-cell one-third-height-div">
+        <base-card>
+          <base-card-title>
+            Security Allocation
+            <div class="spacer"></div>
+            <div class="buttom itemBox"
+                 (click)="onOpenConfig(secAllocation)">
+              <i class="material-icons">settings</i>
+            </div>
+          </base-card-title>
+
+          <base-card-body>
+            <app-security-allocation class="trades-card" #secAllocation>
+            </app-security-allocation>
+          </base-card-body>
+        </base-card>
+      </div>
+
+    </div>
+
+    <div class="mdl-grid mdl-cell mdl-cell--7-col-desktop full-height-grid-cell
+                mdl-cell--7-col-tablet mdl-cell--4-col-phone mdl-cell--top">
+
+      <base-card>
+        <base-card-title>
+          Transaction Allocator
+          <div class="spacer"></div>
+          <div class="buttom itemBox"
+               (click)="onOpenConfig(transAllocator)">
+            <i class="material-icons">settings</i>
+          </div>
+        </base-card-title>
+
+        <base-card-body>
+          <app-transaction-allocator
+              class="trades-card" #transAllocator>
+          </app-transaction-allocator>
+        </base-card-body>
+      </base-card>
+    </div>
+
+  </div>
+
+</div>

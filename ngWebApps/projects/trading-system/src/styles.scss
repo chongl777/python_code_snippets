@@ -1,0 +1,65 @@
+/* You can add global styles to this file, and also import other style files */
+// @import './theme/components/card/card.component';
+// @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import '~src/helpers';
+@import '~material-design-lite/src/material-design-lite.scss';
+@import '~src/theme/style';
+// @import '~src/theme/matfield';
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* spinner */
+
+mat-spinner>svg>circle {
+  stroke: $spinner-color;
+}
+
+.mat-toolbar {
+  background: inherit;
+}
+
+.mat-cell, .mat-footer-cell {
+  font-size: inherit;
+  color: inherit;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    height: 28px;
+}
+
+base-card.tab a.card-tab {
+  padding: 0px 10px 0px 10px !important;
+  min-width: 100px;
+  width: auto!important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: inherit;
+}
+
+.mat-table {
+  // font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: inherit;
+}
+
+.mat-input-element:disabled {
+  color: inherit;
+}
+
+.cdk-overlay-connected-position-bounding-box {
+  z-index: initial;
+}
+
+.mat-form-field-underline {
+    bottom: inherit;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    bottom: inherit;
+}
+
+.mat-dialog-container {
+  box-shadow: 0px 0px 16px 2px grey;
+  padding: 0px!important;
+}

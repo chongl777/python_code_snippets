@@ -1,0 +1,41 @@
+@import '~src/helpers';
+
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+.widget {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  background-color: black;
+}
+
+mat-tab-group {
+  height: 100%;
+  width: 100%;
+}
+
+div.wrapper {
+  height: 100%;
+  ::ng-deep .mat-column-Security {
+    width: 25%!important;
+  }
+
+  ::ng-deep .mat-column-Quantity {
+    width: 25%!important;
+  }
+
+  ::ng-deep .mat-column-Price {
+    width: 25%!important;
+  }
+
+  ::ng-deep .mat-column-MarketVal {
+    width: 25%!important;
+  }
+
+  ::ng-deep .mat-row.highlight-sec {
+    background-color: darkslateblue!important;
+  }
+}

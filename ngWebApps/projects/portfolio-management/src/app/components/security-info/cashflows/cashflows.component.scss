@@ -1,0 +1,73 @@
+:host {
+  height: calc(100% - 20px);
+  width: calc(100% - 20px);
+
+  display: inline-flex;
+  flex-direction: row;
+
+  overflow: auto;
+  padding: 10px;
+  justify-content: space-evenly;
+}
+
+app-spinner-or-error {
+  position: absolute;
+  display:inline-block;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.table-wrapper {
+  height: calc(100% -  20px);
+  display: flex;
+  flex-direction: column;
+
+  caption {
+    font-weight: bold;
+  }
+}
+
+.scroll-div {
+  display: inline-block;
+  overflow-y: auto;
+  // height: calc(100% -  20px);
+  height: 100%;
+}
+
+
+.cashflow {
+  width: 350px;
+
+  .mat-column-Date,
+  .mat-column-Coupon,
+  .mat-column-Principal {
+    width: 33%;
+  }
+
+  .mat-column-Principal,
+  .mat-column-Coupon {
+    text-align: right;
+  }
+
+}
+
+table.factor {
+  width: 350px;
+
+  .mat-column-Date,
+  .mat-column-Factor {
+    width: 50%;
+  }
+
+  .mat-column-Principal,
+  .mat-column-Factor {
+    text-align: right;
+  }
+
+}
+
+tr.mat-row, tr.mat-header-row {
+  height: 20px;
+}

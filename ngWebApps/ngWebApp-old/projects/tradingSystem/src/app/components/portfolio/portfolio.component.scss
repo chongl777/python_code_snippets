@@ -1,0 +1,305 @@
+@import '~src/helpers';
+$color-positive: green;
+$color-negative: red;
+
+:host {
+  background-color: $background-color;
+  //display: flex;
+  //display: inline-block;
+  width: 100%;
+  //flex-direction: column;
+  //height: 100%;
+}
+
+cdk-virtual-scroll-viewport,
+::ng-deep div.cdk-virtual-scroll-content-wrapper,
+::ng-deep table,
+::ng-deep tbody {
+  background-color: inherit;
+}
+
+app-spinner-or-error {
+  // flex: 1;
+  width: 100%;
+  display: inline-block;
+  height: calc(100% - #{$footer-height});
+}
+
+cdk-virtual-scroll-viewport.loading {
+  opacity: 0;
+}
+
+
+cdk-virtual-scroll-viewport {
+  width: 100%;
+  height: calc(100% - #{$footer-height});
+  // flex: 1;
+
+  * {
+    font-size: $data-table-font-size;
+    font-weight: 100;
+  }
+
+  tr.pos-header {
+    * {
+      font-weight: bold;
+    }
+  }
+
+
+  div {
+    height: 100%;
+  }
+
+  a.clickable {
+    cursor: pointer;
+    color: white;
+  }
+
+  tr.pos-header, tr.pos-row, tr.pos-footer {
+    height: $row-height;
+  }
+
+  tr.pos-row {
+    background-color: inherit;
+  }
+  tr.pos-row:hover {
+    background-color: $hover-background-color;
+  }
+
+
+  tr[mat-header-row]>th,
+  tr[mat-footer-row]>th {
+    background-color: $background-color;
+  }
+
+  .content-table {
+    width: 100%;
+    table-layout: fixed;
+
+    div.cell-div {
+      vertical-align: middle;
+      display: inline-block;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .cell-div.positive {
+      color: $positive-color;
+    }
+
+    .cell-div.negative {
+      color: $negative-color;
+    }
+  }
+
+  .mat-column-Selected {
+    text-align: center;
+    width: 20px!important;
+    padding: 0px!important;
+    background-color:inherit;
+    input {
+      cursor: pointer;
+    }
+  }
+
+  .mat-column-Security {
+    width: 140px!important;
+    background-color:inherit;
+  }
+
+  .mat-column-Pnl {
+    width: 60px!important;
+  }
+
+  .mat-column-Event {
+    width: 40px!important;
+  }
+
+  .mat-column-CostBasis {
+    width: 60px!important;
+  }
+
+  .mat-column-Quantity {
+    width: 75px!important;
+  }
+
+  .mat-column-Change {
+    width: 60px!important;
+  }
+
+  .mat-column-Price {
+    width: 60px!important;
+  }
+
+  .mat-column-SID {
+    width: 50px!important;
+  }
+
+  .mat-column-Sector {
+    width: 60px!important;
+  }
+
+  .mat-column-LiqScore {
+    width: 60px!important;
+  }
+
+  .mat-column-MarketSeg {
+    width: 60px!important;
+  }
+
+  .mat-column-ERH, .mat-column-RVS, .mat-column-EMC, .mat-column-LR {
+    width: 40px!important;
+  }
+
+  // th.mat-header-cell:last-of-type {
+  //   padding: 0px;
+  // }
+}
+
+tr[mat-row].security-detail-row.detailed-hide {
+  display: none;
+}
+
+tr[mat-row].security-detail-row,
+tr[mat-header-row].security-detail-row {
+  min-height: 0px!important;
+  height: 0px!important;
+  td {
+    border: none!important;
+    padding: 0px;
+    div.security-detail-wrapper {
+      overflow:hidden;
+      div.security-detail{
+        /* border-bottom: 1px solid $border-color; */
+        display: block;
+        padding: $padding-detail;
+      }
+    }
+  }
+
+  div.security-detail-wrapper {
+    overflow: hidden;
+    background-color: $color-sec-detail!important;
+  }
+}
+
+th.tiny-sort {
+  ::ng-deep {
+    div.mat-sort-header-arrow {
+      margin: 0px;
+      transform: translateY(0px)scaleX(0.5)!important;
+    }
+  }
+}
+
+td.tiny-sort.right-align {
+  padding-right: 10px!important;
+}
+
+th.right-align.subheader {
+  padding-left: 0px;
+  padding-right: 0px;
+  text-align: right;
+  padding-right: 10px!important;
+}
+
+th.right-align.mat-sort-header {
+  padding-left: 0px;
+  padding-right: 0px!important;
+  ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+td.right-align {
+  padding-right: 20px!important;
+  div.cell-div {
+    text-align: right;
+  }
+}
+
+th.center-align {
+  ::ng-deep .mat-sort-header-container {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+td.tiny-sort.center-align {
+  padding-right: 10px!important;
+}
+
+div.cell-div {
+  vertical-align: middle;
+  display: inline-block;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+
+div.footer-div {
+  display: flex;
+  flex-direction: row;
+  height: $footer-height;
+
+  div.buttons {
+    margin: auto;
+    display:flex;
+    width: 85px;
+    margin-right: 10px;
+    height: 22px;
+  }
+
+  .mat-button {
+    width: 90px;
+    color: white;
+    margin-left: 0px;
+    height: 100%;
+    width: 100%;
+    line-height: 25px;
+    ::ng-deep {
+      font-weight: bold;
+    }
+  }
+  .mat-button.positive {
+    background-color: $color-positive;
+  }
+
+  .mat-button.negative {
+    background-color: $color-negative;
+  }
+
+  div.spacer {
+    flex: 1;
+  }
+
+  div.wl-date {
+    margin: auto;
+  }
+}
+
+div.pf-dates {
+  font-size: 8px;
+  div {
+    height: #{$footer-height/2};
+  }
+}
+
+div.trade-buttons {
+  &>div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  app-trade-buttons {
+    height: 20px;
+  }
+  height: 40px!important;
+  display: inline-block;
+}

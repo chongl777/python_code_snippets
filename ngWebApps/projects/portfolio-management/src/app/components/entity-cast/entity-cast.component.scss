@@ -1,0 +1,102 @@
+$primary-color:rgba(186, 220, 248, 1);
+
+:host {
+  height: 100%;
+  display: inline-flex;
+  position: relative;
+  flex-direction: row;
+  width: 100%;
+  overflow: auto;
+}
+
+app-tree-chart {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+
+  ::ng-deep {
+    #current_company_pattern {
+      .primary {
+        fill: orange;
+      }
+      .alter {
+        fill: $primary-color;
+      }
+    }
+
+    #current_select_company_pattern {
+      .primary {
+        fill: orange;
+      }
+      .alter {
+        fill: steelblue;
+      }
+    }
+
+    div.tooltip {
+      max-width: 170px;
+      width: 170px!important;
+    }
+
+    g.node {
+      rect {
+        fill: $primary-color;
+        opacity: 1;
+        stroke-width: 1px;
+        stroke: black;
+      }
+
+      rect:hover {
+        fill: steelblue!important;
+        cursor: pointer;
+      }
+
+      & {
+        rect.selected {
+          fill: url(#current_company_pattern)!important;
+          stroke-width: 2px!important;
+          opacity: 0.7;
+        }
+        rect.current-company {
+          fill: steelblue!important;
+        }
+        rect.selected.current-company {
+          fill: url(#current_select_company_pattern)!important;
+          stroke-width: 2px!important;
+          opacity: 0.7;
+        }
+      }
+
+      &.selected {
+        rect {
+          fill: url(#current_company_pattern)!important;
+          stroke-width: 2px!important;
+          opacity: 0.7;
+        }
+      }
+
+      &.current-company {
+        rect {
+          fill: steelblue!important;
+        }
+      }
+
+      &.selected.current-company {
+        rect {
+          fill: url(#current_select_company_pattern)!important;
+          stroke-width: 2px!important;
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+}
+
+app-spinner-or-error {
+  position: absolute;
+  display:inline-block;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: white;
+}

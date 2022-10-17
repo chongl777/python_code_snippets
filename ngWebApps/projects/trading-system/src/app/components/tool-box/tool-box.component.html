@@ -1,0 +1,32 @@
+<div class="container">
+  <button color="primary" mat-raised-button (click)="open_signal('emc', 1)">
+    {{NAME_MAPPING['EMC']}}
+  </button>
+
+  <button color="primary" mat-raised-button (click)="open_signal('rvs', 7)">
+    {{NAME_MAPPING['RVS']}}
+  </button>
+
+  <button color="primary" mat-raised-button (click)="open_signal('emcst', 10)">
+    {{NAME_MAPPING['EMCST']}}
+  </button>
+
+  <button color="primary" mat-raised-button (click)="open_all_signals()">
+    All Signals
+  </button>
+
+  <button color="primary" mat-raised-button (click)="open_signals_page()">
+    Signals Page
+  </button>
+
+  <br/>
+
+  <button color="primary" mat-raised-button (click)="open_secuirty_info()">
+    Security Info
+  </button>
+
+  <button color="primary" mat-raised-button (click)="open_general_info_page()">
+    Security Lookup
+  </button>
+
+</div>

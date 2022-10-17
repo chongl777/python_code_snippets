@@ -1,0 +1,72 @@
+.mat-dialog-title.mat-primary{
+  background:#3f51b5;
+  color:white;
+}
+
+.mat-expansion-panel-header.mat-accent {
+  background: aliceblue;
+}
+
+
+.mat-dialog-title.mat-accent,
+mat-tab-group.mat-accent mat-tab-header{
+  background:#ff4081;
+  color:white;
+}
+
+.mat-dialog-title.mat-accent-2,
+mat-tab-group.mat-accent-2 mat-tab-header,
+.mat-flat-button.mat-accent-2, .mat-raised-button.mat-accent-2,
+.mat-fab.mat-accent-2, .mat-mini-fab.mat-accent-2 {
+  background: deepskyblue;
+  color:white;
+}
+
+.mat-dialog-title.mat-accent-3,
+mat-tab-group.mat-accent-3 mat-tab-header,
+.mat-flat-button.mat-accent-3, .mat-raised-button.mat-accent-3,
+.mat-fab.mat-accent-3, .mat-mini-fab.mat-accent-3 {
+  background: #ff7f0e;
+  color:white;
+}
+
+.mat-dialog-title,
+mat-tab-group mat-tab-header {
+  .mat-ink-bar {
+    background: white;
+  }
+  .mat-tab-label-content {
+    color: white;
+  }
+  .mat-tab-labels>div.mat-tab-label-active {
+    opacity: 1;
+  }
+}
+
+.general-info {
+  .mat-dialog-title.mat-accent{
+    background: #2BA9E0;
+    color:white;
+  }
+
+  .mat-dialog-title.mat-accent-2,
+  mat-tab-group.mat-accent-2 mat-tab-header {
+    background:#13CBAC;
+    color:white;
+
+    .mat-ink-bar {
+      background: white;
+    }
+    .mat-tab-label-content {
+      color: white;
+    }
+    .mat-tab-labels>div.mat-tab-label-active {
+      opacity: 1;
+    }
+  }
+
+  .mat-dialog-title.mat-accent-3 {
+    background: #ff7f0e;
+    color:white;
+  }
+}

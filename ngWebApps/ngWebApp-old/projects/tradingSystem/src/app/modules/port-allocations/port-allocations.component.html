@@ -1,0 +1,50 @@
+<div class="page-table">
+  <app-tool-bar [secInfo]="true"></app-tool-bar>
+
+  <div class="mdl-grid mdl-cell mdl-cell--12-col-desktop
+              mdl-cell--12-col-tablet mdl-cell--12-col-phone mdl-cell--top"
+       style="height: 100%; flex-flow: row wrap;">
+
+    <div class="port-allocation-cell mdl-cell mdl-cell--12-col-desktop
+                mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+
+      <base-card-tabs-group class="port-allocation-cell"
+                            [onDownload]="onDownload" [onOpenConfig]="onOpenConfig">
+
+        <base-card-tab label="Portfolio Allocation" [showSetting]="true" [showDownload]="true">
+
+          <ng-template cardContent>
+            <app-portfolio-lookthrough
+                [cookieKey]="'port-allocations'" class="portfolio-card" #cardContent>
+
+              <ng-template #SecurityDetail let-security="security">
+                <div style="display:flex; flex-direction: column; width: 100%"
+                     class="security-detail-wrapper">
+                  <div class="trade-buttons">
+                    <app-trade-buttons [security]="security"></app-trade-buttons>
+                  </div>
+                  <app-security-details-slide-card
+                      [sizeInfo]="'large'"
+                      [secInfo]="{security: security, watchlist: {reasons: null, category: null}}">
+                  </app-security-details-slide-card>
+                </div>
+              </ng-template>
+
+            </app-portfolio-lookthrough>
+          </ng-template>
+
+        </base-card-tab>
+
+        <base-card-tab label="Trades" [showSetting]="false" [showDownload]="true"
+                       [component]="app">
+
+            <app-trading-records [secDetailSize]="'large'" class="portfolio-card" #app>
+            </app-trading-records>
+
+        </base-card-tab>
+
+      </base-card-tabs-group>
+    </div>
+
+  </div>
+</div>

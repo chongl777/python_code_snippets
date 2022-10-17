@@ -1,0 +1,33 @@
+@import '~src/helpers';
+
+:host {
+  height: 100%;
+  width: 100%;
+
+  ::ng-deep .mat-tab-label {
+    min-width: initial;
+    flex: 1 1;
+    width: initial;
+    padding: initial;
+  }
+}
+
+.widget {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  background-color: black;
+}
+
+mat-tab-group {
+  height: 100%;
+  width: 100%;
+}
+
+app-security-allocation {
+  height: auto!important;
+  ::ng-deep .scroll-viewport {
+    height: auto;
+    display: inline;
+  }
+}

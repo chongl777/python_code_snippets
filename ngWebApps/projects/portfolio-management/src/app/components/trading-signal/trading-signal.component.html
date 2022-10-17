@@ -1,0 +1,85 @@
+<!-- <app-expansion-panel [expanded]="true">
+     <app-input-search
+     [displayFn]="displaySelected"
+     [onSelected]="onSelectedSecurity"
+     [filterFn]="filterSecurity">
+     <ng-template let-item="item">
+     <div class="sec-option" style="display:flex; flex-direction: row">
+     <div class="sec-id">{{item['sid']}}</div>
+     <div class="sec-des">{{item['description']}}</div>
+     <div class="sec-deal">{{item['id']}}</div>
+     </div>
+     </ng-template>
+     </app-input-search>
+     </app-expansion-panel>
+
+
+     <app-spinner-or-error *ngIf="errMsg" [errMsg]="errMsg">
+     </app-spinner-or-error>
+
+     <div class="page-body">
+     <app-modal [title]="'Security List'" class="sec-list" [color-theme]="'mat-accent'">
+     <app-security-list></app-security-list>
+     </app-modal>
+
+     <app-modal [title]="'Trading Signal'" class="signal-panel"  [color-theme]="'mat-accent-2'">
+     <app-spinner-or-error
+     *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+     </app-spinner-or-error>
+
+     <ng-container *ngIf="!(loading$ | async) && !errMsg">
+     <app-modal [title]="'EMC HY'" class="signal-modal">
+     <app-signal-emc [signalSrc]="1" [updateOnResize]="false"></app-signal-emc>
+     </app-modal>
+
+     <app-modal [title]="'EMC HY Short Term'" class="signal-modal">
+     <app-signal-emc [signalSrc]="10" [updateOnResize]="false"></app-signal-emc>
+     </app-modal>
+
+     <app-modal [title]="'RVS HY'" class="signal-modal">
+     <app-signal-rvs [signalSrc]="7" [updateOnResize]="false"></app-signal-rvs>
+     </app-modal>
+     </ng-container>
+     </app-modal>
+     </div>
+   -->
+
+<div class="page-body">
+  <app-modal [title]="'Security List'" class="sec-list" [color-theme]="'mat-accent'">
+    <app-security-list></app-security-list>
+  </app-modal>
+
+  <app-spinner-or-error
+      *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+  </app-spinner-or-error>
+
+  <mat-tab-group color="accent-2">
+    <mat-tab label="Trading Signal">
+      <ng-container *ngIf="!(loading$ | async) && !errMsg">
+        <app-modal [title]="'EMC HY'" class="signal-modal">
+          <app-signal-emc [signalSrc]="1" [updateOnResize]="updateOnResize"></app-signal-emc>
+        </app-modal>
+
+        <app-modal [title]="'EMC HY Short Term'" class="signal-modal">
+          <app-signal-emc [signalSrc]="10" [updateOnResize]="updateOnResize"></app-signal-emc>
+        </app-modal>
+
+        <app-modal [title]="'RVS HY'" class="signal-modal">
+          <app-signal-rvs [signalSrc]="7" [updateOnResize]="updateOnResize"></app-signal-rvs>
+        </app-modal>
+      </ng-container>
+    </mat-tab>
+
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <button mat-raised-button (click)="goToGeneralInfo()" color="accent-3">
+          TradingSignal
+        </button>
+      </ng-template>
+    </mat-tab>
+  </mat-tab-group>
+  <!--
+       <app-modal [title]="'Trading Signal'" class="signal-panel"  [color-theme]="'mat-accent-2'">
+
+       </app-modal> -->
+</div>

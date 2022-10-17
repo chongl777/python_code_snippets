@@ -1,0 +1,41 @@
+<app-spinner-or-error style="width:100%"
+                      *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+</app-spinner-or-error>
+
+<div class="main" *ngIf="!((loading$ | async) || errMsg)">
+  <div class="email-header">
+
+    <div class="email-subheader">
+      <button class="send-button" mat-stroked-button (click)="send()" color="accent">
+        {{ mailType }}
+      </button>
+      <div class="recipient">
+        <div class="recipient-row">
+          <div class="title">To:</div>
+          <div class="address">
+            {{to}}
+          </div>
+        </div>
+        <div class="recipient-row">
+          <div  class="title">Cc:</div>
+          <div class="address">
+            {{cc}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="mailType=='Send'">
+      <div>Subject</div>
+      <div></div>
+    </div>
+
+  </div>
+  <div class="body">
+    <textarea [(ngModel)]='body'>
+    </textarea>
+  </div>
+  <div class="signature" [innerHtml]="authService.user_profile.email_signature">
+
+  </div>
+</div>

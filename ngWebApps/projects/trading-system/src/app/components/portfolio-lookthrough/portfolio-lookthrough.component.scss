@@ -1,0 +1,346 @@
+@import '~src/helpers';
+
+:host {
+  width: 100%;
+
+  th.mat-header-cell:first-of-type,
+  td.mat-cell:first-of-type,
+  td.mat-footer-cell:first-of-type {
+    padding-left: initial;
+  }
+
+  th.mat-header-cell:last-of-type,
+  td.mat-cell:last-of-type,
+  td.mat-footer-cell:last-of-type {
+    padding-right: initial;
+  }
+
+  app-spinner-or-error {
+    // flex: 1;
+    width: 100%;
+    display: inline-block;
+    height: calc(100% - #{$footer-height});
+  }
+
+  .scroll-viewport>table.loading {
+    opacity: 0;
+  }
+
+
+  div.scroll-viewport {
+    width: 100%;
+    height: calc(100% - #{$footer-height});
+    overflow: auto;
+    contain: strict;
+    // flex: 1;
+  }
+
+
+  div.footer-div {
+    display: flex;
+    flex-direction: row;
+    height: $footer-height;
+
+    div.buttons {
+      margin: auto;
+      display:flex;
+      width: 85px;
+      margin-right: 10px;
+      height: 22px;
+    }
+
+    .mat-button {
+      width: 90px;
+      color: white;
+      margin-left: 0px;
+      height: 100%;
+      width: 100%;
+      line-height: 25px;
+      ::ng-deep {
+        font-weight: bold;
+      }
+    }
+
+    div.spacer {
+      flex: 1;
+    }
+
+    div.wl-date {
+      margin: auto;
+    }
+
+  }
+
+  div.pf-dates {
+    font-size: 8px;
+    div {
+      height: #{$footer-height/2};
+    }
+  }
+
+  .mat-table {
+    border-color: grey;
+
+    .mat-cell {
+      border: none;
+    }
+
+    ::ng-deep {
+      .mat-cell {
+        border-color: inherit!important;
+      }
+    }
+
+    .pos-header, .mat-row, .pos-footer,
+    ::ng-deep .mat-row {
+      height: $row-height;
+      border-color: inherit;
+    }
+
+    .pos-header{
+      .mat-header-cell {
+        margin-bottom: 1px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        // border-bottom-color: white;
+      }
+    }
+
+    ::ng-deep .child-table-wrapper {
+      border-color: inherit;
+    }
+    ::ng-deep .mat-table {
+      width: 100%;
+      border-top-style: solid;
+      border-top-width: 1px;
+      border-top-color: inherit;
+
+      border-bottom-style: solid;
+      border-bottom-width: 1px;
+      border-bottom-color: inherit;
+
+    }
+  }
+}
+
+:host {
+
+  ::ng-deep div.trade-buttons {
+    & {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    app-trade-buttons {
+      height: 20px;
+    }
+    height: 40px!important;
+    display: inline-block;
+  }
+
+  ::ng-deep .mat-column-Selected {
+    width: 2%!important;
+
+    text-align: center!important;
+    padding: 0px!important;
+    input {
+      cursor: pointer;
+    }
+  }
+
+  ::ng-deep .mat-column-Security {
+    width: 160px;
+    overflow: hidden;
+  }
+
+  ::ng-deep .mat-column-SecEvt {
+    width: 30px!important;
+    color: white;
+    // padding-right: 0px!important;
+  }
+
+  ::ng-deep .clickable {
+    cursor: pointer;
+  }
+
+  ::ng-deep .mat-column-Pnl {
+    width: 8%!important;
+  }
+
+  ::ng-deep .mat-column-CostBasis {
+    width: 8%!important;
+  }
+
+  ::ng-deep .mat-column-Quantity {
+    width: 10%!important;
+  }
+
+  ::ng-deep .mat-column-Change {
+    width: 5%!important;
+  }
+
+  ::ng-deep .mat-column-Price {
+    width: 7%!important;
+  }
+
+  ::ng-deep .mat-column-EqRet {
+    width: 4%!important;
+  }
+
+  ::ng-deep .mat-column-ModifiedDur,
+  ::ng-deep .mat-column-YTM,
+  ::ng-deep .mat-column-YTW,
+  ::ng-deep .mat-column-YTF {
+    width: 4%!important;
+  }
+
+  ::ng-deep .mat-column-Factor {
+    width: 7%!important;
+  }
+
+  ::ng-deep .mat-column-NetExposure,
+  ::ng-deep .mat-column-GrossExposure,
+  ::ng-deep .mat-column-MarketVal {
+    width: 7%!important;
+  }
+
+  ::ng-deep .mat-column-SID {
+    width: 35px;
+    padding: 0px 5px 0px 5px!important;
+    .cell-div {
+      width: 25px;
+    }
+  }
+
+  // ::ng-deep .mat-cell.mat-column-SID:hover {
+  //   cursor: pointer;
+  //   .cell-div {
+  //     text-decoration: underline;
+  //   }
+  // }
+
+  ::ng-deep .mat-column-Sector {
+    width: 8%!important;
+  }
+
+  ::ng-deep .mat-column-Rtg,
+  ::ng-deep .mat-column-RtgRnk,
+  ::ng-deep .mat-column-LR,
+  ::ng-deep .mat-column-LR_S,
+  ::ng-deep .mat-column-MarketSeg,
+  ::ng-deep .mat-column-LiqScore,
+  ::ng-deep .mat-column-LR_S_SW {
+    width: 4%!important;
+  }
+
+  ::ng-deep .mat-header-cell.signal,
+  ::ng-deep .mat-cell.signal {
+    width: 4%!important;
+  }
+
+  ::ng-deep tr[mat-row].child-table-row.detailed-hide {
+    display: none;
+  }
+
+  ::ng-deep tr[mat-row].child-table-row {
+    min-height: 0px!important;
+    height: 0px!important;
+    td {
+      border: none!important;
+      padding: 0px;
+      div.child-table-wrapper {
+        overflow:hidden;
+        display: block;
+        div.security-detail{
+          /* border-bottom: 1px solid $border-color; */
+          display: block;
+          padding: $padding-detail;
+        }
+      }
+    }
+
+    div.security-detail-wrapper {
+      overflow: hidden;
+      background-color: $color-sec-detail!important;
+    }
+  }
+
+
+  $set-width: 8px;
+  $off-set-width: 5px;
+  * {
+    font-size: $data-table-font-size;
+    font-weight: bold;
+  }
+
+  ::ng-deep .level-0 * {
+    font-size: #{$data-table-font-size}!important;
+    font-weight: bold;
+    .step-align div.cell-div {
+      padding-left: $off-set-width!important;
+    }
+  }
+
+  ::ng-deep .level-0>table>tbody>tr {
+    background-color: black!important;
+  }
+
+
+  ::ng-deep .level-1 * {
+    font-size: #{$data-table-font-size - 0.5px}!important;
+    font-weight: bold;
+    .step-align div.cell-div {
+      padding-left: #{$set-width * 1 + $off-set-width}!important;
+    }
+  }
+
+  ::ng-deep .level-2 * {
+    font-weight: 450;
+    font-size: #{$data-table-font-size - 1px}!important;
+    .step-align div.cell-div {
+      padding-left: #{$set-width * 2 + $off-set-width}!important;
+    }
+  }
+
+  ::ng-deep .level-3 * {
+    font-size: #{$data-table-font-size - 1.5px}!important;
+    .step-align div.cell-div {
+      padding-left: #{$set-width * 3 + $off-set-width}!important;
+    }
+  }
+
+  ::ng-deep .level-4 * {
+    font-size: #{$data-table-font-size - 2px}!important;
+    .step-align div.cell-div {
+      padding-left: #{$set-width * 4 + $off-set-width}!important;
+    }
+  }
+
+  ::ng-deep .level-5 * {
+    font-size: #{$data-table-font-size - 2.5px}!important;
+    .step-align div.cell-div {
+      padding-left: #{$set-width * 5 + $off-set-width}!important;
+    }
+  }
+
+  ::ng-deep .level-6 * {
+    font-size: #{$data-table-font-size - 2.5px}!important;
+    .step-align div.cell-div {
+      padding-left: #{$set-width * 6 + $off-set-width}!important;
+    }
+  }
+
+  ::ng-deep .level-7 * {
+    font-size: #{$data-table-font-size - 2.5px}!important;
+    .step-align div.cell-div {
+      padding-left: #{$set-width * 7 + $off-set-width}!important;
+    }
+  }
+
+  ::ng-deep .level-8 * {
+    font-size: #{$data-table-font-size - 2.5px}!important;
+    .step-align div.cell-div {
+      padding-left: #{$set-width * 8 + $off-set-width}!important;
+    }
+  }
+}

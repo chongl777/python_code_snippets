@@ -1,0 +1,76 @@
+@import '~src/helpers';
+
+:host {
+  //display: flex;
+  //display: inline-block;
+  width: 100%;
+  font-size: 9px;
+  height: 100%;
+  //flex-direction: column;
+  //height: 100%;
+}
+
+cdk-virtual-scroll-viewport {
+  height: 100%;
+  width: 100%;
+}
+
+cdk-virtual-scroll-viewport,
+::ng-deep div.cdk-virtual-scroll-content-wrapper,
+::ng-deep table,
+::ng-deep tbody {
+  background-color: inherit;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+td {
+  padding: 0px;
+}
+
+tr.mat-row {
+  height: 22px!important;
+}
+
+tr.mat-header-row {
+  height: 32px!important;
+}
+
+
+.mat-column-ReportDate,
+.mat-column-GSResponseDate,
+.mat-column-PayDate {
+  width: 85px;
+}
+
+.mat-column-Voluntary-Mandatory {
+  width: 140px;
+}
+
+.mat-column-SecurityID {
+  width: 50px;
+}
+
+.mat-column-Status {
+  width: 100px;
+}
+
+.mat-column-EventDescription {
+  width: 90px;
+}
+
+.mat-column-TermDescription {
+  width: 90px;
+}
+
+.mat-column-DividendClass {
+  width: 90px;
+}
+
+.mat-column-CurrentQty,
+.mat-column-ElectedQty{
+  width: 90px;
+}

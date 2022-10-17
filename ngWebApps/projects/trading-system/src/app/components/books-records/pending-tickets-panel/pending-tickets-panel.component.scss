@@ -1,0 +1,68 @@
+@import '~src/helpers';
+$margin-vertical: 10px;
+
+
+:host {
+  with: 100%;
+}
+
+.wrapper {
+  display: flex!important;
+  flex-direction: row;
+  height: 100%;
+
+  .panel-wrapper {
+    background-color: $card-background-color;
+    box-shadow: 0 0 16px 2px grey;
+    margin: #{$margin-vertical} 25px #{$margin-vertical} 5px;
+    height: calc(100% - #{$margin-vertical * 2});
+    flex: 1;
+
+    .panel-sub-wrapper {
+      height: 100%;
+    }
+
+    .panel {
+      // border-radius: 10px;
+      display: inline-grid;
+      height: 100%;
+      width: 100%;
+
+      .ticket-panel {
+        height: 100%;
+        padding: 0px 10px;
+        overflow-y: auto;
+
+        .pending-ticket {
+          height: 85px;
+        }
+      }
+    }
+
+    .add-trade-ticket {
+      height: 0px;
+      position: relative;
+      button {
+        top: -13px;
+        width: 26px;
+        min-width: 26px;
+        height: 26px;
+      }
+    }
+  }
+
+  .ticket-details {
+    width: 200px;
+    height: 100%;
+  }
+
+  app-ticket-details {
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 0 16px 2px grey;
+    border-radius: 10px;
+
+    margin: #{$margin-vertical} 0px #{$margin-vertical} 0px;
+    height: calc(100% - #{$margin-vertical * 2});
+  }
+}

@@ -1,0 +1,121 @@
+@import '~src/helpers';
+
+$color-border: gray;
+$color-toggle-active: white;
+$color-toggle: gray;
+$color-arrow: white;
+$color-buy: green;
+$color-sell: red;
+
+:host {
+  width: 100%;
+  display: inline-block;
+}
+
+.tag-wrapper {
+  height: 0px;
+}
+
+.tag {
+  position: relative;
+  // margin: 0px 0px 0px 11px;
+  width:fit-content;
+  top: 0px;
+  left: 10px;
+  background-color: $card-background-color;
+  display: inline-block;
+  padding: 0px 5px;
+  font-size: 11px;
+}
+
+.tag.buy{
+  color: $color-buy;
+}
+
+.tag.sell{
+  color: $color-sell;
+}
+
+.ticket-wrapper {
+  margin: 10px 0px;
+  border: 1px solid;
+  overflow: hidden;
+  border-radius: 7px;
+
+  .ticket {
+    overflow-x: auto;
+  }
+
+}
+
+.wrapper {
+  display: flex!important;
+  flex-direction: row;
+
+  .ticket-details {
+    width: 30px;
+    height: 100%;
+  }
+}
+
+.ticket-wrapper.manual-created {
+  border-color: steelblue;
+}
+
+:host.selected .ticket-wrapper, .ticket-wrapper:hover {
+  // background-color: gray!important;
+  border: 2px solid;
+}
+
+:host.selected .ticket-wrapper {
+  border-color: $color-purple!important;
+  border: 2px solid;
+}
+
+// .row:hover {
+//   bacground-color: black!important;
+// }
+
+.row {
+  display: flex;
+  flex-direciton: row;
+  padding: 10px 5px;
+  font-size: 11px;
+  // min-width: 510px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+mat-slide-toggle.buy-sell {
+  margin: auto 10px;
+}
+
+div.toggle.buy-sell {
+  margin: auto 0px;
+}
+
+.quantity {
+  width: 60px
+}
+
+.price {
+  width: 60px
+}
+
+.transType {
+  width: 60px;
+}
+
+.date {
+  width: 177px
+}
+
+.settAcct {
+  width: 100px
+}
+
+mat-form-field {
+  margin: 0px 10px;
+}

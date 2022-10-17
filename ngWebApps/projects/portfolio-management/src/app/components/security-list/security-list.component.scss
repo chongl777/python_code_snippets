@@ -1,0 +1,103 @@
+:host * {
+  font-size: 11px!important;
+}
+
+.mat-row {
+  height: 40px;
+
+  td {
+    vertical-align: middle;
+  }
+
+  &.level-1 {
+    background: gray;
+    font-weight: bold;
+    &>td {
+      &>div {
+        overflow: inherit;
+        padding-left: 2px;
+        color: white;
+      }
+    }
+  }
+
+  &.level-0 {
+    &.selected {
+      background: #B0BED9;
+    }
+
+    &:hover {
+      background: #e0e0e0;
+    }
+
+    &.collapse {
+      height: 0px;
+      line-height: 0px;
+      display: none;
+    }
+    // &.even {
+    //   background: #e0e0e0;
+    // }
+    td {
+      border-bottom: 1px solid gray!important;
+    }
+
+    &>td {
+      &>div{
+        overflow: inherit;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+mat-table-expandable {
+  ::ng-deep {
+    tr.mat-header-row {
+      height: inherit;
+    }
+    .child-table-row {
+      height: inherit!important;
+      td {
+        // border-bottom: 1px solid gray!important;
+        border-bottom: none;
+      }
+    }
+
+    .mat-column-ChildTable {
+      padding: 0px!important;
+    }
+  }
+
+  ::ng-deep .mat-column-CorpLevel {
+    // width: 50px;
+    width: 20%;
+    &.mat-cell {
+      text-align: center;
+    }
+  }
+
+  ::ng-deep .mat-column-SID {
+    // width: 60px;
+    width: 20%;
+    &.mat-cell {
+      text-align: left;
+    }
+  }
+
+  ::ng-deep .mat-column-Security {
+    // width: 60px;
+    width: 40%;
+    &.mat-cell {
+      text-align: left;
+    }
+  }
+
+  ::ng-deep .mat-column-Outstanding {
+    // width: 60px;
+    width: 20%;
+    &.mat-cell {
+      text-align: right;
+    }
+  }
+}

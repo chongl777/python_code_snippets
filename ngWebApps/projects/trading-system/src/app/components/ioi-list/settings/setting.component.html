@@ -1,0 +1,34 @@
+<div class="setting-panel">
+
+  <div class="setting-form-content" *ngIf="settingForm">
+    <form [formGroup]="settingForm"
+          (keydown.enter)="$event.preventDefault()">
+
+      <div class="bar"> Available Setting Fields </div>
+      <div style="display: flex; flex-direction: column" class="section-group-by section">
+
+        <mat-form-field>
+          <!-- <input matNativeControl placeholder="Order Type" type="string"
+               formControlName="orderType" required> -->
+          <mat-label>{{'Minimal Qty'}}</mat-label>
+          <input matNativeControl min="0"
+                 formControlName="minimalQty" required>
+          <mat-error *ngIf="formErrors.minimalQty">{{formErrors.minimalQty}}</mat-error>
+        </mat-form-field>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+<mat-dialog-actions class="mdl-card__actions">
+
+  <span class="flex-spacer"></span>
+	<button mat-button class="cancel mat-tab-nav-bar mat-background-primary text-floral-white"
+          (click)="onNoClick()">Cancel</button>
+	<button mat-button class="submit mat-tab-nav-bar mat-background-primary text-floral-white"
+          [disabled]="settingForm.invalid"
+          [mat-dialog-close]="{minimal_quantity: minimalQty}"
+          cdkFocusInitial>Ok</button>
+</mat-dialog-actions>

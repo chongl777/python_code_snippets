@@ -1,0 +1,51 @@
+{
+  "_from": "@types/material-design-lite@1.1.15",
+  "_id": "@types/material-design-lite@1.1.15",
+  "_inBundle": false,
+  "_integrity": "sha512-F7yNGnXQM3YwMEsdmLviRA1OeSoUWQCA/CXdCGkZx3rlPuHawgRIz58J2iArY8mxdDLMPExmnel9YQGKvXQfGg==",
+  "_location": "/@types/material-design-lite",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@types/material-design-lite@1.1.15",
+    "name": "@types/material-design-lite",
+    "escapedName": "@types%2fmaterial-design-lite",
+    "scope": "@types",
+    "rawSpec": "1.1.15",
+    "saveSpec": null,
+    "fetchSpec": "1.1.15"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/material-design-lite/-/material-design-lite-1.1.15.tgz",
+  "_shasum": "871f9d4f2529d4f221e10e19936e2f2dcbb8c2ac",
+  "_spec": "@types/material-design-lite@1.1.15",
+  "_where": "c:\\Users\\cliu.WFI\\Desktop\\WFI\\courses\\material-angular-dashboard",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Brad Zacher",
+      "url": "https://github.com/bradzacher"
+    }
+  ],
+  "dependencies": {},
+  "deprecated": false,
+  "description": "TypeScript definitions for material-design-lite",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped#readme",
+  "license": "MIT",
+  "main": "",
+  "name": "@types/material-design-lite",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  "scripts": {},
+  "typeScriptVersion": "2.0",
+  "typesPublisherContentHash": "475feb07ddedc52df0272f32f4d9d77b4fe56628a737299dc560cb640e4300e1",
+  "version": "1.1.15"
+}

@@ -1,0 +1,16 @@
+@import '~src/helpers';
+
+.container {
+  height: 100%;
+  width: 100%;
+}
+
+$border-color: black;
+$nav-bar-height: 20px;
+$active-button-background: rgba(0,0,0,.2);
+
+button {
+  width: 140px;
+  height: 50px;
+  margin: 10px;
+}

@@ -1,0 +1,108 @@
+<!-- <mat-toolbar cdkDrag cdkDragRootElement=".cdk-overlay-pane"  cdkDragHanlde> -->
+<!-- <mat-toolbar>
+     Send Orders
+     <span class="flex-spacer" ></span>
+     <button mat-button mat-dialog-close>&times;</button>
+     </mat-toolbar> -->
+<div class="container" cdkDrag cdkDragBoundary=".mdl-layout__content" cdkDragRootElement=".cdk-overlay-pane">
+  <mat-dialog-title cdkDragHandle>
+    Send Orders
+    <span class="flex-spacer" ></span>
+    <button mat-button mat-dialog-close>&times;</button>
+  </mat-dialog-title>
+
+  <div style="flex:1; display:flex; flex-direction: column; overflow:hidden">
+    <form class="order-form"
+          [class.loading]="(loading$ | async)  || !!(errMsg)"
+          class="orderForm" novalidate #orderForm="ngForm"
+          (keydown.enter)="$event.preventDefault()">
+      <mat-dialog-content class="list-ctrl">
+        <p>
+          <mat-form-field>
+            <input matNativeControl placeholder="List Name"
+                   type="text" name="listname"
+                   [(ngModel)]="listName" #listname="ngModel" required>
+            <mat-error *ngIf="listname.errors?.required">List name is required</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input matNativeControl placeholder="Quantity" type="number" name="quantity"
+                   (keydown.enter)="changeQuantity(Quantity)"
+                   [(ngModel)]="Quantity" #quantity="ngModel" required>
+            <span matSuffix>M</span>
+            <mat-error *ngIf="quantity.errors?.required">Quantity is required</mat-error>
+          </mat-form-field>
+        </p>
+      </mat-dialog-content>
+    </form>
+
+    <app-spinner-or-error
+        *ngIf="(loading$ | async)  || !!(errMsg)"
+        [loading$]="loading$" [errMsg]="errMsg"></app-spinner-or-error>
+
+    <!-- [class.loading]="(loading$ | async)  || !!(errMsg)" -->
+    <cdk-virtual-scroll-viewport
+        tvsItemSize="24"
+        [class.loading]="(loading$ | async)  || !!(errMsg)"
+        [footerEnabled]="false"
+        [headerEnabled]="true"
+        [headerHeight]="30"
+        [bufferMultiplier]="0.1"
+        class="wrapper mat-elevation-z2 scroll-div">
+      <table mat-table [dataSource]="dataSource"
+             matSort matSortDisableClear>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"
+            class="ord-header"></tr>
+        <tr mat-row *matRowDef="let ord; columns: columnsToDisplay" class="ord-row">
+        </tr>
+
+        <ng-container matColumnDef="Side">
+          <th mat-header-cell class="tiny-sort center-align" *matHeaderCellDef mat-sort-header>Side</th>
+          <td mat-cell
+              class="center-align buy-sell"
+              [class] ="ord.side == '1' ? 'positive' : 'negative'"
+              *matCellDef="let ord">
+            <mat-slide-toggle
+                [color]="'primary'"
+                [(ngModel)]="ord.isBuy">
+              {{ord.side == '1' ? 'BID' : 'OFFER'}}
+            </mat-slide-toggle>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Security">
+          <th mat-header-cell class="tiny-sort left-align" *matHeaderCellDef mat-sort-header> Security </th>
+          <td mat-cell *matCellDef="let ord"  class="left-align tiny-sort">
+            <div class="cell-div">{{ ord.security.description }}</div>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Quantity">
+          <th mat-header-cell class="right-align" *matHeaderCellDef mat-sort-header> Qty </th>
+          <td mat-cell class="right-align input-container" *matCellDef="let ord">
+            <input type="number" [(ngModel)]="ord.quantity" step="100000"/>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="Price">
+          <th mat-header-cell class="right-align" *matHeaderCellDef mat-sort-header> Tgt Price </th>
+          <td mat-cell class="right-align input-container" *matCellDef="let ord">
+            <input type="number" [(ngModel)]="ord.tgt_price" step="0.1"/>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Status">
+          <th mat-header-cell class="right-align" *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell class="right-align" *matCellDef="let ord">
+            <div [@slideInOut]="ord.OrderStatus" class="cell-div {{ ord.OrderStatus }}">{{ ord.OrderStatus }}</div>
+          </td>
+        </ng-container>
+      </table>
+    </cdk-virtual-scroll-viewport>
+
+    <mat-dialog-actions>
+      <span class="flex-spacer"></span>
+      <button mat-button mat-dialog-close class="negative"> {{invalid ? 'Close' : 'Cancel'}}</button>
+      <button [disabled]="invalid" mat-button type="submit" (click)="onSendOrders()"
+              class="positive mat-tab-nav-bar mat-background-primary text-floral-white">Submit
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>

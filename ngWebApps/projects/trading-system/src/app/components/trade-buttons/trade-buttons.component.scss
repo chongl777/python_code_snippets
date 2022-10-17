@@ -1,0 +1,29 @@
+@import '~src/helpers';
+
+$color-buy: green;
+$color-sell: red;
+$color-font: white;
+
+:host {
+  display:inline-block;
+}
+
+span {
+  display: inline-block;
+  height: 100%
+}
+
+[mat-button] {
+  margin: 0px 5px 0px 5px;
+  height: 100%;
+  color: $color-font;
+}
+
+
+[mat-button].BUY {
+  background-color: $color-buy;
+}
+
+[mat-button].SELL {
+  background-color: $color-sell;
+}

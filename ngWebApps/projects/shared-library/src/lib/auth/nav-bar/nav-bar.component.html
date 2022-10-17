@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <div class="title">{{ navConfig.title }}</div>
+   <div class="spacer"></div>
+   <div  class="avatar-dropdown">
+     <button mat-button (click)="login()" *ngIf="!(isLoggedIn$ | async)">
+       <span>Login</span></button>
+   </div>
+
+   <!-- <li><a href="{{ url_for('auth.user', username=current_user.username) }}">Profile</a></li> -->
+
+   <div *ngIf="isLoggedIn$ | async">
+     <button mat-icon-button class="user">
+       <a class="current-user-name"
+          target="_blank"
+          href="https://westfieldinvestmentllc.sharepoint.com/sites/Investment">
+         {{currentUser.initial}}
+       </a>
+     </button>
+   </div>
+   <!-- <div><a (click)="logout()" *ngIf="authService.isLoggedIn$ | async"><span>Logout</span></a></div> -->
+   <div class="avatar-dropdown">
+     <button mat-button *ngIf="(isLoggedIn$ | async)">
+       <a href="{{logout_url}}" >Logout</a>
+     </button>
+   </div>
+</mat-toolbar>

@@ -1,0 +1,94 @@
+@import '~src/helpers';
+
+$color-disabled: gray;
+$color-enabled: steelblue;
+
+.status-span {
+  height: $row-height;
+  line-height: auto;
+  display: flex;
+
+  div.status {
+    margin: auto;
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  div.status-text {
+    text-align: right;
+  }
+
+  div.status.expired {
+    display: inline-block;
+    text-align: center;
+  }
+
+  div.status.valid>div {
+    // width: 40px;
+  }
+
+  // div, a {
+  //   line-height: 30px;
+  // }
+  div {
+    white-space: nowrap;
+    // flex: 0;
+  }
+
+  div.expired {
+    text-align: center!important;
+  }
+
+  div.trade-button {
+    margin: 4px;
+    // flex: 1;
+  }
+
+  //div.status, div.trade-button {
+  div.status>div {
+    height: 10px;
+    line-height: 10px;
+    margin: auto;
+  }
+
+  .mat-button {
+    display: block;
+    margin: auto;
+    line-height: $row-height - 6px;
+    color: white;
+    font-weight: bold;
+    width: 50px;
+    font-size: 9px;
+    height: 100%;
+    min-width: auto;
+  }
+
+  .mat-button.submit {
+    background-color: $color-enabled;
+  }
+
+  .mat-button[disabled] {
+    background-color: $color-disabled;
+  }
+}
+
+.status-span.withButton {
+  div.status {
+    max-width: 77px;
+    padding-right: 5px;
+    text-align: right;
+    flex-wrap: wrap;
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
+.status-span.withoutButton {
+  div.status {
+    max-width: 55px;
+    text-align: center;
+    flex-wrap: wrap;
+  }
+}

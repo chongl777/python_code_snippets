@@ -1,0 +1,7 @@
+$margin: 10px;
+
+button {
+  width: calc(100% - #{$margin * 2});
+  margin: $margin;
+  text-align: left;
+}

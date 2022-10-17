@@ -1,0 +1,180 @@
+@import '~src/helpers';
+
+:host {
+  background-color: $background-color;
+
+  div.scroll-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    // overflow-y: auto;
+    // contain: strict;
+
+    * {
+      font-size: $data-table-font-size;
+      font-weight: 100;
+    }
+
+    .content-table {
+      width: 100%;
+      table-layout: fixed;
+
+      div.cell-div {
+        vertical-align: middle;
+        display: inline-block;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+
+    table.Loading {
+      display: none;
+    }
+
+    a.clickable {
+      cursor: pointer;
+      color: white;
+    }
+
+    tr.txn-header * {
+      font-weight: bold;
+    }
+
+    tr.txn-row:hover {
+      background: $hover-background-color;
+    }
+
+    tr.txn-header, tr.txn-row, tr.txn-footer {
+      height: $row-height;
+    }
+
+    tr[mat-header-row]>th,
+    tr[mat-footer-row]>th {
+      background-color: $background-color;
+    }
+
+    .mat-cell.right-align, .mat-header-cell.right-align {
+      ::ng-deep .mat-sort-header-container {
+        display: flex;
+        justify-content: flex-end;
+      }
+      .cell-div {
+        text-align: right;
+      }
+    }
+
+    .right-align.subheader {
+      padding-right: 13px!important;
+    }
+
+    .mat-cell.right-align {
+      padding-right: 13px;
+    }
+
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  .mat-column-TradeId {
+    width: 70px!important;
+  }
+
+  .mat-column-Event {
+    width: 40px!important;
+  }
+
+  .mat-column-TradeDt {
+    width: 110px!important;
+  }
+
+  .mat-column-Security {
+    width: 150px!important;
+  }
+
+  .mat-column-Side {
+    width: 60px!important;
+  }
+
+  .mat-column-Quantity {
+    width: 80px!important;
+  }
+
+  .mat-column-Price {
+    width: 60px!important;
+  }
+
+  .mat-column-AccruedInt, .mat-column-AccruedDt {
+    width: 70px!important;
+  }
+
+  .mat-column-CurrentQty, .mat-column-CurrentQtyD {
+    width: 90px!important;
+  }
+
+  tr[mat-row].security-detail-row.detailed-hide {
+    display: none;
+  }
+
+  tr[mat-row].security-detail-row,
+  tr[mat-header-row].security-detail-row {
+    min-height: 0px!important;
+    height: 0px!important;
+    td {
+      border: none!important;
+      padding: 0px;
+      div.security-detail-wrapper {
+        overflow:hidden;
+        div.security-detail{
+          /* border-bottom: 1px solid $border-color; */
+          display: block;
+          padding: $padding-detail;
+        }
+      }
+    }
+
+    div.security-detail-wrapper {
+      overflow: hidden;
+      background-color: $color-sec-detail!important;
+    }
+  }
+
+  th.tiny-sort {
+    ::ng-deep {
+      div.mat-sort-header-arrow {
+        margin: 0px;
+        transform: translateY(0px)scaleX(0.5)!important;
+      }
+    }
+  }
+
+
+  th.center-align {
+    ::ng-deep .mat-sort-header-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  td.tiny-sort.center-align {
+    padding-right: 10px!important;
+  }
+
+  td.mat-column-Side {
+    padding-left: 0px!important;
+    div {
+      text-align: center;
+      width: 60px;
+    }
+    .positive {
+      background: green!important;
+    }
+
+    .negative {
+      background: red!important;
+    }
+  }
+}

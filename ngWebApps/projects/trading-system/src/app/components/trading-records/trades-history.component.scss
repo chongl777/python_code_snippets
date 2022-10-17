@@ -1,0 +1,399 @@
+@import '~src/helpers';
+$margin-vertical: 10px;
+$color-alternative-row: #515254;
+$color-positive: lightgreen;
+$color-negative: red;
+$color-alternative-negative: crimson;
+
+
+:host {
+  with: 100%;
+
+  .wrapper {
+    display: flex!important;
+    flex-direction: column;
+    height: 100%;
+
+    .panel-wraper {
+      background-color: $card-background-color;
+
+      height: calc(100% - #{$margin-vertical * 2});
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      overflow: hidden;
+
+      .top-panel {
+        height: 55px;
+        display: inline-block;
+        width: 100%;
+
+        .select-date-range {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+
+  tr.level-1 {
+    background: #323436;
+  }
+
+  .Loading {
+    display: none;
+  }
+
+  div.scroll-viewport {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    contain: strict;
+    // overflow-y: auto;
+    // contain: strict;
+
+    * {
+      font-size: $data-table-font-size;
+      font-weight: 100;
+    }
+
+    .content-table {
+      width: 100%;
+      table-layout: fixed;
+
+      div.cell-div {
+        vertical-align: middle;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+
+    .mat-table-sticky {
+      position: sticky;
+    }
+
+    table.Loading {
+      display: none;
+    }
+
+    a.clickable {
+      cursor: pointer;
+      color: white;
+    }
+
+    tr.txn-header * {
+      font-weight: bold;
+    }
+
+    tr.txn-row:hover {
+      background: $hover-background-color;
+    }
+
+    tr.txn-header, tr.txn-row, tr.txn-footer {
+      height: $row-height;
+    }
+
+    tr[mat-header-row]>th,
+    tr[mat-footer-row]>th {
+      background-color: $background-color;
+    }
+  }
+
+  .clickable {
+    cursor: pointer;
+  }
+
+  ::ng-deep {
+    .right-align{
+      &.mat-header-cell {
+        text-align: right;
+        padding-right: 0px;
+      }
+
+      &.mat-sort-header.mat-header-cell {
+        padding-right: 0px!important;
+      }
+
+      &.nonsort{
+        div.cell-div {
+          padding-right: 0px!important;
+          text-align: right;
+          width: 100%!important;
+        }
+      }
+
+      &.sort{
+        div.cell-div {
+          padding-right: 20px!important;
+          text-align: right;
+          width: calc(100% - 20px);
+        }
+      }
+    }
+  }
+
+  ::ng-deep {
+    .mat-column-Side {
+      width: 6%;
+      padding-left: 0px!important;
+    }
+
+    .mat-column-TradeId {
+      width: 5%;
+      .cell-div {
+        padding-left: 4px;
+      }
+    }
+
+    .mat-column-Event {
+      width: 5%;
+      app-security-events {
+        display: inline-block;
+      }
+    }
+
+    .mat-column-TradeDt {
+      width: 10%;
+    }
+
+    .mat-column-TransType {
+      width: 5%;
+    }
+
+    .mat-column-Security {
+      width: 10%;
+    }
+
+    .mat-column-Sector {
+      width: 10%;
+      // width: 100px!important;
+    }
+
+    .mat-column-Quantity {
+      width: 7%;
+      // width: 80px!important;
+    }
+
+    .mat-column-ModifiedDur {
+      width: 5%;
+    }
+
+    .mat-column-Price {
+      width: 5%;
+    }
+
+    .mat-column-PriceDt {
+      width: 5%;
+    }
+
+    .mat-column-TxnPrice {
+      width: 5%;
+    }
+
+    .mat-column-TxnPnL {
+      width: 5%;
+    }
+
+    .mat-column-AccruedInt, .mat-column-AccruedDt {
+      width: 5%;
+    }
+
+    .mat-column-CurrentQty, .mat-column-CurrentQtyD {
+      width: 5%;
+    }
+  }
+
+  tr[mat-row].security-detail-row.detailed-hide {
+    display: none;
+  }
+
+  tr[mat-row].security-detail-row,
+  tr[mat-header-row].security-detail-row {
+    min-height: 0px!important;
+    height: 0px!important;
+    td {
+      border: none!important;
+      padding: 0px;
+      div.security-detail-wrapper {
+        overflow:hidden;
+        div.security-detail{
+          /* border-bottom: 1px solid $border-color; */
+          display: block;
+          padding: $padding-detail;
+        }
+      }
+    }
+
+    div.security-detail-wrapper {
+      overflow: hidden;
+      background-color: $color-sec-detail!important;
+    }
+  }
+
+  ::ng-deep .security-detail-wrapper {
+    width: 100%;
+    background: black;
+  }
+
+  mat-table-expandable {
+    ::ng-deep {
+      .mat-row, .mat-footer-row {
+        height: inherit!important;
+      }
+
+      td.mat-column-ChildTable {
+        padding: 0px;
+      }
+    }
+
+    .cell-div.positive {
+      color: $color-positive;
+    }
+    .cell-div.negative {
+      color: $color-alternative-negative;
+    }
+  }
+
+  tr.level-0 {
+    .mat-column-Side {
+      div {
+        text-align: center;
+      }
+      .positive-buy {
+        background: green!important;
+        color: white
+      }
+
+      .negative-buy {
+        background: red!important;
+        color: white;
+      }
+    }
+  }
+}
+
+
+mat-table-expandable {
+  $set-width: 8px;
+  $off-set-width: 5px;
+  * {
+    font-size: $data-table-font-size;
+    font-weight: bold;
+  }
+
+  ::ng-deep {
+    .mat-cell {
+      overflow: hidden;
+      padding-right: 0px;
+      &:last-of-type {
+        padding-right: 0px;
+      }
+    }
+    .level-0 * {
+      font-size: #{$data-table-font-size}!important;
+      font-weight: bold;
+      .step-align div.cell-div {
+        padding-left: $off-set-width!important;
+        width: calc(100% - $off-set-width)!important;
+      }
+    }
+
+    .level-0>table>tbody>tr {
+      background-color: black!important;
+    }
+
+    .level-1 * {
+      font-size: #{$data-table-font-size - 0.5px}!important;
+      font-weight: bold;
+      .step-align div.cell-div {
+        padding-left: #{$set-width * 1 + $off-set-width}!important;
+        width: calc(100% - #{$set-width * 1 + $off-set-width})!important;
+      }
+    }
+
+    .level-2 * {
+      font-weight: 450;
+      font-size: #{$data-table-font-size - 1px}!important;
+      .step-align div.cell-div {
+        padding-left: #{$set-width * 2 + $off-set-width}!important;
+        width: calc(100% - #{$set-width * 2 + $off-set-width})!important;
+      }
+    }
+
+    .level-3 * {
+      font-size: #{$data-table-font-size - 1.5px}!important;
+      .step-align div.cell-div {
+        padding-left: #{$set-width * 3 + $off-set-width}!important;
+        width: calc(100% - #{$set-width * 3 + $off-set-width})!important;
+      }
+    }
+
+    .level-4 * {
+      font-size: #{$data-table-font-size - 2px}!important;
+      .step-align div.cell-div {
+        padding-left: #{$set-width * 4 + $off-set-width}!important;
+        width: calc(100% - #{$set-width * 4 + $off-set-width})!important;
+      }
+    }
+  }
+
+  ::ng-deep {
+    .mat-row.even {
+      background: map_get($theme-dark-colors, 800);
+      color: map_get(map_get($theme-dark-colors, 'contrast'), 800);
+    }
+
+    .mat-row.odd {
+      background: map_get($theme-dark-alternative-colors, 800);
+      color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 800);
+    }
+    .mat-table.level-1 {
+      .mat-row.even {
+        background: map_get($theme-dark-colors, 700);
+        color: map_get(map_get($theme-dark-colors, 'contrast'), 700);
+      }
+
+      .mat-row.odd {
+        background: map_get($theme-dark-alternative-colors, 700);
+        color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 700);
+      }
+    }
+
+    .mat-table.level-2 {
+      .mat-row.even {
+        background-color: map_get($theme-dark-colors, 500);
+        color: map_get(map_get($theme-dark-colors, 'contrast'), 500);
+      }
+
+      .mat-row.odd {
+        background-color: map_get($theme-dark-alternative-colors, 500);
+        color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 500);
+      }
+    }
+
+    .mat-table.level-3 {
+      .mat-row.even {
+        background-color: map_get($theme-dark-colors, 400);
+        color: map_get(map_get($theme-dark-colors, 'contrast'), 400);
+      }
+
+      .mat-row.odd {
+        background-color: map_get($theme-dark-alternative-colors, 400);
+        color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 400);
+      }
+    }
+
+    .mat-table.level-4 {
+      .mat-row.even {
+        background-color: map_get($theme-dark-colors, 300);
+        color: map_get(map_get($theme-dark-colors, 'contrast'), 300);
+      }
+
+      .mat-row.odd {
+        background-color: map_get($theme-dark-alternative-colors, 300);
+        color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 300);
+      }
+    }
+  }
+}

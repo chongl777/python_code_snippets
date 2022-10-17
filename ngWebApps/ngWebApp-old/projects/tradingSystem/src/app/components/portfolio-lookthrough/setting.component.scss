@@ -1,0 +1,98 @@
+@import '~src/helpers';
+
+$color-font: white;
+$button-height: 27px;
+$button-width: 100px;
+$color-cancel: gray;
+$color-disabled: gray;
+$alternative-color:rgba(255, 255, 255, 0.05);
+
+:host {
+
+}
+
+.form-content {
+  margin: 0 0!important;
+  padding: 0 24px!important;
+}
+
+
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 14px;
+}
+
+.mdl-card__actions {
+  background-color: $alternative-color;
+}
+
+.setting-form-content {
+  padding: 0px 0px;
+}
+
+.bar {
+  padding: 5px 5px;
+  background-color: black;
+  font-weight: bold;
+}
+
+.section {
+  padding: 5px 20px;
+}
+
+.section-group-by {
+  .input-group {
+    flex: 1;
+  }
+
+  .delete-button-wrapper {
+    margin: auto;
+    width: 25px;
+  }
+  button.delete-button {
+    opacity: 0;
+  }
+}
+
+.section-group-by{
+  .group-row:hover{
+    button.delete-button {
+      opacity: 1;
+    }
+  }
+}
+
+
+mat-dialog-actions {
+  padding: 0px 20px;
+  margin: 0px;
+
+  .mat-button {
+    width: $button-width!important;
+    height: $button-height!important;
+    padding: initial!important;
+  }
+}
+
+button.mat-background-primary {
+  color: $color-font;
+  background: $color-dialog-title-background;
+}
+
+button.cancel {
+  background-color: $color-cancel;
+}
+
+.add-group-button {
+  top: 35px;
+  left: -20px;
+}
+
+
+.group-row {
+  display:flex;
+  flex-direction: row;
+}
+
+button[disabled] {
+  background: $color-disabled;
+}

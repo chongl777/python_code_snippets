@@ -1,0 +1,158 @@
+@import '~src/helpers';
+
+$color-positive: green;
+$color-negative: red;
+$color-alternative-negative: crimson;
+$color-row: black;
+$color-row-alternate: $background-color;
+
+:host {
+  background-color: $background-color;
+
+  ::ng-deep .cell-div.positive {
+    color: $positive-color;
+  }
+
+  ::ng-deep .cell-div.negative {
+    color: $negative-color;
+  }
+
+  ::ng-deep .mat-button.positive {
+    background-color: $color-positive;
+  }
+
+  ::ng-deep .mat-button.negative {
+    background-color: $color-negative;
+  }
+  ::ng-deep tr.pos-row:hover {
+    background-color: map_get($theme-dark-colors, 900)!important;
+    color: map_get(map_get($theme-dark-colors, 'contrast'), 900)!important;
+  }
+}
+
+.mat-header-row,
+.mat-header-row>th,
+.mat-footer-row {
+  background-color: $background-color;
+}
+
+.pos-sub-header,
+.pos-sub-header>th {
+  background: map_get($theme-dark-colors, 900)!important;
+  color: map_get(map_get($theme-dark-colors, 'contrast'), 900);
+}
+
+.security-detail-wrapper {
+  overflow: hidden;
+  background-color: $color-sec-detail!important;
+}
+
+.mat-row.even {
+  background: map_get($theme-dark-colors, 800);
+  color: map_get(map_get($theme-dark-colors, 'contrast'), 800);
+}
+
+.mat-row.odd {
+  background: map_get($theme-dark-alternative-colors, 800);
+  color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 800);
+}
+
+::ng-deep .mat-table.level-1 {
+  .mat-row.even {
+    background: map_get($theme-dark-colors, 700);
+    color: map_get(map_get($theme-dark-colors, 'contrast'), 700);
+  }
+
+  .mat-row.odd {
+    background: map_get($theme-dark-alternative-colors, 700);
+    color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 700);
+  }
+}
+
+::ng-deep .mat-table.level-2 {
+  .mat-row.even {
+    background-color: map_get($theme-dark-colors, 500);
+    color: map_get(map_get($theme-dark-colors, 'contrast'), 500);
+  }
+
+  .mat-row.odd {
+    background-color: map_get($theme-dark-alternative-colors, 500);
+    color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 500);
+  }
+}
+
+::ng-deep .mat-table.level-3 {
+  .mat-row.even {
+    background-color: map_get($theme-dark-colors, 400);
+    color: map_get(map_get($theme-dark-colors, 'contrast'), 400);
+  }
+
+  .mat-row.odd {
+    background-color: map_get($theme-dark-alternative-colors, 400);
+    color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 400);
+  }
+}
+
+::ng-deep .mat-table.level-4 {
+  .mat-row.even {
+    background-color: map_get($theme-dark-colors, 300);
+    color: map_get(map_get($theme-dark-colors, 'contrast'), 300);
+  }
+
+  .mat-row.odd {
+    background-color: map_get($theme-dark-alternative-colors, 300);
+    color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 300);
+  }
+}
+
+::ng-deep .mat-table.level-5 {
+  .cell-div.negative {
+    color: $color-alternative-negative;
+  }
+
+  .mat-row.even {
+    background-color: map_get($theme-dark-colors, 200);
+    color: map_get(map_get($theme-dark-colors, 'contrast'), 200);
+  }
+
+  .mat-row.odd {
+    background-color: map_get($theme-dark-alternative-colors, 200);
+    color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 200);
+  }
+}
+
+::ng-deep .mat-table.level-6 {
+  .mat-row.even {
+    background: rgba(map_get($theme-dark-colors, 100), 0.8);
+    color: map_get(map_get($theme-dark-colors, 'contrast'), 100);
+  }
+
+  .mat-row.odd {
+    background: rgba(map_get($theme-dark-alternative-colors, 100), 0.8);
+    color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 100);
+  }
+}
+
+::ng-deep .mat-table.level-7 {
+  .mat-row.even {
+    background: rgba(map_get($theme-dark-colors, 100), 0.9);
+    color: map_get(map_get($theme-dark-colors, 'contrast'), 100);
+  }
+
+  .mat-row.odd {
+    background: rgba(map_get($theme-dark-alternative-colors, 100), 0.9);
+    color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 100);
+  }
+}
+
+::ng-deep .mat-table.level-8 {
+  .mat-row.even {
+    background: rgba(map_get($theme-dark-colors, 100), 0.95);
+    color: map_get(map_get($theme-dark-colors, 'contrast'), 100);
+  }
+
+  .mat-row.odd {
+    background: rgba(map_get($theme-dark-alternative-colors, 100), 0.95);
+    color: map_get(map_get($theme-dark-alternative-colors, 'contrast'), 100);
+  }
+}

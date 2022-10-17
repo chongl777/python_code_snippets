@@ -1,0 +1,22 @@
+@import "./palette";
+$color-focus: $color-purple;
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: $color-focus
+}
+
+.mat-tab-nav-bar, .mat-tab-header {
+    border-bottom: 1px solid rgba(0,0,0,.12);
+}
+
+.mat-tab-label {
+  height: 30px!important;
+  color: black;
+  font-weight: bold;
+}
+
+mat-tab-header {
+  border-top: 1.5px outset;
+  border-bottom: 1.5px outset;
+  background: darkgrey;
+}

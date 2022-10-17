@@ -1,0 +1,9 @@
+:host {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .mdl-layout__content {
+    flex: 1;
+    overflow: hidden;
+  }
+}

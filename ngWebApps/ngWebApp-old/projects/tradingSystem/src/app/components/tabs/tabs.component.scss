@@ -1,0 +1,74 @@
+@import '~src/helpers';
+
+$border-color: black;
+$nav-bar-height: 20px;
+$active-button-background: rgba(0,0,0,.2);
+
+// .container {
+//   border: .1px $border-color solid;
+//   border-collapse:collapse;
+//   height: 100%;
+//   .container {
+//     height: 100%;
+//   }
+
+//   a[mat-button] {
+//     height: 100%;
+//   }
+// }
+
+// .container div:after {
+//   border: 10px solid black;
+// }
+:host {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  // background-color: $background-color-header;
+  .container {
+    height: 100%;
+  }
+}
+
+div.dialog-window {
+  height: 1px;
+}
+
+.dialog-title {
+  border-bottom: 1px $border-color solid;
+  height: $nav-bar-height;
+  background: gray;
+}
+
+.dialog-tab {
+  padding-left: 5px;
+  padding-right: 5px;
+  font-weight: 500;
+  // border-radius: 20px / 10px 0px 0px 0px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: black;
+  position: relative;
+  height: 90%;
+  top: 10%;
+  // font-color: white;
+  // box-shadow: 5px 10px 20px black inset;
+}
+
+.spacer {
+  flex : 1 1 0;
+}
+
+a[mat-button].active {
+  background: $active-button-background;
+  line-height: 200%;
+}
+
+a[mat-button] {
+  line-height: 200%;
+}
+
+.component-container {
+  height: 100%;
+  width: 100%;
+}

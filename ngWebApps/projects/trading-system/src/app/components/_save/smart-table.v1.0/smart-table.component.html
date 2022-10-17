@@ -1,0 +1,72 @@
+<!-- this mat-row will be added to table inside code -->
+<!-- <ng-template #childTemplate let-item="item">
+     <ng-container *ngIf="item.children">
+     <app-smart-table
+     multiTemplateDataRows
+     [dataSource]="item.children"
+     [nonChildrenRowTemplate]="nonChildrenRowTemplate"
+     [columnsToDisplay]="columnsToDisplay"
+     [contentColumnDefs]="columnDefs"
+     [childColumnDef]="_childColumnDef"
+     [level]="level+1">
+     <tr mat-row
+     *matRowDef="let pos; columns: columnsToDisplay; let i=dataIndex"
+     class="pos-row"  [class.even]="i % 2 == 0"  [class.odd]="i % 2 == 1">
+     </tr>
+
+     <tr mat-row *matRowDef="let item; columns: ['ChildTable']"
+     class="child-table-row">
+     </tr>
+
+     </app-smart-table>
+     </ng-container>
+     </ng-template> -->
+
+
+<tr mat-row *matRowDef="let item; columns: ['ChildTable']"
+    class="child-table-row">
+</tr>
+
+<ng-container matColumnDef="ChildTable">
+  <td mat-cell
+      *matCellDef="let item"
+      [attr.colspan]="columnsToDisplay.length">
+    <div class="child-table-wrapper" style="height: 100%; display: flex;"
+         *ngIf="item.expanded">
+      <ng-container *ngIf="item.children">
+        <smart-table
+            multiTemplateDataRows
+            [dataSource]="item.children"
+            [nonChildrenRowTemplate]="nonChildrenRowTemplate"
+            [columnsToDisplay]="columnsToDisplay"
+            [contentColumnDefs]="columnDefs"
+            [childColumnDef]="_childColumnDef"
+            [level]="level +1">
+          <tr mat-row
+              *matRowDef="let pos; columns: columnsToDisplay; let i=dataIndex"
+              class="pos-row"  [class.even]="i % 2 == 0"  [class.odd]="i % 2 == 1">
+          </tr>
+
+          <!-- <tr mat-row *matRowDef="let item; columns: ['ChildTable']"
+               class="child-table-row">
+               </tr>
+             -->
+        </smart-table>
+      </ng-container>
+      <ng-container *ngIf="!item.children">
+        <ng-container
+            *ngTemplateOutlet="nonChildrenRowTemplate; context:item"
+        ></ng-container>
+      </ng-container>
+
+    </div>
+  </td>
+</ng-container>
+
+
+<ng-content select="caption"></ng-content>
+<ng-content select="colgroup, col"></ng-content>
+<ng-container headerRowOutlet></ng-container>
+<ng-container rowOutlet></ng-container>
+<ng-container noDataRowOutlet></ng-container>
+<ng-container footerRowOutlet></ng-container>

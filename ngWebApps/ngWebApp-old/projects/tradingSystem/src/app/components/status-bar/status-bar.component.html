@@ -1,0 +1,18 @@
+<div class="spacer"></div>
+<div class="StatusBar">
+  <label> Time: {{ now | date: 'h:mm:ss a'}}</label>
+  <label class="blank">,</label>
+  <label>FIX MQ:
+    <label class="clickable" (click)="recertify()"
+           class="{{ fixConnectionStatus }}">{{ fixConnectionStatus }}</label>
+  </label>
+  <label class="blank">,</label>
+  <label>Booking MQ:
+    <label class="clickable" (click)="recertify()"
+           class="{{ bookingConnectionStatus }}">{{ bookingConnectionStatus }}</label>
+  </label>
+
+  <label class="blank">,</label>
+  <label>Version: {{ version }}</label>
+  <label class="blank"></label>
+</div>

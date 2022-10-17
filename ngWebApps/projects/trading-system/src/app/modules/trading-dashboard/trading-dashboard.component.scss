@@ -1,0 +1,158 @@
+@import '~src/helpers';
+
+:host {
+  height: 100%;
+}
+
+.page-table {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  display: flex;
+}
+
+app-tool-bar {
+  height: 25px;
+}
+
+.mdl-layout__content {
+  flex: 1;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  min-height: 700px
+}
+
+.ioi-cell {
+  height: $ioi-card-height;
+  ::ng-deep  base-card {
+    height: 100%
+  }
+}
+
+.half-block {
+  // margin-top: 8px;
+  // margin-bottom: 8px;
+  height: calc(100% - 32px);
+  &>div {
+    overflow: hidden;
+  }
+}
+
+.portfolio-cell, .order-list-cell {
+  //height: calc(100% - #{$ioi-card-height} - #{$grid-desktop-gutter*2});
+  // height: calc(50% - #{$grid-desktop-gutter * 0.75});
+  flex: 1;
+  // height: calc(100% - 400px - 64px);
+  ::ng-deep  base-card {
+    height: 100%
+  }
+}
+
+.watchlist {
+  // height: calc(100% - #{$ioi-card-height} - #{$grid-desktop-gutter});
+  flex: 1;
+  // height: calc(100% - 400px - 64px);
+  ::ng-deep  base-card {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.txn-table {
+  ::ng-deep {
+    .scroll-viewport {
+      overflow: auto;
+
+      &>mat-table-expandable {
+        min-width: 1000px;
+      }
+    }
+  }
+}
+
+// @media (min-width: $grid-desktop-breakpoint) {
+//   .watchlist {
+//     height: calc(100% - #{$ioi-card-height} - #{$grid-desktop-gutter*2});
+//     // height: calc(100% - 400px - 64px);
+//     ::ng-deep  base-card {
+//       height: 100%;
+//       width: 100%;
+//     }
+//   }
+// }
+
+// .wl-grid-container {
+//   height: 100%;
+
+//   .dialog-window {
+//     height: 100%!important;
+//   }
+// }
+
+[mat-button].active {
+  color: white;
+  background-color: #444;
+}
+
+div.itemBox {
+  transform: scale(0.8);
+}
+
+mat-toolbar a[mat-button] {
+  overflow: hidden;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  padding: 0px;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.buttom.itemBox {
+  cursor: pointer;
+}
+
+.buttom.itemBox:hover {
+  transform: scale(1.2);
+  user-select: none;
+}
+
+.mat-button[mat-button] {
+  line-height: 26px!important;
+  ::ng-deep *{
+    font-stretch: condensed;
+    font-family: sans-serif, "Helvetica Neue", "Lucida Grande", Arial;
+  }
+}
+
+
+::ng-deep .mat-dialog-container {
+  box-shadow: 0px 0px 16px 2px grey;
+  padding: 0px!important;
+}
+
+a.card-tab {
+  font-size: 12px;
+  padding: 0px 5px 0px 5px;
+  overflow: hidden;
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+.watchlist-tab .mat-button {
+  width: 100px;
+}
+
+.order-tab .mat-button {
+  width: 75px;
+}
+
+
+app-ioi-list {
+  height: 100%;
+  width: 100%;
+}

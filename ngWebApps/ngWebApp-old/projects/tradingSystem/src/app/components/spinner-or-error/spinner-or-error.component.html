@@ -1,0 +1,8 @@
+<div class="spinner-container" *ngIf="loading$ | async">
+  <!-- <div class="spinner-container"> -->
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="spinner-container" *ngIf="!(loading$ | async) && errMsg">
+  <i class="material-icons">error</i> {{errMsg}}
+</div>

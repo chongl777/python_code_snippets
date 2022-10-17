@@ -1,0 +1,285 @@
+<app-spinner-or-error [loading$]="dataService.loading$" [errMsg]="errMsg"></app-spinner-or-error>
+
+<cdk-virtual-scroll-viewport
+    #scrollDiv
+    [@showAni]
+    tvsItemSize="17"
+    [class.loading]="(dataService.loading$ | async)  || !!(errMsg)"
+    [footerEnabled]="false"
+    [headerEnabled]="true"
+    [headerHeight]="10"
+    [bufferMultiplier]="showValid? 10.0: 2"
+    class="wrapper mat-elevation-z2 scroll-div">
+
+  <mat-table class="content-table wrapper" [dataSource]="dataSource" multiTemplateDataRows
+         matSort matSortDirection="asc" matSortDisableClear>
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></mat-header-row>
+
+    <mat-row *matRowDef="let ioi; columns: columnsToDisplay;"
+        [@showHide]="showValid? 'dynamic': 'static'"
+        class="ioi-element-row"
+        (click)="onSelectSecurity(ioi.security)"
+        [class.selected-ioi-element-row]="selectedIOI === ioi">
+    </mat-row>
+
+    <mat-row *matRowDef="let ioi; columns: ['ioiDetail']" class="security-detail-row"> </mat-row>
+
+    <ng-container matColumnDef="Side" sticky>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="center-align tiny-sort"> B/S  </mat-header-cell>
+      <mat-cell #matCell style="position: sticky"
+                class="center-align"
+                [ngClass] ="ioi.side == 1 ? 'OWIC' : 'BWIC'"
+                (click)="onSelectIOI(ioi, scrollDiv, matCell)"
+                *matCellDef="let ioi">
+        <div class="cell-div">
+          {{ ioi.side == 1 ? 'OWIC' : 'BWIC' }}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="IOITime" sticky>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="center-align tiny-sort"> RFQ Time </mat-header-cell>
+      <mat-cell class="center-align"  style="position: sticky"
+                *matCellDef="let ioi">
+        <div class="cell-div">
+          {{ ioi.transactTime | date:'HH:mm:ss' }}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Security" sticky>
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align tiny-sort"> Security </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" style="position: sticky" class="right-align">
+        <div class="cell-div">{{ioi.security.description }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Quantity">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align tiny-sort"> Qty </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="right-align">
+        <div class="cell-div">{{ioi.ioiQty | number }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Event">
+      <mat-header-cell class="tiny-sort center-align" *matHeaderCellDef mat-sort-header> Evt </mat-header-cell>
+      <mat-cell class="tiny-sort center-align" *matCellDef="let wi;">
+        <app-security-events [SecEvt]="wi.security.secEvt"></app-security-events>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="UserRating">
+      <mat-header-cell *matHeaderCellDef class="center-align"> User Rating </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="center-align"> {{ioi.userRating }}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="TimeLeft">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="center-align"> Status </mat-header-cell>
+      <mat-cell *matCellDef="let ioi">
+        <app-ioi-status [ioi]="ioi" [showButton]="true"></app-ioi-status>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="CurrentQty">
+      <mat-header-cell class="right-align tiny-sort" *matHeaderCellDef mat-sort-header> CurrQty </mat-header-cell>
+      <mat-cell *matCellDef="let wi" class="right-align tiny-td">
+        <div class="cell-div" *ngIf="portfolioService.positions[wi.security.securityID]">
+          {{ (portfolioService.getPosition(wi.security.securityID).quantity)/1000000 | number:'1.2-2' }} MM</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="CurrentQtyD">
+      <mat-header-cell class="right-align tiny-sort" *matHeaderCellDef mat-sort-header> CurrQtyD </mat-header-cell>
+      <mat-cell *matCellDef="let wi; " class="right-align tiny-td">
+        <div class="cell-div" *ngIf="pfDataService.getPosition(wi.security.deal)">
+          {{ (pfDataService.getPosition(wi.security.deal).quantity)/1000000 | number:'1.2-2' }} MM</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ShortInfo">
+      <mat-header-cell mat-sort-header *matHeaderCellDef class="right-align tiny-sort"> ShortInfo </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="right-align tiny-td">
+        <div class="cell-div"
+             [class]="ioi.security.marketData.shortCost.status.replace(' ', '')">
+          {{ ioi.security.marketData.shortCost.status}}
+          <span *ngIf="ioi.security.marketData.shortCost.status != 'Unavailable'">
+            ({{ ioi.security.marketData.shortCost.rate | number: '1.0-2'}})</span>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Price">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align tiny-sort"> Price </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="tiny-td right-align">
+        <div [@slideInOut]="ioi.security.marketData.priceData.compositePrice"
+             class="cell-div">
+          <a class="price" href="{{ ioi.security.bbg_links+'QMGR' }}" target="bbglinks"
+             [class.positive]="ioi.security.marketData.priceData.compositeDiff > 0 "
+             [class.negative]="ioi.security.marketData.priceData.compositeDiff < 0 ">
+              {{ ioi.price | number: '1.3-3' }}
+          </a>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ModifiedDur">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align tiny-sort"> Dur </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="tiny-td right-align">
+        <div [@slideInOut]="ioi.modified_dur"
+             class="cell-div">{{ ioi.modified_dur | number: '1.2-2' }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="YTM">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align tiny-sort"> YTM </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="tiny-td right-align">
+        <div [@slideInOut]="ioi.ytm"
+             class="cell-div">{{ ioi.ytm | percent: '1.1-1' }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="YTW">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align tiny-sort"> YTW </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="tiny-td right-align">
+        <div [@slideInOut]="ioi.ytw"
+             class="cell-div">{{ ioi.ytw | percent: '1.1-1' }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="YTF">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align tiny-sort"> YTF </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="tiny-td right-align">
+        <div [@slideInOut]="ioi.ytf"
+             class="cell-div">{{ ioi.ytf | percent: '1.1-1' }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="PriceType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align tiny-sort"> PriceType </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="right-align">
+        <div class="cell-div">
+          {{ ioi.PriceType }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Category">
+      <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+      <mat-cell *matCellDef="let ioi">
+        <div class="cell-div"> {{ ioi.category }} </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Signals">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="center-align tiny-sort">
+        <span>
+          <div>{{ NAME_MAPPING['EMC'] }}</div> |
+          <div>{{ NAME_MAPPING['RVS'] }}</div> |
+          <div>{{ NAME_MAPPING['ERH'] }}</div>
+        </span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="tiny-sort center-align">
+        <span>
+          <div>{{ ioi.emc_score + 0 }}</div> |
+          <div>{{ ioi.rvs_score + 0}}</div> |
+          <div>{{ ioi.rvs_score + ioi.emc_score + 0 }}</div>
+        </span>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="EqRet">
+      <mat-header-cell class="right-align tiny-sort" *matHeaderCellDef mat-sort-header> Eq Ret </mat-header-cell>
+      <mat-cell class="right-align tiny-td" *matCellDef="let ioi">
+        <div
+            [@slideInOut]="ioi.eq_intraday_ret"
+            [class.positive]="ioi.eq_intraday_ret > 0 "
+            [class.negative]="ioi.eq_intraday_ret < 0 "
+            class="cell-div">
+          {{ ioi.eq_intraday_ret | percent: '1.2-2' }}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="FA">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align tiny-sort">
+        <div>{{ NAME_MAPPING['FA'] }}</div>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="tiny-td right-align">
+        <div class="cell-div">{{ ioi.fa_score }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Leverage">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="center-align tiny-sort">
+        <span>
+          <div>LR</div> |
+          <div>LS</div> |
+          <div>LSW</div>
+        </span>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="tiny-sort">
+        <div class="cell-div">
+          <span>
+            <div>{{ ioi.leverage_ratio | number: '.2-2'}}</div> |
+            <div>{{ ioi.leverage_score | number: '0.0-0'}}</div> |
+            <div>{{ ioi.leverage_score_secwise | number: '0.0-0'}}</div>
+          </span>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="LiqScore">
+      <mat-header-cell class="tiny-sort right-align" *matHeaderCellDef mat-sort-header>
+        LiqScore </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="right-align tiny-td tiny-sort">
+        <div class="cell-div">
+          {{ ioi.liqScore}}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Reasons">
+      <mat-header-cell *matHeaderCellDef> Reasons </mat-header-cell>
+      <mat-cell *matCellDef="let ioi">
+        <div class="cell-div">{{ ioi.reasons }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="AON">
+      <mat-header-cell *matHeaderCellDef class="center-align"> AON </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="center-align">
+        <div class="cell-div">{{ ioi.counter ? 'No' : 'Yes' }}</div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Sector">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align"> Sector </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="big-td right-align">
+        <div class="cell-div">
+          {{ ioi.security.industry_level_1}}
+        </div>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="Rating">
+      <mat-header-cell *matHeaderCellDef mat-sort-header class="right-align"> Rtg </mat-header-cell>
+      <mat-cell *matCellDef="let ioi" class="big-td right-align">
+        <div class="cell-div">
+          {{ ioi.security.marketData.rating.rtg}}
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ioiDetail">
+      <mat-cell *matCellDef="let ioi"
+          [class.selected-ioi-row]="selectedIOI === ioi"
+          [attr.colspan]="columnsToDisplay.length">
+        <div class="security-detail-wrapper"
+             *ngIf="ioi == selectedIOI"
+             [@detailExpand]="ioi == selectedIOI ? 'expanded' : 'collapsed'">
+          <div class="security-details">
+            <app-security-details-slide-card
+                [secInfo]="{security: selectedIOI.security, watchlist: {reasons: selectedIOI.reasons, category: selectedIOI.category}}">
+            </app-security-details-slide-card>
+          </div>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+  </mat-table>
+</cdk-virtual-scroll-viewport>

@@ -1,0 +1,216 @@
+@import '~src/helpers';
+
+$color-border: gray;
+$color-toggle-active: white;
+$color-toggle: gray;
+$color-arrow: white;
+
+:host {
+  width: 100%;
+  display: inline-block;
+}
+
+ngu-carousel {
+  height: 250px;;
+  display: flex;
+  flex-direction: column;
+
+  ngu-tile {
+    padding: 0px!important;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px $color-border solid;
+    background: transparent;
+
+    ::ng-deep div.tile {
+      background: transparent!important;
+    }
+  }
+}
+
+.toggle-point {
+  list-style-type: none;
+  text-align: center;
+  padding: 12px;
+  margin: 0;
+  overflow: auto;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+ul.toggle-point {
+  overflow: hidden;
+  padding: 0px;
+}
+
+
+.toggle-point  li {
+  cursor: pointer;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.55);
+  padding: 4px;
+  margin: 0 3px;
+  transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  transition: 0.4s;
+}
+.toggle-point  li.active {
+  background-color: $color-toggle-active!important;
+  transform: scale(1.2);
+}
+
+.toggle-point  li {
+  background-color: $color-toggle!important;
+}
+
+.leftRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  box-shadow: 1px 2px 10px -1px $color-arrow;
+  border-radius: 999px;
+  left: 0;
+  color: $color-arrow;
+}
+
+.rightRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  box-shadow: 1px 2px 10px -1px $color-arrow;
+  border-radius: 999px;
+  right: 0;
+  color: $color-arrow;
+}
+
+::ng-deep {
+  div.ngu-touch-container {
+    margin: 0 20px 0 20px;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .rightRs {
+    width: initial!important;
+  }
+
+  .leftRs {
+    width: initial!important;
+  }
+}
+
+
+::ng-deep div.ngucarousel-items {
+  /* overflow: hidden; */
+  height: 100%;
+}
+
+::ng-deep div.tile {
+  height: 100%!important;
+}
+
+div.myPoint {
+  height: 100%;
+  user-select: text;
+}
+
+.bannerStyle img {
+  width: 100%;
+  height: 100%;
+}
+
+button.leftRs, button.rightRs {
+  border-radius: 0!important;
+  box-shadow: none!important;
+  cursor: pointer;
+  border: none;
+  background: none;
+  outline: none;
+  transform: scaleY(3);
+}
+
+
+/* ------------- tile format ------------ */
+div.tile-title {
+  text-align: center;
+  font-weight: bold;
+  padding: 5px;
+}
+
+ngu-tile {
+  user-select: text;
+}
+
+div.tile-template {
+  padding: 5px 10px 5px 10px;
+  * {
+    line-height: 100%;
+  }
+  // overflow-y: auto;
+
+  div.row {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0px 5px 0px;
+  }
+
+  div.field {
+    flex: 1 1;
+  }
+
+  div.value {
+    flex: 1 1;
+  }
+}
+
+div.tile-template.tile-rvs-info {
+  div.row {
+    padding: 4px 0px 4px 0px;
+  }
+
+    div.field {
+    flex: 1.2 1;
+  }
+
+  div.value {
+    flex: 1 1;
+  }
+}
+
+div.tile-template.tile-price-info {
+  div.field {
+    flex: 1 1;
+  }
+
+  div.value {
+    flex: 2 1;
+    text-align: right;
+  }
+
+  div.positive span {
+    color: $positive-color;
+  }
+
+  div.negative span {
+    color: $negative-color;
+  }
+
+  div.GOOD span {
+    color: $positive-color;
+    * {
+      font-weight: bolder;
+    }
+  }
+  div.NOGOOD span {
+    color: $negative-color;
+    *{
+      font-weight: bolder;
+    }
+  }
+}

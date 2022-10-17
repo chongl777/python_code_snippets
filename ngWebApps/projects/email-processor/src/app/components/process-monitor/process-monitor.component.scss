@@ -1,0 +1,39 @@
+$width: 600px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+
+  app-spinner-or-error {
+    width: $width;
+    height: 300px;
+    display: inline-block;
+  }
+  table.token-info {
+    width: $width;
+
+    tr>td:first-child {
+      width: 110px;
+      vertical-align: top;
+    }
+
+    tr>td:nth-child(2) {
+      width: 500px;
+    }
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .button-panel {
+    button {
+      margin: 20px;
+    }
+    width: $width;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

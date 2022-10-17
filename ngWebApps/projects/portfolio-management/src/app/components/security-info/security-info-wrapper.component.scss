@@ -1,0 +1,21 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+
+  display: flex;
+
+  ::ng-deep {
+    app-security-general-info {
+      margin: 0px!important;
+    }
+  }
+
+  app-spinner-or-error {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 30;
+    background: white;
+  }
+}

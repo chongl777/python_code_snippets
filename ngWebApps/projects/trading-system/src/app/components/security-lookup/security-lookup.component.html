@@ -1,0 +1,32 @@
+
+<div class="container">
+  <div class="sec-lookup">
+    <app-input-search
+        [displayFn]="displaySecurityFn"
+        [onSelected]="onSecuritySelected"
+        [filterFn]="filterSecurity">
+      <ng-template let-item="item">
+        <div class="sec-option" style="display:flex; flex-direction: row">
+          <div class="sec-id">{{item['securityID']}}</div>
+          <div class="sec-des">{{item['description']}}</div>
+          <div class="sec-deal">{{item['deal']}}</div>
+        </div>
+      </ng-template>
+    </app-input-search>
+
+    <div class="spacer"></div>
+
+    <div class="itemBox" *ngIf="!securitySubscription.closed" (click)="connectOrBreakLink()">
+      <i class="material-icons">link</i>
+    </div>
+
+    <div class="itemBox" *ngIf="securitySubscription.closed"  (click)="connectOrBreakLink()">
+      <i class="material-icons">link_off</i>
+    </div>
+
+  </div>
+
+  <div class="widget">
+    <ng-template winHost></ng-template>
+  </div>
+</div>

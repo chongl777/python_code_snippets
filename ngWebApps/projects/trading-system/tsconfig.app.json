@@ -1,0 +1,27 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+    "extends": "../../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "../../out-tsc/app",
+        "baseUrl": "./",
+        "types": ["material-design-lite", "d3"],
+        "typeRoots": [
+            "./@types"
+        ],
+        "paths": {
+            "@app/*": ["./src/app/*"],
+            "@configs/*": ["./src/app/configs/*"],
+            "@models/*": ["./src/app/models/*"],
+            "@theme": ["./src/theme"],
+            "@theme/*": ["./src/theme/*"],
+            "@environments/*": ["./src/environments/*"],
+        }
+    },
+    "files": [
+        "src/main.ts",
+        "src/polyfills.ts"
+    ],
+    "include": [
+        "src/**/*.d.ts"
+    ]
+}

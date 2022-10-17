@@ -1,0 +1,182 @@
+@import '~src/helpers';
+
+:host {
+  width: 100%;
+  display: inline-block;
+}
+
+.mail-window {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.mail-inbox {
+  width: 380px;
+  height: 100%;
+
+  .mail-scroll {
+    padding-left: 0px;
+    height: 100%;
+    overflow-y: scroll;
+  }
+
+  ul {
+    padding: 0px;
+  }
+
+  .mail-group {
+    width: calc(100% - 10px);
+    background: black;
+  }
+
+  li {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid;
+    padding: 0px;
+    width: calc(100% - 10px);
+    height: 60px;
+
+    .email-read-indicator {
+      width: 10px;
+      &.unread {
+        background: blue!important
+      }
+    }
+
+    .email-title {
+      width: 250px;
+      margin: 5px;
+      div.subject,
+      div.sender {
+        overflow: hidden;
+        white-space:nowrap;
+      }
+
+      div.subject {
+        font-weight: bold;
+      }
+    }
+
+    .email-time {
+      .time-stamp {
+        width: 50px;
+        margin: auto;
+      }
+
+      .icons {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .material-icons {
+        // line-height: 50px;
+      }
+      display: flex;
+      width: 75px;
+      margin: auto;
+      margin-left: 5px;
+      text-align: right;
+    }
+  }
+  li:hover {
+    background-color: rgba(steelblue, 0.5)!important;
+
+    .email-read-indicator {
+      background-color: rgba(steelblue, 0.7)!important;
+    }
+  }
+
+  li.selected {
+    background-color: gray!important;
+  }
+}
+
+.mail-body {
+  padding: 20px;
+  flex: 1;
+  overflow: hidden;
+
+  .selectedMail {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+    .mail-header {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+
+      .mail-sub-header {
+        flex: 1;
+        overflow: hidden;
+      }
+      .control-panel {
+        width: 150px;
+        display: flex;
+        flex-direction: column;
+        .row {
+          display: flex;
+          justify-content: center;
+          .confirm-trade {
+            width: 120px
+          }
+        }
+      }
+    }
+
+    .mail-subject {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .mail-content {
+      margin-top: 20px;
+      overflow: auto;
+      flex: 1;
+    }
+
+    .mail-sender {
+      font-weight: bold;
+    }
+
+    .mail-content {
+      ::ng-deep .highlight-text {
+        color: black;
+        width: auto;
+        display: inline;
+        font-weight: bold;
+        background-color: yellow;
+      }
+    }
+
+    .mail-attachments {
+      display: flex;
+      flex-direction: row;
+      height: 50px;
+      .attachment {
+        &:hover {
+          cursor: pointer;
+          background: gray;
+        }
+
+        border: 1px solid;
+        margin: 5px;
+        line-height: 40px;
+        padding-left: 5px;
+        padding-right: 5px;
+        display: flex;
+
+        .material-icons {
+          line-height: 40px;
+        }
+        .attachment-file {
+          line-height: 40px;
+        }
+      }
+    }
+  }
+}

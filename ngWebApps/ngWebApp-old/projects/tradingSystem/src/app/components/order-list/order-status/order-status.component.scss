@@ -1,0 +1,48 @@
+@import '~src/helpers';
+$color-disabled: gray;
+$color-enabled: steelblue;
+
+.status-span {
+  height: $row-height;
+  line-height: auto;
+  display: flex;
+
+  div {
+    flex: 1;
+  }
+
+  div.status {
+    padding-right: 15px;
+    text-align: right;
+    margin: auto;
+  }
+
+  div.expired {
+    text-align: center!important;
+  }
+
+  div.trade-button {
+    margin: auto;
+  }
+
+  .mat-button {
+    ::ng-deep * {
+      font-size: 7px;
+    }
+    margin: auto;
+    line-height: inherit!important;
+    color: white;
+    font-weight: bold;
+    width: 40px;
+    min-width: auto;
+    padding: 0px;
+  }
+
+  .mat-button.submit {
+    background-color: $color-enabled;
+  }
+
+  .mat-button.wait {
+    background-color: $color-disabled;
+  }
+}

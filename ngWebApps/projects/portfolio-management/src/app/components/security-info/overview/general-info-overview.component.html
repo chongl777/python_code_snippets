@@ -1,0 +1,241 @@
+
+<app-spinner-or-error
+    *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+</app-spinner-or-error>
+
+<ng-container *ngIf="!(loading$ | async) && !errMsg">
+  <div class="sec-info">
+    <div class="group-panel">
+      <div class="row group"><div colspan="2"><font>General Info</font></div></div>
+      <div class="row">
+        <div class="field">Bond Description</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.description }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">Short Name</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.short_name }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">Maturity</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo._impl['maturity'] | date: 'Y-MM-d'}}
+        </font></div>
+      </div>
+
+      <div class="row">
+        <div class="field">Currency</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.ccy }}
+        </font></div>
+      </div>
+
+      <div class="row group"><div colspan="2"><font>Identifier</font></div></div>
+      <div class="row">
+        <div class="field">SecurityID</div>
+        <div><font style="font-weight: bold" *ngIf="secInfo">
+          {{ secInfo.securityID }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">Cusip</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.cusip }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">ISIN</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.isin }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">BBG ID</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.bbg_id }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">FINRA ID</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.finra_ticker }}
+        </font></div>
+      </div>
+      <div class="row group"><div colspan="2"><font>Sector & Region</font></div></div>
+      <div class="row">
+        <div class="field">Industry Level 1</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.industry_level_1 }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">Industry Level 2</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.industry_level_2 }}
+        </font></div>
+      </div>
+
+      <div class="row">
+        <div class="field">Country</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.cntry_of_risk }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">Region</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.region }}
+        </font></div>
+      </div>
+      <div class="row group"><div colspan="2"><font>Company Info</font></div></div>
+      <div class="row">
+        <div class="field">Company ID</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.parents[0] }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">Ultimate Parent</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.ultimateParentID }}
+        </font></div>
+      </div>
+
+      <ng-container *ngIf="secInfo.secType == 'Corporate Bond'">
+        <div class="row group"><div colspan="2"><font>Coupon</font></div></div>
+        <div class="row">
+          <div class="field">Coupon</div>
+          <div><font *ngIf="secInfo">
+            {{ secInfo.coupon }}
+          </font></div>
+        </div>
+        <div class="row">
+          <div class="field">Sinkable</div>
+          <div><font *ngIf="secInfo">
+            {{ secInfo._impl['sinkable'] }}
+          </font></div>
+        </div>
+        <div class="row">
+          <div class="field">Putable</div>
+          <div><font *ngIf="secInfo">
+            {{ secInfo._impl['putable'] }}
+          </font></div>
+        </div>
+        <div class="row">
+          <div class="field">Callable</div>
+          <div><font *ngIf="secInfo">
+            {{ secInfo._impl['callable'] }}
+          </font></div>
+        </div>
+      </ng-container>
+
+    </div>
+
+    <div class="group-panel">
+      <div class="row group"><div colspan="2"><font>Market Price</font></div></div>
+      <div class="row">
+        <div class="field">BBG Price (Last Update)</div>
+        <div><font *ngIf="secPrices && secPrices[2]">
+          {{ secPrices[2]['price'] }} @ {{ secPrices[2]['t_date'] | date: 'y-MM-d HH:mm:SS' }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">
+          <a href="https://finra-markets.morningstar.com/BondCenter/BondTradeActivitySearchResult.jsp?ticker={{secInfo.finra_ticker}}"
+             target="_blank">
+            Finra Price (Last Update)</a></div>
+        <div><font *ngIf="secPrices && secPrices[4]">
+          {{ secPrices[4]['price'] }} @ {{ secPrices[4]['t_date'] | date: 'y-MM-d HH:mm:SS' }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">CapIQ Price (Last Update)</div>
+        <div><font *ngIf="secPrices && secPrices[19]">
+          {{ secPrices[19]['price'] }} @ {{ secPrices[19]['t_date'] | date: 'y-MM-d HH:mm:SS' }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">MonthEnd Price (Last Update)</div>
+        <div><font *ngIf="secPrices && secPrices[3]">
+          {{ secPrices[3]['price'] }} @ {{ secPrices[3]['t_date'] | date: 'y-MM-d HH:mm:SS' }}
+        </font></div>
+      </div>
+      <div class="row">
+        <div class="field">BoothB Price (Last Update)</div>
+        <div><font *ngIf="secPrices && secPrices[26]">
+          {{ secPrices[26]['price'] }} @ {{ secPrices[26]['t_date'] | date: 'y-MM-d HH:mm:SS' }}
+        </font></div>
+      </div>
+      <div class="row group table">
+        <div><font>Ratings</font></div>
+        <div><font>Current</font></div>
+        <div><font>Previous</font></div>
+        <div><font>LastUpdate</font></div>
+      </div>
+      <div class="row table" *ngFor="let rtg of secRtgs">
+        <div>{{ rtg['rtg_name'] }}</div>
+        <div><font>
+          {{ rtg['rating'] }}
+        </font></div>
+        <div><font>
+          {{ rtg['rating_prev'] }}
+        </font></div>
+        <div><font>
+          {{ rtg['t_date'] | date:'y-MM-d'}}
+        </font></div>
+      </div>
+
+      <div class="row group"><div colspan="2"><font>Additional Info</font></div></div>
+      <div class="row">
+        <div class="field">Outstdg Amt (Last Update)</div>
+        <div><font *ngIf="secInfo">
+          {{ secInfo.recent_outstdg / 1000000 | number: '1.0-0' }}MM @ {{ secInfo.outstdg_date | date: 'y-MM-d'}}
+        </font></div>
+      </div>
+
+      <div class="row">
+        <div class="field">Short Status (Last Update)</div>
+        <div><font *ngIf="secAttrData && secAttrData['short_status']">
+          <font class="short-status {{secAttrData['short_status']}}">{{ secAttrData['short_status'] }}</font> @
+          {{ secAttrData['short_lasttime'] | date: 'y-MM-d' }}
+        </font></div>
+      </div>
+
+      <div class="row">
+        <div class="field">Short Cost</div>
+        <div><font *ngIf="secAttrData">
+          {{ secAttrData['short_cost'] }}
+        </font></div>
+      </div>
+
+      <div class="row">
+        <div class="field">LiqScore (Last Update)</div>
+        <div><font *ngIf="secAttrData && secAttrData['liqscore']">
+          {{ secAttrData['liqscore'] }} @ {{ secAttrData['liq_lastupdate'] | date: 'y-MM-d' }}
+        </font></div>
+      </div>
+
+      <div class="row">
+        <div class="field">MarketSegment</div>
+        <div><font *ngIf="secAttrData">
+          {{ secAttrData['marketsegment'] }}
+        </font></div>
+      </div>
+
+    </div>
+  </div>
+
+  <app-plot-chart
+      #plotChart
+      [dataSource]="pltDataSource"
+      [lines]="plotLinesConfig"
+      [tags]="tagsConfig"
+      [yaxes]="plotYaxes"
+      [navigator]="navigator"
+      [updateOnResize]="updateOnResize">
+  </app-plot-chart>
+
+</ng-container>

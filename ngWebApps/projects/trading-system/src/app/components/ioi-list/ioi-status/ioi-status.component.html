@@ -1,0 +1,18 @@
+
+<div class="status-span {{showButton ? 'withButton': 'withoutButton'}}">
+  <div class="status valid" *ngIf="!ioi.expired">
+    <div class="status-text" style="padding-right:3px">{{ ioi.responseType + " "}}</div>
+    <div style="text-align: left; flex: 0">{{((ioi.timeLeft$ | async) - 68400000 | date:'HH:mm:ss') }}</div>
+  </div>
+  <div class="status expired" *ngIf="ioi.expired">
+    <div class="status-text" style="padding-right:3px">{{ ioi.valid ? "Good For ": "Expired "}}</div>
+    <div *ngIf="ioi.valid" style="text-align: left; flex: 0">{{ ((ioi.goodFor$ | async) - 68400000 | date:'mm:ss') }}</div>
+
+    <!-- {{ ioi.valid ? ('Good For ') + ((ioi.goodFor$ | async) - 68400000 | date:'mm:ss'): "Expired" }} -->
+  </div>
+  <div class="trade-button" *ngIf="showButton">
+    <button class="submit" *ngIf="!(ioi.loading$ | async)" (click)="openTradeDialog()" [disabled]="disable" mat-button>
+      {{ TradeText }} </button>
+    <button class="wait" *ngIf="(ioi.loading$ | async)" mat-button [disabled]="true"> Waiting... </button>
+  </div>
+</div>

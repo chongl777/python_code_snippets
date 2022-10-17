@@ -1,0 +1,223 @@
+@import "./palette";
+
+$color-field: $color-white;
+$color-legacy: rgba($color-white, 0.4);
+$color-invalid: $color-red;
+$color-focus: $color-purple;
+$color-background: $color-black;
+$color-autofill: #ffa400;
+$mat-field-width: 240px;
+$color-underline: #666;
+$color-selected: #666;
+
+
+.mat-form-field {
+  color: $color-white;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.125;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+}
+
+.mat-form-field-flex {
+  // width: $mat-field-width!important;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 1.25em;
+}
+
+.mat-form-field-wrapper {
+  position: relative;
+}
+
+.mat-form-field {
+  display: inline-block;
+  position: relative;
+  text-align: left;
+}
+
+.mat-form-field {
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.125;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+}
+
+input.mat-input-element {
+  margin-top: -0.0625em;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px $color-background inset !important;
+  -webkit-text-fill-color: $color-autofill !important;
+}
+
+.mat-option {
+  &.mat-selected, &:not(.mat-option-disabled):hover {
+    background: $color-selected;
+  }
+
+}
+
+
+
+.mat-input-element {
+  font: inherit;
+  background: transparent;
+  color: currentColor;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  vertical-align: bottom;
+  text-align: inherit;
+}
+
+// .mat-input-element {
+//     caret-color: rgba($color-white, 0.9);
+// }
+
+.mat-form-field-label-wrapper {
+  position: absolute;
+  left: 0;
+  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  top: -0.84375em;
+  padding-top: 15px;
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+.mat-form-field-label,
+.mat-form-field-appearance-legacy.mat-form-field-can-float .mat-input-server:focus+.mat-form-field-label-wrapper .mat-form-field-label {
+  transform: translateY(-0.9em) scale(0.70) perspective(100px) translateZ(0.001px);
+  -ms-transform: translateY(-1.28125em) scale(0.75);
+  width: 133.3333333333%;
+}
+
+.mat-form-field-label {
+  position: absolute;
+  left: 0;
+  font: inherit;
+  pointer-events: none;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transform-origin: 0 0;
+  transition: transform 400ms cubic-bezier(0.25, 0.8, 0.25, 1),
+              color 400ms cubic-bezier(0.25, 0.8, 0.25, 1),
+              width 400ms cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: none;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  padding: 0.45em 0 0.1em 0;
+
+}
+
+.mat-form-field-infix {
+  padding: .5em 0;
+  border-top: .84375em solid transparent;
+}
+
+.mat-error {
+  display: block;
+}
+
+.mat-error {
+  color: $color-invalid;
+}
+
+.mat-form-field-subscript-wrapper {
+  font-size: 75%;
+  margin-top: .6666666667em;
+  top: calc(100% - 1.7916666667em);
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-label {
+  color: $color-invalid;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  color: $color-legacy;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+  background-color: $color-legacy;
+}
+
+.cdk-text-field-autofill-monitored:not(:-webkit-autofill) {
+  animation: cdk-text-field-autofill-end 0s 1ms;
+}
+
+.mat-input-element {
+  caret-color: $color-focus;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $color-focus;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: $color-focus;
+}
+
+.mat-ripple{
+  overflow: hidden;
+  .mat-ripple-element {
+    color: rgb(255, 255, 255, $_mat-button-ripple-opacity);
+    background-color: currentColor;
+    position: absolute;
+    border-radius:50%;
+	  pointer-events:none;
+    transition:opacity, transform 0ms cubic-bezier(0, 0, 0.2, 1);
+	  transform:scale(0);
+  }
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple,
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple {
+  opacity: 1;
+  transform: scaleX(1);
+  opacity:1;
+  transform:scaleX(1);
+  transition:transform 300ms cubic-bezier(0.25, 0.8, 0.25, 1),
+             opacity 100ms cubic-bezier(0.25, 0.8, 0.25, 1),
+             background-color 300ms cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple,
+.mat-form-field.mat-form-field-invalid .mat-form-field-ripple.mat-accent {
+  background-color: $color-invalid;
+}
+
+.mat-form-field-underline {
+  position: absolute;
+  width: 100%;
+  pointer-events: none;
+  transform: scale3d(1, 1.0001, 1);
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-disabled .mat-form-field-underline {
+  background-color: $color-underline!important;
+}
+
+.group-select-option {
+  // border: 1px solid;
+  box-shadow: 0px 0px 23px 4px;
+  // border: none;
+  // box-shadow: 5px 5px gray;
+}

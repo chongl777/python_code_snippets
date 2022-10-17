@@ -1,0 +1,128 @@
+<div class="bar">
+  Matrix Lookup
+</div>
+
+<div class="matrix-setup">
+
+  <div class="form-content">
+    <form [formGroup]="signalForm"
+          (keydown.enter)="$event.preventDefault()">
+
+      <div style="display: flex; flex-direction: row">
+        <div class="input-group group1" style="display: flex; flex-direction: column">
+          <mat-form-field>
+            <!-- <input matNativeControl placeholder="Order Type" type="string"
+                 formControlName="orderType" required> -->
+            <mat-label>Signal 1</mat-label>
+            <mat-select formControlName="SignalSrc_1" required>
+              <mat-option *ngFor="let sig of SignalSrc1_Set;" [value]="sig">
+                <span style="display:flex; flex-direction: row;">
+                  <div>
+                    {{SIGNAL_ID_2_NAME[sig]}}
+                  </div>
+                  <!-- <div>{{ordTyp.value}}</div> -->
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <!-- <input matNativeControl placeholder="Order Type" type="string"
+                 formControlName="orderType" required> -->
+            <mat-label>Signal 2</mat-label>
+            <mat-select formControlName="SignalSrc_2" required>
+              <mat-option *ngFor="let sig of SignalSrc2_Set;" [value]="sig">
+                <span style="display:flex; flex-direction: row;">
+                  <div>
+                    {{SIGNAL_ID_2_NAME[sig]}}
+                  </div>
+                  <!-- <div>{{ordTyp.value}}</div> -->
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="input-group group2" style="display: flex; flex-direction: column">
+          <mat-form-field>
+            <!-- <input matNativeControl placeholder="Order Type" type="string"
+                 formControlName="orderType" required> -->
+            <mat-label>Signal Des</mat-label>
+            <mat-select formControlName="SignalID" required>
+              <mat-option *ngFor="let sig of Signal_Set;" [value]="sig">
+                <span style="display:flex; flex-direction: row;">
+                  <div>
+                    {{SignalDes[sig]}}
+                  </div>
+                  <!-- <div>{{ordTyp.value}}</div> -->
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <!-- <input matNativeControl placeholder="Order Type" type="string"
+                 formControlName="orderType" required> -->
+            <mat-label>Period</mat-label>
+            <mat-select formControlName="MatrixID" required>
+              <mat-option *ngFor="let mat of Matrix_Set;" [value]="mat">
+                <span style="display:flex; flex-direction: row;">
+                  <div>
+                    {{MatrixPeriod[mat]}}
+                  </div>
+                  <!-- <div>{{ordTyp.value}}</div> -->
+                </span>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div class="bar">
+  Signal Strength Matrix
+</div>
+
+<div class="matrix-section">
+  <app-spinner-or-error [loading$]="loading$" [errMsg]="errMsg"></app-spinner-or-error>
+
+  <div class="signal-matrix" *ngIf="matrixData && !(loading$ | async)">
+    <div class="matrix-tr">
+      <div class="matrix-thf"></div>
+      <div class="matrix-th" *ngFor="let x of matrixData.x_axis.slice(1)"> {{ x }} </div>
+      <div class="matrix-thl"> {{ SIGNAL_ID_2_NAME[signalForm.value['SignalSrc_2']] }}</div>
+    </div>
+
+    <div class="matrix-tr" *ngFor="let y of matrixData.y_axis.slice(1)">
+      <div class="matrix-tdf">{{ y }}</div>
+      <div class="matrix-td" *ngFor="let x of matrixData.x_axis.slice(1)"
+           style="background-color: {{this.color_mat(matrixData.signalData[x][y])}}">
+        <div class="value" [ngClass]="{'highlight': x==currentSignal[signalForm.value['SignalSrc_1']] && y==currentSignal[signalForm.value['SignalSrc_2']]}">
+          {{ matrixData.signalData[x][y] | percent: '.2-2' }}
+        </div>
+      </div>
+      <div class="matrix-tdl"
+           style="background-color: {{this.color_y(matrixData.signalData[0][y])}}">
+
+        <div class="value" [ngClass]="{'highlight': y==currentSignal[signalForm.value['SignalSrc_2']]}">
+          {{ matrixData.signalData[0][y] | percent: '.2-2' }}
+        </div>
+      </div>
+    </div>
+
+    <div class="matrix-tr last-tr">
+      <div class="matrix-tdf"> {{ SIGNAL_ID_2_NAME[this.signalForm.value['SignalSrc_1']] }} </div>
+      <div class="matrix-td" *ngFor="let x of matrixData.y_axis.slice(1)"
+           style="background-color: {{this.color_x(matrixData.signalData[x][0])}}">
+        <div class="value" [ngClass]="{'highlight': x==currentSignal[signalForm.value['SignalSrc_1']]}">
+          {{ matrixData.signalData[x][0] | percent: '.2-2' }}
+        </div>
+      </div>
+      <div class="matrix-tdl"> </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,284 @@
+<app-spinner-or-error *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+</app-spinner-or-error>
+<div class="allocator-wrapper" *ngIf="ticket && !(loading$ | async)">
+  <div class="pf-allocator-wrapper" *ngFor="let fundAllocator of fundAllocators;" >
+    <div class="fund-name-wrapper">
+      <div class="fund-name">
+        {{fundAllocator.fund.fundName}}
+      </div>
+    </div>
+
+    <div class="pf-allocator">
+
+      <div class="top-panel">
+
+        <mat-form-field class="settAcct">
+          <mat-label>Settle Acct</mat-label>
+          <mat-select [(ngModel)]="fundAllocator.settleAcct" required>
+            <mat-option *ngFor="let acct of ticket.availableAccts;" [value]="acct">
+              <span style="display:flex; flex-direction: row;">
+                <div>
+                  {{ticket.acctName[acct]}}
+                </div>
+
+              </span>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="quantity auto-fill">
+          <mat-label>Allocated Quantity</mat-label>
+          <!-- <input [matInputFormat]="',.0f'" matNativeControl (ngModel)="fundAllocator.allocatedQty" [value]="fundAllocator.allocatedQty"> -->
+          <input [matInputFormat]="',.0f'" matNativeControl [(ngModel)]="fundAllocator.allocatedQty">
+
+          <div class="icon">
+            <i class="material-icons" (click)="fundAllocator.balanceQty()">create</i>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="quantity" *ngIf="!fundAllocator.confirmed">
+          <mat-label>Current Quantity</mat-label>
+          <input class="bold-font" mat-input matNativeControl
+                 [ngModel]="fundAllocator.currentQuanty | number: '1.0-5'" disabled>
+        </mat-form-field>
+      </div>
+
+      <div class="allocator">
+        <div class="allocator-title">
+          <div class="title">
+            Tax Lots Allocation
+          </div>
+        </div>
+
+        <mat-table class="tax-allocator" [dataSource]="fundAllocator.taxLotDataSource">
+          <mat-header-row
+              *matHeaderRowDef="fundAllocator.taxLotColumns; sticky: true"
+              class="lot-header">
+          </mat-header-row>
+          <mat-row
+              [class.invalid]="!fundAllocator.confirmed && !lot.isValid"
+              [class.even]="even"  [class.odd]="!even"
+              *matRowDef="let lot; let even = even; columns: fundAllocator.taxLotColumns; let i=dataIndex" class="ord-row">
+          </mat-row>
+
+          <ng-container matColumnDef="FundID">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              FundID
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef>
+              {{fundAllocator.fund.fundID}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="CreateDt">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              CreateDate
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef="let lot">
+              {{lot.createDate | date: 'YYYY-MM-dd'}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="LotID">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              LotID
+            </mat-header-cell>
+
+            <mat-cell class="center-align" *matCellDef="let lot">
+              {{lot.lotID || 'New Lot'}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Account">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              Account
+            </mat-header-cell>
+
+            <mat-cell class="center-align" *matCellDef="let lot">
+              {{lot.acct}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="CostBasis">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              CostBasis
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef="let lot">
+              {{lot.costBasis | number: '1.0-3'}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="Quantity">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              Quantity
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef="let lot">
+              {{lot.quantity | number: '1.'}}
+            </mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="AllocatedQty">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              Allocated Qty
+            </mat-header-cell>
+            <mat-cell class="center-align auto-fill" *matCellDef="let lot">
+              <input [(ngModel)]="lot.allocatedQty" (focusout)="fundAllocator.onChangingTaxLotAllocation()" type="number"/>
+              <div class="icon">
+                <i class="material-icons" (click)="fundAllocator.maxTaxLotQty(lot)">create</i>
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DeleteLot">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef="let lot; let i=index">
+            </mat-cell>
+          </ng-container>
+        </mat-table>
+
+      </div>
+
+      <div class="allocator">
+        <div class="allocator-title">
+          <div class="title">
+            Strategy Allocation
+          </div>
+        </div>
+
+        <mat-table class="strategy-allocator" [dataSource]="fundAllocator.straLotDataSource">
+          <mat-header-row
+              *matHeaderRowDef="fundAllocator.straLotColumns; sticky: true"
+              class="lot-header">
+          </mat-header-row>
+          <mat-row
+              [class.invalid]="!lot.isValid"
+              [class.even]="even"  [class.odd]="!even"
+              *matRowDef="let lot; let even = even; columns: fundAllocator.straLotColumns; let i=dataIndex" class="ord-row">
+          </mat-row>
+
+          <ng-container matColumnDef="FundID">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              FundID
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef>
+              {{fundAllocator.fund.fundID}}
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sLevel1">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              sLevel1
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef="let lot ">
+
+              <mat-select [(ngModel)]="lot.sLevel1">
+                <mat-option *ngFor="let tag of fundAllocator.availableSTags1(lot);" [value]="tag">
+                  <span style="display:flex; flex-direction: row;">
+                    <div>
+                      {{tag}}
+                    </div>
+                  </span>
+                </mat-option>
+              </mat-select>
+
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sLevel2">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              sLevel2
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef="let lot">
+
+              <mat-select [(ngModel)]="lot.sLevel2">
+                <mat-option *ngFor="let tag of fundAllocator.availableSTags2(lot);" [value]="tag">
+                  <span style="display:flex; flex-direction: row;">
+                    <div>
+                      {{tag}}
+                    </div>
+                  </span>
+                </mat-option>
+              </mat-select>
+
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="sLevel3">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              sLevel3
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef="let lot">
+              <mat-select [(ngModel)]="lot.sLevel3">
+                <mat-option *ngFor="let tag of fundAllocator.availableSTags3(lot);" [value]="tag">
+                  <span style="display:flex; flex-direction: row;">
+                    <div>
+                      {{tag}}
+                    </div>
+                  </span>
+                </mat-option>
+              </mat-select>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="AllocatedQty">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+              Allocated Qty
+            </mat-header-cell>
+            <mat-cell class="center-align auto-fill" *matCellDef="let lot">
+
+              <!-- <input mat-input matNativeControl [(ngModel)]="lot.allocatedQty" type="number"/> -->
+              <input [(ngModel)]="lot.allocatedQty" type="number"/>
+              <div class="icon">
+                <i class="material-icons" (click)="fundAllocator.balanceStraLotQty(lot)">create</i>
+              </div>
+            </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="DeleteLot">
+            <mat-header-cell class="center-align" *matHeaderCellDef>
+            </mat-header-cell>
+            <mat-cell class="center-align" *matCellDef="let lot; let i=index">
+              <button *ngIf="i != 0" class="mdl-button delete-button mdl-js-button mdl-button--icon mdl-button--colored
+                                            mdl-button--mini-icon pull-right"
+                      deleteItem
+                      (click)="fundAllocator.delStrategyLot(lot)">
+                <i class="material-icons">clear</i>
+              </button>
+            </mat-cell>
+          </ng-container>
+
+        </mat-table>
+
+        <div class="add-strategy-lot">
+          <button
+              class="add-lot-button  mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab
+                     mdl-shadow--8dp mdl-button--colored"
+              (click)="fundAllocator.addStrategyAllocation()">
+            <i class="material-icons mdl-js-ripple-effect">add</i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div *ngIf="!fundAllocator.isvalid" class="error-message"> {{ fundAllocator.invalidMessage }} </div>
+  </div>
+
+</div>
+<div class="button-panel" *ngIf="ticket && !ticket.confirmed && !(loading$ | async)">
+  <div *ngIf="!isvalid" class="error-message"> {{ invalidMessage }} </div>
+  <div class="spacer"></div>
+  <button class="negative" (click)="invalidTrade()" mat-button>Invalidate</button>
+  <button class="positive" (click)="submitTrade()" mat-button [disabled]="!isvalid">Confirm Trade</button>
+</div>
+
+<div class="button-panel" *ngIf="ticket && ticket.confirmed && !(loading$ | async)">
+  <div *ngIf="!isvalid" class="error-message"> {{ invalidMessage }} </div>
+  <div class="spacer"></div>
+  <button class="negative transaction" (click)="deleteTransaction()" *ngIf="!ticket.tradePrint || !ticket.isvalid" mat-button>Delete Transaction</button>
+  <button class="negative transaction" (click)="cancelTransaction()" *ngIf="ticket.tradePrint && ticket.isvalid" mat-button>Cancel Transaction</button>
+  <button class="positive transaction" (click)="updateTransaction()" *ngIf="ticket.isvalid" mat-button [disabled]="(!isvalid || !ticket.dirty)">Update Transaction</button>
+</div>

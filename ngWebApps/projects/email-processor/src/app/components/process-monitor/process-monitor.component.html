@@ -1,0 +1,34 @@
+<div class="title">Token Infomation</div>
+<app-spinner-or-error *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg"></app-spinner-or-error>
+
+<table class="token-info" *ngIf="!(loading$ | async) && !errMsg">
+  <tbody>
+    <tr><td>Access Token:</td> <td> {{token['access_token']}}</td></tr>
+    <tr><td>Refresh Token:</td> <td> {{token['refresh_token']}}</td></tr>
+    <tr><td>Cached At:</td> <td> {{ token['cached_at'] }}</td></tr>
+    <tr><td>Expires At:</td> <td> {{ token['expires_at'] }}</td></tr>
+    <tr><td>Token Owner:</td> <td> {{ token['username'] }}</td></tr>
+    <tr><td>Scopes:</td> <td> {{ token['scope'] }}</td></tr>
+  </tbody>
+</table>
+
+
+<div class="button-panel">
+  <button mat-raised-button color="accent"
+          (click)="refreshToken()">
+    <mat-icon>refresh</mat-icon>
+    Refresh Token
+  </button>
+
+  <button mat-raised-button color="warn"
+          (click)="revokeToken()">
+    <mat-icon>delete</mat-icon>
+    Revoke Token
+  </button>
+</div>
+
+<!-- <button mat-raised-button color="primary"
+     (click)="refreshToken()">
+     <mat-icon>home</mat-icon>
+     Revoke Token
+     </button> -->

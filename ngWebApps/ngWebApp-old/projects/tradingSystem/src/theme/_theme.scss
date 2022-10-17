@@ -1,0 +1,25 @@
+@import './scss/palette';
+// @import '~@angular/material/theming';
+
+$color-primary: mat-palette($theme-dark-colors);
+$color-accent: mat-palette($theme-dark-colors, A200, A100, A400);
+$color-warn: mat-palette($mat-red);
+$color-theme: mat-light-theme((
+  color: (
+  primary: $color-primary,
+  accent: $color-accent,
+  warn: $color-warn
+)
+));
+
+
+$buy-sell-primary: mat-palette($buy-sell-colors);
+$buy-sell-accent: mat-palette($buy-sell-colors, A200, A100, A400);
+$buy-sell-warn:    mat-palette($mat-red);
+$buy-sell-theme: mat-light-theme((
+  color: (
+  primary: $buy-sell-primary,
+  accent: $buy-sell-accent,
+  warn: $buy-sell-warn,
+)
+));

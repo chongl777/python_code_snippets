@@ -1,0 +1,207 @@
+@import '~@angular/material/theming';
+// @include mat-core();
+
+$color-dark-gray: #333;
+$color-gray: #444;
+$color-table-border: #606060;
+$color-smooth-gray: #999;
+$color-smoke: #666;
+$color-red: #f44336;
+$color-light-blue: #03a9f4;
+$color-orange: #ffc107;
+$color-amber: #ff9800;
+$color-teal: #00bcd4;
+$color-purple: #7726d3;
+$color-green: #00d45a;
+$color-white: #fff;
+$color-black: #000;
+$color-alto: #ddd;
+$color-silver-chalice: #aaa;
+$color-chambray: #3b5998;
+$color-celurean: #00abf1;
+$color-lochmara: #0083be;
+$color-froly: #f26798;
+$color-dodger-blue: #4176fb;
+$color-dove-gray: #676767;
+$color-primary: rgb(0, 188, 212);
+$color-secondary: rgb(244, 67, 54);
+$color-baby-blue: rgb(116, 199, 209);
+$color-cerulean: rgb(80, 150, 215);
+$color-mint: rgb(96, 196, 150);
+$color-grey-500: unquote("rgb(#{$palette-grey-500})");
+
+$buy-sell-colors: (
+  50 : #e8f6e9,
+  100 : #c5e9c8,
+  200 : #9fdaa4,
+  300 : #79cb7f,
+  400 : #5cc063,
+  500 : #3fb548,
+  600 : #39ae41,
+  700 : #31a538,
+  800 : #299d30,
+  900 : #1b8d21,
+  A100 : #c6ffc9,
+  A200 : #93ff98,
+  A400 : #60ff67,
+  A700 : #47ff4f,
+  contrast: (
+    50: #f9e0e0,
+    100: #f0b3b3,
+    200: #e68080,
+    300: #db4d4d,
+    400: #d42626,
+    500: #cc0000,
+    600: #c70000,
+    700: #c00000,
+    800: #b90000,
+    900: #ad0000,
+    A100: #ffd7d7,
+    A200: #ffa4a4,
+    A400: #ff7171,
+    A700: #ff5858,
+  )
+);
+
+$theme-dark-colors: (
+  50 : #e6e7e7,
+  100 : #c2c2c3,
+  200 : #999a9b,
+  300 : #707172,
+  400 : #515254,
+  500 : #323436,
+  600 : #2d2f30,
+  700 : #262729,
+  800 : #1f2122,
+  900 : #131516,
+  A100 : #67aef6,
+  A200 : #3794f3,
+  A400 : #007bf6,
+  A700 : #006edd,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$theme-dark-alternative-colors: (
+  50 : #e7e7e8,
+  100 : #c3c4c5,
+  200 : #9c9d9e,
+  300 : #747577,
+  400 : #565859,
+  500 : #383a3c,
+  600 : #323436,
+  700 : #2b2c2e,
+  800 : #242527,
+  900 : #17181a,
+  A100 : #6cb1f5,
+  A200 : #3c97f2,
+  A400 : #007efc,
+  A700 : #0071e2,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+
+.text-color--smoke {
+  color: $color-smoke;
+}
+
+.color--gray {
+  background-color: $color-gray !important;
+}
+
+.color--dark-gray {
+  background-color: $color-dark-gray;
+}
+
+.color--smooth-gray {
+  background-color: $color-smooth-gray !important;
+}
+
+.text-color--smooth-gray {
+  color: $color-smooth-gray !important;
+}
+
+.color--red {
+  background-color: $color-red !important;
+}
+
+.color-text--red {
+  color: $color-red !important;
+}
+
+.color--orange {
+  background-color: $color-orange !important;
+}
+
+.color-text--orange {
+  color: $color-orange !important;
+}
+
+.color--amber {
+  background-color: $color-amber !important;
+}
+
+.color-text--amber {
+  color: $color-amber !important;
+}
+
+.color--green {
+  background-color: $color-green !important;
+}
+
+.color-text--green {
+  color: $color-green !important;
+}
+
+.color--light-blue {
+  background-color: $color-light-blue !important;
+}
+
+.color-text--light-blue {
+  color: $color-light-blue !important;
+}
+
+.color--purple {
+  background-color: $color-purple !important;
+}
+
+.color-text--purple {
+  color: $color-purple !important;
+}
+
+.color--teal {
+  background-color: $color-teal !important;
+}
+
+.color-text--teal {
+  color: $color-teal !important;
+}

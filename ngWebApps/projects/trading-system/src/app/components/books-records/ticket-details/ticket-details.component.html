@@ -1,0 +1,170 @@
+<div class="ticket-wrapper">
+  <div class="title">Ticket details</div>
+  <div class="ticket">
+    <div class="column" *ngIf="ticket">
+      <mat-form-field class="string">
+        <mat-label>TicketID</mat-label>
+        <input matNativeControl [(ngModel)]="ticket.ticketID" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="string" [class.invalid]="!ticket.isvalid">
+        <mat-label>OrderStatus</mat-label>
+        <input matNativeControl [value]="ticket.OrderStatus" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="string">
+        <mat-label>Platform</mat-label>
+        <input matNativeControl [(ngModel)]="ticket.platform" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="string">
+        <mat-label>SecurityID</mat-label>
+        <input type="number" matNativeControl [ngModel]="ticket.security.securityID" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="string">
+        <mat-label>SecurityType</mat-label>
+        <input type="string" matNativeControl [ngModel]="ticket.security.secType"
+               [class.invalid]="ticket.security.secType == 'unknown'" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="string">
+        <mat-label>Description</mat-label>
+        <input matNativeControl [(ngModel)]="ticket.security.description" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="string">
+        <mat-label>Cusip</mat-label>
+        <input matNativeControl [(ngModel)]="ticket.security.cusip" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="string">
+        <mat-label>Counterparty</mat-label>
+
+        <mat-select [(ngModel)]="ticket.cp" required [disabled]="ticket.confirmed">
+          <mat-option *ngFor="let counterparty of availableCounterptiesArray;"
+                      [value]="counterparty">
+            <span style="display:flex; flex-direction: row;">
+              <div>
+                {{counterparty.Name}}
+              </div>
+
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="quantity">
+        <mat-label>Quantity</mat-label>
+        <input [matInputFormat]="',.0f'" matNativeControl [(ngModel)]="ticket.Quantity" required>
+      </mat-form-field>
+
+      <mat-form-field class="price">
+        <mat-label>Price</mat-label>
+        <input type="number" matNativeControl [(ngModel)]="ticket.Price" required>
+      </mat-form-field>
+
+      <mat-form-field class="transType">
+        <mat-label>TransType</mat-label>
+        <mat-select [(ngModel)]="ticket.transTypStr" required>
+          <mat-option *ngFor="let transTyp of ticket.availableTransTyp;"
+                      [value]="transTyp">
+            <span style="display:flex; flex-direction: row;">
+              <div>
+                {{ticket.transTypMap[transTyp]}}
+              </div>
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="date">
+        <mat-label>Trade Date</mat-label>
+        <input matInput matNativeControl [(ngModel)]="ticket.TradeDate" type="datetime-local" step="1" required>
+      </mat-form-field>
+
+      <mat-form-field class="date">
+        <mat-label>Settl Date</mat-label>
+        <input matInput matNativeControl [(ngModel)]="ticket.SettleDate" type="datetime-local" step="1" required>
+      </mat-form-field>
+
+      <ng-container *ngIf="['Corporate Bond'].includes(ticket.security.secType)">
+        <mat-form-field class="number">
+          <mat-label>Coupon</mat-label>
+          <input [matInputFormat]="',.2f'" matNativeControl [ngModel]="ticket.coupon || ticket.security.coupon">
+        </mat-form-field>
+
+        <mat-form-field class="date">
+          <mat-label>Accrued Date</mat-label>
+          <input *ngIf="status==Status.Done || status==Status.Error" matInput matNativeControl [(ngModel)]="ticket.accruedDate" type="datetime-local" step="1" required>
+          <div *ngIf="status==Status.Loading" class="waiting" style="display:flex; flex-direction:row;">
+            <input matInput matNativeControl class="loading" value="Loading..." disabled>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="number">
+          <mat-label>Accrued Int</mat-label>
+          <input [formControl]="errorAccrued" *ngIf="status==Status.Done || status==Status.Error" [matInputFormat]="',.2f'" matNativeControl [(ngModel)]="ticket.AccruedInt">
+          <div *ngIf="status==Status.Loading" class="waiting" style="display:flex; flex-direction:row;">
+            <input matInput matNativeControl class="loading" value="Loading..." disabled>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field class="number">
+          <mat-label>Accrued Calc</mat-label>
+          <div *ngIf="status==Status.Done || status==Status.Error" class="accrued-calc-wrapper" style="display:flex; flex-direction:row;">
+            <input [matInputFormat]="',.2f'" matNativeControl [(ngModel)]="ticket.accruedIntCalc" disabled>
+            <div class="accrued-calc" id="loop" (click)="calcAccrued(ticket)">
+              <i class="material-icons">loop</i>
+            </div>
+          </div>
+          <div *ngIf="status==Status.Loading" class="waiting" style="display:flex; flex-direction:row;">
+            <input class="loading" matInput matNativeControl value="Loading..." disabled>
+          </div>
+          <mat-hint class="error" *ngIf="status==Status.Error" [id]="null">{{statusErrorMsg}}</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field class="number">
+          <mat-label>Factor</mat-label>
+          <input *ngIf="status==Status.Done || status==Status.Error" [matInputFormat]="',.2f'" matNativeControl [(ngModel)]="ticket.factor" required>
+          <div *ngIf="status==Status.Loading" class="waiting" style="display:flex; flex-direction:row;">
+            <input class="loading" matInput matNativeControl value="Loading..." disabled>
+          </div>
+        </mat-form-field>
+      </ng-container>
+
+      <mat-form-field class="number">
+        <mat-label>Principal</mat-label>
+        <input [matInputFormat]="',.2f'" matNativeControl [ngModel]="ticket.Principal" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="number">
+        <mat-label>Net Amount</mat-label>
+        <input [matInputFormat]="',.2f'" matNativeControl [ngModel]="ticket.NetAmount" disabled>
+      </mat-form-field>
+
+      <mat-form-field class="number">
+        <mat-label>Commission</mat-label>
+        <input [matInputFormat]="',.2f'" matNativeControl [(ngModel)]="ticket.commission" required>
+      </mat-form-field>
+
+      <mat-form-field class="commCurr">
+        <mat-label>Commission Ccy</mat-label>
+        <!-- <input type="number" matNativeControl [(ngModel)]="ticket.transTyp"> -->
+
+        <mat-select [(ngModel)]="ticket.commCurrency" required>
+          <mat-option *ngFor="let ccy of ticket.availableCurrency;"
+                      [value]="ccy">
+            <span style="display:flex; flex-direction: row;">
+              <div>
+                {{ccy}}
+              </div>
+
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+</div>

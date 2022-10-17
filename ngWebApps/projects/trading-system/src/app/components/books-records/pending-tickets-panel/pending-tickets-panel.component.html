@@ -1,0 +1,36 @@
+<app-spinner-or-error *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+</app-spinner-or-error>
+
+<div class="wrapper">
+  <div class="panel-wrapper" (click)="onUnSelect()" *ngIf="!(loading$ | async) && (errMsg == '')">
+    <div class="panel-sub-wrapper">
+
+      <div class="panel">
+      <div class="ticket-panel">
+        <div class="pending-ticket" *ngFor="let ticket of data">
+          <app-pending-ticket
+              [ticket]="ticket"
+              [onFocus]="onSelect()"
+              [class.manualCreated]="ticket.manualCreated"
+              [class.selected]="ticket==eventService.selectedTradeTicket$.getValue()">
+
+          </app-pending-ticket>
+        </div>
+      </div>
+    </div>
+
+    </div>
+    <div class="add-trade-ticket">
+      <button
+          class="add-lot-button  mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab
+                 mdl-shadow--8dp mdl-button--colored"
+          (click)="openNewTicket()">
+        <i class="material-icons mdl-js-ripple-effect">add</i>
+      </button>
+    </div>
+  </div>
+
+  <div class="ticket-details" *ngIf="!(loading$ | async) && (errMsg == '')">
+    <app-ticket-details></app-ticket-details>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+
+<button class="mdl-button mdl-js-button
+               mdl-button--raised mdl-js-ripple-effect
+               button--colored-light-blue"
+        (click)="refresh(msgController.refreshPort$)">
+  <i class="material-icons">update</i>
+  Refresh Portfolio Allocation
+</button>
+
+
+<button class="mdl-button mdl-js-button
+               mdl-button--raised mdl-js-ripple-effect
+               button--colored-teal"
+        (click)="refresh(msgController.refreshWatchlist$)">
+  <i class="material-icons">update</i>
+  Refresh Watchlist
+</button>
+
+<button class="mdl-button mdl-js-button
+               mdl-button--raised mdl-js-ripple-effect
+               button--colored-orange"
+        (click)="refresh(msgController.refreshMktData$)">
+  <i class="material-icons">update</i>
+  Market Data
+</button>
+
+
+<button class="mdl-button mdl-js-button
+               mdl-button--raised mdl-js-ripple-effect
+               button--colored-red"
+        (click)="refresh(msgController.refreshAll$)">
+  <i class="material-icons">update</i>
+  Refresh All
+</button>

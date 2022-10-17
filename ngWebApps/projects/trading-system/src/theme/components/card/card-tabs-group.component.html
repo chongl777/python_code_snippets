@@ -1,0 +1,39 @@
+<ng-container>
+</ng-container>
+
+<base-card [class]="tabStyle">
+  <base-card-title>
+    <mat-toolbar>
+      <ng-container class="tab-wrapper" *ngFor="let tab of cardTabs; index as i">
+        <a mat-button
+           [class.active]="selectedIdx==i"
+           class="card-tab"
+           (click)="onSelect(i)">{{ tab.label }} </a>
+        <i class="slash-separator" *ngIf="tabStyle=='slash' && i!=cardTabs.length-1"></i>
+      </ng-container>
+
+      <div class="spacer"></div>
+
+      <div class="buttom itemBox" *ngIf="showSetting"
+           (click)="onOpenConfig(component || cpt)">
+        <i class="material-icons">settings</i>
+      </div>
+
+      <div class="buttom itemBox"
+           *ngIf="showDownload"
+           (click)="onDownload(component || cpt)">
+        <i class="material-icons">cloud_download</i></div>
+
+      <div class="buttom itemBox"
+           *ngIf="showRefresh"
+           (click)="onRefresh(component || cpt)">
+        <i class="material-icons">refresh</i>
+      </div>
+    </mat-toolbar>
+  </base-card-title>
+  <base-card-body>
+
+    <ng-container #container></ng-container>
+
+  </base-card-body>
+</base-card>

@@ -1,0 +1,25 @@
+<mat-form-field class="full-width">
+  <mat-label>Security</mat-label>
+  <input type="text"
+         placeholder="{{placeholder}}"
+         matInput
+         [formControl]="searchControl"
+         [matAutocomplete]="autoGroup"/>
+  <!-- <mat-icon matSuffix>keyboard_arrow_down</mat-icon> -->
+  <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="displayFn"
+                    (optionSelected)="select($event)">
+
+    <mat-optgroup *ngFor="let group of filteredOptions$ | async" [label]="group.groupName">
+      <mat-option *ngFor="let item of group.children" [value]="item">
+
+        <ng-container *ngTemplateOutlet="optionsTemplate;context:{item:item}"></ng-container>
+
+      </mat-option>
+    </mat-optgroup>
+
+  </mat-autocomplete>
+</mat-form-field>
+
+<ng-content>
+
+</ng-content>

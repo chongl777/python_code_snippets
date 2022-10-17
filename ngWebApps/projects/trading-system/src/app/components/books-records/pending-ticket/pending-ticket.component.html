@@ -1,0 +1,62 @@
+<div class="tag-wrapper">
+  <div class="tag {{ticket.buy_sell ? 'buy' : 'sell'}}">
+    {{ticket.buy_sell ? 'Buy' : 'Sell'}}: {{ticket.security.description || ticket.description}}
+  </div>
+</div>
+
+
+<div class="ticket-wrapper" [class.manual-created]="ticket.manualCreated"
+     (click)="onFocus(ticket, $event)">
+
+  <div class="ticket">
+    <div class="row">
+      <div class="toggle buy-sell">
+        <mat-slide-toggle class="buy-sell" [(ngModel)]="ticket.buy_sell" [color]="'primary'">
+          {{ticket.buy_sell ? 'Buy' : 'Sell'}}
+        </mat-slide-toggle>
+      </div>
+
+      <div class="spacer"></div>
+
+      <mat-form-field class="quantity">
+        <!-- <input matNativeControl placeholder="Order Type" type="string"
+             formControlName="orderType" required> -->
+        <mat-label>Quantity</mat-label>
+        <input [matInputFormat]="',.0f'" matNativeControl [(ngModel)]="ticket.quantity" disabled>
+      </mat-form-field>
+
+      <div class="spacer"></div>
+
+      <mat-form-field class="price">
+        <!-- <input matNativeControl placeholder="Order Type" type="string"
+             formControlName="orderType" required> -->
+        <mat-label>Price</mat-label>
+        <input type="number" matNativeControl [(ngModel)]="ticket.price" disabled>
+      </mat-form-field>
+
+      <div class="spacer"></div>
+
+      <mat-form-field class="transType">
+        <mat-label>TransType</mat-label>
+        <mat-select type="number" [(ngModel)]="ticket.transTypStr" required>
+          <mat-option *ngFor="let transTyp of ticket.availableTransTyp;"
+                      [value]="transTyp">
+            <span style="display:flex; flex-direction: row;">
+              <div>
+                {{ticket.transTypMap[transTyp]}}
+              </div>
+
+            </span>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="spacer"></div>
+
+      <mat-form-field class="date">
+        <mat-label>Trade Date</mat-label>
+        <input matInput matNativeControl [(ngModel)]="ticket.TradeDate" type="datetime-local" step="1" disabled>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<ng-container>
+  <app-spinner-or-error
+      style="width: 100%"
+      *ngIf="((loading$ | async) || errMsg)" [loading$]="loading$" [errMsg]="errMsg">
+  </app-spinner-or-error>
+
+  <app-security-info [updateOnResize]="resize"></app-security-info>
+</ng-container>

@@ -1,0 +1,138 @@
+<app-spinner-or-error
+    *ngIf="(loading$ | async) || errMsg" [loading$]="loading$" [errMsg]="errMsg">
+</app-spinner-or-error>
+
+<div class="frame">
+  <div class="body">
+    <div class="row group"><div colspan="2"><font>Score Details</font></div></div>
+    <div class="row">
+      <div class="field">SecurityID</div>
+      <div><font style="font-weight: bold" *ngIf="secInfo">
+        {{ secInfo.securityID }}
+      </font></div>
+    </div>
+    <div class="row">
+      <div class="field">Bond Description</div>
+      <div><font *ngIf="secInfo">
+        {{ secInfo.description }}
+      </font></div>
+    </div>
+    <div class="row">
+      <div class="field">Mapped Equity</div>
+      <div><font *ngIf="sigData && sigData.sid_equity">
+        {{ sigData.sid_equity }}
+      </font></div>
+    </div>
+    <div class="row">
+      <div class="field">RVS Score</div>
+      <div><font style="font-weight: bold" *ngIf="sigData && sigData.score">
+        {{ sigData.score | number: '1.0-0' }}
+      </font></div>
+    </div>
+    <div class="row">
+      <div class="field">RVS Signal</div>
+      <div><font *ngIf="sigData && sigData.signal">
+        {{ sigData.signal | number: '1.4-4' }}
+      </font></div>
+    </div>
+    <div class="row">
+      <div class="field">Bond Price Used</div>
+      <div><font *ngIf="sigData && sigData.signal">
+        {{ sigData.bond_px | number: '1.4-4' }}
+      </font></div>
+    </div>
+    <div class="row">
+      <div class="field">Bond YTW Used</div>
+      <div><font *ngIf="sigData && sigData.signal">
+        {{ sigData.bond_ytw * 100 | number: '1.2-2' }} %
+      </font></div>
+    </div>
+    <div class="row">
+      <div class="field">Version @ Last Update</div>
+      <div><font *ngIf="sigData">
+        {{sigData.version}} @ {{ sigData.last_update | date:'y-MM-dd HH:mm:ss'}}
+      </font></div>
+
+    </div>
+    <div class="row group"><div colspan="2"><font>Loadings</font></div></div>
+    <div class="row-loading">
+      <table class="table-loading">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Beta</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Const</td>
+            <td *ngIf="sigData">1</td>
+            <td *ngIf="sigData">{{ sigData.interceptor | number: '1.2-2' }}</td>
+          </tr>
+          <tr>
+            <td>BondMat</td>
+            <td *ngIf="sigData">{{sigData.bond_mat | number: '1.2-2'}}</td>
+            <td *ngIf="sigData">{{ sigData.bond_mat_beta | number: '1.2-2' }}</td>
+          </tr>
+          <tr>
+            <td>Sector</td>
+            <td *ngIf="sigData">
+              <div class="cell-div">{{sigData.industry_level_2}}</div>
+            </td>
+            <td *ngIf="sigData">
+              <div>{{ sigData.industry_level_2_beta | number: '1.2-2' }}</div>
+            </td>
+          </tr>
+          <tr>
+            <td>Rating</td>
+            <td *ngIf="sigData">{{sigData.rating}}</td>
+            <td *ngIf="sigData">{{ sigData.rating_beta | number: '1.2-2' }}</td>
+          </tr>
+          <tr>
+            <td>leverage</td>
+            <td *ngIf="sigData">{{sigData.leverage | number: '1.2-2'}}</td>
+            <td *ngIf="sigData">{{ sigData.leverage_beta | number: '1.2-2' }}</td>
+          </tr>
+          <tr>
+            <td>Fair YTW</td>
+            <td *ngIf="sigData">{{ sigData.bond_fair_ytw * 100 | number: '1.2-2' }} %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="row group"><div colspan="2"><font>Fundamentals</font></div></div>
+    <div class="row">
+      <div class="field">Total Debt</div>
+      <div><font *ngIf="sigData">
+        {{ sigData.total_debt | number: '1.0-0' }} MM
+      </font></div>
+
+    </div>
+
+    <div class="row">
+      <div class="field">Eqt Mkt</div>
+      <div><font *ngIf="sigData">
+        {{ sigData.eqt_mkt | number: '1.0-0' }} MM
+      </font></div>
+    </div>
+
+    <div class="row">
+      <div class="field"> EV / Eqt_Mkt</div>
+      <div><font *ngIf="sigData">
+        {{ sigData.ev /sigData.eqt_mkt | number: '1.2-2' }}
+      </font></div>
+    </div>
+
+    <div class="row group"><div colspan="2"><font>History</font></div></div>
+    <div class="row-chart">
+      <app-plot-chart
+          #plotChart
+          [dataSource]="pltDataSource"
+          [lines]="plotLinesConfig"
+          [tags]="tagsConfig"
+          [yaxes]="plotYaxes"
+          [updateOnResize]="updateOnResize"></app-plot-chart>
+    </div>
+  </div>
+</div>

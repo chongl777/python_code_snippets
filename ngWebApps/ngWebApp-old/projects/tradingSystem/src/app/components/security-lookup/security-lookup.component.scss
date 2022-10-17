@@ -1,0 +1,91 @@
+@import '~src/helpers';
+// $border-color: black;
+$height-search-bar: 50px;
+
+$drop-down-bg: #444;
+$drop-down-border-clr: #dddddd;
+$color-selected: #666;
+$sec-lookup-bg-color: black;
+
+:host {
+  display: block;
+  background: $color-dialog-background;
+  height: 100%;
+  width: 100%;
+}
+
+div.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  .sec-lookup {
+    height: $height-search-bar;
+    padding: 2px 10px 2px 10px;
+    display: flex;
+    flex-direction: row;
+    // border: 0.5px outset;
+    border: none;
+    background-color: $sec-lookup-bg-color;
+
+    .spacer {
+      flex: 1;
+    }
+
+    i.material-icons {
+      line-height: #{$height-search-bar - 0px};
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  .widget {
+    flex: 1;
+  }
+}
+
+
+form.security-search-form {
+  width: 250px;
+  mat-form-field {
+    width: 100%;
+  }
+
+  ::ng-deep .mat-autocomplete-panel {
+    border: 1px solid $drop-down-border-clr;
+  }
+
+}
+
+.sec-option {
+  width: 100%;
+  .sec-id {
+    width: 20%
+  }
+  .sec-des {
+    width: 50%;
+  }
+  .sec-deal {
+    width: 30%;
+  }
+}
+
+mat-option {
+  // background-color: $drop-down-bg;
+  background-color: $drop-down-bg;
+  font-size: 8px;
+  height: 20px;
+  &.mat-selected {
+    background-color: $drop-down-bg;
+  }
+
+  &.mat-active {
+    background-color: $color-selected;
+  }
+}
+
+
+// mat-autocomplete {
+//   border: 1px solid $drop-down-border-clr;
+// }

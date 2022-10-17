@@ -1,0 +1,77 @@
+@import '~src/helpers';
+// $border-color: black;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  app-spinner-or-error {
+    height: 100%;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.email-header {
+  display: flex;
+  flex-direction: column;
+
+  .email-subheader {
+      display: flex;
+      flex-direction: row;
+
+      .send-button {
+        margin: 10px;
+      }
+
+      .recipient {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+
+        .recipient-row {
+          margin: 5px 2px 5px 2px;
+
+          display: flex;
+          flex: 1;
+          flex-direction: row;
+
+          .title {
+            margin: auto;
+            margin-right: 10px;
+          }
+
+          .address {
+            margin: auto;
+            flex: 1;
+            height: 100%
+          }
+        }
+      }
+  }
+}
+
+.body {
+  textarea {
+    width: calc(100% - 6px);
+    height: 100%;
+    overflow: auto;
+  }
+
+  flex: 1;
+}
+
+.signature {
+  margin-top: 10px;
+  height: 160px;
+  overflow: hidden;
+  ::ng-deep p {
+    margin: 0px;
+  }
+}

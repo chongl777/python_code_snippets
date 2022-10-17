@@ -1,0 +1,15 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  // flex-direciton: column;
+  ::ng-deep {
+    .widget {
+      flex: 1;
+    }
+  }
+
+  .mat-toolbar {
+    height: 32px;
+    padding-left: 10px;
+  }
+}

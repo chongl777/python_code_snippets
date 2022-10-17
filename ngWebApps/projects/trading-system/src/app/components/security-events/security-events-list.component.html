@@ -1,0 +1,104 @@
+<!-- *ngIf="!(wlDataService.loading$ | async)  && !errMsg" -->
+<!-- <app-dialog-window2 [title]="'Custodian Records'">
+     </app-dialog-window2> -->
+<cdk-virtual-scroll-viewport
+    #ScrollDiv
+    tvsItemSize="24"
+    [footerEnabled]="false"
+    [headerEnabled]="true"
+    [headerHeight]="30"
+    [bufferMultiplier]="0.1"
+    class="wrapper mat-elevation-z2 scroll-div">
+
+  <table mat-table [dataSource]="dataSource" class="content-table"
+         matSort
+         matSortDisableClear
+         multiTemplateDataRows>
+    <tr mat-header-row class="pos-header"
+        *matHeaderRowDef="columnsToDisplay; sticky: true">
+    </tr>
+
+    <tr mat-row
+        *matRowDef="let rec; columns: columnsToDisplay;"
+        class="rec-row">
+    </tr>
+
+    <ng-container matColumnDef="ReportDate">
+      <th mat-header-cell *matHeaderCellDef> Report Date </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec.report_date.slice(0, 10) }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="SecurityID">
+      <th mat-header-cell *matHeaderCellDef> Sid </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec.security_id }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Voluntary/Mandatory">
+      <th mat-header-cell *matHeaderCellDef> Voluntary/Mandatory </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec['voluntary/mandatory'] }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec['status'] }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="EventDescription">
+      <th mat-header-cell *matHeaderCellDef> Event Description </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec['event_description'] }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="TermDescription">
+      <th mat-header-cell *matHeaderCellDef> Term Description </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec['term_description'] }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="DividendClass">
+      <th mat-header-cell *matHeaderCellDef> Dividend Class </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec['dividend_class'] }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="CurrentQty">
+      <th mat-header-cell *matHeaderCellDef> Currenty Qty </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec['current_quantity'] }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ElectedQty">
+      <th mat-header-cell *matHeaderCellDef> Elected Qty </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec['elected_quantity'] }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="GSResponseDate">
+      <th mat-header-cell *matHeaderCellDef> GS Response Date </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec['gs_response_date'].slice(0, 10) }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="PayDate">
+      <th mat-header-cell *matHeaderCellDef> Pay Date </th>
+      <td mat-cell *matCellDef="let rec;">
+        <div class="cell-div">{{rec['pay_date'].slice(0, 10) }}</div>
+      </td>
+    </ng-container>
+  </table>
+
+</cdk-virtual-scroll-viewport>

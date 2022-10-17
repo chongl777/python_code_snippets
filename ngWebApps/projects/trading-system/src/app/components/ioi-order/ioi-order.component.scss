@@ -1,0 +1,237 @@
+@import '~src/helpers';
+
+$height-ticket-title: 30px;
+$color-bwic: green;
+$color-owic: red;
+$color-font: white;
+$color-expired: red;
+$color-disabled: gray;
+$color-cancel: red;
+$color-invalid: red;
+$color-ready: lawngreen;
+$color-error: lightcoral;
+$color-positive: lawngreen;
+$color-negative: lightcoral;
+
+$font-size-general: 11px;
+$font-size-ioi: 15px;
+$font-size-ioi-title: 8px;
+$button-height: 27px;
+$button-width: 100px;
+
+:host {
+  display: block;
+  background: $color-dialog-background;
+  height: 100%;
+  width: 100%;
+  font-size: $font-size-general;
+  display: flex;
+  flex-direction: column;
+}
+
+// div.container {
+//   display: flex;
+//   flex-direction: column;
+//   height: 100%;
+//   width: 100%;
+// }
+
+app-spinner-or-error {
+  flex: 1;
+}
+.big-input {
+  width: 250px;
+}
+
+form.loading {
+  display: none!important;
+}
+
+.suffix {
+  font-size: font-size-general;
+}
+
+mat-toolbar,
+mat-dialog-title {
+  color: $color-dialog-title-text;
+  background: $color-dialog-title-background;
+  height: 40px;
+  line-height: 40px;
+  // font-size: 12px;
+  display: flex;
+  cursor: move;
+  padding: 0px 10px 0px 5px;
+
+  button[mat-button] {
+    line-height: 25px;
+    min-width: 25px;
+    background: $color-dialog-title-background!important;
+    font-size: 20px;
+    padding: 0px;
+    color: $color-dialog-title-text;
+  }
+}
+
+form.orderForm {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  // background: $color-gray;
+}
+
+.mat-dialog-actions {
+  padding: 0px;
+  margin: 0px;
+}
+
+.mat-dialog-content.content {
+  flex: 1;
+  margin: 0px 0px;
+  color: $color-font;
+  padding: 10px 30px 10px 30px;
+  overflow: hidden;
+}
+
+form div.form-div {
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0px!important;
+}
+
+form div.rvs-override {
+  mat-form-field {
+    width: 80px!important;
+  }
+}
+
+div.sec-info {
+  display: flex;
+  height: 40px;
+}
+
+div.expired {
+  color: $color-expired;
+}
+
+div.ticket-title {
+  height: $height-ticket-title;
+  line-height: $height-ticket-title;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.ticket-title.OWIC, .ticket-title.SELL {
+  border-bottom-color: $color-owic;
+  color: $color-owic;
+}
+
+.ticket-title.BWIC, .ticket-title.BUY {
+  border-bottom-color: $color-bwic;
+  color: $color-bwic;
+}
+
+
+::ng-deep .mat-form-field-infix {
+  display: flex!important;
+}
+
+app-security-details {
+  background: black;
+  color: $color-font;
+  font-size: 9px;
+}
+
+button {
+  color: $color-font;
+  background: $color-dialog-title-background;
+}
+
+button.cancel {
+  background-color: $color-cancel;
+}
+
+button[disabled] {
+  background: $color-disabled;
+}
+
+button.submit, button.cancel {
+  width: 120px;
+}
+
+mat-dialog-actions {
+  .mat-button {
+    width: $button-width!important;
+    height: $button-height!important;
+    padding: initial!important;
+  }
+}
+
+div.ioi-time {
+  margin-left: 20px;
+  font-weight: bold;
+  .title {
+    font-size: $font-size-ioi-title;
+  }
+
+  .value {
+    font-size: $font-size-ioi;
+  }
+}
+
+.order-text {
+  color: $color-invalid;
+  // font-size: 11px;
+}
+
+.invalid {
+  color: $color-invalid;
+}
+
+div.waiting, input.status-1 {
+  animation: blinkingText 0.9s infinite;
+}
+
+input.status-0 {
+  color: $color-ready;
+}
+
+input.status-1 {
+  color: $color-error;
+}
+
+input.status-2 {
+  color: $color-error;
+}
+
+div.loading {
+  display: none;
+}
+
+div.positive {
+  color: $color-positive;
+}
+
+div.negative {
+  color: $color-negative;
+}
+
+div.toggle {
+  margin-left: 10px;
+}
+
+@keyframes blinkingText{
+    0%  { opacity: 1; }
+    25% { opacity: 0.65; }
+    50% { opacity: 0.25; }
+    75% { opacity: 0.65; }
+    100%{ opacity: 1; }
+}
+
+app-security-details-slide-card {
+  background-color: $color-sec-detail;
+}

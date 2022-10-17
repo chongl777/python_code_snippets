@@ -1,0 +1,302 @@
+@import '~src/helpers';
+
+$color-border: gray;
+$color-toggle-active: white;
+$color-toggle: gray;
+$color-alternative-row: #515254;
+$color-arrow: white;
+$color-buy: green;
+$color-sell: red;
+$color-error: red;
+$color-disabled: gray;
+
+:host {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+app-spinner-or-error {
+  flex: 1;
+}
+
+.auto-fill {
+  input {
+    width: calc(100% - 18px);
+  }
+
+  div.icon {
+    display: inline-block;
+    position: relative;
+    height: 15px;
+
+    i.material-icons {
+      font-size: 10px;
+      cursor: pointer;
+    }
+    i.material-icons:hover {
+      font-size: 12px;
+    }
+  }
+}
+
+.allocator-wrapper {
+  // height: 100%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.quantity {
+  margin-right: 20px;
+}
+
+.pf-allocator-wrapper {
+
+}
+
+.pf-allocator-wrapper {
+  margin: 20px 10px;
+
+  .fund-name {
+    top: -10px;
+    left: 10px;
+    position: relative;
+    background-color: $card-background-color;
+    padding: 0px 5px;
+    display: inline-block;
+  }
+
+  .fund-name-wrapper {
+    height: 0px;
+  }
+}
+
+
+.pf-allocator {
+  .top-panel {
+    display: flex;
+    flex-direction: row;
+  }
+
+  padding: 10px 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  overflow: hidden;
+  .ticket {
+    overflow-x: auto;
+  }
+}
+
+
+.tax-allocator, .strategy-allocator {
+  font-size: 12px;
+}
+
+.allocator {
+  margin: 30px 0px;
+
+  div.add-strategy-lot{
+    border-top: 1px solid;
+    height: 0px;
+    margin-top: 20px;
+
+    button.add-lot-button {
+      width: 26px;
+      min-width: 26px;
+      height: 26px!important;
+      top: -13px;
+    }
+  }
+}
+
+mat-row, mat-header-row {
+  min-height: 25px;
+}
+
+.tax-allocator {
+  .mat-column-FundID {
+    flex: 1 1 30px;
+    min-width: 60px;
+  }
+
+  .mat-column-LotID {
+    flex: 2 1 130px;
+    min-width: 150px;
+  }
+
+  .mat-column-Account {
+    flex: 1 1 50px;
+    min-width: 50px;
+  }
+
+  .mat-column-CostBasis {
+    flex: 2 1 30px;
+    min-width: 60px;
+  }
+
+  .mat-column-Quantity {
+    flex: 1.5 1 100px;
+    min-width: 80px;
+  }
+
+  .mat-column-CreateDt {
+    flex: 1 1 30px;
+    min-width: 100px;
+  }
+
+  .mat-column-AllocatedQty {
+    //flex: 1.5 1 100px;
+    width: 140px;
+    flex:initial;
+  }
+
+  .mat-column-DeleteLot {
+    //min-width: 80px;
+    width: 40px;
+    flex: 0;
+    button.delete-button {
+      opacity: 0;
+    }
+  }
+}
+
+.strategy-allocator {
+  .mat-column-AllocatedQty {
+    //min-width: 80px;
+    width: 140px;
+    flex: initial;
+  }
+
+  .mat-column-DeleteLot {
+    //min-width: 80px;
+    width: 40px;
+    flex: 0;
+    button.delete-button {
+      opacity: 0;
+    }
+  }
+
+  mat-row:hover{
+    button.delete-button {
+      opacity: 1;
+    }
+  }
+
+  mat-select {
+    width: 120px;
+  }
+}
+
+
+mat-row.even {
+  background-color: $color-alternative-row!important;
+}
+
+mat-row:hover{
+  background-color: gray!important;
+}
+
+mat-table {
+  margin-top: 10px;
+}
+
+.allocator-title {
+  width: 100%;
+  height: 0px;
+  text-align: center;
+  border-top: 1px solid;
+  // .liner {
+
+  //   position: relative;
+  //   top: 10px;
+  // }
+
+  .title {
+    position: relative;
+    padding: 0px 5px;
+    top: -10px;
+    display: inline-block;
+    background-color: $card-background-color;
+  }
+}
+
+
+::ng-deep mat-row, mat-header-row, mat-footer-row {
+  border-bottom-width: 0px!important;
+}
+
+::ng-deep mat-header-row {
+  font-weight: bold;
+}
+
+div.buttons {
+  margin: auto;
+  display:flex;
+  height: 22px;
+}
+
+.mat-button {
+  width: 90px;
+  color: white;
+  margin-left: 10px;
+  height: 100%;
+  line-height: 25px;
+  ::ng-deep * {
+    font-weight: bold;
+  }
+}
+
+
+.button-panel {
+  display: flex;
+  flex-direction: row;
+  .spacer {
+    flex: 1;
+  }
+  height: 25px;
+
+  button {
+    width: 100px;
+  }
+}
+
+.mat-button.positive {
+  background-color: $color-buy;
+}
+
+.mat-button.negative {
+  background-color: $color-sell;
+}
+
+.button-panel {
+  height: 50px;
+  padding: 0px 15px;
+}
+
+button {
+  height: 30px!important;
+  margin: auto;
+}
+
+.mat-button[disabled] {
+  background-color: $color-disabled;
+}
+
+.error-message {
+  font-weight: bold;
+  color: $color-error;
+}
+
+.bold-font {
+  font-weight: bold;
+}
+
+.mat-row.invalid {
+  border: 0.5px solid $color-red!important;
+}
+
+button.transaction {
+  width: 137px!important;
+}

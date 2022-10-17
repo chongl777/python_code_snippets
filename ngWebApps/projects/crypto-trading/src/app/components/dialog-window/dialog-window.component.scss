@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .container {
+    display: flex;
+    flex:1;
+    flex-direction: column;
+  }
+
+  mat-dialog-title {
+    // flex: 1;
+    display: flex;
+    cursor: move;
+    position: relative;
+    left: -5px;
+    top: -5px;
+    width: calc(100% + 0px);
+    height: 40px!important;
+
+    .title {
+      margin: auto;
+    }
+  }
+
+  .flex-spacer {
+    flex: 1
+  }
+  // flex-direciton: column;
+  ::ng-deep {
+    .widget {
+      flex: 1;
+    }
+  }
+
+  .mat-toolbar {
+    height: 32px;
+    padding-left: 10px;
+  }
+}

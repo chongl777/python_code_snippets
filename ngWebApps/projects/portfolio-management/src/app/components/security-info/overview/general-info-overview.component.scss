@@ -1,0 +1,189 @@
+:host {
+  height: 100%;
+  display: inline-flex;
+
+  flex-direction: row;
+  width: 100%;
+  overflow: auto;
+}
+
+app-spinner-or-error {
+  position: absolute;
+  display:inline-block;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+
+.sec-info {
+  font-size: 11px;
+  font-family: Times New Roman;
+  flex: 1;
+  height: 100%;
+  display: inline-flex;
+
+  ::ng-deep &>.container {
+    overflow: hidden;
+    width: 100%;
+    display: inline-flex!important;
+
+    &>.body {
+      display: inline-flex;
+      flex-direction: row;
+      overflow: hiden!important;
+      // justify-content: center;
+      height: 100%;
+      flex: 1;
+      position: relative;
+    }
+  }
+
+  .short-status.GOOD {
+    color: green;
+    font-weight: bold;
+  }
+
+  .group-panel {
+    display: inline-flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 10px;
+  }
+
+  .row {
+    &>div:nth-child(2) {
+      text-align: right;
+      padding-right: 8px;
+    }
+    height: 22px;
+    display: flex;
+    flex-direction: row;
+    div {
+      margin: auto;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .field {
+      flex: 1;
+      min-width: 150px;
+      padding-left: 8px;
+    }
+  }
+
+  .group {
+    background: grey;
+    color: white;
+    font-weight: bold;
+    padding-left: 4px;
+  }
+
+  .table.row {
+    &>div:nth-child(1) {
+      min-width: 120px;
+    }
+
+    &>div:nth-child(2), &>div:nth-child(3), &>div:nth-child(4) {
+      text-align: center;
+    }
+  }
+}
+
+app-plot-chart {
+  width: 520px;
+  height: calc(100% - 11px);
+  margin: 10px 10px 0px 10px;
+
+  ::ng-deep{
+    .tooltip-tag, .tooltip {
+      background-color: rgba(70, 130, 180, 0.6);
+    }
+
+    .top-bar.top-legend-bar {
+      .legend {
+        width: 100px;
+      }
+    }
+
+    g.score {
+      stroke-dasharray: 2, 2;
+    }
+
+    g.signal {
+      stroke-dasharray: 2, 2;
+    }
+
+    path.bond_px, path.equity_px {
+      stroke-width: 1.5;
+    }
+
+    g.yaxis {
+      text.axis-name {
+        fill: black;
+      }
+
+      g.tick {
+        opacity: 0.7;
+      }
+
+      path.domain {
+        opacity: 0.4;
+      }
+    }
+
+    g.line-wrap.hld-period {
+      stroke-width: 8;
+      opacity: 0.3;
+      &.negative path {
+        stroke: red;
+      }
+      &.positive path {
+        stroke: green;
+      }
+    }
+
+    g.tags-wrap {
+      g.tag {
+        cursor: pointer;
+        opacity: 0.8;
+        polygon.positive {
+          fill: rgba(34, 139, 34);
+
+        }
+        polygon.negative {
+          fill: rgba(220, 20, 60);
+        }
+      }
+
+      g.tag:hover {
+        stroke: black;
+        opacity: 1;
+      }
+    }
+
+    .tooltip {
+      table tbody td.name {
+        text-align: left;
+        width: 70px;
+      }
+    }
+
+    .tooltip-tag {
+      table {
+        width: 100%;
+        td {
+          text-align: center;
+        }
+      }
+      font-size: 10px;
+      width: 300px;
+      z-index: 100;
+      opacity: 0.99;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 5px 10px rgb(0 0 0 / 20%);
+      border-radius: 6px;
+      background: rgba(250, 250, 250, 0.9)!important;
+    }
+  }
+}

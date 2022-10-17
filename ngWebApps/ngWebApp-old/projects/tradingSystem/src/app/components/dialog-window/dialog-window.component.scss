@@ -1,0 +1,48 @@
+@import '~src/helpers';
+// $border-color: black;
+$height-ticket-title: 30px;
+
+:host {
+  display: block;
+  background: $color-dialog-background;
+  height: 100%;
+  width: 100%;
+}
+
+div.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+mat-toolbar,
+mat-dialog-title {
+  color: $color-dialog-title-text;
+  background: $color-dialog-title-background;
+  height: 40px;
+  line-height: 40px;
+  // font-size: 12px;
+  display: flex;
+  cursor: move;
+  padding: 0px 10px 0px 5px;
+
+  button[mat-button] {
+    line-height: 25px;
+    min-width: 25px;
+    background: $color-dialog-title-background!important;
+    font-size: 20px;
+    padding: 0px;
+    color: $color-dialog-title-text;
+  }
+}
+
+div.ticket-title {
+  height: $height-ticket-title;
+  line-height: $height-ticket-title;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  font-weight: bold;
+  padding-left: 10px;
+  padding-right: 10px;
+}

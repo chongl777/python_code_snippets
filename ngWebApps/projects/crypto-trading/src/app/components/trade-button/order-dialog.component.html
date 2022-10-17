@@ -1,0 +1,111 @@
+<div *ngIf="order" class="order-title {{ordForm.get('isBuy').value == SIDE.Buy ? 'BUY': 'SELL'}}">
+  {{ordForm.get('isBuy').value == SIDE.Buy ? 'BUY' : 'SELL'}}
+</div>
+
+<!-- <div [@slideInOut]="ordForm.get('isBuy').value"
+     class="ticket-title {{ordForm.get('isBuy').value ? 'BUY': 'SELL'}}">
+     {{ordForm.get('isBuy').value ? 'Buy' : 'Sell'}}
+     </div>
+   -->
+
+<mat-dialog-content class="content">
+  <form [formGroup]="ordForm"
+        (keydown.enter)="$event.preventDefault()">
+
+    <div class="sec-info">
+      <div class="security-des">{{coin.description}}</div>
+      <div class="flex-spacer"></div>
+      <div class="toggle buy-sell">
+        <mat-slide-toggle
+            class="buy-sell {{ordForm.get('isBuy').value == SIDE.Buy ? 'BUY': 'SELL'}}"
+            formControlName="isBuy" [color]="'primary'">
+          {{ordForm.get('isBuy').value ? 'Buy' : 'Sell'}}
+        </mat-slide-toggle>
+      </div>
+    </div>
+
+    <div class="form-div">
+      <mat-form-field class="big-input">
+        <mat-label>Quantity</mat-label>
+        <input matNativeControl type="number"
+               min="0" formControlName="quantity" required>
+        <!-- <div style="font-size: 12px">M</div> -->
+
+        <mat-error *ngIf="formErrors.quantity">{{formErrors.quantity}}</mat-error>
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+      <mat-form-field class="big-input">
+        <mat-label> Price </mat-label>
+        <input matNativeControl type="number"
+               formControlName="price" required>
+
+        <mat-error *ngIf="formErrors.price">{{formErrors.price}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-div">
+      <mat-form-field class="big-input">
+        <!-- <input matNativeControl placeholder="Order Type" type="string"
+             formControlName="orderType" required> -->
+        <mat-label>Order Type</mat-label>
+        <mat-select formControlName="orderType" required>
+          <mat-option *ngFor="let ordTyp of ORDER_TYPE_MAP;"
+                      [value]="ordTyp.key">
+            <span style="display:flex; flex-direction: row;">
+              <div>{{ordTyp.value}}</div>
+            </span>
+          </mat-option>
+        </mat-select>
+
+        <mat-error *ngIf="formErrors.orderType">{{formErrors.orderType}}</mat-error>
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+    </div>
+
+    <div class="form-div">
+      <mat-form-field class="market-data">
+        <input matNativeControl placeholder="Bid Size" type="string" name="bid_size"
+               class="market-snap"
+               value="{{  coin.marketData.bidSize | number: '1.0-100' }}" disabled>
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+      <mat-form-field class="market-data">
+        <input matNativeControl placeholder="Bid Price" type="string" name="bid_price"
+               class="market-snap"
+               value="{{ coin.marketData.bidPrice | number: '1.0-100' }}" disabled>
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+      <mat-form-field class="market-data">
+        <input matNativeControl placeholder="Mid Price" type="string" name="ask_price"
+               class="market-snap"
+               value="{{ (coin.marketData.askPrice + coin.marketData.bidPrice)/2 | number: '1.0-100' }}" disabled>
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+      <mat-form-field class="market-data">
+        <input matNativeControl placeholder="Ask Price" type="string" name="ask_price"
+               class="market-snap"
+               value="{{ coin.marketData.askPrice | number: '1.0-100' }}" disabled>
+      </mat-form-field>
+      <div class="flex-spacer"></div>
+      <mat-form-field class="market-data">
+        <input matNativeControl placeholder="Ask Size" type="string" name="ask_size"
+               class="market-snap"
+               value="{{  coin.marketData.askSize | number: '1.0-100' }}" disabled>
+      </mat-form-field>
+    </div>
+
+    <mat-dialog-actions>
+      <span class="flex-spacer">
+        <span class="order-text"> {{ orderText }}</span>
+        <span class="error-text"> {{ errorText }}</span>
+      </span>
+      <button color="accent"
+          (click)="onSubmit($event)"
+          [disabled]="ordForm.invalid ||  (loading$ | async) || submitted" mat-raised-button type="submit"
+          class="cancel mat-tab-nav-bar mat-background-primary text-floral-white">
+        <div *ngIf="!(loading$ | async)">Send Order</div>
+        <div class="waiting" *ngIf="(loading$ | async)"> Waiting...</div>
+      </button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>
