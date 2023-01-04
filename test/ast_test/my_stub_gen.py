@@ -1,4 +1,5 @@
 import ast
+from typing import List, Set
 import astunparse
 
 from pprint import pprint
@@ -12,11 +13,26 @@ VAR: str = "VAR"
 NOT_IN_ALL: str = "NOT_IN_ALL"
 
 
+def find_method_names(defs: List[ast.AST]) -> Set[str]:
+    # TODO: Traverse into nested definitions
+    result = set()
+    for defn in defs:
+        if isinstance(defn, ast.FunctionDef):
+            result.add(defn.name)
+        # elif isinstance(defn, Decorator):
+        #     result.add(defn.func.name)
+        # elif isinstance(defn, OverloadedFuncDef):
+        #     for item in defn.items:
+        #         result.update(find_method_names([item]))
+    return result
+
+
 class Analyzer(ast.NodeVisitor):
     def __init__(self):
         self._indent = ""
         self._toplevel_names = []
         self._output = []
+        self._vars: List[List[str]] = [[]]
         self._state = None
 
     def is_top_level(self) -> bool:
@@ -42,6 +58,12 @@ class Analyzer(ast.NodeVisitor):
         # return imports + "".join(self._output)
         return "".join(self._output)
 
+    def get_base_types(self, cdef: ast.ClassDef) -> List[str]:
+        base_types: List[str] = []
+        for base in cdef.bases:
+            pass
+        return base_types
+
     def visit_Import(self, node):
         for alias in node.names:
             id = alias.name
@@ -50,11 +72,46 @@ class Analyzer(ast.NodeVisitor):
                 target_name = id.split(".")[0]
             else:
                 target_name = as_id
+
+            self._vars[-1].append(target_name)
             self.record_name(target_name)
 
     def visit_ClassDef(self, node):
         # self.add(f"{self._indent}{'async ' if node.is_coroutine else ''}def {node.name}(")
-        pass
+        self.method_names = find_method_names(node.body)
+        sep: int | None = None
+        if not self._indent and self._state != EMPTY:
+            sep = len(self._output)
+            self.add("\n")
+
+        self.add(f"{self._indent}class {node.name}")
+        self.record_name(node.name)
+        # metaclass
+        # node.keywords
+        self.add(":\n")
+        n = len(self._output)
+        self._indent += "    "
+        self._vars.append([])
+
+        for o in node.body:
+            self.visit(o)
+
+        self._indent = self._indent[:-4]
+        self._vars.pop()
+        self._vars[-1].append(node.name)
+
+        if len(self._output) == n:
+            # when class is empty
+            if self._state == EMPTY_CLASS and sep is not None:
+                self._output[sep] = ""
+            self._output[-1] = self._output[-1][:-1] + " ...\n"
+            self._state = EMPTY_CLASS
+        else:
+            self._state = CLASS
+        self.method_names = set()
+
+    def visit_AnnAssign(self, node):
+        self.add(f"{self._indent}{node.target.id}: {node.annotation.id}\n")
 
     def visit_FunctionDef(self, node):
         # self.add(f"{self._indent}{'async ' if node.is_coroutine else ''}def {node.name}(")
@@ -64,7 +121,7 @@ class Analyzer(ast.NodeVisitor):
 
         for i, args_ in enumerate(node.args.args):
             name = args_.arg
-            annotated_type = args_.annotation.id
+            annotated_type = args_.annotation and args_.annotation.id
             is_self_arg = i == 0 and name == "self"
             is_cls_arg = i == 0 and name in ("cls", "kls")
             annotation = ""
