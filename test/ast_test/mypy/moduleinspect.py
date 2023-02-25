@@ -6,6 +6,7 @@ import importlib
 import inspect
 import os
 import pkgutil
+from typing import List
 import queue
 import sys
 from multiprocessing import Process, Queue
@@ -51,7 +52,7 @@ def get_package_properties(package_id: str) -> ModuleProperties:
         raise InspectError(str(e)) from e
     name = getattr(package, "__name__", package_id)
     file = getattr(package, "__file__", None)
-    path: list[str] | None = getattr(package, "__path__", None)
+    path: List[str] | None = getattr(package, "__path__", None)
     if not isinstance(path, list):
         path = None
     pkg_all = getattr(package, "__all__", None)

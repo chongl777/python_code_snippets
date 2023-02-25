@@ -1463,9 +1463,9 @@ def find_module_paths_using_imports(
         c_modules: list[StubSource] = []
         found = list(walk_packages(inspect, packages, verbose))
         modules = modules + found
-        modules = [
-            mod for mod in modules if not is_non_library_module(mod)
-        ]  # We don't want to run any tests or scripts
+        # modules = [
+        #     mod for mod in modules if not is_non_library_module(mod)
+        # ]  # We don't want to run any tests or scripts
         for mod in modules:
             try:
                 result = find_module_path_and_all_py3(inspect, mod, verbose)
