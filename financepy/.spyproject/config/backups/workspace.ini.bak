@@ -1,0 +1,12 @@
+[workspace]
+restore_data_on_startup = True
+save_data_on_exit = True
+save_history = True
+save_non_project_files = False
+project_type = 'empty-project-type'
+recent_files = ['../.spyder-py3/temp.py', 'master/financepy/utils/date.py', 'master/tests_golden/TestFinBondConvertible.py', 'master/tests_golden/FinTestCases.py', 'master/financepy/products/bonds/bond_convertible.py', 'master/notebooks/models/FINITE_DIFFERENCE_PSOR.ipynb', 'master/financepy/models/finite_difference_PSOR.py', 'master/tests/test_finite_difference_PSOR.py', 'master/financepy/utils/amount.py', 'master/financepy/models/finite_difference.py', 'master/tests/test_pde.py', 'master/tests/test_FinBondConvertible.py', 'master/financepy/products/equity/equity_vanilla_option.py']
+
+[main]
+version = 0.2.0
+recent_files = []
+
